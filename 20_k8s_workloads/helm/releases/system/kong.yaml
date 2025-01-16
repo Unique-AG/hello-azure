@@ -36,7 +36,7 @@ releases:
           name: kong-plugin-unique-jwt-auth
         appRepoAuth:
           name: kong-plugin-unique-app-repo-auth
-          appRepositoryUrl: "http://bs-app-repository.apps.svc"
+          appRepositoryUrl: {{ .Values.plain.kong.appRepositoryUrl }}
 
   - name: kong-gateway-environment
     needs:
@@ -118,7 +118,7 @@ releases:
               kubernetes.io/ingress.class: kong
           plugin: unique-app-repo-auth
           config:
-            app_repository_url: http://bs-app-repository.apps.svc
+            app_repository_url: {{ .Values.plain.kong.appRepositoryUrl }}
         - apiVersion: configuration.konghq.com/v1
           kind: KongClusterPlugin
           metadata:

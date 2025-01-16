@@ -3,6 +3,8 @@ params:
 plain:
   apiGateway:
     subDomainName: api
+  kong:
+    appRepositoryUrl: http://bs-app-repository.apps.svc
   clusterIssuer:
     name: letsencrypt-azure-dns
   zitadel:
