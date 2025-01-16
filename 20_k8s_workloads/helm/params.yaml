@@ -1,0 +1,10 @@
+params:
+  zoneName: cluster.example.com
+plain:
+  apiGateway:
+    subDomainName: api
+  clusterIssuer:
+    name: letsencrypt-azure-dns
+  zitadel:
+    subDomainName: id
+    projectId: 1234567890

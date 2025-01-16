@@ -1,0 +1,218 @@
+environments:
+  default:
+    values:
+      - ../../params.yaml
+
+---
+
+repositories:
+  - name: kong
+    url: https://charts.konghq.com
+  - name: bedag
+    url: https://bedag.github.io/helm-charts
+
+releases:
+
+  - name: apiextensions.k8s.io
+    chart: bedag/raw
+    version: 2.0.0
+    namespace: system
+    createNamespace: true
+    wait: false
+    values:
+      - ./values/apiextensions.k8s.io-v1.2.0.crds.yaml
+
+  - name: kong-plugins
+    needs:
+      - apiextensions.k8s.io
+    createNamespace: true
+    namespace: system
+    chart: oci://ghcr.io/unique-ag/helm-charts/kong-plugins
+    version: 1.0.2
+    wait: false
+    values:
+      -
+        jwtAuth:
+          name: kong-plugin-unique-jwt-auth
+        appRepoAuth:
+          name: kong-plugin-unique-app-repo-auth
+          appRepositoryUrl: "http://bs-app-repository.apps.svc"
+
+  - name: kong-gateway-environment
+    needs:
+      - kong-plugins
+    chart: bedag/raw
+    version: 2.0.0
+    namespace: system
+    wait: false
+    values:
+      - resources:
+        - apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: kong-gateway-environment
+          data:
+            KONG_LOG_LEVEL: info
+
+  - name: kong
+    needs:
+      - kong-gateway-environment
+    createNamespace: true
+    namespace: system
+    chart: kong/ingress
+    version: 0.17.0
+    wait: false
+    disableValidationOnInstall: true # todo can be removed after first apply
+    values:
+      - ./values/controller.kong.yaml
+      - 
+        gateway:
+          image:
+            repository: acronechat.azurecr.io/kong
+            tag: "3.9.0"
+          nodeSelector:
+            pool: stable
+          proxy:
+            type: ClusterIP
+          plugins:
+            configMaps:
+              - name: kong-plugin-unique-jwt-auth
+                pluginName: unique-jwt-auth
+              - name: kong-plugin-unique-app-repo-auth
+                pluginName: unique-app-repo-auth
+          deploymentAnnotations:
+            configmap.reloader.stakater.com/reload: "kong-gateway-environment,kong-plugin-unique-jwt-auth,kong-plugin-unique-app-repo-auth"
+          envFrom:
+            - configMapRef:
+                name: kong-gateway-environment
+
+  - name: kong-cluster-plugins
+    needs:
+      - kong
+    chart: bedag/raw
+    version: 2.0.0
+    namespace: system
+    wait: false
+    values:
+      - resources:
+        - apiVersion: configuration.konghq.com/v1
+          kind: KongClusterPlugin
+          metadata:
+            name: unique-jwt-auth
+            annotations:
+              kubernetes.io/ingress.class: kong
+          plugin: unique-jwt-auth
+          config:
+            uri_param_names:
+              - "token"
+            allowed_iss:
+              - https://{{ printf "%s.%s" .Values.plain.zitadel.subDomainName .Values.params.zoneName }}
+            algorithm: RS256
+            well_known_template: https://{{ printf "%s.%s" .Values.plain.zitadel.subDomainName .Values.params.zoneName }}/.well-known/openid-configuration
+            zitadel_project_id: {{ .Values.plain.zitadel.projectId | quote }}
+        - apiVersion: configuration.konghq.com/v1
+          kind: KongClusterPlugin
+          metadata:
+            name: unique-app-repo-auth
+            annotations:
+              kubernetes.io/ingress.class: kong
+          plugin: unique-app-repo-auth
+          config:
+            app_repository_url: http://bs-app-repository.apps.svc
+        - apiVersion: configuration.konghq.com/v1
+          kind: KongClusterPlugin
+          metadata:
+            name: unique-global-cors
+            annotations:
+              kubernetes.io/ingress.class: kong
+            labels:
+              global: "true"
+          plugin: cors
+          config:
+            origins:
+              - https://{{ .Values.params.zoneName }}
+
+  - name: kong-gateway
+    needs:
+      - kong-cluster-plugins
+    chart: bedag/raw
+    version: 2.0.0
+    namespace: system
+    wait: false
+    values:
+      - resources:
+        - apiVersion: gateway.networking.k8s.io/v1
+          kind: Gateway
+          metadata:
+            name: kong
+          spec:
+            gatewayClassName: kong
+            listeners:
+              - name: http
+                protocol: HTTP
+                port: 80
+                allowedRoutes:
+                  namespaces:
+                    from: All
+
+  - name: kong-ingress
+    needs:
+      - kong-gateway
+    chart: bedag/raw
+    version: 2.0.0
+    namespace: system
+    wait: false
+    values:
+      - resources:
+        - apiVersion: networking.k8s.io/v1
+          kind: Ingress
+          metadata:
+            annotations:
+              appgw.ingress.kubernetes.io/request-timeout: "120"
+              appgw.ingress.kubernetes.io/rewrite-rule-set: security-headers
+              appgw.ingress.kubernetes.io/ssl-redirect: "true"
+              cert-manager.io/cluster-issuer: {{ .Values.plain.clusterIssuer.name }}
+            name: kong-web-apps
+          spec:
+            ingressClassName: azure-application-gateway
+            rules:
+              - host: {{ .Values.params.zoneName }}
+                http:
+                  paths:
+                    - backend:
+                        service:
+                          name: kong-gateway-proxy
+                          port:
+                            number: 80
+                      path: /
+                      pathType: Prefix
+            tls:
+              - hosts:
+                  - {{ .Values.params.zoneName }}
+                secretName: kong-tls
+        - apiVersion: networking.k8s.io/v1
+          kind: Ingress
+          metadata:
+            annotations:
+              appgw.ingress.kubernetes.io/request-timeout: "120"
+              appgw.ingress.kubernetes.io/rewrite-rule-set: security-headers
+              appgw.ingress.kubernetes.io/ssl-redirect: "true"
+              cert-manager.io/cluster-issuer: {{ .Values.plain.clusterIssuer.name }}
+            name: kong-backend-services
+          spec:
+            ingressClassName: azure-application-gateway
+            rules:
+              - host: {{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}
+                http:
+                  paths:
+                    - backend:
+                        service:
+                          name: kong-gateway-proxy
+                          port:
+                            number: 80
+                      path: /
+                      pathType: Prefix
+            tls:
+              - hosts:
+                  - {{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}
+                secretName: kong-api-tls
