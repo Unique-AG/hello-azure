@@ -70,8 +70,6 @@ releases:
           image:
             repository: acronechat.azurecr.io/kong
             tag: "3.9.0"
-          nodeSelector:
-            pool: stable
           proxy:
             type: ClusterIP
           plugins:

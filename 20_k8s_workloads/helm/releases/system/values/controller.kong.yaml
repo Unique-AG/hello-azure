@@ -8,8 +8,6 @@ controller:
           name: kong-controller-environment
   proxy:
     type: ClusterIP
-  nodeSelector:
-    pool: stable
   deploymentAnnotations:
     configmap.reloader.stakater.com/reload: "kong-controller-environment"
   extraObjects:
