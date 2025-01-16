@@ -1,0 +1,12 @@
+params:
+  zoneName: cluster.example.com
+plain:
+  apiGateway:
+    subDomainName: api
+  kong:
+    appRepositoryUrl: http://bs-app-repository.apps.svc
+  clusterIssuer:
+    name: letsencrypt-azure-dns
+  zitadel:
+    subDomainName: id
+    projectId: 1234567890
