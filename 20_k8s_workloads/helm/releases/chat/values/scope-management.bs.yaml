@@ -22,7 +22,7 @@ env:
   LOG_LEVEL: info
   MAX_HEAP_MB: 750
   ZITADEL_HOST: unset_default_value
-  ZITADEL_INTERNAL_HOST: http://zitadel.system.svc.cluster.local:8080
+  ZITADEL_INTERNAL_HOST: http://zitadel.unique.svc.cluster.local:8080
   ZITADEL_PROJECT_ID: unset_default_value
 extraRoutes:
   scim:
