@@ -1,15 +1,15 @@
 module "openai" {
-  source                        = "github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=azure-openai-2.0.1"
-  resource_group_name           = data.azurerm_resource_group.core.name
-  tags                          = var.tags
-  endpoint_secret_name_suffix   = "-ep"
-  public_network_access_enabled = true
+  source                      = "github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=azure-openai-2.0.1"
+  resource_group_name         = data.azurerm_resource_group.core.name
+  tags                        = var.tags
+  endpoint_secret_name_suffix = "-ep"
   cognitive_accounts = {
     "cognitive-account-switzerlandnorth" = {
-      name                  = "cognitive-account-switzerlandnorth"
-      location              = "switzerlandnorth"
-      local_auth_enabled    = true
-      custom_subdomain_name = var.custom_subdomain_name
+      name                          = "cognitive-account-switzerlandnorth"
+      location                      = "switzerlandnorth"
+      local_auth_enabled            = true
+      custom_subdomain_name         = var.custom_subdomain_name
+      public_network_access_enabled = true
       cognitive_deployments = [
         {
           name          = "text-embedding-ada-002"
