@@ -26,18 +26,18 @@ data "azurerm_role_definition" "acr_pull" {
   name = "AcrPull"
 }
 data "azuread_user" "cluster_admin" {
-  for_each            = var.cluster_admins
-  user_principal_name = each.key
+  for_each  = var.cluster_admins
+  object_id = each.key
 }
 
 data "azuread_user" "main_keyvault_secret_writer" {
-  for_each            = var.main_keyvault_secret_writers
-  user_principal_name = each.key
+  for_each  = var.main_keyvault_secret_writers
+  object_id = each.key
 }
 
 data "azuread_user" "telemetry_observer" {
-  for_each            = var.telemetry_observers
-  user_principal_name = each.key
+  for_each  = var.telemetry_observers
+  object_id = each.key
 }
 
 
