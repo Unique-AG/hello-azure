@@ -1,0 +1,34 @@
+env:
+  LOG_LEVEL: info
+  MAX_HEAP_MB: 750
+hooks:
+  migration:
+    command: |
+      cd /node/dist/apps/node-app-repository; npx prisma migrate deploy
+    enabled: true
+nodeSelector:
+  pool: stable
+probes:
+  enabled: false
+replicaCount: 1
+resources:
+  limits:
+    memory: 900Mi
+  requests:
+    cpu: 500m
+    memory: 850Mi
+routes:
+  hostname: unset_default_value
+  pathPrefix: /apps
+  paths:
+    default:
+      enabled: true
+    probe:
+      enabled: true
+secretProvider:
+  useVMManagedIdentity: "true"
+serviceAccount:
+  enabled: true
+  workloadIdentity:
+    clientId: unset_default_value
+    enabled: true

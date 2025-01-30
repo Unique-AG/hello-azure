@@ -1,0 +1,72 @@
+autoscaling:
+  enabled: true
+  maxReplicas: 6
+  minReplicas: 2
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+env:
+  AMQP_BENCHMARK_PREFETCH: 1
+  ANONYMIZED_CHAT_INTERACTIONS_EXPORT: "false"
+  AUDIT_LOG_DIR: /dev/stdout
+  BENCHMARKS_PER_MINUTE_PER_PROCESS: 1
+  DATABASE_CONNECTION_POOL_LIMIT: "30"
+  ENABLE_CLIENT_INSIGHT_SHIPPER: "true"
+  EXPORT_PROMPTS_ACCESS_CONTROL: "true"
+  INGESTION_API_URL: http://bs-ingestion.chat.svc
+  INTERNAL_MODULES_CONFIG: >-
+    [
+    {"name": "SearchInVectorDBV2", "apiURL": "http://assistants-core.chat.svc/core/search"},
+    {"name": "ImageSummarizer", "apiURL": "http://assistants-core.chat.svc/core/image_summarizer"},
+    {"name": "TranslationOneToOne", "apiURL": "http://assistants-core.chat.svc/core/translation_one_to_one"},
+    {"name": "WebSearch", "apiURL": "http://assistants-core.chat.svc/core/web_search"},
+    {"name": "ComplianceCheck", "apiURL": "http://assistants-core.chat.svc/core/compliance_check"},
+    {"name": "QuestionExtractor", "apiURL": "http://assistants-core.chat.svc/core/question_extractor"},
+    {"name": "QuestionAnswerer", "apiURL": "http://assistants-core.chat.svc/core/question_answerer"},
+    {"name": "QuestionPredictor", "apiURL": "http://assistants-core.chat.svc/core/question_predictor"},
+    {"name": "DocumentSummarizerV2", "apiURL": "http://assistants-core.chat.svc/core/document_summarizer"},
+    {"name": "ImageUpload", "apiURL": "http://assistants-core.chat.svc/core/image_upload"},
+    {"name": "DocumentTranslator", "apiURL": "http://assistants-core.chat.svc/core/document_translator"},
+    {"name": "AgenticSearch", "apiURL": "http://assistants-core.chat.svc/core/agentic_search"},
+    {"name": "TranslatorV2", "apiURL": "http://assistants-core.chat.svc.cluster.local:8081/core/translator_v2"},
+    {"name": "InvestmentResearch", "apiURL": "http://assistants-core.chat.svc.cluster.local:8081/core/investment_research"},
+    {"name": "EarningCallsBeta", "apiURL": "http://assistants-core.chat.svc.cluster.local:8081/core/earning_calls"}
+    ]
+  LOG_LEVEL: info
+  MAX_HEAP_MB: 3700
+  MIN_NO_OF_MESSAGES_BY_USER_BEFORE_NPS_TRIGGER: "30"
+  OPENAI_PROVIDER: azure
+  PUBSUB_BACKEND: redis
+  PUBSUB_REDIS_DB: 2
+  SCOPE_MANAGEMENT_API_URL: http://bs-scope-management.chat.svc
+hooks:
+  migration:
+    command: |
+      cd /node/dist/apps/node-chat; npx prisma migrate deploy
+    enabled: true
+
+nodeSelector:
+  pool: stable
+resources:
+  limits:
+    cpu: 6
+    memory: 4Gi
+  requests:
+    cpu: 2
+    memory: 3800Mi
+routes:
+  hostname: unset_default_value
+  pathPrefix: /chat
+  paths:
+    default:
+      enabled: true
+    versioned:
+      enabled: true
+    probe:
+      enabled: true
+secretProvider:
+  useVMManagedIdentity: "true"
+serviceAccount:
+  enabled: true
+  workloadIdentity:
+    clientId: unset_default_value
+    enabled: true

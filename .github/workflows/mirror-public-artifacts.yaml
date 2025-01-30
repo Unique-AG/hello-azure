@@ -1,0 +1,47 @@
+name: '⛴️ Mirror Public Artifacts'
+
+on:
+  workflow_dispatch:
+  push:
+    branches : ["main","dev"]
+    paths:
+      - .github/workflows/mirror-public-artifacts.yaml
+
+permissions:
+  contents: read
+  id-token: write   # This is required for requesting the JWT
+  pull-requests: write # To write comments
+
+env:
+  UNIQUECR_USERNAME: hello-azure
+
+jobs:
+  clone-release:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install node
+        uses: actions/setup-node@v4.0.4
+
+      - name: Azure Login action
+        uses: azure/login@v2
+        with:
+          client-id: "a0e34ba0-b64c-49f4-8d94-1c74d7b3090e"
+          tenant-id: "aeade8c4-d4f7-4ae7-9149-4975fa3a7f91"
+          subscription-id: "be4e82ff-bf83-4173-a750-15e807845579"
+
+      - name: Install unique-ag/cli
+        run: npm install -g @unique-ag/cli@0.5.1
+
+      - name: Mirror public artifacts
+        timeout-minutes: 15
+        run: |
+          az acr login --name uniquehelloazure
+          qcli mirror images -f 20_k8s_workloads/mirror_artifacts/io.docker.yaml
+          qcli mirror images -f 20_k8s_workloads/mirror_artifacts/io.ghcr.yaml
+          qcli mirror images -f 20_k8s_workloads/mirror_artifacts/io.quay.yaml

@@ -1,0 +1,22 @@
+versions:
+  apps:
+    bs:
+      app-repository: "2025.02"
+      event-socket: "2025.02"
+      client-insights-exporter: "2025.02"
+      webhook-scheduler: "2025.02"
+      webhook-worker: "2025.02"
+  chat:
+    ai:
+      core: "2025.02"
+    bs:
+      chat: "2025.02"
+      ingestion: "2025.02"
+      ingestion-worker: "2025.02"
+      scope-management: "2025.02"
+      theme: "2025.02"
+    wa:
+      admin: "2025.02"
+      chat: "2025.02"
+      knowledge-upload: "2025.02"
+      theme: "2025.02"

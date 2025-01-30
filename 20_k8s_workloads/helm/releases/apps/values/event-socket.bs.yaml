@@ -1,0 +1,21 @@
+env:
+  LOG_LEVEL: info
+  MAX_HEAP_MB: 200
+nodeSelector:
+  pool: stable
+replicaCount: 1
+resources:
+  limits:
+    cpu: 200m
+    memory: 350Mi
+  requests:
+    cpu: 100m
+    memory: 300Mi
+routes:
+  hostname: unset_default_value
+  pathPrefix: /event-socket
+  paths:
+    versioned:
+      enabled: true
+    probe:
+      enabled: true

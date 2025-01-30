@@ -1,0 +1,42 @@
+environments:
+  default:
+    values:
+      - ../../params.yaml
+      - ../../terraform-outputs.yaml
+      -
+        self:
+          namespace: chat
+
+repositories:
+  - name: qdrant
+    url: https://qdrant.github.io/qdrant-helm
+
+releases:
+  - name: qdrant
+    chart: qdrant/qdrant
+    version: 0.7.3
+    namespace: {{ .Values.self.namespace }}
+    createNamespace: true
+    wait: false
+    values:
+      - image:
+          repository: {{ .Values.plain.registryUrl }}/qdrant/qdrant
+          tag: v1.8.4-unprivileged
+        replicaCount: 2
+        resources:
+          requests:
+            cpu: 201m
+            memory: 11.8Gi
+          limits:
+            memory: 12Gi
+        nodeSelector:
+          pool: stable
+        persistence:
+          accessModes:
+            - ReadWriteOnce
+          size: 10Gi
+          storageClassName: default-zrs
+        startupProbe:
+          enabled: true
+          failureThreshold: 30
+          periodSeconds: 30

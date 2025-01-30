@@ -1,0 +1,11 @@
+env:
+  INGESTION_QUEUE: chat_queue
+eventBasedAutoscaling:
+  cron:
+    timezone: Europe/Zurich
+    start: 0 8 * * 1-5
+    end: 0 19 * * 1-5
+    desiredReplicas: "4"
+  maxReplicaCount: 4
+  rabbitmq:
+    queueName: unique.node.ingestion.chat_queue

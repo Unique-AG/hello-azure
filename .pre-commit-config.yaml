@@ -1,0 +1,41 @@
+repos:
+  - repo: local
+    hooks:
+        - id: tf-docs
+          name: tf-docs
+          entry: scripts/tf-docs.sh
+          language: script
+          pass_filenames: false
+        - id: tf-fmt
+          name: tf-fmt
+          entry: scripts/tf-fmt.sh
+          language: script
+          pass_filenames: false
+        - id: tf-sec
+          name: tf-sec
+          entry: scripts/tf-sec.sh
+          language: script
+          pass_filenames: false
+
+  # - repo: local
+  #   hooks:
+  #     - id: copy-md-files
+  #       name: Copy and Rename README Files
+  #       entry: |
+  #         bash -c '
+  #           for readme in modules/azure/*/README.md; do
+  #             folder_name=$(basename $(dirname "$readme"))
+  #             cp "$readme" "docs/${folder_name}.md"
+  #           done
+  #         '
+  #       language: system
+  #       pass_filenames: false
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-symlinks
+      - id: check-merge-conflict
+      - id: detect-private-key

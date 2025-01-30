@@ -1,0 +1,49 @@
+cronJob:
+  concurrencyPolicy: Forbid
+  enabled: true
+  env:
+    RUNNING_MODE: user-sync
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    containers:
+      name: bs-scope-management-user-sync
+    restartPolicy: Never
+  name: user-sync
+  schedule: "*/5 * * * *"
+  startingDeadlineSeconds: 10
+  successfulJobsHistoryLimit: 1
+  suspend: false
+  timeZone: Europe/Zurich
+env:
+  AUDIT_LOG_DIR: /dev/stdout
+  CHAT_API_URL: http://bs-chat.chat.svc
+  ENABLE_CLIENT_INSIGHT_SHIPPER: "true"
+  INGESTION_API_URL: http://bs-ingestion.chat.svc
+  LOG_LEVEL: info
+  MAX_HEAP_MB: 750
+  ZITADEL_HOST: unset_default_value
+  ZITADEL_INTERNAL_HOST: http://zitadel.system.svc.cluster.local:8080
+  ZITADEL_PROJECT_ID: unset_default_value
+hooks:
+  migration:
+    command: |
+      cd /node/dist/apps/node-scope-management; npx prisma migrate deploy
+    enabled: true
+replicaCount: 1
+resources:
+  limits:
+    cpu: 1
+    memory: 900Mi
+  requests:
+    cpu: 500m
+    memory: 850Mi
+routes:
+  hostname: unset_default_value
+  pathPrefix: /scope-management
+  paths:
+    default:
+      enabled: true
+    probe:
+      enabled: true
+secretProvider:
+  useVMManagedIdentity: "true"

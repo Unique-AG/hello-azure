@@ -1,0 +1,16 @@
+env:
+  APP_REPOSITORY_URL: http://bs-app-repository.apps.svc
+  LOG_LEVEL: debug
+  MAX_HEAP_MB: 200
+nodeSelector:
+  pool: stable
+probes:
+  enabled: false
+replicaCount: 1
+resources:
+  limits:
+    cpu: 200m
+    memory: 350Mi
+  requests:
+    cpu: 100m
+    memory: 300Mi

@@ -1,0 +1,132 @@
+repositories:
+  - name: bedag
+    url: https://bedag.github.io/helm-charts
+
+releases:
+  # enables managed prometheus to scrape for ContainerInsights
+  - name: ama-metrics-prometheus-config
+    namespace: kube-system
+    chart: bedag/raw
+    version: 2.0.0
+    wait: false
+    values:
+      - resources:
+        - apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: ama-metrics-prometheus-config
+          data:
+            prometheus-config: |-
+              global:
+                scrape_interval: 15s
+              scrape_configs:
+              - job_name: 'kubernetes-pods'
+                honor_labels: true
+                kubernetes_sd_configs:
+                  - role: pod
+                relabel_configs:
+                  - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+                    action: keep
+                    regex: true
+                  - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape_slow]
+                    action: drop
+                    regex: true
+                  - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scheme]
+                    action: replace
+                    regex: (https?)
+                    target_label: __scheme__
+                  - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+                    action: replace
+                    target_label: __metrics_path__
+                    regex: (.+)
+                  - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_port, __meta_kubernetes_pod_ip]
+                    action: replace
+                    regex: (\d+);(([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4})
+                    replacement: '[$2]:$1'
+                    target_label: __address__
+                  - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_port, __meta_kubernetes_pod_ip]
+                    action: replace
+                    regex: (\d+);((([0-9]+?)(\.|$)){4})
+                    replacement: $2:$1
+                    target_label: __address__
+                  - action: labelmap
+                    regex: __meta_kubernetes_pod_annotation_prometheus_io_param_(.+)
+                    replacement: __param_$1
+                  - action: labelmap
+                    regex: __meta_kubernetes_pod_label_(.+)
+                  - source_labels: [__meta_kubernetes_namespace]
+                    action: replace
+                    target_label: namespace
+                  - source_labels: [__meta_kubernetes_pod_name]
+                    action: replace
+                    target_label: pod
+                  - source_labels: [__meta_kubernetes_pod_phase]
+                    regex: Pending|Succeeded|Failed|Completed
+                    action: drop
+                  - source_labels: [__meta_kubernetes_pod_node_name]
+                    action: replace
+                    target_label: node
+
+  # Configures Log Collection settings for Log Analytics Workspace Table ContainerLogV2
+  - name: container-azm-ms-agentconfig
+    namespace: kube-system
+    chart: bedag/raw
+    version: 2.0.0
+    wait: false
+    values:
+      - resources:
+        - apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: container-azm-ms-agentconfig
+          data:
+            schema-version:
+              v1
+            config-version:
+              ver1
+            log-data-collection-settings: |-
+              [log_collection_settings]
+                [log_collection_settings.stdout]
+                    enabled = true
+                    exclude_namespaces = ["gatekeeper-system"]
+                [log_collection_settings.stderr]
+                    enabled = true
+                    exclude_namespaces = ["gatekeeper-system"]
+                [log_collection_settings.env_var]
+                    enabled = true
+                [log_collection_settings.enrich_container_logs]
+                    enabled = false
+                [log_collection_settings.collect_all_kube_events]
+                    enabled = false
+                [log_collection_settings.schema]
+                    containerlog_schema_version = "v2"
+
+  - name: storage-class-zrs
+    chart: bedag/raw
+    version: 2.0.0
+    namespace: system
+    createNamespace: true
+    wait: false
+    values:
+      - resources:
+        - apiVersion: storage.k8s.io/v1
+          kind: StorageClass
+          metadata:
+            name: default-zrs
+            labels:
+              addonmanager.kubernetes.io/mode: EnsureExists
+          provisioner: disk.csi.azure.com
+          parameters:
+            skuname: StandardSSD_ZRS
+          reclaimPolicy: Delete
+          allowVolumeExpansion: true
+          volumeBindingMode: WaitForFirstConsumer
+
+  - name: apiextensions.k8s.io
+    chart: bedag/raw
+    version: 2.0.0
+    namespace: system
+    createNamespace: true
+    wait: false
+    values:
+      - ./values/apiextensions.k8s.io-v1.2.0.crds.yaml
