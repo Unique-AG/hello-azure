@@ -14,22 +14,23 @@ repositories:
 releases:
   - name: qdrant
     chart: qdrant/qdrant
-    version: 0.7.3
+    version: 1.13.1
     namespace: {{ .Values.self.namespace }}
     createNamespace: true
     wait: false
     values:
-      - image:
+      - replicaCount: 1
+        image:
           repository: {{ .Values.plain.registryUrl }}/qdrant/qdrant
-          tag: v1.8.4-unprivileged
+          tag: v1.8.4
+          useUnprivilegedImage: false # auto-appends -unprivileged to the tag
         updateVolumeFsOwnership: false # as this is a new cluster, the file system was never running as root
-        replicaCount: 2
         resources:
           requests:
-            cpu: 201m
-            memory: 11.8Gi
+            cpu: 200m
+            memory: 1Gi
           limits:
-            memory: 12Gi
+            memory: 1200Mi
         nodeSelector:
           pool: stable
         persistence:
