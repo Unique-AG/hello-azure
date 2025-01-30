@@ -39,7 +39,7 @@ jobs:
           - 20_k8s_workloads/helm/releases/chat/secrets.yaml
     with:
       file_name: ${{ matrix.release }}
-      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}
+      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}
     secrets: inherit
 
   chat:
@@ -57,5 +57,5 @@ jobs:
           - 20_k8s_workloads/helm/releases/chat/ai.yaml
     with:
       file_name: ${{ matrix.release }}
-      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}
+      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}
     secrets: inherit
