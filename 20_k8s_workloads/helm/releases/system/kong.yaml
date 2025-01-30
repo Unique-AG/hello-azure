@@ -126,7 +126,7 @@ releases:
           plugin: cors
           config:
             origins:
-              - https://{{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}
+              - https://{{ .Values.params.zoneName }}
         - apiVersion: configuration.konghq.com/v1
           kind: KongClusterPlugin
           metadata:
