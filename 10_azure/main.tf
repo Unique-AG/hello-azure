@@ -37,7 +37,7 @@ module "perimeter" {
     }
   }
   csi_identity_name               = "csi_identity"
-  budget_contact_emails           = ["jakub@unique.ch"]
+  budget_contact_emails           = ["support@unique.ch"]
   aks_node_rg_name                = module.identities.resource_group_core_name
   sensitive_kv_name               = "helloazuresensitivekv"
   main_kv_name                    = "helloazuremainkv"
