@@ -1,0 +1,53 @@
+name: Get Pods AKS
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - .github/workflows/test.yaml
+
+permissions:
+  contents: read
+  pull-requests: write # To write comments
+  id-token: write
+
+jobs:
+  get-pods:
+    runs-on:
+      group: hello.azure.unique.dev
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Azure CLI
+      uses: azure/login@v1
+      with:
+        client-id: "a0e34ba0-b64c-49f4-8d94-1c74d7b3090e"
+        tenant-id: "aeade8c4-d4f7-4ae7-9149-4975fa3a7f91"
+        subscription-id: "be4e82ff-bf83-4173-a750-15e807845579"
+
+    - name: Install kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
+
+    # Set up kubelogin for non-interactive authentication with Azure Kubernetes Service (AKS)
+    - name: Set up kubelogin
+      uses: azure/use-kubelogin@v1
+      with:
+        kubelogin-version: v0.1.4
+
+    # Retrieve the Kubernetes context for the AKS cluster
+    - name: Set AKS context
+      uses: azure/aks-set-context@v3
+      with:
+        resource-group: "resource-group-core"
+        cluster-name: "aks-cluster"
+        admin: 'false'
+        use-kubelogin: 'true'
+
+    - name: Get all pods
+      run: |
+        kubectl get pods -A

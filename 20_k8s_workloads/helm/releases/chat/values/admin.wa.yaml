@@ -1,0 +1,40 @@
+env:
+  FEATURE_FLAG_ENABLE_ASSISTANT_ACCESS_UN_5775: true
+  FEATURE_FLAG_KNOWLEDGE_SCOPE_UN_5773: true
+  FEATURE_FLAG_NEW_TRANSLATION_UI_UN_7233: true
+  MAX_HEAP_MB: 350
+nodeSelector:
+  pool: stable
+probes:
+  liveness:
+    httpGet:
+      path: /admin/api/health
+      port: http
+    initialDelaySeconds: 5
+  readiness:
+    httpGet:
+      path: /admin/api/health
+      port: http
+    initialDelaySeconds: 5
+replicaCount: 2
+resources:
+  limits:
+    cpu: 300m
+    memory: 500Mi
+  requests:
+    cpu: 300m
+    memory: 450Mi
+routes:
+  hostname: unset_default_value
+  pathPrefix: /admin
+  paths:
+    default:
+      enabled: true
+securityContext:
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  runAsUser: 1000
+  seccompProfile:
+    type: RuntimeDefault
+strategy:
+  type: Recreate

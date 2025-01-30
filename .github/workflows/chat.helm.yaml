@@ -1,0 +1,61 @@
+name: '[helm][chat]'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/chat.helm.yaml
+      - 20_k8s_workloads/helm/releases/chat/**
+      - 20_k8s_workloads/helm/params.yaml
+      - 20_k8s_workloads/helm/versions.yaml
+  push:
+    branches :
+      - main
+      - dev
+    paths:
+      - .github/workflows/chat.helm.yaml
+      - 20_k8s_workloads/helm/releases/chat/**
+      - 20_k8s_workloads/helm/params.yaml
+      - 20_k8s_workloads/helm/versions.yaml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+
+  secrets:
+    uses: ./.github/workflows/helm.yaml
+    strategy:
+      fail-fast: false
+      matrix:
+        release:
+          - 20_k8s_workloads/helm/releases/chat/secrets.yaml
+    with:
+      file_name: ${{ matrix.release }}
+      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}
+    secrets: inherit
+
+  chat:
+    uses: ./.github/workflows/helm.yaml
+    needs:
+      - secrets
+    strategy:
+      fail-fast: false
+      matrix:
+        release:
+          - 20_k8s_workloads/helm/releases/chat/qdrant.yaml
+          - 20_k8s_workloads/helm/releases/chat/rabbitmq-cluster.yaml
+          - 20_k8s_workloads/helm/releases/chat/bs.yaml
+          - 20_k8s_workloads/helm/releases/chat/wa.yaml
+          - 20_k8s_workloads/helm/releases/chat/ai.yaml
+    with:
+      file_name: ${{ matrix.release }}
+      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}
+    secrets: inherit

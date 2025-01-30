@@ -1,0 +1,7 @@
+build
+.tfdocs-config.yml
+.terraform*
+mkdocs
+*.tfstate
+*.tfstate.backup
+params.yaml

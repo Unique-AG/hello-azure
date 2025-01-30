@@ -1,0 +1,5 @@
+exclude:
+  - CUS002 # test exclusion from an AWS config, will be removed
+  - azure-keyvault-ensure-secret-expiry
+  - azure-keyvault-content-type-for-secret
+  - azure-container-logging

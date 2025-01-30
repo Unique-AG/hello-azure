@@ -1,0 +1,74 @@
+autoscaling:
+  enabled: true
+  maxReplicas: 6
+  minReplicas: 2
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+cronJob:
+  concurrencyPolicy: Forbid
+  enabled: true
+  env:
+    RUNNING_MODE: expired-content-deletion
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    containers:
+      name: bs-ingestion-expired-content-deletion
+    restartPolicy: Never
+  name: expired-content-deletion
+  schedule: 0 1 * * *
+  startingDeadlineSeconds: 10
+  successfulJobsHistoryLimit: 1
+  suspend: false
+  timeZone: Europe/Zurich
+env:
+  PDF_READ_MODE: "DOC_INTELLIGENCE_DEFAULT"
+  ADDITIONAL_INGESTION_QUEUES: '["chat_queue"]'
+  AUDIT_LOG_DIR: /dev/stdout
+  AZURE_OPENAI_API_DEPLOYMENT_NAME: text-embedding-3-small
+  AZURE_OPENAI_API_VERSION: 2023-05-15
+  CHAT_URL: http://bs-chat.chat.svc
+  EMBEDDING_DIMENSION: 1536
+  ENABLE_MALWARE_SCAN: "true"
+  FILE_RETENTION_IN_DAYS: 7
+  LOG_LEVEL: info
+  MAX_HEAP_MB: 550
+  QDRANT_URL: http://qdrant-headless.chat.svc.cluster.local:6333
+  REPLICATION_FACTOR: 2
+  # RERANKER_CONFIGURATION: '[{"deploymentName": "crossencoder_reranker", "apiUrl": "http://assistants-reranker.chat/reranker/rerank"}]'
+  SCOPE_MANAGEMENT_URL: http://bs-scope-management.chat.svc
+  SCORE_THRESHOLD: "0"
+  TRUSTED_DOMAINS: '["*.blob.core.windows.net"]'
+  USE_SCOPE_MANAGEMENT: "true"
+  USE_NEW_FTS_QUERY_APPROACH: "true"
+hooks:
+  migration:
+    command: |
+      cd /node/dist/apps/node-ingestion; npx prisma migrate deploy
+    enabled: true
+nodeSelector:
+  pool: stable
+replicaCount: 2
+resources:
+  limits:
+    cpu: 200m
+    memory: 700Mi
+  requests:
+    cpu: 200m
+    memory: 650Mi
+routes:
+  hostname: unset_default_value
+  pathPrefix: /ingestion
+  paths:
+    default:
+      enabled: true
+    scoped:
+      enabled: true
+    probe:
+      enabled: true
+secretProvider:
+  useVMManagedIdentity: "true"
+serviceAccount:
+  enabled: true
+  workloadIdentity:
+    clientId: unset_default_value
+    enabled: true

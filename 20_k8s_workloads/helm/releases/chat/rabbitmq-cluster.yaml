@@ -1,0 +1,122 @@
+environments:
+  default:
+    values:
+      - ../../params.yaml
+      - ../../terraform-outputs.yaml
+      -
+        self:
+          namespace: chat
+
+---
+
+repositories:
+  - name: bedag
+    url: https://bedag.github.io/helm-charts
+
+releases:
+  # We need to manually create the secret for the rabbitmq cluster in order to be able to use the credentials in two namespaces
+  # https://github.com/rabbitmq/cluster-operator/tree/main/docs/examples/external-admin-secret-credentials
+  - name: rabbitmqcluster-chat-unique-user
+    chart: bedag/raw
+    version: 2.0.0
+    namespace: {{ .Values.self.namespace }}
+    wait: false
+    values:
+      - resources:
+        - apiVersion: v1
+          kind: Secret
+          type: Opaque
+          metadata:
+            name: {{ .Values.plain.rabbit.secret.secretName }}
+          stringData:
+            default_user.conf: |
+              default_user = {{ .Values.plain.rabbit.username }}
+              default_pass = {{ printf "%s%s/%s" "ref+azurekeyvault://" .Values.params.keyVaults.sensitive.name .Values.kvRefs.rabbit.password | fetchSecretValue }}
+            host: rabbitmqcluster-chat.chat.svc.cluster.local
+            username: {{ .Values.plain.rabbit.username }}
+            password: {{ printf "%s%s/%s" "ref+azurekeyvault://" .Values.params.keyVaults.sensitive.name .Values.kvRefs.rabbit.password | fetchSecretValue }}
+            port: "5672"
+            provider: rabbitmq
+            type: rabbitmq
+
+  # https://github.com/rabbitmq/cluster-operator/tree/main/docs/examples/production-ready
+  - name: rabbitmqcluster-chat
+    namespace: {{ .Values.self.namespace }}
+    chart: bedag/raw
+    version: 2.0.0
+    wait: false
+    needs:
+      - rabbitmqcluster-chat-unique-user
+    values:
+      - resources:
+        - apiVersion: rabbitmq.com/v1beta1
+          kind: RabbitmqCluster
+          metadata:
+            name: rabbitmqcluster-chat
+          spec:
+            image: {{ .Values.plain.registryUrl }}/bitnami/rabbitmq:3.13.7-debian-12-r3
+            replicas: 3
+            resources:
+              requests:
+                cpu: 1
+                memory: 1Gi
+              limits:
+                memory: 1Gi
+            nodeSelector:
+              pool: stable
+            secretBackend:
+              externalSecret:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+            rabbitmq:
+              additionalConfig: |
+                cluster_partition_handling = pause_minority
+                disk_free_limit.relative = 1.0
+                collect_statistics_interval = 10000
+            persistence:
+              storageClassName: default-zrs
+              storage: "50Gi"
+            affinity:
+              podAntiAffinity:
+                # prod: requiredDuringSchedulingIgnoredDuringExecution {different child settings}
+                preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  podAffinityTerm:
+                    labelSelector:
+                      matchExpressions:
+                        - key: app.kubernetes.io/name
+                          operator: In
+                          values:
+                          - rabbitmqcluster-chat
+                    topologyKey: kubernetes.io/hostname
+            override:
+              statefulSet:
+                spec:
+                  template:
+                    spec:
+                      containers:
+                      - name: rabbitmq
+                        securityContext:
+                          privileged: false
+                          allowPrivilegeEscalation: false
+                      initContainers:
+                      - name: setup-container
+                        securityContext:
+                          privileged: false
+                          allowPrivilegeEscalation: false
+                      topologySpreadConstraints:
+                      - maxSkew: 1
+                        topologyKey: "topology.kubernetes.io/zone"
+                        # prod: whenUnsatisfiable: DoNotSchedule
+                        whenUnsatisfiable: ScheduleAnyway
+                        labelSelector:
+                          matchLabels:
+                            app.kubernetes.io/name: rabbitmqcluster-chat
+        - apiVersion: policy/v1
+          kind: PodDisruptionBudget
+          metadata:
+            name: rabbitmqcluster-chat
+          spec:
+            maxUnavailable: 1
+            selector:
+              matchLabels:
+                app.kubernetes.io/name: rabbitmqcluster-chat

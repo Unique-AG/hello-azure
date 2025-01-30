@@ -1,0 +1,27 @@
+env:
+  GUNICORN_THREADS: 4
+  GUNICORN_WORKERS: 2
+  AZURE_DOCUMENT_INTELLIGENCE_LOCATION: switzerlandnorth
+  AZURE_DOCUMENT_INTELLIGENCE_API_VERSION: 2023-07-31
+eventBasedAutoscaling:
+  enabled: false
+nodeSelector:
+  pool: stable
+replicaCount: 2
+resources:
+  limits:
+    cpu: 500m
+    memory: 4Gi
+  requests:
+    cpu: 500m
+    memory: 2Gi
+secretProvider:
+  useVMManagedIdentity: "true"
+securityContext:
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  runAsUser: 1000
+  seccompProfile:
+    type: RuntimeDefault
+strategy:
+  type: RollingUpdate

@@ -1,0 +1,24 @@
+plain:
+  apiGateway:
+    subDomainName: api
+  clusterIssuer:
+    name: letsencrypt-azure-dns
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+  rabbit:
+    secret:
+      secretName: rabbitmqcluster-chat-default-user
+    username: hello
+  redis:
+    secret:
+      secretKeyName: pass
+      secretName: redis-secret-sscsid-keeper
+  zitadel: # to be filled after initial Zitadel deployment
+    clientId: ''
+    projectId: ''
+    rootOrgId: ''
+    secretCerts:
+      secretName: zitadel-certs
+    secretMasterKey:
+      secretKeyName: masterkey
+      secretName: zitadel-secret-sscsid-keeper
+    subDomainName: id
