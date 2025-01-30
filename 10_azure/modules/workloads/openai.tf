@@ -1,5 +1,5 @@
 module "openai" {
-  source                      = "github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=fix/add-missing-outputs"
+  source                      = "github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=azure-openai-2.0.1"
   resource_group_name         = data.azurerm_resource_group.core.name
   tags                        = var.tags
   endpoint_secret_name_suffix = "-ep"
@@ -21,7 +21,13 @@ module "openai" {
           model_name    = "gpt-4"
           model_version = "0613"
           sku_capacity  = 20
-        }
+        },
+        {
+          model_name    = "gpt-35-turbo"
+          model_version = "0125"
+          name          = "gpt-35-turbo-0125"
+          sku_capacity  = 120
+        },
       ]
     }
   }
