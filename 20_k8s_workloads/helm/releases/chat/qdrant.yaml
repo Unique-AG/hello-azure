@@ -22,7 +22,7 @@ releases:
       - replicaCount: 1
         image:
           repository: {{ .Values.plain.registryUrl }}/qdrant/qdrant
-          tag: v1.8.4
+          tag: v1.13.1
           useUnprivilegedImage: false # auto-appends -unprivileged to the tag
         updateVolumeFsOwnership: false # as this is a new cluster, the file system was never running as root
         resources:
