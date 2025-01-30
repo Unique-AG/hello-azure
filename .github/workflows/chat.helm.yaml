@@ -14,7 +14,7 @@ on:
       - 20_k8s_workloads/helm/params.yaml
       - 20_k8s_workloads/helm/versions.yaml
   push:
-    branches :
+    branches:
       - main
       - dev
     paths:
@@ -30,22 +30,8 @@ permissions:
 
 jobs:
 
-  secrets:
-    uses: ./.github/workflows/helm.yaml
-    strategy:
-      fail-fast: false
-      matrix:
-        release:
-          - 20_k8s_workloads/helm/releases/chat/secrets.yaml
-    with:
-      file_name: ${{ matrix.release }}
-      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}
-    secrets: inherit
-
   chat:
     uses: ./.github/workflows/helm.yaml
-    needs:
-      - secrets
     strategy:
       fail-fast: false
       matrix:

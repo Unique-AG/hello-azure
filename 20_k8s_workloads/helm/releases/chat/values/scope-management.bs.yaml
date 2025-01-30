@@ -6,7 +6,7 @@ cronJob:
   failedJobsHistoryLimit: 2
   jobTemplate:
     containers:
-      name: bs-scope-management-user-sync
+      name: scope-management-user-sync
     restartPolicy: Never
   name: user-sync
   schedule: "*/5 * * * *"

@@ -12,7 +12,7 @@ cronJob:
   failedJobsHistoryLimit: 2
   jobTemplate:
     containers:
-      name: bs-ingestion-expired-content-deletion
+      name: ingestion-expired-content-deletion
     restartPolicy: Never
   name: expired-content-deletion
   schedule: 0 1 * * *

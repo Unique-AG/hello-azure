@@ -47,21 +47,21 @@ variable "cluster_workload_identities" {
     namespace = string
   }))
   default = {
-    "bs-chat" : {
-      name      = "bs-chat"
-      namespace = "chat"
+    "backend-service-chat" : {
+      name      = "backend-service-chat"
+      namespace = "unique"
     }
-    "bs-ingestion-worker" : {
-      name      = "bs-ingestion-worker"
-      namespace = "chat"
+    "backend-service-ingestion-worker" : {
+      name      = "backend-service-ingestion-worker"
+      namespace = "unique"
     }
-    "bs-ingestion" : {
-      name      = "bs-ingestion"
-      namespace = "chat"
+    "backend-service-ingestion" : {
+      name      = "backend-service-ingestion"
+      namespace = "unique"
     }
     "assistants-core" : {
       name      = "assistants-core"
-      namespace = "chat"
+      namespace = "unique"
     }
   }
 }
