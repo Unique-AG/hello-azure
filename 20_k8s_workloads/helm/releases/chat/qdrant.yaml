@@ -22,7 +22,7 @@ releases:
       - image:
           repository: {{ .Values.plain.registryUrl }}/qdrant/qdrant
           tag: v1.8.4-unprivileged
-        updateVolumeFsOwnership: true # as this is a new cluster, the file system was never running as root
+        updateVolumeFsOwnership: false # as this is a new cluster, the file system was never running as root
         replicaCount: 2
         resources:
           requests:
