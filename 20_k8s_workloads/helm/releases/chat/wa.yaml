@@ -21,7 +21,7 @@ releases:
       - ./values/chat.wa.yaml
       -
         image:
-          tag: {{ index .Values.versions.chat.wa "chat" }}
+          tag: {{ index .Values.versions.chat.webApp "chat" }}
           repository: {{ .Values.plain.registryUrl }}/web-app-chat
         env:
           CONTENT_SECURITY_POLICY_VALUE: "default-src 'self'; img-src https: blob: data: *.blob.core.windows.net; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' blob: *.{{ .Values.params.zoneName }} *.core.windows.net wss://*.{{ .Values.params.zoneName }}; media-src 'self' *.blob.core.windows.net; frame-ancestors 'self'; frame-src 'self' https://*.{{ .Values.params.zoneName }};"
@@ -66,7 +66,7 @@ releases:
       - ./values/knowledge-upload.wa.yaml
       -
         image:
-          tag: {{ index .Values.versions.chat.wa "knowledge-upload" }}
+          tag: {{ index .Values.versions.chat.webApp "knowledge-upload" }}
           repository: {{ .Values.plain.registryUrl }}/web-app-knowledge-upload
         env:
           CONTENT_SECURITY_POLICY_VALUE: "default-src 'self'; img-src https: blob: data: *.blob.core.windows.net; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' blob: *.{{ .Values.params.zoneName }} *.core.windows.net wss://*.{{ .Values.params.zoneName }}; media-src 'self' *.blob.core.windows.net; frame-ancestors 'self'; frame-src 'self' https://*.{{ .Values.params.zoneName }};"
@@ -99,7 +99,7 @@ releases:
       - ./values/theme.wa.yaml
       -
         image:
-          tag: {{ index .Values.versions.chat.wa "theme" }}
+          tag: {{ index .Values.versions.chat.webApp "theme" }}
           repository: {{ .Values.plain.registryUrl }}/web-app-theme
         env:
           CONTENT_SECURITY_POLICY_VALUE: "default-src 'self'; img-src https: blob: data: *.blob.core.windows.net; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' blob: *.{{ .Values.params.zoneName }} *.core.windows.net wss://*.{{ .Values.params.zoneName }}; media-src 'self' *.blob.core.windows.net; frame-ancestors 'self'; frame-src 'self' https://*.{{ .Values.params.zoneName }};"
@@ -132,7 +132,7 @@ releases:
       - ./values/admin.wa.yaml
       -
         image:
-          tag: {{ index .Values.versions.chat.wa "admin" }}
+          tag: {{ index .Values.versions.chat.webApp "admin" }}
           repository: {{ .Values.plain.registryUrl }}/web-app-admin
         env:
           CONTENT_SECURITY_POLICY_VALUE: "default-src 'self'; img-src https: blob: data: *.blob.core.windows.net; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' blob: *.{{ .Values.params.zoneName }} *.core.windows.net wss://*.{{ .Values.params.zoneName }}; media-src 'self' *.blob.core.windows.net; frame-ancestors 'self'; frame-src 'self' https://*.{{ .Values.params.zoneName }};"

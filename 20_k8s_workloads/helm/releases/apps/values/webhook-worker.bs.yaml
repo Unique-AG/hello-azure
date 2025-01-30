@@ -1,5 +1,5 @@
 env:
-  APP_REPOSITORY_URL: http://bs-app-repository.apps.svc
+  APP_REPOSITORY_URL: http://backend-service-app-repository.unique.svc
   LOG_LEVEL: info
   MAX_HEAP_MB: 200
 nodeSelector:

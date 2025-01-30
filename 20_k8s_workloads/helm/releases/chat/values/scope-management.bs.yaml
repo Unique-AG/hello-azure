@@ -16,9 +16,9 @@ cronJob:
   timeZone: Europe/Zurich
 env:
   AUDIT_LOG_DIR: /dev/stdout
-  CHAT_API_URL: http://bs-chat.chat.svc
+  CHAT_API_URL: http://backend-service-chat.unique.svc
   ENABLE_CLIENT_INSIGHT_SHIPPER: "true"
-  INGESTION_API_URL: http://bs-ingestion.chat.svc
+  INGESTION_API_URL: http://backend-service-ingestion.unique.svc
   LOG_LEVEL: info
   MAX_HEAP_MB: 750
   ZITADEL_HOST: unset_default_value

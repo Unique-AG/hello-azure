@@ -32,7 +32,7 @@ releases:
             default_user.conf: |
               default_user = {{ .Values.plain.rabbit.username }}
               default_pass = {{ printf "%s%s/%s" "ref+azurekeyvault://" .Values.params.keyVaults.sensitive.name .Values.kvRefs.rabbit.password | fetchSecretValue }}
-            host: rabbitmqcluster-chat.chat.svc.cluster.local
+            host: rabbitmqcluster-chat.unique.svc.cluster.local
             username: {{ .Values.plain.rabbit.username }}
             password: {{ printf "%s%s/%s" "ref+azurekeyvault://" .Values.params.keyVaults.sensitive.name .Values.kvRefs.rabbit.password | fetchSecretValue }}
             port: "5672"

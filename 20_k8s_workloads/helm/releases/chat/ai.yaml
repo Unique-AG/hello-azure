@@ -24,7 +24,7 @@ releases:
           tag: {{ index .Values.versions.chat.ai "core" }}
           repository: {{ .Values.plain.registryUrl }}/ai-service-assistants-core
         env:
-          API_BASE: http://bs-chat.chat.svc
+          API_BASE: http://backend-service-chat.unique.svc
           QUARTR_API_CREDS: "unset_value" # will need to be loaded using .secretProvider and put there via GHA (pre-encrypted locally)
         secretProvider:
           tenantId: {{ requiredEnv "ARM_TENANT_ID" }}

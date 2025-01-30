@@ -21,7 +21,7 @@ releases:
       - ./values/chat.bs.yaml
       -
         image:
-          tag: {{ index .Values.versions.chat.bs "chat" }}
+          tag: {{ index .Values.versions.chat.backendService "chat" }}
           repository: {{ .Values.plain.registryUrl }}/backend-service-chat
         env:
           CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
@@ -81,7 +81,7 @@ releases:
       - ./values/theme.bs.yaml
       -
         image:
-          tag: {{ index .Values.versions.chat.bs "theme" }}
+          tag: {{ index .Values.versions.chat.backendService "theme" }}
           repository: {{ .Values.plain.registryUrl }}/backend-service-theme
         env:
           CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
@@ -106,7 +106,7 @@ releases:
       - ./values/scope-management.bs.yaml
       -
         image:
-          tag: {{ index .Values.versions.chat.bs "scope-management" }}
+          tag: {{ index .Values.versions.chat.backendService "scope-management" }}
           repository: {{ .Values.plain.registryUrl }}/backend-service-scope-management
         env:
           CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
@@ -159,7 +159,7 @@ releases:
       - ./values/ingestion.bs.yaml
       -
         image:
-          tag: {{ index .Values.versions.chat.bs "ingestion" }}
+          tag: {{ index .Values.versions.chat.backendService "ingestion" }}
           repository: {{ .Values.plain.registryUrl }}/backend-service-ingestion
         env:
           CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
@@ -226,7 +226,7 @@ releases:
       - ./values/ingestion-worker.bs.yaml
       -
         image:
-          tag: {{ index .Values.versions.chat.bs "ingestion-worker" }}
+          tag: {{ index .Values.versions.chat.backendService "ingestion-worker" }}
           repository: {{ .Values.plain.registryUrl }}/backend-service-ingestion-worker
         env:
           CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
@@ -285,7 +285,7 @@ releases:
       - ./values/ingestion-worker-chat.bs.yaml
       -
         image:
-          tag: {{ index .Values.versions.chat.bs "ingestion-worker" }}
+          tag: {{ index .Values.versions.chat.backendService "ingestion-worker" }}
           repository: {{ .Values.plain.registryUrl }}/backend-service-ingestion-worker
         env:
           CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}

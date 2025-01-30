@@ -25,15 +25,15 @@ env:
   AUDIT_LOG_DIR: /dev/stdout
   AZURE_OPENAI_API_DEPLOYMENT_NAME: text-embedding-3-small
   AZURE_OPENAI_API_VERSION: 2023-05-15
-  CHAT_URL: http://bs-chat.chat.svc
+  CHAT_URL: http://backend-service-chat.unique.svc
   EMBEDDING_DIMENSION: 1536
   ENABLE_MALWARE_SCAN: "true"
   FILE_RETENTION_IN_DAYS: 30
   LOG_LEVEL: info
   MAX_HEAP_MB: 550
-  QDRANT_URL: http://qdrant-headless.chat.svc.cluster.local:6333
+  QDRANT_URL: http://qdrant-headless.unique.svc.cluster.local:6333
   REPLICATION_FACTOR: 2
-  SCOPE_MANAGEMENT_URL: http://bs-scope-management.chat.svc
+  SCOPE_MANAGEMENT_URL: http://backend-service-scope-management.unique.svc
   SCORE_THRESHOLD: "0"
   TRUSTED_DOMAINS: '["*.blob.core.windows.net"]'
   USE_NEW_FTS_QUERY_APPROACH: "true"
