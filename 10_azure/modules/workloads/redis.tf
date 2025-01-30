@@ -3,7 +3,7 @@ module "redis" {
   name                          = var.redis_name
   resource_group_name           = data.azurerm_resource_group.sensitive.name
   location                      = data.azurerm_resource_group.sensitive.location
-  public_network_access_enabled = false
+  public_network_access_enabled = true
   tags                          = var.tags
   key_vault_id                  = var.sensitive_kv_id
 }
