@@ -1,8 +1,9 @@
 module "openai" {
-  source                      = "github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=azure-openai-2.0.1"
-  resource_group_name         = data.azurerm_resource_group.core.name
-  tags                        = var.tags
-  endpoint_secret_name_suffix = "-ep"
+  source                        = "github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=azure-openai-2.0.1"
+  resource_group_name           = data.azurerm_resource_group.core.name
+  tags                          = var.tags
+  endpoint_secret_name_suffix   = "-ep"
+  public_network_access_enabled = true
   cognitive_accounts = {
     "cognitive-account-switzerlandnorth" = {
       name                  = "cognitive-account-switzerlandnorth"
