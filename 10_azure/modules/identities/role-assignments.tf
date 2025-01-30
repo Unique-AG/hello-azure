@@ -1,11 +1,11 @@
 locals {
-  key_reader_key_vault_role_name     = "Key Vault Crypto Service Encryption User"
-  secret_reader_key_vault_role_name  = "Key Vault Secrets User"
-  key_manager_key_vault_role_name    = "Key Vault Crypto Officer"
-  secret_manager_key_vault_role_name = "Key Vault Secrets Officer"
-  access_manager_key_vault_role_name = "Key Vault Data Access Administrator"
-  cluster_user_role_name             = "Azure Kubernetes Service Cluster User Role"
-  cluster_rbac_admin_role_name       = "Azure Kubernetes Service RBAC Cluster Admin"
+  key_reader_key_vault_role_name     = "Key Vault Crypto Service Encryption User"    # todo: use custom role (DevOps)
+  secret_reader_key_vault_role_name  = "Key Vault Secrets User"                      # todo: use custom role (DevOps)
+  key_manager_key_vault_role_name    = "Key Vault Crypto Officer"                    # todo: use custom role (DevOps)
+  secret_manager_key_vault_role_name = "Key Vault Secrets Officer"                   # todo: use custom role (DevOps)
+  access_manager_key_vault_role_name = "Key Vault Data Access Administrator"         # todo: use custom role (DevOps)
+  cluster_user_role_name             = "Azure Kubernetes Service Contributor Role"   # todo: use custom role (DevOps)
+  cluster_rbac_admin_role_name       = "Azure Kubernetes Service RBAC Cluster Admin" # todo: use custom role (Emergency Admin)
 }
 
 resource "azurerm_role_assignment" "csi_identity_secret_reader_main_kv" {
