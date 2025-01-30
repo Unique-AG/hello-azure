@@ -6,12 +6,12 @@ environments:
       - ../../versions.yaml
       -
         self:
-          namespace: apps
+          namespace: unique
 
 ---
 
 releases:
-  - name: bs-app-repository
+  - name: backend-service-app-repository
     chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
     version: 3.1.1
     namespace: {{ .Values.self.namespace }}
@@ -60,7 +60,7 @@ releases:
           workloadIdentity:
             clientId: {{ .Values.params.identities.kubelet.clientId }}
 
-  - name: bs-webhook-worker
+  - name: backend-service-webhook-worker
     chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
     version: 3.1.1
     namespace: {{ .Values.self.namespace }}
@@ -94,7 +94,7 @@ releases:
                 name: {{ .Values.plain.rabbit.secret.secretName }}
                 key: port
 
-  - name: bs-webhook-scheduler
+  - name: backend-service-webhook-scheduler
     chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
     version: 3.1.1
     namespace: {{ .Values.self.namespace }}
@@ -128,7 +128,7 @@ releases:
                 name: {{ .Values.plain.rabbit.secret.secretName }}
                 key: port
 
-  - name: bs-event-socket
+  - name: backend-service-event-socket
     chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
     version: 3.1.1
     namespace: {{ .Values.self.namespace }}
@@ -166,14 +166,14 @@ releases:
         routes:
           hostname: {{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}
 
-  # - name: bs-client-insights-exporter
-  #   chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
-  #   version: 3.0.3
-  #   namespace: {{ .Values.self.namespace }}
-  #   createNamespace: true
-  #   wait: false
-  #   values:
-  #     - ./values/client-insights-exporter.bs.yaml
-  #     -
-  #       image:
-  #         tag: {{ index .Values.versions.apps.bs "client-insights-exporter" }}
+  - name: backend-service-client-insights-exporter
+    chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
+    version: 3.1.1
+    namespace: {{ .Values.self.namespace }}
+    createNamespace: true
+    wait: false
+    values:
+      - ./values/client-insights-exporter.bs.yaml
+      -
+        image:
+          tag: {{ index .Values.versions.apps.bs "client-insights-exporter" }}

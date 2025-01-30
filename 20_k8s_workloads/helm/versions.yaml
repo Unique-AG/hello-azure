@@ -1,22 +1,22 @@
 versions:
   apps:
     bs:
-      app-repository: "2025.02"
-      event-socket: "2025.02"
-      client-insights-exporter: "2025.02"
-      webhook-scheduler: "2025.02"
-      webhook-worker: "2025.02"
+      app-repository: "2025.04"
+      event-socket: "2025.04"
+      client-insights-exporter: "2025.04"
+      webhook-scheduler: "2025.04"
+      webhook-worker: "2025.04"
   chat:
     ai:
-      core: "2025.02"
+      core: "2025.04"
     bs:
-      chat: "2025.02"
-      ingestion: "2025.02"
-      ingestion-worker: "2025.02"
-      scope-management: "2025.02"
-      theme: "2025.02"
+      chat: "2025.04"
+      ingestion: "2025.04"
+      ingestion-worker: "2025.04"
+      scope-management: "2025.04"
+      theme: "2025.04"
     wa:
-      admin: "2025.02"
-      chat: "2025.02"
-      knowledge-upload: "2025.02"
-      theme: "2025.02"
+      admin: "2025.04"
+      chat: "2025.04"
+      knowledge-upload: "2025.04"
+      theme: "2025.04"

@@ -6,12 +6,12 @@ environments:
       - ../../versions.yaml
       -
         self:
-          namespace: chat
+          namespace: unique
 
 ---
 
 releases:
-  - name: bs-chat
+  - name: backend-service-chat
     chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
     version: 3.1.1
     namespace: {{ .Values.self.namespace }}
@@ -71,7 +71,7 @@ releases:
           workloadIdentity:
             clientId: {{ .Values.params.identities.aksWorkloadIdentityCognitiveServices.clientId }}
 
-  - name: bs-theme
+  - name: backend-service-theme
     chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
     version: 3.1.1
     namespace: {{ .Values.self.namespace }}
@@ -96,7 +96,7 @@ releases:
             {{ .Values.params.keyVaults.sensitive.name }}:
               DATABASE_URL: {{ .Values.kvRefs.psql.databases.theme }}
 
-  - name: bs-scope-management
+  - name: backend-service-scope-management
     chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
     version: 3.1.1
     namespace: {{ .Values.self.namespace }}
@@ -134,6 +134,10 @@ releases:
               secretKeyRef:
                 name: {{ .Values.plain.rabbit.secret.secretName }}
                 key: port
+        extraRoutes:
+          scim:
+            hostnames:
+              - {{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}
         routes:
           hostname: {{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}
         secretProvider:
@@ -145,7 +149,7 @@ releases:
             {{ .Values.params.keyVaults.main.name }}:
               ZITADEL_PAT: {{ .Values.kvRefs.synthetic.zitadel.patScopeManagement }}
 
-  - name: bs-ingestion
+  - name: backend-service-ingestion
     chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
     version: 3.1.1
     namespace: {{ .Values.self.namespace }}
@@ -212,7 +216,7 @@ releases:
           workloadIdentity:
             clientId: {{ .Values.params.identities.aksWorkloadIdentityCognitiveServices.clientId }}
 
-  - name: bs-ingestion-worker # tmp adding comment to trigger diff / apply
+  - name: backend-service-ingestion-worker
     chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
     version: 3.1.1
     namespace: {{ .Values.self.namespace }}
@@ -270,7 +274,7 @@ releases:
           workloadIdentity:
             clientId: {{ .Values.params.identities.aksWorkloadIdentityCognitiveServices.clientId }}
 
-  - name: bs-ingestion-worker-chat
+  - name: backend-service-ingestion-worker-chat
     chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
     version: 3.1.1
     namespace: {{ .Values.self.namespace }}

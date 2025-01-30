@@ -1,11 +1,13 @@
 env:
+  FEATURE_FLAG_ENABLE_LATEX_UN_8603: "true"
+  FEATURE_FLAG_ENABLE_NOTIFICATION_BANNER_UN_9411: "true"
+  FEATURE_FLAG_IN_DOCUMENT_TRANSLATOR_UN_8405: "true"
   FEATURE_FLAG_NET_PROMOTER_SCORE_UI_UN_7747: "true"
   FEATURE_FLAG_NEW_TRANSLATION_UI_UN_7233: "true"
   FEATURE_FLAG_STOP_STREAMING_UN_4824: "true"
-  MAX_HEAP_MB: 400
-  MAX_FILE_SIZE_IN_MB: 200
-  FEATURE_FLAG_IN_DOCUMENT_TRANSLATOR_UN_8405: "true"
   FILE_TYPES_DOCUMENT_TRANSLATOR: "docx,xlsx"
+  MAX_FILE_SIZE_IN_MB: 200
+  MAX_HEAP_MB: 400
 # todo: A workaround to redirect the root route to the chat route is needed due to
 # https://github.com/Kong/kubernetes-ingress-controller/issues/6851
 extraObjects:
@@ -23,7 +25,7 @@ extraRoutes:
       konghq.com/plugins: uniquens-chat-redirect
     parentRefs:
       - name: kong
-        namespace: system
+        namespace: unique
         group: gateway.networking.k8s.io
         kind: Gateway
     hostnames:
@@ -54,6 +56,8 @@ resources:
     cpu: 300m
     memory: 500Mi
 routes:
+  gateway:
+    namespace: unique
   hostname: unset_default_value
   pathPrefix: /chat
   paths:

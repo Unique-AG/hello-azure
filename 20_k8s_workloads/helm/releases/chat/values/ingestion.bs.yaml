@@ -21,7 +21,6 @@ cronJob:
   suspend: false
   timeZone: Europe/Zurich
 env:
-  PDF_READ_MODE: "DOC_INTELLIGENCE_DEFAULT"
   ADDITIONAL_INGESTION_QUEUES: '["chat_queue"]'
   AUDIT_LOG_DIR: /dev/stdout
   AZURE_OPENAI_API_DEPLOYMENT_NAME: text-embedding-3-small
@@ -29,17 +28,16 @@ env:
   CHAT_URL: http://bs-chat.chat.svc
   EMBEDDING_DIMENSION: 1536
   ENABLE_MALWARE_SCAN: "true"
-  FILE_RETENTION_IN_DAYS: 7
+  FILE_RETENTION_IN_DAYS: 30
   LOG_LEVEL: info
   MAX_HEAP_MB: 550
   QDRANT_URL: http://qdrant-headless.chat.svc.cluster.local:6333
   REPLICATION_FACTOR: 2
-  # RERANKER_CONFIGURATION: '[{"deploymentName": "crossencoder_reranker", "apiUrl": "http://assistants-reranker.chat/reranker/rerank"}]'
   SCOPE_MANAGEMENT_URL: http://bs-scope-management.chat.svc
   SCORE_THRESHOLD: "0"
   TRUSTED_DOMAINS: '["*.blob.core.windows.net"]'
-  USE_SCOPE_MANAGEMENT: "true"
   USE_NEW_FTS_QUERY_APPROACH: "true"
+  USE_SCOPE_MANAGEMENT: "true"
 hooks:
   migration:
     command: |
@@ -56,6 +54,8 @@ resources:
     cpu: 200m
     memory: 650Mi
 routes:
+  gateway:
+    namespace: unique
   hostname: unset_default_value
   pathPrefix: /ingestion
   paths:

@@ -3,6 +3,9 @@ environments:
     values:
       - ../../params.yaml
       - ../../terraform-outputs.yaml
+      -
+        self:
+          namespace: unique
 
 ---
 
@@ -10,7 +13,7 @@ environments:
 releases:
   - name: rabbitmq-cluster-operator
     createNamespace: true
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     chart: oci://registry-1.docker.io/bitnamicharts/rabbitmq-cluster-operator
     version: 4.3.21
     wait: false

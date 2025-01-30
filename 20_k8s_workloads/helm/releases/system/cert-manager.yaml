@@ -3,6 +3,9 @@ environments:
     values:
       - ../../params.yaml
       - ../../terraform-outputs.yaml
+      -
+        self:
+          namespace: unique
 
 ---
 
@@ -15,7 +18,7 @@ repositories:
 releases:
   - name: cert-manager
     createNamespace: true
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     chart: jetstack/cert-manager
     version: 1.12.2
     wait: false
@@ -63,7 +66,7 @@ releases:
 
   # https://cert-manager.io/docs/configuration/acme/dns01/azuredns/#managed-identity-using-aks-kubelet-identity
   - name: clusterissuer-azure-dns
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     chart: bedag/raw
     version: 2.0.0
     wait: false

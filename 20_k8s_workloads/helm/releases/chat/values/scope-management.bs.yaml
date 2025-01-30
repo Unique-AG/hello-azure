@@ -24,10 +24,26 @@ env:
   ZITADEL_HOST: unset_default_value
   ZITADEL_INTERNAL_HOST: http://zitadel.system.svc.cluster.local:8080
   ZITADEL_PROJECT_ID: unset_default_value
+extraRoutes:
+  scim:
+    enabled: true
+    annotations:
+      konghq.com/plugins: unique-route-metrics
+    parentRefs:
+      - name: kong
+        namespace: unique
+        group: gateway.networking.k8s.io
+        kind: Gateway
+    hostnames:
+      - unset_default_value
+    matches:
+      - path:
+          type: PathPrefix
+          value: /scim
 hooks:
   migration:
     command: |
-      cd /node/dist/apps/node-scope-management; npx prisma migrate deploy
+      cd /node/dist/apps/node-scope-management; npx prisma migrate deploy; cd /node; RUNNING_MODE=DATA_MIGRATION  node /node/dist/apps/node-scope-management/main.js up;
     enabled: true
 replicaCount: 1
 resources:
@@ -38,6 +54,8 @@ resources:
     cpu: 500m
     memory: 850Mi
 routes:
+  gateway:
+    namespace: unique
   hostname: unset_default_value
   pathPrefix: /scope-management
   paths:

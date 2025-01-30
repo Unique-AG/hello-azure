@@ -6,7 +6,7 @@ environments:
       - ../../versions.yaml
       -
         self:
-          namespace: chat
+          namespace: unique
 
 ---
 

@@ -3,6 +3,9 @@ environments:
     values:
       - ../../params.yaml
       - ../../terraform-outputs.yaml
+      -
+        self:
+          namespace: unique
 
 ---
 
@@ -15,7 +18,7 @@ repositories:
 releases:
   - name: kong-plugins
     createNamespace: true
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     chart: oci://ghcr.io/unique-ag/helm-charts/kong-plugins
     version: 1.0.2
     wait: false
@@ -32,7 +35,7 @@ releases:
       - kong-plugins
     chart: bedag/raw
     version: 2.0.0
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     wait: false
     values:
       - resources:
@@ -47,7 +50,7 @@ releases:
     needs:
       - kong-gateway-environment
     createNamespace: true
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     chart: kong/ingress
     version: 0.17.0
     wait: false
@@ -84,7 +87,7 @@ releases:
       - kong
     chart: bedag/raw
     version: 2.0.0
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     wait: false
     values:
       - resources:
@@ -152,7 +155,7 @@ releases:
       - kong-cluster-plugins
     chart: bedag/raw
     version: 2.0.0
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     wait: false
     values:
       - resources:
@@ -175,7 +178,7 @@ releases:
       - kong-gateway
     chart: bedag/raw
     version: 2.0.0
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     wait: false
     values:
       - resources:

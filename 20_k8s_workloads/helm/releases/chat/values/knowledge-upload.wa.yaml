@@ -1,4 +1,5 @@
 env:
+  FEATURE_FLAG_ENABLE_NOTIFICATION_BANNER_UN_9411: "true"
   MAX_HEAP_MB: 350
 nodeSelector:
   pool: stable
@@ -22,6 +23,8 @@ resources:
     cpu: 300m
     memory: 450Mi
 routes:
+  gateway:
+    namespace: unique
   hostname: unset_default_value
   pathPrefix: /knowledge-upload
   paths:

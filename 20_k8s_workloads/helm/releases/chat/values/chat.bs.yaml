@@ -4,6 +4,22 @@ autoscaling:
   minReplicas: 2
   targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 80
+cronJob:
+  concurrencyPolicy: Forbid
+  enabled: true
+  env:
+    RUNNING_MODE: "DATA_REDACTION_TASK"
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    containers:
+      name: redaction-job
+    restartPolicy: Never
+  name: data-redaction-task
+  schedule: 0 0 * * *
+  startingDeadlineSeconds: 10
+  successfulJobsHistoryLimit: 1
+  suspend: false
+  timeZone: Europe/Zurich
 env:
   AMQP_BENCHMARK_PREFETCH: 1
   ANONYMIZED_CHAT_INTERACTIONS_EXPORT: "false"
@@ -15,21 +31,21 @@ env:
   INGESTION_API_URL: http://bs-ingestion.chat.svc
   INTERNAL_MODULES_CONFIG: >-
     [
-    {"name": "SearchInVectorDBV2", "apiURL": "http://assistants-core.chat.svc/core/search"},
-    {"name": "ImageSummarizer", "apiURL": "http://assistants-core.chat.svc/core/image_summarizer"},
-    {"name": "TranslationOneToOne", "apiURL": "http://assistants-core.chat.svc/core/translation_one_to_one"},
-    {"name": "WebSearch", "apiURL": "http://assistants-core.chat.svc/core/web_search"},
-    {"name": "ComplianceCheck", "apiURL": "http://assistants-core.chat.svc/core/compliance_check"},
-    {"name": "QuestionExtractor", "apiURL": "http://assistants-core.chat.svc/core/question_extractor"},
-    {"name": "QuestionAnswerer", "apiURL": "http://assistants-core.chat.svc/core/question_answerer"},
-    {"name": "QuestionPredictor", "apiURL": "http://assistants-core.chat.svc/core/question_predictor"},
-    {"name": "DocumentSummarizerV2", "apiURL": "http://assistants-core.chat.svc/core/document_summarizer"},
-    {"name": "ImageUpload", "apiURL": "http://assistants-core.chat.svc/core/image_upload"},
-    {"name": "DocumentTranslator", "apiURL": "http://assistants-core.chat.svc/core/document_translator"},
-    {"name": "AgenticSearch", "apiURL": "http://assistants-core.chat.svc/core/agentic_search"},
-    {"name": "TranslatorV2", "apiURL": "http://assistants-core.chat.svc.cluster.local:8081/core/translator_v2"},
-    {"name": "InvestmentResearch", "apiURL": "http://assistants-core.chat.svc.cluster.local:8081/core/investment_research"},
-    {"name": "EarningCallsBeta", "apiURL": "http://assistants-core.chat.svc.cluster.local:8081/core/earning_calls"}
+    {"name": "SearchInVectorDBV2", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/search"},
+    {"name": "ImageSummarizer", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/image_summarizer"},
+    {"name": "TranslationOneToOne", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/translation_one_to_one"},
+    {"name": "WebSearch", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/web_search"},
+    {"name": "ComplianceCheck", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/compliance_check"},
+    {"name": "QuestionExtractor", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/question_extractor"},
+    {"name": "QuestionAnswerer", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/question_answerer"},
+    {"name": "QuestionPredictor", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/question_predictor"},
+    {"name": "DocumentSummarizerV2", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/document_summarizer"},
+    {"name": "ImageUpload", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/image_upload"},
+    {"name": "DocumentTranslator", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/document_translator"},
+    {"name": "AgenticSearch", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/agentic_search"},
+    {"name": "TranslatorV2", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/translator_v2"},
+    {"name": "InvestmentResearch", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/investment_research"},
+    {"name": "EarningCallsBeta", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/earning_calls"}
     ]
   LOG_LEVEL: info
   MAX_HEAP_MB: 3700
@@ -41,19 +57,21 @@ env:
 hooks:
   migration:
     command: |
-      cd /node/dist/apps/node-chat; npx prisma migrate deploy
+      cd /node/dist/apps/node-chat; npx prisma migrate deploy; cd /node; RUNNING_MODE=DATA_MIGRATION  node /node/dist/apps/node-chat/main.js up;
     enabled: true
 
 nodeSelector:
   pool: stable
 resources:
   limits:
-    cpu: 6
-    memory: 4Gi
+    cpu: 500m
+    memory: 600Mi
   requests:
-    cpu: 2
-    memory: 3800Mi
+    cpu: 500m
+    memory: 550Mi
 routes:
+  gateway:
+    namespace: unique
   hostname: unset_default_value
   pathPrefix: /chat
   paths:
