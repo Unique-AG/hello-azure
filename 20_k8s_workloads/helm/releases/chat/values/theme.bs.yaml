@@ -16,6 +16,8 @@ resources:
     cpu: 100m
     memory: 300Mi
 routes:
+  gateway:
+    namespace: unique
   hostname: unset_default_value
   pathPrefix: /theme
   paths:

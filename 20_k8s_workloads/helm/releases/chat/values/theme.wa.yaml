@@ -1,5 +1,6 @@
 env:
   MAX_HEAP_MB: 200
+  FEATURE_FLAG_ENABLE_NOTIFICATION_BANNER_UN_9411: "true"
 nodeSelector:
   pool: stable
 probes:
@@ -22,6 +23,8 @@ resources:
     cpu: 100m
     memory: 300Mi
 routes:
+  gateway:
+    namespace: unique
   hostname: unset_default_value
   pathPrefix: /theme
   paths:

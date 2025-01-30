@@ -3,6 +3,9 @@ environments:
     values:
       - ../../params.yaml
       - ../../terraform-outputs.yaml
+      -
+        self:
+          namespace: unique
 
 ---
 
@@ -15,7 +18,7 @@ repositories:
 releases:
   - name: kong-plugins
     createNamespace: true
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     chart: oci://ghcr.io/unique-ag/helm-charts/kong-plugins
     version: 1.0.2
     wait: false
@@ -25,14 +28,14 @@ releases:
           name: kong-plugin-unique-jwt-auth
         appRepoAuth:
           name: kong-plugin-unique-app-repo-auth
-          appRepositoryUrl: "http://bs-app-repository.apps.svc"
+          appRepositoryUrl: "http://backend-service-app-repository.unique.svc"
 
   - name: kong-gateway-environment
     needs:
       - kong-plugins
     chart: bedag/raw
     version: 2.0.0
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     wait: false
     values:
       - resources:
@@ -47,7 +50,7 @@ releases:
     needs:
       - kong-gateway-environment
     createNamespace: true
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     chart: kong/ingress
     version: 0.17.0
     wait: false
@@ -84,7 +87,7 @@ releases:
       - kong
     chart: bedag/raw
     version: 2.0.0
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     wait: false
     values:
       - resources:
@@ -111,7 +114,7 @@ releases:
               kubernetes.io/ingress.class: kong
           plugin: unique-app-repo-auth
           config:
-            app_repository_url: http://bs-app-repository.apps.svc
+            app_repository_url: http://backend-service-app-repository.unique.svc
         - apiVersion: configuration.konghq.com/v1
           kind: KongClusterPlugin
           metadata:
@@ -152,7 +155,7 @@ releases:
       - kong-cluster-plugins
     chart: bedag/raw
     version: 2.0.0
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     wait: false
     values:
       - resources:
@@ -175,7 +178,7 @@ releases:
       - kong-gateway
     chart: bedag/raw
     version: 2.0.0
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     wait: false
     values:
       - resources:

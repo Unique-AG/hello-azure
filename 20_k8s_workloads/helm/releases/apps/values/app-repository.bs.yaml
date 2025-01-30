@@ -1,6 +1,6 @@
 env:
   LOG_LEVEL: info
-  MAX_HEAP_MB: 750
+  MAX_HEAP_MB: 400
 hooks:
   migration:
     command: |
@@ -13,11 +13,13 @@ probes:
 replicaCount: 1
 resources:
   limits:
-    memory: 900Mi
+    memory: 550Mi
   requests:
-    cpu: 500m
-    memory: 850Mi
+    cpu: 300m
+    memory: 500Mi
 routes:
+  gateway:
+    namespace: unique
   hostname: unset_default_value
   pathPrefix: /apps
   paths:

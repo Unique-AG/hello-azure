@@ -3,6 +3,9 @@ environments:
     values:
       - ../../params.yaml
       - ../../terraform-outputs.yaml
+      -
+        self:
+          namespace: unique
 
 ---
 
@@ -10,7 +13,7 @@ environments:
 releases:
   - name: rabbitmq-cluster-operator
     createNamespace: true
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     chart: oci://registry-1.docker.io/bitnamicharts/rabbitmq-cluster-operator
     version: 4.3.21
     wait: false
@@ -26,7 +29,7 @@ releases:
             pool: stable
           watchAllNamespaces: false
           # watchNamespaces: #TODO
-          #   - chat
+          #   - unique
           resources:
             # Matches 'nano' Preset which is the default
             # https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15

@@ -15,7 +15,7 @@ cronJob:
 deployment:
   enabled: false
 env:
-  DATA_SOURCE_URLS: http://bs-scope-management.chat/insights;http://bs-chat.chat/insights
+  DATA_SOURCE_URLS: http://backend-service-scope-management.chat/insights;http://backend-service-chat.chat/insights
   CLIENT_INSIGHT_SERVER_URL: https://gateway.unique.app/insights/client-insights
   LOG_LEVEL: info
   MAX_HEAP_MB: 200

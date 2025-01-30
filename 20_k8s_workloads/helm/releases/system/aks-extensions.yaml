@@ -1,3 +1,12 @@
+environments:
+  default:
+    values:
+      -
+        self:
+          namespace: unique
+
+---
+
 repositories:
   - name: bedag
     url: https://bedag.github.io/helm-charts
@@ -104,7 +113,7 @@ releases:
   - name: storage-class-zrs
     chart: bedag/raw
     version: 2.0.0
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     createNamespace: true
     wait: false
     values:
@@ -125,7 +134,7 @@ releases:
   - name: apiextensions.k8s.io
     chart: bedag/raw
     version: 2.0.0
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     createNamespace: true
     wait: false
     values:

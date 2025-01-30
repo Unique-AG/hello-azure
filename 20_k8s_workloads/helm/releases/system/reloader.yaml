@@ -3,6 +3,9 @@ environments:
     values:
       - ../../params.yaml
       - ../../terraform-outputs.yaml
+      -
+        self:
+          namespace: unique
 
 ---
 
@@ -13,7 +16,7 @@ repositories:
 releases:
   - name: reloader
     createNamespace: true
-    namespace: system
+    namespace: {{ .Values.self.namespace }}
     chart: stakater/reloader
     version: 1.1.0
     wait: false

@@ -6,7 +6,7 @@ cronJob:
   failedJobsHistoryLimit: 2
   jobTemplate:
     containers:
-      name: bs-scope-management-user-sync
+      name: scope-management-user-sync
     restartPolicy: Never
   name: user-sync
   schedule: "*/5 * * * *"
@@ -16,18 +16,34 @@ cronJob:
   timeZone: Europe/Zurich
 env:
   AUDIT_LOG_DIR: /dev/stdout
-  CHAT_API_URL: http://bs-chat.chat.svc
+  CHAT_API_URL: http://backend-service-chat.unique.svc
   ENABLE_CLIENT_INSIGHT_SHIPPER: "true"
-  INGESTION_API_URL: http://bs-ingestion.chat.svc
+  INGESTION_API_URL: http://backend-service-ingestion.unique.svc
   LOG_LEVEL: info
   MAX_HEAP_MB: 750
   ZITADEL_HOST: unset_default_value
-  ZITADEL_INTERNAL_HOST: http://zitadel.system.svc.cluster.local:8080
+  ZITADEL_INTERNAL_HOST: http://zitadel.unique.svc.cluster.local:8080
   ZITADEL_PROJECT_ID: unset_default_value
+extraRoutes:
+  scim:
+    enabled: true
+    annotations:
+      konghq.com/plugins: unique-route-metrics
+    parentRefs:
+      - name: kong
+        namespace: unique
+        group: gateway.networking.k8s.io
+        kind: Gateway
+    hostnames:
+      - unset_default_value
+    matches:
+      - path:
+          type: PathPrefix
+          value: /scim
 hooks:
   migration:
     command: |
-      cd /node/dist/apps/node-scope-management; npx prisma migrate deploy
+      cd /node/dist/apps/node-scope-management; npx prisma migrate deploy; cd /node; RUNNING_MODE=DATA_MIGRATION  node /node/dist/apps/node-scope-management/main.js up;
     enabled: true
 replicaCount: 1
 resources:
@@ -38,6 +54,8 @@ resources:
     cpu: 500m
     memory: 850Mi
 routes:
+  gateway:
+    namespace: unique
   hostname: unset_default_value
   pathPrefix: /scope-management
   paths:

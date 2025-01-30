@@ -6,12 +6,12 @@ environments:
       - ../../versions.yaml
       -
         self:
-          namespace: chat
+          namespace: unique
 
 ---
 
 releases:
-  - name: wa-chat
+  - name: web-app-chat
     chart: oci://ghcr.io/unique-ag/helm-charts/web-app
     version: 3.1.0
     namespace: {{ .Values.self.namespace }}
@@ -21,7 +21,7 @@ releases:
       - ./values/chat.wa.yaml
       -
         image:
-          tag: {{ index .Values.versions.chat.wa "chat" }}
+          tag: {{ index .Values.versions.chat.webApp "chat" }}
           repository: {{ .Values.plain.registryUrl }}/web-app-chat
         env:
           CONTENT_SECURITY_POLICY_VALUE: "default-src 'self'; img-src https: blob: data: *.blob.core.windows.net; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' blob: *.{{ .Values.params.zoneName }} *.core.windows.net wss://*.{{ .Values.params.zoneName }}; media-src 'self' *.blob.core.windows.net; frame-ancestors 'self'; frame-src 'self' https://*.{{ .Values.params.zoneName }};"
@@ -33,7 +33,7 @@ releases:
           CHAT_BACKEND_API_URL: https://{{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}/chat
           KNOWLEDGE_UPLOAD_APP_URL: https://{{ .Values.params.zoneName }}/knowledge-upload
           STATIC_BACKGROUND_COLOR: "#F7F7F7"
-          STATIC_TAB_NAME: " Hello Azure"
+          STATIC_TAB_NAME: "Hello Azure"
           STATIC_THEME_COLORS: >-
             {"color-primary-cta": "#8D4C82", "color-primary-variant": "#744B6D", "color-secondary": "#5b5b5b", "color-secondary-variant": "#3e3e3e", "color-background": "#f6f6f6", "color-background-variant": "#ececec", "color-surface": "#ffffff", "color-control": "#cfcfcf", "color-info": "#4167a6", "color-success-light": "#ebfaf2", "color-success-dark": "#0f9451", "color-error-light": "#cc5e71", "color-error-dark": "#d12a46", "color-attention": "#db7600", "color-attention-variant": "#8d4c82", "color-on-primary": "#ffffff", "color-on-secondary": "#ffffff", "color-on-background-main": "#3e3e3e", "color-on-background-dimmed": "#787878", "color-on-surface": "#3e3e3e", "color-on-control-main": "#3e3e3e", "color-on-control-dimmed": "#b3b3b3", "color-on-info": "#ffffff", "color-on-success-light": "#3e3e3e", "color-on-success-dark": "#ffffff", "color-on-error-light": "#ffffff", "color-on-error-dark": "#ffffff", "color-on-attention": "#ffffff", "color-on-attention-variant": "#ffffff"}
           THEME_BACKEND_API_URL: https://{{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}/theme
@@ -56,7 +56,7 @@ releases:
         routes:
           hostname: {{ .Values.params.zoneName }}
 
-  - name: wa-knowledge-upload
+  - name: web-app-knowledge-upload
     chart: oci://ghcr.io/unique-ag/helm-charts/web-app
     version: 3.1.0
     namespace: {{ .Values.self.namespace }}
@@ -66,7 +66,7 @@ releases:
       - ./values/knowledge-upload.wa.yaml
       -
         image:
-          tag: {{ index .Values.versions.chat.wa "knowledge-upload" }}
+          tag: {{ index .Values.versions.chat.webApp "knowledge-upload" }}
           repository: {{ .Values.plain.registryUrl }}/web-app-knowledge-upload
         env:
           CONTENT_SECURITY_POLICY_VALUE: "default-src 'self'; img-src https: blob: data: *.blob.core.windows.net; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' blob: *.{{ .Values.params.zoneName }} *.core.windows.net wss://*.{{ .Values.params.zoneName }}; media-src 'self' *.blob.core.windows.net; frame-ancestors 'self'; frame-src 'self' https://*.{{ .Values.params.zoneName }};"
@@ -89,7 +89,7 @@ releases:
         routes:
           hostname: {{ .Values.params.zoneName }}
 
-  - name: wa-theme
+  - name: web-app-theme
     chart: oci://ghcr.io/unique-ag/helm-charts/web-app
     version: 3.1.0
     namespace: {{ .Values.self.namespace }}
@@ -99,7 +99,7 @@ releases:
       - ./values/theme.wa.yaml
       -
         image:
-          tag: {{ index .Values.versions.chat.wa "theme" }}
+          tag: {{ index .Values.versions.chat.webApp "theme" }}
           repository: {{ .Values.plain.registryUrl }}/web-app-theme
         env:
           CONTENT_SECURITY_POLICY_VALUE: "default-src 'self'; img-src https: blob: data: *.blob.core.windows.net; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' blob: *.{{ .Values.params.zoneName }} *.core.windows.net wss://*.{{ .Values.params.zoneName }}; media-src 'self' *.blob.core.windows.net; frame-ancestors 'self'; frame-src 'self' https://*.{{ .Values.params.zoneName }};"
@@ -122,7 +122,7 @@ releases:
         routes:
           hostname: {{ .Values.params.zoneName }}
 
-  - name: wa-admin
+  - name: web-app-admin
     chart: oci://ghcr.io/unique-ag/helm-charts/web-app
     version: 3.1.0
     namespace: {{ .Values.self.namespace }}
@@ -132,7 +132,7 @@ releases:
       - ./values/admin.wa.yaml
       -
         image:
-          tag: {{ index .Values.versions.chat.wa "admin" }}
+          tag: {{ index .Values.versions.chat.webApp "admin" }}
           repository: {{ .Values.plain.registryUrl }}/web-app-admin
         env:
           CONTENT_SECURITY_POLICY_VALUE: "default-src 'self'; img-src https: blob: data: *.blob.core.windows.net; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' blob: *.{{ .Values.params.zoneName }} *.core.windows.net wss://*.{{ .Values.params.zoneName }}; media-src 'self' *.blob.core.windows.net; frame-ancestors 'self'; frame-src 'self' https://*.{{ .Values.params.zoneName }};"
