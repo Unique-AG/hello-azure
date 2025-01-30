@@ -3,18 +3,26 @@ plain:
     subDomainName: api
   clusterIssuer:
     name: letsencrypt-azure-dns
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    server: https://acme-v02.api.letsencrypt.org/directory
   rabbit:
     secret:
       secretName: rabbitmqcluster-chat-default-user
-    username: hello
+    username: helloazuredev
   redis:
     secret:
       secretKeyName: pass
       secretName: redis-secret-sscsid-keeper
+  # sdkDeploy: # todo
+  #   botObjectId: 83352105-b3ab-40b2-a386-cef6372d1b04
+  #   key1:
+  #     kvSecretName: sops-age-key-1
+  #     secretKeyName: SOPS_AGE_KEY_1
+  #   key2:
+  #     kvSecretName: sops-age-key-2
+  #     secretKeyName: SOPS_AGE_KEY_2
   zitadel: # to be filled after initial Zitadel deployment
-    clientId: ''
-    projectId: ''
+    clientId: '304892972846089297'
+    projectId: '304892563263849635'
     rootOrgId: ''
     secretCerts:
       secretName: zitadel-certs
