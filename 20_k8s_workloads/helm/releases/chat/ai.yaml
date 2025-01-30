@@ -30,5 +30,5 @@ releases:
           tenantId: {{ requiredEnv "ARM_TENANT_ID" }}
           userAssignedIdentityID: {{ .Values.params.identities.keyVaultSecretsProvider.clientId }}
           vaults:
-            {{ .Values.params.keyVaults.sensitive.name }}:
+            {{ .Values.params.keyVaults.main.name }}:
               AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT_DEFINITIONS: {{ .Values.kvRefs.adi.endpointDefinitions }}
