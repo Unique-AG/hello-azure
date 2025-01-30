@@ -9,7 +9,7 @@ module "openai" {
       location                      = "switzerlandnorth"
       local_auth_enabled            = true
       custom_subdomain_name         = var.custom_subdomain_name
-      public_network_access_enabled = true
+      public_network_access_enabled = true # FIXME: use private endpoints
       cognitive_deployments = [
         {
           name          = "text-embedding-ada-002"
