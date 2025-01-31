@@ -16,12 +16,13 @@ module "kubernetes_cluster" {
 
   node_pool_settings = {
     stable = {
-      vm_size         = "Standard_D8ps_v6"
-      node_count      = 2
-      min_count       = 1
-      max_count       = 8
-      os_disk_size_gb = 100
-      os_sku          = "AzureLinux"
+      temporary_name_for_rotation = "stablerepl"
+      vm_size                     = "Standard_D8ps_v6"
+      node_count                  = 2
+      min_count                   = 1
+      max_count                   = 8
+      os_disk_size_gb             = 100
+      os_sku                      = "AzureLinux"
       node_labels = {
         pool = "stable"
       }
@@ -34,12 +35,13 @@ module "kubernetes_cluster" {
       }
     }
     burst = {
-      vm_size         = "Standard_D8ps_v6"
-      node_count      = 0
-      min_count       = 0
-      max_count       = 3
-      os_disk_size_gb = 100
-      os_sku          = "AzureLinux"
+      temporary_name_for_rotation = "burstrepl"
+      vm_size                     = "Standard_D8ps_v6"
+      node_count                  = 0
+      min_count                   = 0
+      max_count                   = 3
+      os_disk_size_gb             = 100
+      os_sku                      = "AzureLinux"
       node_labels = {
         pool = "burst"
       }
