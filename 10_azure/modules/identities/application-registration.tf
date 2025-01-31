@@ -19,19 +19,19 @@ module "application_registration" {
   required_resource_access_list = {
     (data.azuread_application_published_app_ids.well_known.result.MicrosoftGraph) = [
       {
-        id   = azuread_service_principal.msgraph.app_role_ids["profile"]
+        id   = azuread_service_principal.msgraph.oauth2_permission_scope_ids["profile"]
         type = "Scope"
       },
       {
-        id   = azuread_service_principal.msgraph.app_role_ids["User.Read"]
+        id   = azuread_service_principal.msgraph.oauth2_permission_scope_ids["User.Read"]
         type = "Scope"
       },
       {
-        id   = azuread_service_principal.msgraph.app_role_ids["openid"]
+        id   = azuread_service_principal.msgraph.oauth2_permission_scope_ids["openid"]
         type = "Scope"
       },
       {
-        id   = azuread_service_principal.msgraph.app_role_ids["email"] 
+        id   = azuread_service_principal.msgraph.oauth2_permission_scope_ids["email"] 
         type = "Scope"
       },
     ],
