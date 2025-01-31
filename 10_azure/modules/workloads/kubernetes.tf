@@ -27,7 +27,7 @@ module "kubernetes_cluster" {
       upgrade_settings = {
         max_surge = "10%"
       }
-      vm_size = "Standard_D8_v5"
+      vm_size = "Standard_D8s_v3"
       zones   = ["1", "2", "3"]
     }
     steady = {
@@ -47,7 +47,7 @@ module "kubernetes_cluster" {
       upgrade_settings = {
         max_surge = "30%"
       }
-      vm_size = "Standard_D8s_v5"
+      vm_size = "Standard_D8s_v3"
       zones   = ["1", "2", "3"]
     }
   }
