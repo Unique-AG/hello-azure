@@ -15,8 +15,8 @@ module "kubernetes_cluster" {
   }
 
   node_pool_settings = {
-    stable = {
-      temporary_name_for_rotation = "stablerepl"
+    steady = {
+      temporary_name_for_rotation = "steadyrepl"
       vm_size                     = "Standard_D8ps_v6"
       node_count                  = 2
       min_count                   = 1
@@ -24,7 +24,8 @@ module "kubernetes_cluster" {
       os_disk_size_gb             = 100
       os_sku                      = "AzureLinux"
       node_labels = {
-        pool = "stable"
+        scalability = "steady"
+        lifecycle   = "persistent"
       }
       node_taints          = []
       auto_scaling_enabled = true
@@ -34,8 +35,8 @@ module "kubernetes_cluster" {
         max_surge = "30%"
       }
     }
-    burst = {
-      temporary_name_for_rotation = "burstrepl"
+    rapid = {
+      temporary_name_for_rotation = "rapidrepl"
       vm_size                     = "Standard_D8ps_v6"
       node_count                  = 0
       min_count                   = 0
@@ -43,9 +44,10 @@ module "kubernetes_cluster" {
       os_disk_size_gb             = 100
       os_sku                      = "AzureLinux"
       node_labels = {
-        pool = "burst"
+        scalability = "rapid"
+        lifecycle   = "ephemeral"
       }
-      node_taints          = ["burst=true:NoSchedule"]
+      node_taints          = ["scalability=rapid:NoSchedule", "lifecycle=ephemeral:NoSchedule"]
       auto_scaling_enabled = true
       mode                 = "User"
       zones                = ["1", "2", "3"]
