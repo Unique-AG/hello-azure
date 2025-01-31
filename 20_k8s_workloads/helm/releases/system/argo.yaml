@@ -55,7 +55,7 @@ releases:
           domain: {{ printf "%s.%s" "argo" .Values.params.zoneName }}
           nodeSelector:
             scalability: steady
-  lifecycle: persistent
+            lifecycle: persistent
         repoServer:
           extraArgs:
             - --repo-cache-expiration=15m

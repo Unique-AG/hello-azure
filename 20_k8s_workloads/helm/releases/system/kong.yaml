@@ -68,7 +68,7 @@ releases:
             tag: "3.9.0"
           nodeSelector:
             scalability: steady
-  lifecycle: persistent
+            lifecycle: persistent
           proxy:
             type: ClusterIP
           plugins:

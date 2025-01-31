@@ -33,7 +33,7 @@ releases:
             memory: 2Gi
         nodeSelector:
           scalability: steady
-  lifecycle: persistent
+          lifecycle: persistent
         persistence:
           accessModes:
             - ReadWriteOnce
