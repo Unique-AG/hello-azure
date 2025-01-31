@@ -16,7 +16,6 @@ on:
   push:
     branches:
       - main
-      - dev
     paths:
       - .github/workflows/chat.helm.yaml
       - 20_k8s_workloads/helm/releases/chat/**
@@ -29,7 +28,6 @@ permissions:
   id-token: write
 
 jobs:
-
   chat:
     uses: ./.github/workflows/helm.yaml
     strategy:

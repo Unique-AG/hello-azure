@@ -1,6 +1,5 @@
 name: '[helm][apps]'
 
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -17,9 +16,8 @@ on:
       - 20_k8s_workloads/helm/terraform-outputs.yaml.jinja
       - 20_k8s_workloads/helm/versions.yaml
   push:
-    branches :
+    branches:
       - main
-      - dev
     paths:
       - .github/workflows/helm.yaml
       - .github/workflows/apps.helm.yaml
