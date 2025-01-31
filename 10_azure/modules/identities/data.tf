@@ -39,6 +39,12 @@ data "azuread_user" "telemetry_observer" {
   for_each  = var.telemetry_observers
   object_id = each.key
 }
+data "azuread_user" "gitops_maintainer" {
+  for_each  = var.gitops_maintainers
+  object_id = each.key
+}
 
 
 data "azuread_client_config" "current" {}
+
+data "azuread_application_published_app_ids" "well_known" {}

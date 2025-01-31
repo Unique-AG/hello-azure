@@ -135,6 +135,9 @@ variable "telemetry_observers" {
   type = set(string)
 }
 
+variable "gitops_maintainers" {
+  type = set(string)
+}
 
 variable "telemetry_observer_group_display_name" {
   description = "Display name for the Telemetry Observer group"
@@ -179,5 +182,17 @@ variable "application_gateway_id" {
 }
 variable "dns_zone_id" {
   description = "ID of the DNS zone"
+  type        = string
+}
+variable "application_secret_display_name" {
+  description = "Display name for the GitOps application secret"
+  type        = string  
+}
+variable "dns_zone_name" {
+  description = "Name of the DNS zone"
+  type        = string
+}
+variable "application_registration_gitops_display_name" {
+  description = "Display name for the GitOps application registration"
   type        = string
 }
