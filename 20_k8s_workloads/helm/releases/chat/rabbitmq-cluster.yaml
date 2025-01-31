@@ -63,7 +63,8 @@ releases:
               limits:
                 memory: 1Gi
             nodeSelector:
-              pool: stable
+              scalability: steady
+              lifecycle: persistent
             secretBackend:
               externalSecret:
                 name: {{ .Values.plain.rabbit.secret.secretName }}

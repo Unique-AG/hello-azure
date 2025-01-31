@@ -67,7 +67,8 @@ releases:
             repository: {{ .Values.plain.registryUrl }}/kong
             tag: "3.9.0"
           nodeSelector:
-            pool: stable
+            scalability: steady
+            lifecycle: persistent
           proxy:
             type: ClusterIP
           plugins:

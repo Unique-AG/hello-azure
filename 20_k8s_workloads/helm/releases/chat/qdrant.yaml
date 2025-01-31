@@ -32,7 +32,8 @@ releases:
           limits:
             memory: 2Gi
         nodeSelector:
-          pool: stable
+          scalability: steady
+          lifecycle: persistent
         persistence:
           accessModes:
             - ReadWriteOnce

@@ -16,11 +16,16 @@ eventBasedAutoscaling:
   rabbitmq:
     queueName: unique.node.ingestion.queue
 nodeSelector:
-  pool: burst
+  scalability: rapid
+  lifecycle: ephemeral
 tolerations:
-  - key: "burst"
+  - key: "scalability"
+    operator: "Equal" 
+    value: "rapid"
+    effect: "NoSchedule"
+  - key: "lifecycle"
     operator: "Equal"
-    value: "true"
+    value: "ephemeral" 
     effect: "NoSchedule"
 probes:
   liveness:

@@ -2,7 +2,8 @@ env:
   LOG_LEVEL: info
   MAX_HEAP_MB: 200
 nodeSelector:
-  pool: stable
+  scalability: steady
+  lifecycle: persistent
 replicaCount: 1
 resources:
   limits:

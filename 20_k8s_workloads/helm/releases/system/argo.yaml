@@ -54,7 +54,8 @@ releases:
         global:
           domain: {{ printf "%s.%s" "argo" .Values.params.zoneName }}
           nodeSelector:
-            pool: stable
+            scalability: steady
+            lifecycle: persistent
         repoServer:
           extraArgs:
             - --repo-cache-expiration=15m
