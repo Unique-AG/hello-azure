@@ -10,26 +10,26 @@ module "kubernetes_cluster" {
   kubernetes_default_node_size = "Standard_D2ps_v6"
   log_analytics_workspace_id   = var.log_analytics_workspace_id
   node_pool_settings = {
-    # rapid = {
-    #   auto_scaling_enabled = true
-    #   max_count            = 3
-    #   min_count            = 0
-    #   mode                 = "User"
-    #   node_count           = 0
-    #   node_labels = {
-    #     lifecycle   = "ephemeral"
-    #     scalability = "rapid"
-    #   }
-    #   node_taints                 = ["scalability=rapid:NoSchedule", "lifecycle=ephemeral:NoSchedule"]
-    #   os_disk_size_gb             = 100
-    #   os_sku                      = "AzureLinux"
-    #   temporary_name_for_rotation = "rapidrepl"
-    #   upgrade_settings = {
-    #     max_surge = "10%"
-    #   }
-    #   vm_size = "Standard_D8s_v5"
-    #   zones   = ["1", "2", "3"]
-    # }
+    rapid = {
+      auto_scaling_enabled = true
+      max_count            = 3
+      min_count            = 0
+      mode                 = "User"
+      node_count           = 0
+      node_labels = {
+        lifecycle   = "ephemeral"
+        scalability = "rapid"
+      }
+      node_taints                 = ["scalability=rapid:NoSchedule", "lifecycle=ephemeral:NoSchedule"]
+      os_disk_size_gb             = 100
+      os_sku                      = "AzureLinux"
+      temporary_name_for_rotation = "rapidrepl"
+      upgrade_settings = {
+        max_surge = "10%"
+      }
+      vm_size = "Standard_D8_v5"
+      zones   = ["1", "2", "3"]
+    }
     steady = {
       auto_scaling_enabled = true
       max_count            = 4
