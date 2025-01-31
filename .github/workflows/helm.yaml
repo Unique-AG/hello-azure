@@ -39,7 +39,7 @@ jobs:
         uses: azure/login@v2
         with:
           tenant-id: ${{ vars.TENANT_ID }}
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          client-id: ${{ secrets.CLIENT_ID }}
           subscription-id: ${{ vars.SUBSCRIPTION_ID }}
 
       # Set up kubelogin for non-interactive authentication with Azure Kubernetes Service (AKS)
