@@ -77,8 +77,8 @@ releases:
             oidc.config: |
               name: AzureAD
               issuer: https://login.microsoftonline.com/{{ requiredEnv "ARM_TENANT_ID" }}/v2.0
-              clientID: $argo-azure-entra-secret:oidc.azure.client_id
-              clientSecret: $argo-azure-entra-secret:oidc.azure.client_secret
+              clientID: $argo-azure-entra-secret-sscsid-keeper:oidc.azure.client_id
+              clientSecret: $argo-azure-entra-secret-sscsid-keeper:oidc.azure.client_secret
               requestedIDTokenClaims:
                 groups:
                   essential: true
