@@ -47,7 +47,7 @@ module "kubernetes_cluster" {
       upgrade_settings = {
         max_surge = "30%"
       }
-      vm_size = "Standard_D8s_v4"
+      vm_size = "Standard_D8as_v5"
       zones   = ["1", "2", "3"]
     }
   }
