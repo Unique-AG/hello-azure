@@ -31,6 +31,10 @@ module "perimeter" {
       name    = "id"
       records = [module.workloads.application_gateway_ip_address]
     }
+    argo = {
+      name    = "argo"
+      records = [module.workloads.application_gateway_ip_address]
+    }
     api = {
       name    = "api"
       records = [module.workloads.application_gateway_ip_address]

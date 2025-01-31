@@ -32,8 +32,10 @@ releases:
           tenantId: {{ requiredEnv "ARM_TENANT_ID" }}
           identityId: {{ .Values.params.identities.keyVaultSecretsProvider.clientId }}
           secrets:
-            - k8sSecretDataKey: {{ .Values.plain.redis.secret.secretKeyName }}
-              kvObjectName: {{ .Values.plain.redis.secret.kvSecretName }}
+            - k8sSecretDataKey: oidc.azure.client_id
+              kvObjectName: aad-app-hello-azure-gitops-client-id
+            - k8sSecretDataKey: oidc.azure.client_secret
+              kvObjectName: aad-app-hello-azure-gitops-client-secret
 
   - name: argo
     needs:
@@ -68,7 +70,7 @@ releases:
                   - {{ printf "%s.%s" .Values.self.argo.subDomainName .Values.params.zoneName }}
           cm:
             create: true
-            url: https://argo.oleole.unique.app
+            url: https://{{ printf "%s.%s" .Values.self.argo.subDomainName .Values.params.zoneName }}
             server.rbac.log.enforce.enable: true
             admin.enabled: false
             timeout.reconciliation: 30s
