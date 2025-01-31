@@ -11,6 +11,7 @@ plain:
   redis:
     secret:
       secretKeyName: pass
+      secretName: redis-secret-sscsid-keeper
       # kvSecretName: filled-by-jinja
   # sdkDeploy: # todo
   #   botObjectId: 83352105-b3ab-40b2-a386-cef6372d1b04

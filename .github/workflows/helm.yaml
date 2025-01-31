@@ -50,11 +50,13 @@ permissions:
   id-token: write
 
 env:
-  ARM_TENANT_ID: "aeade8c4-d4f7-4ae7-9149-4975fa3a7f91"
-  ARM_SUBSCRIPTION_ID: "be4e82ff-bf83-4173-a750-15e807845579"
+  ARM_SUBSCRIPTION_ID: ${{ vars.SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ vars.TENANT_ID }}
+  ARM_CLIENT_ID: ${{ vars.CLIENT_ID }}
 
 jobs:
   command:
+    environment: 20-wl
     runs-on:
       group: hello.azure.unique.dev
 
@@ -69,9 +71,9 @@ jobs:
       - name: Azure Login action
         uses: azure/login@v2
         with:
-          client-id: "a0e34ba0-b64c-49f4-8d94-1c74d7b3090e"
-          tenant-id: "aeade8c4-d4f7-4ae7-9149-4975fa3a7f91"
-          subscription-id: "be4e82ff-bf83-4173-a750-15e807845579"
+          tenant-id: ${{ vars.TENANT_ID }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          subscription-id: ${{ vars.SUBSCRIPTION_ID }}
 
       # Set up kubelogin for non-interactive authentication with Azure Kubernetes Service (AKS)
       - name: Set up kubelogin
