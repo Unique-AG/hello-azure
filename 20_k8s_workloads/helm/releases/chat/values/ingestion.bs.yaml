@@ -44,7 +44,8 @@ hooks:
       cd /node/dist/apps/node-ingestion; npx prisma migrate deploy
     enabled: true
 nodeSelector:
-  pool: stable
+  scalability: steady
+  lifecycle: persistent
 replicaCount: 2
 resources:
   limits:

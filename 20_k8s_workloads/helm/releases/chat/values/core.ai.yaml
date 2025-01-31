@@ -7,7 +7,8 @@ env:
 eventBasedAutoscaling:
   enabled: false
 nodeSelector:
-  pool: stable
+  scalability: steady
+  lifecycle: persistent
 replicaCount: 2
 resources:
   limits:

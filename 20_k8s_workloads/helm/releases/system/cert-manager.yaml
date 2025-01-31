@@ -30,7 +30,8 @@ releases:
           repository: {{ .Values.plain.registryUrl }}/jetstack/cert-manager-controller
           tag: "v1.12.2"
         nodeSelector:
-          pool: stable
+          scalability: steady
+  lifecycle: persistent
         extraArgs:
           - --dns01-recursive-nameservers={{- join ":53," .Values.params.nameServers -}}:53
           - --dns01-recursive-nameservers-only

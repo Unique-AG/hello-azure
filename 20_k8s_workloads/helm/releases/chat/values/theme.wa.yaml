@@ -2,7 +2,8 @@ env:
   MAX_HEAP_MB: 200
   FEATURE_FLAG_ENABLE_NOTIFICATION_BANNER_UN_9411: "true"
 nodeSelector:
-  pool: stable
+  scalability: steady
+  lifecycle: persistent
 probes:
   liveness:
     httpGet:

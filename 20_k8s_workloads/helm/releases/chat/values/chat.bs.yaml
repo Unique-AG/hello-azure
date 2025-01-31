@@ -61,7 +61,8 @@ hooks:
     enabled: true
 
 nodeSelector:
-  pool: stable
+  scalability: steady
+  lifecycle: persistent
 resources:
   limits:
     cpu: 500m

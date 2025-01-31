@@ -6,7 +6,8 @@ controller:
   proxy:
     type: ClusterIP
   nodeSelector:
-    pool: stable
+    scalability: steady
+  lifecycle: persistent
   deploymentAnnotations:
     configmap.reloader.stakater.com/reload: "kong-controller-environment"
   extraObjects:

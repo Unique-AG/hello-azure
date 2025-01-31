@@ -158,7 +158,8 @@ releases:
           limits:
             memory: 1Gi
         nodeSelector:
-          pool: stable
+          scalability: steady
+  lifecycle: persistent
         initJob:
           resources:
             requests:

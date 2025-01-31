@@ -40,6 +40,9 @@ extraRoutes:
       - path:
           type: PathPrefix
           value: /scim
+nodeSelector:
+  scalability: steady
+  lifecycle: persistent
 hooks:
   migration:
     command: |

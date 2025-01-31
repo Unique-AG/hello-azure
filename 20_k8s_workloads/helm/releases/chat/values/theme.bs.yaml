@@ -8,6 +8,9 @@ hooks:
       cd /node/dist/apps/node-theme; npx prisma migrate deploy
     enabled: true
 replicaCount: 1
+nodeSelector:
+  scalability: steady
+  lifecycle: persistent
 resources:
   limits:
     cpu: 100m
