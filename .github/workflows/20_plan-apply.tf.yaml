@@ -25,6 +25,7 @@ permissions:
 jobs:
   automated-plan-apply:
     runs-on: ubuntu-latest
+    environment: 20-wl
     defaults:
       run:
         shell: bash
