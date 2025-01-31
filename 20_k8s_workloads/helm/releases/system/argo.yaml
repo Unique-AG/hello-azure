@@ -18,7 +18,7 @@ repositories:
 releases:
   - name: argo-azure-entra-secret
     chart: oci://ghcr.io/unique-ag/helm-charts/sscsid-keeper
-    version: 1.1.5
+    version: 1.1.6
     namespace: {{ .Values.self.namespace }}
     wait: false
     values:
@@ -31,6 +31,9 @@ releases:
           kvName: {{ .Values.params.keyVaults.sensitive.name }}
           tenantId: {{ requiredEnv "ARM_TENANT_ID" }}
           identityId: {{ .Values.params.identities.keyVaultSecretsProvider.clientId }}
+          labels:
+            app: argocd
+            app.kubernetes.io/part-of: argocd
           secrets:
             - k8sSecretDataKey: oidc.azure.client_id
               kvObjectName: aad-app-hello-azure-gitops-client-id
