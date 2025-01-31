@@ -9,7 +9,7 @@ resource "azuread_service_principal" "msgraph" {
 
 module "application_registration" {
   source                           = "github.com/Unique-AG/terraform-modules.git//modules/azure-entra-app-registration?ref=azure-entra-app-registration-2.0.0-rc.2"
-  display_name                     = var.application_registration_gitops_display_name 
+  display_name                     = var.application_registration_gitops_display_name
   keyvault_id                      = var.sensitive_kv_id
   aad-app-secret-display-name      = var.application_secret_display_name
   maintainers_principal_object_ids = local.maintainers_principal_object_ids
@@ -31,7 +31,7 @@ module "application_registration" {
         type = "Scope"
       },
       {
-        id   = azuread_service_principal.msgraph.oauth2_permission_scope_ids["email"] 
+        id   = azuread_service_principal.msgraph.oauth2_permission_scope_ids["email"]
         type = "Scope"
       },
     ],

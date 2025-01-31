@@ -1,24 +1,24 @@
 module "identities" {
-  source                              = "./modules/identities"
-  cluster_id                          = module.workloads.aks_cluster_id
-  cluster_name                        = "aks-cluster"
-  psql_user_assigned_identity_name    = "psql-identity"
-  aks_user_assigned_identity_name     = "aks-identity"
-  sensitive_kv_id                     = module.perimeter.key_vault_sensitive_id
-  main_kv_id                          = module.perimeter.key_vault_main_id
-  cluster_admins                      = ["4b89a1f0-8038-4929-81e6-6d128dac7aa0", "084a1c45-5010-4aab-bab6-7b86a9d10e5c", "3b48f167-cb68-4655-b45b-878e170af84d"]
-  main_keyvault_secret_writers        = ["4b89a1f0-8038-4929-81e6-6d128dac7aa0", "084a1c45-5010-4aab-bab6-7b86a9d10e5c", "3b48f167-cb68-4655-b45b-878e170af84d"]
-  telemetry_observers                 = ["4b89a1f0-8038-4929-81e6-6d128dac7aa0", "084a1c45-5010-4aab-bab6-7b86a9d10e5c", "3b48f167-cb68-4655-b45b-878e170af84d"]
-  gitops_maintainers                  = ["4b89a1f0-8038-4929-81e6-6d128dac7aa0", "084a1c45-5010-4aab-bab6-7b86a9d10e5c", "3b48f167-cb68-4655-b45b-878e170af84d"]
-  client_id                           = var.client_id
-  ingestion_cache_identity_name       = "ingestion-cache-identity"
-  ingestion_storage_identity_name     = "ingestion-storage-identity"
-  document_intelligence_identity_name = "document-intelligence-identity"
-  application_gateway_id              = module.workloads.application_gateway_id
-  dns_zone_id                         = module.perimeter.dns_zone_id
+  source                                       = "./modules/identities"
+  cluster_id                                   = module.workloads.aks_cluster_id
+  cluster_name                                 = "aks-cluster"
+  psql_user_assigned_identity_name             = "psql-identity"
+  aks_user_assigned_identity_name              = "aks-identity"
+  sensitive_kv_id                              = module.perimeter.key_vault_sensitive_id
+  main_kv_id                                   = module.perimeter.key_vault_main_id
+  cluster_admins                               = ["4b89a1f0-8038-4929-81e6-6d128dac7aa0", "084a1c45-5010-4aab-bab6-7b86a9d10e5c", "3b48f167-cb68-4655-b45b-878e170af84d"]
+  main_keyvault_secret_writers                 = ["4b89a1f0-8038-4929-81e6-6d128dac7aa0", "084a1c45-5010-4aab-bab6-7b86a9d10e5c", "3b48f167-cb68-4655-b45b-878e170af84d"]
+  telemetry_observers                          = ["4b89a1f0-8038-4929-81e6-6d128dac7aa0", "084a1c45-5010-4aab-bab6-7b86a9d10e5c", "3b48f167-cb68-4655-b45b-878e170af84d"]
+  gitops_maintainers                           = ["4b89a1f0-8038-4929-81e6-6d128dac7aa0", "084a1c45-5010-4aab-bab6-7b86a9d10e5c", "3b48f167-cb68-4655-b45b-878e170af84d"]
+  client_id                                    = var.client_id
+  ingestion_cache_identity_name                = "ingestion-cache-identity"
+  ingestion_storage_identity_name              = "ingestion-storage-identity"
+  document_intelligence_identity_name          = "document-intelligence-identity"
+  application_gateway_id                       = module.workloads.application_gateway_id
+  dns_zone_id                                  = module.perimeter.dns_zone_id
   application_registration_gitops_display_name = "GitOps"
-  application_secret_display_name =  "hello-azure-gitops"
-  dns_zone_name                   = "hello.azure.unique.dev"
+  application_secret_display_name              = "hello-azure-gitops"
+  dns_zone_name                                = "hello.azure.unique.dev"
 }
 module "perimeter" {
   source                        = "./modules/perimeter"
