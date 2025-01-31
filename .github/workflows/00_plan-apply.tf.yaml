@@ -24,6 +24,7 @@ permissions:
   id-token: write
 jobs:
   automated-plan-apply:
+    environment: 00-init
     runs-on: ubuntu-latest
     defaults:
       run:

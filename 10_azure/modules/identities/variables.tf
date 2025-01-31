@@ -186,7 +186,7 @@ variable "dns_zone_id" {
 }
 variable "application_secret_display_name" {
   description = "Display name for the GitOps application secret"
-  type        = string  
+  type        = string
 }
 variable "dns_zone_name" {
   description = "Name of the DNS zone"

@@ -1,9 +1,9 @@
 module "kubernetes_cluster" {
-  source                       = "github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service?ref=azure-kubernetes-service-2.0.0-rc.1"
+  source                       = "github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service?ref=azure-kubernetes-service-2.0.0"
   cluster_name                 = var.cluster_name
   resource_group_location      = data.azurerm_resource_group.core.location
   resource_group_name          = data.azurerm_resource_group.core.name
-  kubernetes_default_node_size = "Standard_D2_v2_Promo"
+  kubernetes_default_node_size = "Standard_D2ps_v6"
   outbound_ip_address_ids      = [var.aks_public_ip_id]
 
   node_rg_name = var.node_resource_group_name
@@ -15,13 +15,14 @@ module "kubernetes_cluster" {
   }
 
   node_pool_settings = {
-    stablenew = {
-      vm_size         = "Standard_D4_v2_Promo"
-      node_count      = 3
-      min_count       = 1
-      max_count       = 8
-      os_disk_size_gb = 100
-      os_sku          = "AzureLinux"
+    stable = {
+      temporary_name_for_rotation = "stablerepl"
+      vm_size                     = "Standard_D8ps_v6"
+      node_count                  = 2
+      min_count                   = 1
+      max_count                   = 8
+      os_disk_size_gb             = 100
+      os_sku                      = "AzureLinux"
       node_labels = {
         pool = "stable"
       }
@@ -34,11 +35,13 @@ module "kubernetes_cluster" {
       }
     }
     burst = {
-      vm_size         = "Standard_D2_v2_Promo"
-      node_count      = 0
-      min_count       = 0
-      max_count       = 3
-      os_disk_size_gb = 100
+      temporary_name_for_rotation = "burstrepl"
+      vm_size                     = "Standard_D8ps_v6"
+      node_count                  = 0
+      min_count                   = 0
+      max_count                   = 3
+      os_disk_size_gb             = 100
+      os_sku                      = "AzureLinux"
       node_labels = {
         pool = "burst"
       }

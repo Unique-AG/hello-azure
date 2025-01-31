@@ -24,6 +24,7 @@ permissions:
   id-token: write
 jobs:
   automated-plan-apply:
+    environment: 10-pm
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -39,10 +40,9 @@ jobs:
       - name: Terraform fmt
         id: fmt
         run: terraform fmt -check
-        continue-on-error: true
       - name: Terraform Init
         id: init
-        run : terraform init -backend-config=config.auto.tfvars
+        run : TF_LOG=DEBUG terraform init -backend-config=config.auto.tfvars
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
