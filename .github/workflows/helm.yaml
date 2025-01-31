@@ -11,39 +11,6 @@ on:
         description: "Helm action to perform: template, diff, sync or apply."
         default: template
         type: string
-  workflow_dispatch:
-    inputs:
-      file_name:
-        description: The path of the file to operate on from root.
-        required: true
-        type: choice
-        default: 20_k8s_workloads/helm/releases/chat/bs.yaml
-        options:
-          - 20_k8s_workloads/helm/releases/apps/apps.yaml
-          - 20_k8s_workloads/helm/releases/chat/ai.yaml
-          - 20_k8s_workloads/helm/releases/chat/bs.yaml
-          - 20_k8s_workloads/helm/releases/chat/qdrant.yaml
-          - 20_k8s_workloads/helm/releases/chat/rabbitmq-cluster.yaml
-          - 20_k8s_workloads/helm/releases/chat/wa.yaml
-          - 20_k8s_workloads/helm/releases/system/cert-manager.yaml
-          - 20_k8s_workloads/helm/releases/system/kong.yaml
-          - 20_k8s_workloads/helm/releases/system/rabbitmq-operator.yaml
-          - 20_k8s_workloads/helm/releases/system/reloader.yaml
-          - 20_k8s_workloads/helm/releases/system/zitadel.yaml
-      action:
-        description: "Helm action to perform: template, diff, sync or destroy."
-        type: choice
-        required: true
-        default: 'diff'
-        options:
-          - destroy
-          - diff
-          - sync
-          - template
-      release_name:
-        description: "Use a specific release only."
-        type: string
-        required: false
 
 permissions:
   contents: read
