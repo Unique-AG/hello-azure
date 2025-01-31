@@ -1,4 +1,4 @@
-name: '[helm][system]'
+name: '[helm][system] 🦾'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
