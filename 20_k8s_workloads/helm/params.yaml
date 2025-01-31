@@ -4,6 +4,12 @@ plain:
   clusterIssuer:
     name: letsencrypt-azure-dns
     server: https://acme-v02.api.letsencrypt.org/directory
+  gitops:
+    secret:
+      secretKeyNames: 
+        clientId: oidc.azure.client_id
+        clientSecret: oidc.azure.client_secret
+      # kvSecretName: filled-by-jinja
   rabbit:
     secret:
       secretName: rabbitmqcluster-chat-default-user
@@ -11,7 +17,7 @@ plain:
   redis:
     secret:
       secretKeyName: pass
-      secretName: redis-secret-sscsid-keeper
+      # kvSecretName: filled-by-jinja
   # sdkDeploy: # todo
   #   botObjectId: 83352105-b3ab-40b2-a386-cef6372d1b04
   #   key1:
