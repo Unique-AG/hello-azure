@@ -109,6 +109,7 @@ Now we are ready to make all the changes from within CI pipelines.
 | Name | Type |
 |------|------|
 | [azuread_app_role_assignment.read_users](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/app_role_assignment) | resource |
+| [azuread_app_role_assignment.read_write_application](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/app_role_assignment) | resource |
 | [azuread_app_role_assignment.read_write_groups](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/app_role_assignment) | resource |
 | [azuread_app_role_assignment.read_write_role_management](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/app_role_assignment) | resource |
 | [azuread_application_federated_identity_credential.github_actions_terraform_dev](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/application_federated_identity_credential) | resource |
