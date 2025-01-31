@@ -24,7 +24,7 @@ permissions:
   id-token: write
 jobs:
   automated-plan-apply:
-    runs-on: ubuntu-latest
+    runs-on: singularity
     defaults:
       run:
         shell: bash
