@@ -17,7 +17,7 @@ module "kubernetes_cluster" {
   node_pool_settings = {
     steady = {
       temporary_name_for_rotation = "steadyrepl"
-      vm_size                     = "Standard_D8ps_v6"
+      vm_size                     = "Standard_D8s_v5"
       node_count                  = 2
       min_count                   = 1
       max_count                   = 8
@@ -37,7 +37,7 @@ module "kubernetes_cluster" {
     }
     rapid = {
       temporary_name_for_rotation = "rapidrepl"
-      vm_size                     = "Standard_D8ps_v6"
+      vm_size                     = "Standard_D8s_v5"
       node_count                  = 0
       min_count                   = 0
       max_count                   = 3
