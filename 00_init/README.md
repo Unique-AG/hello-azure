@@ -102,7 +102,7 @@ Now we are ready to make all the changes from within CI pipelines.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_tfstate_sa"></a> [tfstate\_sa](#module\_tfstate\_sa) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.0.0 | n/a |
+| <a name="module_tfstate_sa"></a> [tfstate\_sa](#module\_tfstate\_sa) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.0.2 | n/a |
 
 ## Resources
 

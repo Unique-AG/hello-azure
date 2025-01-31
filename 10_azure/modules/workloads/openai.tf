@@ -37,7 +37,7 @@ module "openai" {
 }
 
 module "document_intelligence" {
-  source                = "github.com/Unique-AG/terraform-modules.git//modules/azure-document-intelligence?ref=fix/add-missing-outputs"
+  source                = "github.com/Unique-AG/terraform-modules.git//modules/azure-document-intelligence?ref=azure-document-intelligence-2.0.0"
   doc_intelligence_name = "doc-intelligence"
   resource_group_name   = data.azurerm_resource_group.core.name
   tags                  = var.tags

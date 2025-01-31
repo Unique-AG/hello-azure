@@ -10,7 +10,7 @@ resource "random_password" "postgres_password" {
 }
 
 module "postgresql" {
-  source              = "github.com/unique-ag/terraform-modules.git//modules/azure-postgresql?depth=1&ref=azure-postgresql-2.0.0-rc.1"
+  source              = "github.com/unique-ag/terraform-modules.git//modules/azure-postgresql?depth=1&ref=azure-postgresql-2.0.0-rc.2"
   admin_password      = random_password.postgres_password.result
   administrator_login = random_password.postgres_username.result
   name                = var.postgresql_server_name
