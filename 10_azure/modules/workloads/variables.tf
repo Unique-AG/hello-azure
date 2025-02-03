@@ -17,6 +17,11 @@ variable "resource_group_core_name" {
   description = "The core resource group name."
   type        = string
 }
+variable "resource_group_core_location" {
+  description = "The core resource group location."
+  type        = string
+  default     = "westeurope" # switzerlandnorth is not supported for Azure Monitor
+}
 
 variable "psql_user_assigned_identity_id" {
   description = "The ID of the PostgreSQL user-assigned identity."
@@ -170,16 +175,13 @@ variable "postgresql_private_dns_zone_id" {
 variable "name_prefix" {
   description = "Prefix for the name of the Application Gateway"
   type        = string
-  default     = "agw_"
+  default     = "agw"
 }
-
 variable "ip_name" {
   description = "Name of the public IP for the Application Gateway"
   type        = string
   default     = "default-public-ip-name"
 }
-
-
 variable "zitadel_pat_secret_name" {
   description = "Name of the empty secret placeholder for the Zitadel PAT to be created for manually setting the value later"
   type        = string

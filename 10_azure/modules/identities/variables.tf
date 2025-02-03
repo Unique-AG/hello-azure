@@ -10,10 +10,9 @@ variable "resource_group_sensitive_name" {
   default     = "resource-group-sensitive"
 }
 
-variable "resource_group_vnet_name" {
-  description = "The resource group name for the vnets."
+variable "resource_group_vnet_id" {
+  description = "The vnet resource group id."
   type        = string
-  default     = "resource-group-vnet"
 }
 
 variable "resource_group_core_location" {

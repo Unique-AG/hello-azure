@@ -2,11 +2,6 @@ output "resource_group_core_name" {
   value       = module.identities.resource_group_core_name
   description = "The name of the core resource group."
 }
-output "resource_group_vnet_name" {
-  value       = module.identities.resource_group_vnet_name
-  description = "The name of the vnet resource group."
-}
-
 output "oai_model_version_endpoints_secret_name" {
   value       = module.workloads.oai_model_version_endpoints_secret_name
   description = "The secret name for OAI model version endpoints."
@@ -162,4 +157,15 @@ output "dns_zone_name" {
 output "zitadel_pat_secret_name" {
   description = "Name of the manual secret containing Zitadel PAT"
   value       = module.workloads.zitadel_pat_secret_name
+}
+output "vnet" {
+  description = "The virtual network details."
+  value = {
+    id   = module.vnet.resource_id
+    name = module.vnet.name
+  }
+}
+output "subnets" {
+  description = "The subnets in the virtual network."
+  value       = module.vnet.subnets
 }

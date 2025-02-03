@@ -4,9 +4,9 @@ module "openai" {
   tags                        = var.tags
   endpoint_secret_name_suffix = "-ep"
   cognitive_accounts = {
-    "cognitive-account-switzerlandnorth" = {
-      name                          = "cognitive-account-switzerlandnorth"
-      location                      = "switzerlandnorth"
+    "cognitive-account-swedencentral" = {
+      name                          = "cognitive-account-swedencentral"
+      location                      = "swedencentral"
       local_auth_enabled            = true
       custom_subdomain_name         = var.custom_subdomain_name
       public_network_access_enabled = true # FIXME: use private endpoints
@@ -32,8 +32,7 @@ module "openai" {
       ]
     }
   }
-  key_vault_id = var.main_kv_id
-
+  #key_vault_id = var.main_kv_id
 }
 
 module "document_intelligence" {
@@ -42,10 +41,10 @@ module "document_intelligence" {
   resource_group_name   = data.azurerm_resource_group.core.name
   tags                  = var.tags
   accounts = {
-    "switzerlandnorth-form-recognizer" = {
-      location = "switzerlandnorth"
+    "swedencentral-form-recognizer" = {
+      location = "swedencentral"
     }
   }
-  key_vault_id               = var.main_kv_id
+  #key_vault_id               = var.main_kv_id
   user_assigned_identity_ids = [var.document_intelligence_user_assigned_identity_id]
 }
