@@ -57,8 +57,10 @@ module "vnet" {
       address_prefixes = ["10.201.3.80/28"]
     }
     "snet-github" = {
-      name             = "snet-github-runners"
-      address_prefixes = ["10.201.3.96/28"]
+      name                                          = "snet-github-runners"
+      address_prefixes                              = ["10.201.3.96/28"]
+      private_link_service_network_policies_enabled = true
+      private_endpoint_network_policies             = "Disabled"
       delegation = [{
         name = "delegation"
         service_delegation = {
