@@ -31,46 +31,46 @@ module "identities" {
   resource_group_vnet_id                       = azurerm_resource_group.vnet.id
 }
 
-module "perimeter" {
-  source = "./modules/perimeter"
+# module "perimeter" {
+#   source = "./modules/perimeter"
 
-  aks_node_rg_name      = module.identities.resource_group_core_name
-  budget_contact_emails = ["support@unique.ch"]
-  client_id             = var.client_id
-  csi_identity_name     = "csi_identity"
-  depends_on = [
-    module.identities.resource_group_core_id,
-    module.identities.resource_group_sensitive_id,
-    module.identities.resource_group_vnet_id
-  ]
-  dns_zone_name         = "hello.azure.unique.dev"
-  dns_zone_root_records = [module.workloads.application_gateway_ip_address]
-  dns_zone_sub_domain_records = {
-    api = {
-      name    = "api"
-      records = [module.workloads.application_gateway_ip_address]
-    }
-    argo = {
-      name    = "argo"
-      records = [module.workloads.application_gateway_ip_address]
-    }
-    zitadel = {
-      name    = "id"
-      records = [module.workloads.application_gateway_ip_address]
-    }
-  }
-  kv_sku                        = "premium"
-  log_analytics_workspace_name  = "loganalytics"
-  main_kv_name                  = "helloazuremainkv"
-  resource_group_core_location  = local.resource_group_core_location
-  resource_group_core_name      = module.identities.resource_group_core_name
-  resource_group_sensitive_name = module.identities.resource_group_sensitive_name
-  resource_group_vnet_name      = azurerm_resource_group.vnet.name
-  sensitive_kv_name             = "helloazuresensitivekv"
-  tags = {
-    app = "hello-azure"
-  }
-}
+#   aks_node_rg_name      = module.identities.resource_group_core_name
+#   budget_contact_emails = ["support@unique.ch"]
+#   client_id             = var.client_id
+#   csi_identity_name     = "csi_identity"
+#   depends_on = [
+#     module.identities.resource_group_core_id,
+#     module.identities.resource_group_sensitive_id,
+#     module.identities.resource_group_vnet_id
+#   ]
+#   dns_zone_name         = "hello.azure.unique.dev"
+#   dns_zone_root_records = [module.workloads.application_gateway_ip_address]
+#   dns_zone_sub_domain_records = {
+#     api = {
+#       name    = "api"
+#       records = [module.workloads.application_gateway_ip_address]
+#     }
+#     argo = {
+#       name    = "argo"
+#       records = [module.workloads.application_gateway_ip_address]
+#     }
+#     zitadel = {
+#       name    = "id"
+#       records = [module.workloads.application_gateway_ip_address]
+#     }
+#   }
+#   kv_sku                        = "premium"
+#   log_analytics_workspace_name  = "loganalytics"
+#   main_kv_name                  = "helloazuremainkv"
+#   resource_group_core_location  = local.resource_group_core_location
+#   resource_group_core_name      = module.identities.resource_group_core_name
+#   resource_group_sensitive_name = module.identities.resource_group_sensitive_name
+#   resource_group_vnet_name      = azurerm_resource_group.vnet.name
+#   sensitive_kv_name             = "helloazuresensitivekv"
+#   tags = {
+#     app = "hello-azure"
+#   }
+# }
 
 
 # module "workloads" {
