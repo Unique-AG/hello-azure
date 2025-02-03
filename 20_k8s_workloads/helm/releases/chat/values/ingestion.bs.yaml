@@ -23,7 +23,7 @@ cronJob:
 env:
   ADDITIONAL_INGESTION_QUEUES: '["chat_queue"]'
   AUDIT_LOG_DIR: /dev/stdout
-  AZURE_OPENAI_API_DEPLOYMENT_NAME: text-embedding-3-small
+  AZURE_OPENAI_API_DEPLOYMENT_NAME: text-embedding-ada-002
   AZURE_OPENAI_API_VERSION: 2023-05-15
   CHAT_URL: http://backend-service-chat.unique.svc
   EMBEDDING_DIMENSION: 1536
