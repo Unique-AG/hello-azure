@@ -28,5 +28,5 @@ module "postgresql" {
   location            = data.azurerm_resource_group.sensitive.location
   tags                = var.tags
   identity_ids        = [var.psql_user_assigned_identity_id]
-  #key_vault_id        = var.sensitive_kv_id
+  key_vault_id        = var.sensitive_kv_id
 }
