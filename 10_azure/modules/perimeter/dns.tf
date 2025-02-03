@@ -6,7 +6,7 @@ resource "azurerm_private_dns_zone" "psql_private_dns_zone" {
 resource "azurerm_private_dns_zone_virtual_network_link" "psql-private-dns-zone-vnet-link" {
   name                  = var.azurerm_private_dns_zone_virtual_network_link_name
   private_dns_zone_name = azurerm_private_dns_zone.psql_private_dns_zone.name
-  virtual_network_id    = azurerm_virtual_network.vnet.id
+  virtual_network_id    = var.virtual_network_id
   resource_group_name   = var.resource_group_vnet_name
 }
 

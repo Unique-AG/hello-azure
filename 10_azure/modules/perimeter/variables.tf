@@ -3,12 +3,14 @@ variable "kv_sku" {
   type        = string
   default     = "standard"
 }
-
 variable "resource_group_vnet_name" {
   description = "The resource group name for the vnets."
   type        = string
 }
-
+variable "virtual_network_id" {
+  description = "The virtual network id."
+  type        = string
+}
 variable "resource_group_sensitive_name" {
   description = "The sensitive resource group name."
   type        = string
