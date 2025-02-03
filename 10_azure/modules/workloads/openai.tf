@@ -12,15 +12,15 @@ module "openai" {
       public_network_access_enabled = true # FIXME: use private endpoints
       cognitive_deployments = [
         {
-          name          = "text-embedding-ada-002"
-          model_name    = "text-embedding-ada-002"
-          model_version = "2"
+          model_name    = "text-embedding-3-small"
+          model_version = "1"
+          name          = "text-embedding-3-small"
           sku_capacity  = 350
         },
         {
-          name          = "gpt-4"
           model_name    = "gpt-4"
           model_version = "0613"
+          name          = "gpt-4"
           sku_capacity  = 20
         },
         {
