@@ -7,7 +7,7 @@ module "application_gateway" {
   subnet_appgw               = var.subnet_agw_id
   gateway_sku                = "WAF_v2"
   gateway_tier               = "WAF_v2"
-  private_ip                 = cidrhost("10.0.5.0/24", 6)
+  private_ip                 = cidrhost(var.subnet_agw_cidr, 6)
   log_analytics_workspace_id = var.log_analytics_workspace_id
   ip_name                    = var.ip_name
 }
