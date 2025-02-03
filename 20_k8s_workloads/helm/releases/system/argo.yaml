@@ -8,9 +8,7 @@ environments:
           namespace: unique
           argo:
             subDomainName: argo
-            appSetChat:
-              name: chat
-              targetRevision: main
+
 ---
 
 repositories:
@@ -114,7 +112,7 @@ releases:
                 p, role:sync-only, applications, sync, *, allow
                 p, role:sync-only, applications, action/apps/Deployment/restart, *, allow
                 p, role:sync-only, applications, action/batch/CronJob/create-job, *, allow
-                p, role:sync-only, logs, get, core/*, deny
+                p, role:sync-only, logs, get, chat/*, deny
                 
                 # role:no-access
                 p, role:no-access, *, *, *, deny
@@ -122,48 +120,5 @@ releases:
                 # maintainers are kings here and only here
                 # role:admin
                 p, role:admin, *, *, *, allow
-        extraObjects:
-        -
-          apiVersion: argoproj.io/v1alpha1
-          kind: ApplicationSet
-          metadata:
-            name: {{ .Values.self.argo.appSetChat.name }}
-            namespace: {{ .Values.self.namespace }}
-          spec:
-            goTemplate: true
-            goTemplateOptions: ["missingkey=error"]
-            generators:
-            - git:
-                repoURL: https://github.com/Unique-AG/hello-azure
-                revision: {{ .Values.self.argo.appSetChat.targetRevision }}
-                files:
-                - path: "20_k8s_workloads/argo/{{ .Values.self.argo.appSetChat.name }}/*.app.yaml"
-            template:
-              metadata:
-                name: '{{ printf "{{%s}}" ".spec.name" }}'
-                namespace: {{ .Values.self.namespace }}
-              spec:
-                project: default
-                destination:
-                  server: https://kubernetes.default.svc
-                  namespace: {{ .Values.self.namespace }}
-            # templatePatch: |
-            #   spec:
-            #     {{- if hasKey .spec "sources" }}
-            #     sources:
-            #       {{- .spec.sources | toYaml | nindent 4 }}
-            #     {{- else }}
-            #     source:
-            #       {{- .spec.source | toYaml | nindent 4 }}
-            #     {{- end }}
-            #     {{- if hasKey .spec "additionalValues" }}
-            #     {{- .spec.additionalValues | toYaml | nindent 2 }}
-            #     {{- end }}
-            #     {{- if .spec.autoSync }}
-            #     syncPolicy:
-            #       automated:
-            #         prune: true
-            #         selfHeal: true
-            #       syncOptions:
-            #         - CreateNamespace=true
-            #     {{- end }}
+        extraObjects: []
+          
