@@ -32,7 +32,7 @@ module "openai" {
       ]
     }
   }
-  #key_vault_id = var.main_kv_id
+  key_vault_id = var.main_kv_id
 }
 
 module "document_intelligence" {
@@ -45,6 +45,6 @@ module "document_intelligence" {
       location = "swedencentral"
     }
   }
-  #key_vault_id               = var.main_kv_id
+  key_vault_id               = var.main_kv_id
   user_assigned_identity_ids = [var.document_intelligence_user_assigned_identity_id]
 }

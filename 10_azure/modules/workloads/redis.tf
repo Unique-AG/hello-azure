@@ -5,5 +5,5 @@ module "redis" {
   location                      = data.azurerm_resource_group.sensitive.location
   public_network_access_enabled = true
   tags                          = var.tags
-  #key_vault_id                  = var.sensitive_kv_id
+  key_vault_id                  = var.sensitive_kv_id
 }
