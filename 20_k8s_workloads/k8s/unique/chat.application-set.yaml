@@ -1,3 +1,4 @@
+# we could Jinja template this file, but for now lets keep it simple
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -11,7 +12,7 @@ spec:
       repoURL: https://github.com/Unique-AG/hello-azure
       revision: main
       files:
-      - path: "20_k8s_workloads/argo/{{ .Values.self.argo.appSetChat.name }}/*.app.yaml"
+      - path: "20_k8s_workloads/argo/chat/*.app.yaml"
   template:
     metadata:
       name: '{{ .spec.name }}'
