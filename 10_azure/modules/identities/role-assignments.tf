@@ -144,7 +144,7 @@ resource "azurerm_role_assignment" "application_gateway_ingres_controller_contri
 
 # AGIC Identity needs at least 'Read and join' access to Subnet
 resource "azurerm_role_assignment" "application_gateway_ingres_controller_vnet_subnet_access" {
-  scope                = azurerm_resource_group.vnet.id
+  scope                = var.resource_group_vnet_id
   role_definition_name = azurerm_role_definition.vnet_subnet_access.name
   principal_id         = data.azurerm_kubernetes_cluster.cluster.ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
 }

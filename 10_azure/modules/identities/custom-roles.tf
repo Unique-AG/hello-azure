@@ -44,7 +44,7 @@ resource "azurerm_role_definition" "telemetry_observer" {
 
   assignable_scopes = [
     azurerm_resource_group.core.id,
-    azurerm_resource_group.vnet.id
+    var.resource_group_vnet_id
   ]
 }
 

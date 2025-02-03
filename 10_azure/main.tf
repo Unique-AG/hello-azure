@@ -28,6 +28,7 @@ module "identities" {
   resource_vnet_location                       = "swedencentral" # hello-azure uses swedencentral for capacity and cost reasons
   sensitive_kv_id                              = module.perimeter.key_vault_sensitive_id
   telemetry_observers                          = ["4b89a1f0-8038-4929-81e6-6d128dac7aa0", "084a1c45-5010-4aab-bab6-7b86a9d10e5c", "3b48f167-cb68-4655-b45b-878e170af84d"]
+  resource_group_vnet_id                       = azurerm_resource_group.vnet.id
 }
 module "perimeter" {
   source = "./modules/perimeter"

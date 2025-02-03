@@ -46,11 +46,6 @@ output "resource_group_sensitive_id" {
   value       = azurerm_resource_group.sensitive.id
 }
 
-output "resource_group_vnet_id" {
-  description = "The ID of the VNet resource group."
-  value       = azurerm_resource_group.vnet.id
-}
-
 output "aks_workload_identity_client_id" {
   description = "The client ID of the AKS workload identity."
   value       = azurerm_user_assigned_identity.aks_workload_identity.client_id
