@@ -128,13 +128,13 @@ spec:
           tenantId: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
           userAssignedIdentityID: 93a58fa9-689d-4e76-b250-a164e4829742
           vaults:
-            helloazuremain:
+            helloazuresensitive:
               DATABASE_URL: database-url-chat
               PUBSUB_REDIS_HOST: uniquehelloazureredis-host
               PUBSUB_REDIS_PORT: uniquehelloazureredis-port
               AZURE_FGPT_STORAGE_CONNECTION_STRING: ingestion-storage-connection-string-1
               CHAT_LXM_ENCRYPTION_KEY: encryption-key-chat-lxm
-            helloazuresensitive:
+            helloazuremain:
               AZURE_OPENAI_API_ENDPOINTS_JSON: azure-openai-endpoint-definitions
         serviceAccount:
           enabled: true
