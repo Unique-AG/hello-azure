@@ -161,8 +161,8 @@ output "zitadel_pat_secret_name" {
 output "vnet" {
   description = "The virtual network details."
   value = {
-    id   = azurerm_virtual_network.vnet.resource_id
-    name = azurerm_virtual_network.vnet.name
+    id   = module.vnet.resource_id
+    name = module.vnet.name
   }
 }
 output "subnets" {
