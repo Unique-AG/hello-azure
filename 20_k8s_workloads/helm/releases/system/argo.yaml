@@ -137,10 +137,10 @@ releases:
                 repoURL: https://github.com/Unique-AG/hello-azure
                 revision: {{ .Values.self.argo.appSetChat.targetRevision }}
                 files:
-                - path: "20_k8s_workloads/argo/{{ .Values.self.argo.appSetChat.name }}/**/app.yaml"
+                - path: "20_k8s_workloads/argo/{{ .Values.self.argo.appSetChat.name }}/*.app.yaml"
             template:
               metadata:
-                name: '{% raw %}{{.spec.name}}{% endraw %}'
+                name: '{{ "{{" }}.spec.name{{ "}}" }}'
                 namespace: {{ .Values.self.namespace }}
               spec:
                 project: default
@@ -149,7 +149,7 @@ releases:
                   namespace: {{ .Values.self.namespace }}
             templatePatch: |
               spec:
-                {% raw %}{{- if hasKey .spec "sources" }}
+                {{ "{{" }}- if hasKey .spec "sources" }}
                 sources:
                   {{- .spec.sources | toYaml | nindent 4 }}
                 {{- else }}
@@ -166,4 +166,4 @@ releases:
                     selfHeal: true
                   syncOptions:
                     - CreateNamespace=true
-                {{- end }}{% endraw %}
+                {{- end {{ "}}" }}
