@@ -30,6 +30,7 @@ module "identities" {
   telemetry_observers                          = ["4b89a1f0-8038-4929-81e6-6d128dac7aa0", "084a1c45-5010-4aab-bab6-7b86a9d10e5c", "3b48f167-cb68-4655-b45b-878e170af84d"]
   resource_group_vnet_id                       = azurerm_resource_group.vnet.id
 }
+
 module "perimeter" {
   source = "./modules/perimeter"
 
@@ -72,35 +73,35 @@ module "perimeter" {
 }
 
 
-module "workloads" {
-  source = "./modules/workloads"
+# module "workloads" {
+#   source = "./modules/workloads"
 
-  aks_public_ip_id = module.perimeter.aks_public_ip_id
-  cluster_name     = "aks-cluster"
-  depends_on = [
-    module.identities.resource_group_core_id,
-    module.identities.resource_group_sensitive_id,
-    module.identities.resource_group_vnet_id,
-    module.perimeter.log_analytics_workspace_id
-  ]
-  document_intelligence_user_assigned_identity_id = module.identities.document_intelligence_user_assigned_identity_id
-  ingestion_cache_user_assigned_identity_id       = module.identities.ingestion_cache_user_assigned_identity_id
-  ingestion_storage_user_assigned_identity_id     = module.identities.ingestion_storage_user_assigned_identity_id
-  log_analytics_workspace_id                      = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.OperationalInsights/workspaces/loganalytics"
-  main_kv_id                                      = module.perimeter.key_vault_main_id
-  node_resource_group_name                        = "${module.identities.resource_group_core_name}-aks-nodes"
-  postgresql_private_dns_zone_id                  = module.perimeter.postgresql_private_dns_zone_id
-  postgresql_server_name                          = "hello-azure-psql"
-  postgresql_subnet_id                            = module.vnet.subnets["snet-psql"].id
-  psql_user_assigned_identity_id                  = module.identities.psql_user_assigned_identity_id
-  resource_group_core_name                        = module.identities.resource_group_core_name
-  resource_group_core_location                    = local.resource_group_core_location
-  resource_group_sensitive_name                   = module.identities.resource_group_sensitive_name
-  sensitive_kv_id                                 = module.perimeter.key_vault_sensitive_id
-  subnet_agw_id                                   = module.vnet.subnets["snet-agw"].id
-  subnet_aks_nodes_id                             = module.vnet.subnets["snet-aks-nodes"].id
-  tags = {
-    app = "hello-azure"
-  }
-  tenant_id = var.tenant_id
-}
+#   aks_public_ip_id = module.perimeter.aks_public_ip_id
+#   cluster_name     = "aks-cluster"
+#   depends_on = [
+#     module.identities.resource_group_core_id,
+#     module.identities.resource_group_sensitive_id,
+#     module.identities.resource_group_vnet_id,
+#     module.perimeter.log_analytics_workspace_id
+#   ]
+#   document_intelligence_user_assigned_identity_id = module.identities.document_intelligence_user_assigned_identity_id
+#   ingestion_cache_user_assigned_identity_id       = module.identities.ingestion_cache_user_assigned_identity_id
+#   ingestion_storage_user_assigned_identity_id     = module.identities.ingestion_storage_user_assigned_identity_id
+#   log_analytics_workspace_id                      = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.OperationalInsights/workspaces/loganalytics"
+#   main_kv_id                                      = module.perimeter.key_vault_main_id
+#   node_resource_group_name                        = "${module.identities.resource_group_core_name}-aks-nodes"
+#   postgresql_private_dns_zone_id                  = module.perimeter.postgresql_private_dns_zone_id
+#   postgresql_server_name                          = "hello-azure-psql"
+#   postgresql_subnet_id                            = module.vnet.subnets["snet-psql"].id
+#   psql_user_assigned_identity_id                  = module.identities.psql_user_assigned_identity_id
+#   resource_group_core_name                        = module.identities.resource_group_core_name
+#   resource_group_core_location                    = local.resource_group_core_location
+#   resource_group_sensitive_name                   = module.identities.resource_group_sensitive_name
+#   sensitive_kv_id                                 = module.perimeter.key_vault_sensitive_id
+#   subnet_agw_id                                   = module.vnet.subnets["snet-agw"].id
+#   subnet_aks_nodes_id                             = module.vnet.subnets["snet-aks-nodes"].id
+#   tags = {
+#     app = "hello-azure"
+#   }
+#   tenant_id = var.tenant_id
+# }
