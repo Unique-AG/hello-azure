@@ -199,7 +199,7 @@ resource "azurerm_resource_provider_registration" "github_network" {
 }
 resource "azapi_resource" "github_network_settings" {
   type                      = "GitHub.Network/networkSettings@2024-04-02"
-  name                      = "github_network_settings"
+  name                      = "github_network_settings_w"
   location                  = data.azurerm_resource_group.vnet.location
   parent_id                 = data.azurerm_resource_group.vnet.id
   schema_validation_enabled = false
