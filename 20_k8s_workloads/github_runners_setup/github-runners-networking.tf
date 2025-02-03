@@ -199,15 +199,14 @@ resource "azurerm_resource_provider_registration" "github_network" {
 }
 resource "azapi_resource" "github_network_settings" {
   type                      = "GitHub.Network/networkSettings@2024-04-02"
-  name                      = "github_network_settings_w"
+  name                      = "github_network_settings"
   location                  = data.azurerm_resource_group.vnet.location
   parent_id                 = data.azurerm_resource_group.vnet.id
   schema_validation_enabled = false
   body = {
     properties = {
       businessId = var.github_org_id
-      subnetId   = data.azurerm_subnet.subnet_github_runners.id
-      swag       = "bar"
+      subnetId   = "${data.azurerm_subnet.subnet_github_runners.id}-x"
     }
   }
   response_export_values = ["tags.GitHubId"]
