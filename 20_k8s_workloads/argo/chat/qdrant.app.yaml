@@ -1,5 +1,5 @@
 spec:
-  name: backend-service-chat
+  name: qdrant
   autoSync: false
   source:
     chart: qdrant
