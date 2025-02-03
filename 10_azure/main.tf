@@ -81,6 +81,8 @@ module "workloads" {
   depends_on = [
     module.identities.resource_group_core_id,
     module.identities.resource_group_sensitive_id,
+    module.perimeter.key_vault_main_id,
+    module.perimeter.key_vault_sensitive_id
     # module.identities.resource_group_vnet_id,
     # module.perimeter.log_analytics_workspace_id
   ]
