@@ -1,0 +1,122 @@
+environments:
+  default:
+    values:
+      - ../../params.yaml
+      - ../../terraform-outputs.yaml
+      -
+        self:
+          namespace: unique
+          argo:
+            subDomainName: argo
+
+---
+
+repositories:
+  - name: argo
+    url: https://argoproj.github.io/argo-helm
+
+releases:
+  - name: argo-azure-entra-secret
+    chart: oci://ghcr.io/unique-ag/helm-charts/sscsid-keeper
+    version: 1.1.7
+    namespace: {{ .Values.self.namespace }}
+    wait: false
+    values:
+      -
+        keeper:
+          image:
+            repository: {{ .Values.plain.registryUrl }}/busybox
+            tag: "1.37"
+        spc:
+          kvName: {{ .Values.params.keyVaults.sensitive.name }}
+          tenantId: {{ requiredEnv "ARM_TENANT_ID" }}
+          identityId: {{ .Values.params.identities.keyVaultSecretsProvider.clientId }}
+          labels:
+            app: argocd
+            app.kubernetes.io/part-of: argocd
+          secrets:
+            - k8sSecretDataKey: oidc.azure.client_id
+              kvObjectName: aad-app-hello-azure-gitops-client-id
+            - k8sSecretDataKey: oidc.azure.client_secret
+              kvObjectName: aad-app-hello-azure-gitops-client-secret
+
+  - name: argo
+    needs:
+      - argo-azure-entra-secret
+    createNamespace: true
+    namespace: {{ .Values.self.namespace }}
+    chart: argo/argo-cd
+    version: v7.7.16 # https://github.com/argoproj/argo-helm/releases
+    wait: false
+    values:
+      - 
+        nameOverride: argo
+        global:
+          domain: {{ printf "%s.%s" "argo" .Values.params.zoneName }}
+          nodeSelector:
+            scalability: steady
+            lifecycle: persistent
+        repoServer:
+          extraArgs:
+            - --repo-cache-expiration=15m
+        server:
+          ingress:
+            enabled: true
+            ingressClassName: azure-application-gateway
+            annotations:
+              appgw.ingress.kubernetes.io/ssl-redirect: "true"
+              appgw.ingress.kubernetes.io/backend-protocol: "https"
+              cert-manager.io/cluster-issuer: {{ .Values.plain.clusterIssuer.name }}
+            hosts:
+              - {{ printf "%s.%s" .Values.self.argo.subDomainName .Values.params.zoneName }}
+            tls:
+              - secretName: zitadel-le-tls
+                hosts:
+                  - {{ printf "%s.%s" .Values.self.argo.subDomainName .Values.params.zoneName }}
+          cm:
+            create: true
+            url: https://{{ printf "%s.%s" .Values.self.argo.subDomainName .Values.params.zoneName }}
+            server.rbac.log.enforce.enable: true
+            admin.enabled: false
+            timeout.reconciliation: 30s
+            oidc.config: |
+              name: AzureAD
+              issuer: https://login.microsoftonline.com/{{ requiredEnv "ARM_TENANT_ID" }}/v2.0
+              clientID: $argo-azure-entra-secret-sscsid-keeper:oidc.azure.client_id
+              clientSecret: $argo-azure-entra-secret-sscsid-keeper:oidc.azure.client_secret
+              requestedIDTokenClaims:
+                groups:
+                  essential: true
+              requestedScopes:
+                - openid
+                - profile
+                - email
+          rbac:
+              create: true
+              policy.default: role:no-access
+              scopes: '[roles]'
+              policy.csv: |
+                #################################################
+                # Policy rules are in the form:
+                #   p, subject, resource, action, object, effect
+                # Role definitions and bindings are in the form:
+                #   g, subject, inherited-subject
+                #################################################
+
+                ################### GROUPS #####################
+                g, maintain, role:admin
+                ################### POLICIES #####################
+                # role:sync-only
+                p, role:sync-only, applications, get, *, allow
+                p, role:sync-only, applications, sync, *, allow
+                p, role:sync-only, applications, action/apps/Deployment/restart, *, allow
+                p, role:sync-only, applications, action/batch/CronJob/create-job, *, allow
+                p, role:sync-only, logs, get, core/*, deny
+                
+                # role:no-access
+                p, role:no-access, *, *, *, deny
+
+                # maintainers are kings here and only here
+                # role:admin
+                p, role:admin, *, *, *, allow
+        extraObjects: []

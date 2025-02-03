@@ -1,0 +1,182 @@
+name: '[tf] Plan/Apply 20_k8s_workloads'
+on:
+  pull_request:
+    branches: ["main","dev"]
+    types:
+      - opened
+      - edited
+      - synchronize
+    paths:
+      - .github/workflows/20_plan-apply.tf.yaml
+      - 20_k8s_workloads/github_runners_setup/**
+  issue_comment:
+      types: [created, edited, deleted]
+  push:
+    branches : ["main","dev"]
+    paths:
+      - .github/workflows/20_plan-apply.tf.yaml
+      - 20_k8s_workloads/github_runners_setup/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write # To write comments
+  id-token: write
+jobs:
+  automated-plan-apply:
+    runs-on: ubuntu-latest
+    environment: 20-wl
+    defaults:
+      run:
+        shell: bash
+        working-directory: 20_k8s_workloads/github_runners_setup
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.10.0
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+      - name: Terraform Init
+        id: init
+        run : terraform init -backend-config=config.auto.tfvars
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+      - name: Terraform Plan
+        id: plan
+        run : terraform plan -no-color
+      - name: Terraform Apply
+        if: ${{ github.event.ref == 'refs/heads/main' || github.event.ref == 'refs/heads/dev'}}
+        run: terraform apply -auto-approve -input=false
+      - uses: actions/github-script@v6
+        if: github.event_name == 'pull_request'
+        env:
+          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+        with:
+          script: |
+
+            // 1. Retrieve existing bot comments for the PR
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            })
+            const botComment = comments.find(comment => {
+              return comment.user.type === 'Bot' && comment.body.includes('Terraform Format and Style')
+            })
+
+            // 2. Prepare format of the comment
+            const output = ` ### Automated Terraform Plan
+            #### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+
+            <details><summary>Show Plan</summary>
+
+            \`\`\`\n
+            ${process.env.PLAN}
+            \`\`\`
+
+            </details>
+
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Env: \`${{ env.ENVIRONMENT }}\`, Workflow: \`${{ github.workflow }}\`*`;
+            const contentPlan=process.env.PLAN
+
+            // 3. If we have a comment, update it, otherwise create a new one
+            if (botComment) {
+
+              if (contentPlan.includes("No changes. Your infrastructure matches the configuration.")) {
+                  github.rest.issues.deleteComment({
+                   owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    comment_id: botComment.id
+                  })
+              }else {
+                github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: botComment.id,
+                  body: output
+                })
+              }
+            } else {
+              if (contentPlan.includes("No changes. Your infrastructure matches the configuration.") == false ) {
+                github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: output
+                })
+              }
+            }
+  manual-plan:
+    runs-on: ubuntu-latest
+    if: contains(github.event.comment.body, '/plan')
+    defaults:
+      run:
+        shell: bash
+        working-directory: 20_k8s_workloads/github_runners_setup
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.10.0
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+      - name: Terraform Init -upgrade
+        id: init
+        run: terraform init -backend-config=config.auto.tfvars
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+      - name: Terraform Plan
+        id: plan
+        run : terraform plan -no-color
+      - uses: actions/github-script@v6
+        env:
+          DEPLOY: "terraform\n${{ steps.plan.outputs.stdout }}"
+        with:
+          script: |
+            // 1. Prepare format of the comment
+            const output = ` ### Manual Plan
+            #### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+            <details><summary>Validation Output</summary>
+
+            \`\`\`\n
+            ${{ steps.validate.outputs.stdout }}
+            \`\`\`
+
+            </details>
+
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+
+            <details><summary>Show Plan</summary>
+
+            \`\`\`\n
+            ${process.env.DEPLOY}
+            \`\`\`
+
+            </details>
+
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Env: \`${{ env.ENVIRONMENT }}\`, Workflow: \`${{ github.workflow }}\`*`;
+            const contentPlan=process.env.DEPLOY
+
+            // 2. create a new one
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })

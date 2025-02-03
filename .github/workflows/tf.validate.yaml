@@ -1,0 +1,36 @@
+name: '[terraform] Lint & Secure'
+on:
+  pull_request:
+    paths:
+      - 00_init/**/*.tf"
+      - 10_azure/**/*.tf"
+      - .github/workflows/tf.validate.yaml
+      - .github/configs/**
+      - scripts/**
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Format & Docs
+      run: |
+        ./scripts/tf-docs.sh
+        ./scripts/tf-fmt.sh
+        if [[ $(git diff --stat) != '' ]]; then
+          echo -e '\033[0;31mDocumentation outdated or terraform not formatted, pre-commit hook was not installed or skipped!\033[0m ❌'
+          git diff --color
+          exit 1
+        else
+          echo -e '\033[0;32mDocumentation and Format up to date\033[0m ✔'
+        fi
+
+    - name: Sec
+      run: ./scripts/tf-sec.sh
