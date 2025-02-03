@@ -84,9 +84,8 @@ See also [identities](modules/identities/README.md), [perimeter](modules/perimet
 | <a name="output_redis_cache_password_secret_name"></a> [redis\_cache\_password\_secret\_name](#output\_redis\_cache\_password\_secret\_name) | The secret name for Redis cache password. |
 | <a name="output_redis_cache_port_secret_name"></a> [redis\_cache\_port\_secret\_name](#output\_redis\_cache\_port\_secret\_name) | The secret name for Redis cache port. |
 | <a name="output_resource_group_core_name"></a> [resource\_group\_core\_name](#output\_resource\_group\_core\_name) | The name of the core resource group. |
+| <a name="output_resource_group_vnet_name"></a> [resource\_group\_vnet\_name](#output\_resource\_group\_vnet\_name) | Name of the resource group for the vnet |
 | <a name="output_sensitive_keyvault_name"></a> [sensitive\_keyvault\_name](#output\_sensitive\_keyvault\_name) | The name of the sensitive Key Vault. |
-| <a name="output_subnets"></a> [subnets](#output\_subnets) | The subnets in the virtual network. |
-| <a name="output_vnet"></a> [vnet](#output\_vnet) | The virtual network details. |
 | <a name="output_zitadel_db_user_password_secret_name"></a> [zitadel\_db\_user\_password\_secret\_name](#output\_zitadel\_db\_user\_password\_secret\_name) | The secret name for the Zitadel database user password. |
 | <a name="output_zitadel_master_key_secret_name"></a> [zitadel\_master\_key\_secret\_name](#output\_zitadel\_master\_key\_secret\_name) | The secret name for the Zitadel master key. |
 | <a name="output_zitadel_pat_secret_name"></a> [zitadel\_pat\_secret\_name](#output\_zitadel\_pat\_secret\_name) | Name of the manual secret containing Zitadel PAT |
