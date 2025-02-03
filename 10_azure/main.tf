@@ -94,6 +94,7 @@ module "workloads" {
   node_resource_group_name                        = "${module.identities.resource_group_core_name}-aks-nodes"
   postgresql_private_dns_zone_id                  = module.perimeter.postgresql_private_dns_zone_id
   postgresql_server_name                          = "hello-azure-psql"
+  name_prefix                                     = "hello-azure"
   postgresql_subnet_id                            = module.vnet.subnets["snet-psql"].resource_id
   psql_user_assigned_identity_id                  = module.identities.psql_user_assigned_identity_id
   resource_group_core_name                        = module.identities.resource_group_core_name

@@ -175,16 +175,13 @@ variable "postgresql_private_dns_zone_id" {
 variable "name_prefix" {
   description = "Prefix for the name of the Application Gateway"
   type        = string
-  default     = "agw_"
+  default     = "agw"
 }
-
 variable "ip_name" {
   description = "Name of the public IP for the Application Gateway"
   type        = string
   default     = "default-public-ip-name"
 }
-
-
 variable "zitadel_pat_secret_name" {
   description = "Name of the empty secret placeholder for the Zitadel PAT to be created for manually setting the value later"
   type        = string
