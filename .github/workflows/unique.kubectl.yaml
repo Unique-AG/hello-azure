@@ -1,3 +1,8 @@
+# -- Why Kubectl?
+# 
+# For the rest of our workloads we use Helm, but since the ApplicationSet requires active templating, we need to use Kubectl.
+# The escaping of Go templates and strings is not straightforward, so we use Kubectl for this workload.
+
 name: '[k8s][unique]'
 
 concurrency:
