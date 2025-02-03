@@ -191,7 +191,7 @@ resource "azurerm_network_security_group" "github" {
 }
 
 resource "azurerm_subnet_network_security_group_association" "github_aks" {
-  subnet_id                 = azurerm_subnet.subnet_github_runners.id
+  subnet_id                 = data.azurerm_subnet.subnet_github_runners.id
   network_security_group_id = azurerm_network_security_group.github.id
 }
 resource "azurerm_resource_provider_registration" "github_network" {

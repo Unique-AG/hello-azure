@@ -3,4 +3,5 @@ resource_group_vnet_name = "resource-group-vnet"
 tags = {
   app = "hello-azure"
 }
-vnet_name = "vnet"
+vnet_name   = "vnet"
+subnet_name = "to_be_filled"
