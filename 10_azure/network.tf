@@ -15,7 +15,7 @@ module "vnet" {
   # -- https://www.davidc.net/sites/default/subnets/subnets.html?network=10.201.0.0&mask=22&division=21.5f4620
   subnets = {
     "snet-aks-pods" = {
-      name             = "snet-aks-nodes"
+      name             = "snet-aks-pods"
       address_prefixes = ["10.201.0.0/23"]
     }
     "snet-aks-nodes" = {
