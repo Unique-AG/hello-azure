@@ -92,14 +92,14 @@ module "workloads" {
   node_resource_group_name                        = "${module.identities.resource_group_core_name}-aks-nodes"
   postgresql_private_dns_zone_id                  = module.perimeter.postgresql_private_dns_zone_id
   postgresql_server_name                          = "hello-azure-psql"
-  postgresql_subnet_id                            = module.vnet.subnets["snet-psql"].id
+  postgresql_subnet_id                            = module.vnet.subnets["snet-psql"].resource_id
   psql_user_assigned_identity_id                  = module.identities.psql_user_assigned_identity_id
   resource_group_core_name                        = module.identities.resource_group_core_name
   resource_group_core_location                    = local.resource_group_core_location
   resource_group_sensitive_name                   = module.identities.resource_group_sensitive_name
   sensitive_kv_id                                 = module.perimeter.key_vault_sensitive_id
-  subnet_agw_id                                   = module.vnet.subnets["snet-agw"].id
-  subnet_aks_nodes_id                             = module.vnet.subnets["snet-aks-nodes"].id
+  subnet_agw_id                                   = module.vnet.subnets["snet-agw"].resource_id
+  subnet_aks_nodes_id                             = module.vnet.subnets["snet-aks-nodes"].resource_id
   tags = {
     app = "hello-azure"
   }
