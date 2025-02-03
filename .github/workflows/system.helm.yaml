@@ -53,7 +53,6 @@ jobs:
       fail-fast: false
       matrix:
         release:
-          - 20_k8s_workloads/helm/releases/system/argo.yaml
           - 20_k8s_workloads/helm/releases/system/cert-manager.yaml
           - 20_k8s_workloads/helm/releases/system/rabbitmq-operator.yaml
           - 20_k8s_workloads/helm/releases/system/zitadel.yaml
