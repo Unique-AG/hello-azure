@@ -61,8 +61,9 @@ jobs:
         if: inputs.action == 'diff'
         #! Do not add --debug, it will print secrets!
         # Debug locally as described in repo readme
+        # || true will not fail the job if there are changes
         run: |
-          kubectl diff -f ${{ inputs.file_name }}
+          kubectl diff -f ${{ inputs.file_name }} || true
 
       - name: "🚀 Kubectl Apply"
         if: inputs.action == 'apply'
