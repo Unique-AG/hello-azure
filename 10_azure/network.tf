@@ -1,8 +1,7 @@
 resource "azurerm_resource_group" "vnet" {
-  name     = "resource-group-vnet"
+  name     = "rg-vnet-002"
   location = "swedencentral"
 }
-
 
 # -- use https://www.davidc.net/sites/default/subnets/subnets.html to calculate the CIDR ranges
 module "vnet" {
