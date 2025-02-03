@@ -16,11 +16,6 @@ output "resource_group_core_name" {
   value       = azurerm_resource_group.core.name
 }
 
-output "resource_group_vnet_name" {
-  description = "The name of the VNet resource group."
-  value       = azurerm_resource_group.vnet.name
-}
-
 output "psql_user_assigned_identity_id" {
   description = "The ID of the user-assigned identity for PostgreSQL."
   value       = azurerm_user_assigned_identity.psql_identity.id

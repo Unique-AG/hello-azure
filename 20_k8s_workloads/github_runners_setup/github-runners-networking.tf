@@ -190,23 +190,6 @@ resource "azurerm_network_security_group" "github" {
   tags = var.tags
 }
 
-resource "azurerm_subnet" "subnet_github_runners" {
-  name                 = "subnet_github_runners"
-  virtual_network_name = var.vnet_name
-  resource_group_name  = data.azurerm_resource_group.vnet.name
-  address_prefixes     = ["10.0.10.0/24"]
-  delegation {
-    name = "delegation"
-
-    service_delegation {
-      actions = [
-        "Microsoft.Network/virtualNetworks/subnets/join/action",
-      ]
-      name = "GitHub.Network/networkSettings"
-    }
-  }
-}
-
 resource "azurerm_subnet_network_security_group_association" "github_aks" {
   subnet_id                 = azurerm_subnet.subnet_github_runners.id
   network_security_group_id = azurerm_network_security_group.github.id

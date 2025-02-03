@@ -19,6 +19,12 @@ variable "resource_group_core_name" {
   type        = string
 }
 
+variable "resource_group_core_location" {
+  description = "The core resource group location."
+  type        = string
+  default     = "switzerlandnorth"
+}
+
 variable "client_id" {
   description = "The client ID for authentication."
   type        = string
@@ -46,46 +52,6 @@ variable "sensitive_kv_name" {
 
 variable "main_kv_name" {
   description = "The name of the main key vault."
-  type        = string
-}
-
-variable "vnet_name" {
-  description = "The name of the virtual network."
-  type        = string
-}
-
-variable "subnet_redis_name" {
-  description = "The name of the Redis subnet."
-  type        = string
-}
-
-variable "subnet_storage_name" {
-  description = "The name of the storage subnet."
-  type        = string
-}
-
-variable "subnet_cognitive_services_name" {
-  description = "The name of the cognitive services subnet."
-  type        = string
-}
-
-variable "subnet_key_vault_name" {
-  description = "The name of the key vault subnet."
-  type        = string
-}
-
-variable "subnet_aks_nodes_name" {
-  description = "The name of the AKS nodes subnet."
-  type        = string
-}
-
-variable "subnet_application_gateway_name" {
-  description = "The name of the application gateway subnet."
-  type        = string
-}
-
-variable "subnet_psql_name" {
-  description = "The name of the PostgreSQL subnet."
   type        = string
 }
 

@@ -2,7 +2,7 @@ module "kubernetes_cluster" {
   source                 = "github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service?ref=azure-kubernetes-service-2.0.0"
   application_gateway_id = module.application_gateway.appgw_id
   azure_prometheus_grafana_monitor = {
-    azure_monitor_location = "westeurope"
+    azure_monitor_location = var.resource_group_core_location
     azure_monitor_rg_name  = data.azurerm_resource_group.core.name
     enabled                = true
   }

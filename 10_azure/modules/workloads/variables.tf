@@ -17,6 +17,11 @@ variable "resource_group_core_name" {
   description = "The core resource group name."
   type        = string
 }
+variable "resource_group_core_location" {
+  description = "The core resource group location."
+  type        = string
+  default     = "westeurope" # switzerlandnorth is not supported for Azure Monitor
+}
 
 variable "psql_user_assigned_identity_id" {
   description = "The ID of the PostgreSQL user-assigned identity."
