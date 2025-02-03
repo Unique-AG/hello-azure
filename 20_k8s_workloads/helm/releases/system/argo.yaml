@@ -46,7 +46,7 @@ releases:
     createNamespace: true
     namespace: {{ .Values.self.namespace }}
     chart: argo/argo-cd
-    version: v7.7.16 # https://github.com/argoproj/argo-helm/releases
+    version: v7.7.23 # https://github.com/argoproj/argo-helm/releases
     wait: false
     values:
       - 
@@ -73,6 +73,7 @@ releases:
               - secretName: zitadel-le-tls
                 hosts:
                   - {{ printf "%s.%s" .Values.self.argo.subDomainName .Values.params.zoneName }}
+        configs:
           cm:
             create: true
             url: https://{{ printf "%s.%s" .Values.self.argo.subDomainName .Values.params.zoneName }}
