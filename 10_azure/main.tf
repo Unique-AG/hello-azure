@@ -70,7 +70,7 @@ module "perimeter" {
   tags = {
     app = "hello-azure"
   }
-  virtual_network_id = azurerm_virtual_network.vnet.id
+  virtual_network_id = module.vnet.resource_id
 }
 
 module "workloads" {
