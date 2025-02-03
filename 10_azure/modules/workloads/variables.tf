@@ -47,6 +47,10 @@ variable "subnet_agw_id" {
   description = "The ID of the application gateway subnet."
   type        = string
 }
+variable "subnet_agw_cidr" {
+  description = "The CIDR range of the application gateway subnet."
+  type        = string
+}
 
 variable "subnet_aks_nodes_id" {
   description = "The ID of the AKS nodes subnet."
