@@ -140,30 +140,30 @@ releases:
                 - path: "20_k8s_workloads/argo/{{ .Values.self.argo.appSetChat.name }}/*.app.yaml"
             template:
               metadata:
-                name: sadf
+                name: '{{ printf "{{%s}}" .spec.name }}'
                 namespace: {{ .Values.self.namespace }}
               spec:
                 project: default
                 destination:
                   server: https://kubernetes.default.svc
                   namespace: {{ .Values.self.namespace }}
-            templatePatch: |
-              spec:
-                {{- if hasKey .spec "sources" }}
-                sources:
-                  {{- .spec.sources | toYaml | nindent 4 }}
-                {{- else }}
-                source:
-                  {{- .spec.source | toYaml | nindent 4 }}
-                {{- end }}
-                {{- if hasKey .spec "additionalValues" }}
-                {{- .spec.additionalValues | toYaml | nindent 2 }}
-                {{- end }}
-                {{- if .spec.autoSync }}
-                syncPolicy:
-                  automated:
-                    prune: true
-                    selfHeal: true
-                  syncOptions:
-                    - CreateNamespace=true
-                {{- end }}
+            # templatePatch: |
+            #   spec:
+            #     {{- if hasKey .spec "sources" }}
+            #     sources:
+            #       {{- .spec.sources | toYaml | nindent 4 }}
+            #     {{- else }}
+            #     source:
+            #       {{- .spec.source | toYaml | nindent 4 }}
+            #     {{- end }}
+            #     {{- if hasKey .spec "additionalValues" }}
+            #     {{- .spec.additionalValues | toYaml | nindent 2 }}
+            #     {{- end }}
+            #     {{- if .spec.autoSync }}
+            #     syncPolicy:
+            #       automated:
+            #         prune: true
+            #         selfHeal: true
+            #       syncOptions:
+            #         - CreateNamespace=true
+            #     {{- end }}
