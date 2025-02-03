@@ -96,7 +96,7 @@ Now we are ready to make all the changes from within CI pipelines.
 | Name | Version |
 |------|---------|
 | <a name="provider_azuread"></a> [azuread](#provider\_azuread) | 3.0.1 |
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.16.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >=4.14.0 |
 
 ## Modules
 
@@ -113,6 +113,7 @@ Now we are ready to make all the changes from within CI pipelines.
 | [azuread_app_role_assignment.read_write_groups](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/app_role_assignment) | resource |
 | [azuread_app_role_assignment.read_write_role_management](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/app_role_assignment) | resource |
 | [azuread_application_federated_identity_credential.github_actions_terraform_dev](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/application_federated_identity_credential) | resource |
+| [azuread_application_federated_identity_credential.github_actions_terraform_env](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/application_federated_identity_credential) | resource |
 | [azuread_application_federated_identity_credential.github_actions_terraform_main](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/application_federated_identity_credential) | resource |
 | [azuread_application_registration.terraform](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/application_registration) | resource |
 | [azuread_service_principal.msgraph](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/service_principal) | resource |

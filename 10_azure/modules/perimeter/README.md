@@ -31,13 +31,9 @@ No modules.
 | [azurerm_resource_provider_registration.azure_alerts_provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_provider_registration) | resource |
 | [azurerm_resource_provider_registration.azure_dashboard_provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_provider_registration) | resource |
 | [azurerm_resource_provider_registration.azure_monitor_provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_provider_registration) | resource |
-| [azurerm_subnet.postgres_subnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
-| [azurerm_subnet.subnets](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
-| [azurerm_virtual_network.vnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) | resource |
 | [azuread_service_principal.terraform](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/data-sources/service_principal) | data source |
 | [azurerm_resource_group.core](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
 | [azurerm_resource_group.sensitive](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
-| [azurerm_resource_group.vnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
 | [azurerm_subscription.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscription) | data source |
 
 ## Inputs
@@ -57,21 +53,15 @@ No modules.
 | <a name="input_log_analytics_workspace_name"></a> [log\_analytics\_workspace\_name](#input\_log\_analytics\_workspace\_name) | The name of the Log Analytics workspace. | `string` | n/a | yes |
 | <a name="input_main_kv_name"></a> [main\_kv\_name](#input\_main\_kv\_name) | The name of the main key vault. | `string` | n/a | yes |
 | <a name="input_psql_private_dns_zone_name"></a> [psql\_private\_dns\_zone\_name](#input\_psql\_private\_dns\_zone\_name) | n/a | `string` | `"psql.postgres.database.azure.com"` | no |
+| <a name="input_resource_group_core_location"></a> [resource\_group\_core\_location](#input\_resource\_group\_core\_location) | The core resource group location. | `string` | `"switzerlandnorth"` | no |
 | <a name="input_resource_group_core_name"></a> [resource\_group\_core\_name](#input\_resource\_group\_core\_name) | The core resource group name. | `string` | n/a | yes |
 | <a name="input_resource_group_sensitive_name"></a> [resource\_group\_sensitive\_name](#input\_resource\_group\_sensitive\_name) | The sensitive resource group name. | `string` | n/a | yes |
 | <a name="input_resource_group_vnet_name"></a> [resource\_group\_vnet\_name](#input\_resource\_group\_vnet\_name) | The resource group name for the vnets. | `string` | n/a | yes |
 | <a name="input_sensitive_kv_name"></a> [sensitive\_kv\_name](#input\_sensitive\_kv\_name) | The name of the sensitive key vault. | `string` | n/a | yes |
-| <a name="input_subnet_aks_nodes_name"></a> [subnet\_aks\_nodes\_name](#input\_subnet\_aks\_nodes\_name) | The name of the AKS nodes subnet. | `string` | n/a | yes |
-| <a name="input_subnet_application_gateway_name"></a> [subnet\_application\_gateway\_name](#input\_subnet\_application\_gateway\_name) | The name of the application gateway subnet. | `string` | n/a | yes |
-| <a name="input_subnet_cognitive_services_name"></a> [subnet\_cognitive\_services\_name](#input\_subnet\_cognitive\_services\_name) | The name of the cognitive services subnet. | `string` | n/a | yes |
-| <a name="input_subnet_key_vault_name"></a> [subnet\_key\_vault\_name](#input\_subnet\_key\_vault\_name) | The name of the key vault subnet. | `string` | n/a | yes |
-| <a name="input_subnet_psql_name"></a> [subnet\_psql\_name](#input\_subnet\_psql\_name) | The name of the PostgreSQL subnet. | `string` | n/a | yes |
-| <a name="input_subnet_redis_name"></a> [subnet\_redis\_name](#input\_subnet\_redis\_name) | The name of the Redis subnet. | `string` | n/a | yes |
-| <a name="input_subnet_storage_name"></a> [subnet\_storage\_name](#input\_subnet\_storage\_name) | The name of the storage subnet. | `string` | n/a | yes |
 | <a name="input_subscription_budget_amount"></a> [subscription\_budget\_amount](#input\_subscription\_budget\_amount) | The amount for the subscription budget | `number` | `2000` | no |
 | <a name="input_subscription_budget_name"></a> [subscription\_budget\_name](#input\_subscription\_budget\_name) | n/a | `string` | `"subscription_budget"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to assign to the resources. | `map(string)` | n/a | yes |
-| <a name="input_vnet_name"></a> [vnet\_name](#input\_vnet\_name) | The name of the virtual network. | `string` | n/a | yes |
+| <a name="input_virtual_network_id"></a> [virtual\_network\_id](#input\_virtual\_network\_id) | The virtual network id. | `string` | n/a | yes |
 
 ## Outputs
 
@@ -89,10 +79,4 @@ No modules.
 | <a name="output_log_analytics_workspace_id"></a> [log\_analytics\_workspace\_id](#output\_log\_analytics\_workspace\_id) | ID of the Log Analytics workspace |
 | <a name="output_log_analytics_workspace_name"></a> [log\_analytics\_workspace\_name](#output\_log\_analytics\_workspace\_name) | Name of the Log Analytics workspace |
 | <a name="output_postgresql_private_dns_zone_id"></a> [postgresql\_private\_dns\_zone\_id](#output\_postgresql\_private\_dns\_zone\_id) | ID of the PostgreSQL private DNS zone |
-| <a name="output_postgresql_subnet_id"></a> [postgresql\_subnet\_id](#output\_postgresql\_subnet\_id) | ID of the PostgreSQL subnet |
-| <a name="output_subnet_agw_id"></a> [subnet\_agw\_id](#output\_subnet\_agw\_id) | ID of the subnet for Application Gateway |
-| <a name="output_subnet_agw_name"></a> [subnet\_agw\_name](#output\_subnet\_agw\_name) | Name of the subnet for Application Gateway |
-| <a name="output_subnet_aks_nodes_id"></a> [subnet\_aks\_nodes\_id](#output\_subnet\_aks\_nodes\_id) | ID of the subnet for AKS nodes |
-| <a name="output_subnet_aks_nodes_name"></a> [subnet\_aks\_nodes\_name](#output\_subnet\_aks\_nodes\_name) | Name of the subnet for AKS nodes |
-| <a name="output_vnet_name"></a> [vnet\_name](#output\_vnet\_name) | Name of the virtual network |
 <!-- END_TF_DOCS -->

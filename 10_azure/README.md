@@ -8,13 +8,16 @@ See also [identities](modules/identities/README.md), [perimeter](modules/perimet
 
 | Name | Version |
 |------|---------|
+| <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) | 2.2.0 |
 | <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | 3.0.2 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=4.14.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | 3.6.3 |
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >=4.14.0 |
 
 ## Modules
 
@@ -22,11 +25,14 @@ No providers.
 |------|--------|---------|
 | <a name="module_identities"></a> [identities](#module\_identities) | ./modules/identities | n/a |
 | <a name="module_perimeter"></a> [perimeter](#module\_perimeter) | ./modules/perimeter | n/a |
+| <a name="module_vnet"></a> [vnet](#module\_vnet) | Azure/avm-res-network-virtualnetwork/azurerm | v0.7.1 |
 | <a name="module_workloads"></a> [workloads](#module\_workloads) | ./modules/workloads | n/a |
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [azurerm_resource_group.vnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
 
 ## Inputs
 
@@ -78,8 +84,9 @@ No resources.
 | <a name="output_redis_cache_password_secret_name"></a> [redis\_cache\_password\_secret\_name](#output\_redis\_cache\_password\_secret\_name) | The secret name for Redis cache password. |
 | <a name="output_redis_cache_port_secret_name"></a> [redis\_cache\_port\_secret\_name](#output\_redis\_cache\_port\_secret\_name) | The secret name for Redis cache port. |
 | <a name="output_resource_group_core_name"></a> [resource\_group\_core\_name](#output\_resource\_group\_core\_name) | The name of the core resource group. |
-| <a name="output_resource_group_vnet_name"></a> [resource\_group\_vnet\_name](#output\_resource\_group\_vnet\_name) | The name of the vnet resource group. |
 | <a name="output_sensitive_keyvault_name"></a> [sensitive\_keyvault\_name](#output\_sensitive\_keyvault\_name) | The name of the sensitive Key Vault. |
+| <a name="output_subnets"></a> [subnets](#output\_subnets) | The subnets in the virtual network. |
+| <a name="output_vnet"></a> [vnet](#output\_vnet) | The virtual network details. |
 | <a name="output_zitadel_db_user_password_secret_name"></a> [zitadel\_db\_user\_password\_secret\_name](#output\_zitadel\_db\_user\_password\_secret\_name) | The secret name for the Zitadel database user password. |
 | <a name="output_zitadel_master_key_secret_name"></a> [zitadel\_master\_key\_secret\_name](#output\_zitadel\_master\_key\_secret\_name) | The secret name for the Zitadel master key. |
 | <a name="output_zitadel_pat_secret_name"></a> [zitadel\_pat\_secret\_name](#output\_zitadel\_pat\_secret\_name) | Name of the manual secret containing Zitadel PAT |
