@@ -156,14 +156,3 @@ output "zitadel_pat_secret_name" {
   description = "Name of the manual secret containing Zitadel PAT"
   value       = module.workloads.zitadel_pat_secret_name
 }
-output "vnet" {
-  description = "The virtual network details."
-  value = {
-    id   = module.vnet.resource_id
-    name = module.vnet.name
-  }
-}
-output "subnets" {
-  description = "The subnets in the virtual network."
-  value       = module.vnet.subnets
-}
