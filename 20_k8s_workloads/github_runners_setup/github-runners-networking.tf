@@ -207,6 +207,7 @@ resource "azapi_resource" "github_network_settings" {
     properties = {
       businessId = var.github_org_id
       subnetId   = data.azurerm_subnet.subnet_github_runners.id
+      swag       = "bar"
     }
   }
   response_export_values = ["tags.GitHubId"]
