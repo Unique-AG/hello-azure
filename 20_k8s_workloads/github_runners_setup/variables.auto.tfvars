@@ -3,5 +3,5 @@ resource_group_vnet_name = "resource-group-vnet"
 tags = {
   app = "hello-azure"
 }
-vnet_name   = "vnet"
-subnet_name = "to_be_filled"
+vnet_name   = "vnet-001"
+subnet_name = "snet-github-runners"
