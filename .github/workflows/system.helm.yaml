@@ -54,11 +54,11 @@ jobs:
       matrix:
         release:
           - 20_k8s_workloads/helm/releases/system/argo.yaml
-          - 20_k8s_workloads/helm/releases/system/cert-manager.yaml
-          - 20_k8s_workloads/helm/releases/system/rabbitmq-operator.yaml
-          - 20_k8s_workloads/helm/releases/system/zitadel.yaml
-          - 20_k8s_workloads/helm/releases/system/kong.yaml
-          - 20_k8s_workloads/helm/releases/system/reloader.yaml
+          # - 20_k8s_workloads/helm/releases/system/cert-manager.yaml
+          # - 20_k8s_workloads/helm/releases/system/rabbitmq-operator.yaml
+          # - 20_k8s_workloads/helm/releases/system/zitadel.yaml
+          # - 20_k8s_workloads/helm/releases/system/kong.yaml
+          # - 20_k8s_workloads/helm/releases/system/reloader.yaml
     with:
       file_name: ${{ matrix.release }}
       action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}

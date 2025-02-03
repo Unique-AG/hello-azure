@@ -22,8 +22,8 @@ plain:
   #     kvSecretName: sops-age-key-2
   #     secretKeyName: SOPS_AGE_KEY_2
   zitadel: # to be filled after initial Zitadel deployment
-    clientId: '304892972846089297'
-    projectId: '304892563263849635'
+    clientId: ''
+    projectId: ''
     rootOrgId: ''
     secretCerts:
       secretName: zitadel-certs
