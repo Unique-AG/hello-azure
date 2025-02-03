@@ -38,11 +38,11 @@ module "perimeter" {
   budget_contact_emails = ["support@unique.ch"]
   client_id             = var.client_id
   csi_identity_name     = "csi_identity"
-  depends_on = [
-    module.identities.resource_group_core_id,
-    module.identities.resource_group_sensitive_id,
-    module.identities.resource_group_vnet_id
-  ]
+  # depends_on = [
+  #   module.identities.resource_group_core_id,
+  #   module.identities.resource_group_sensitive_id,
+  #   module.identities.resource_group_vnet_id
+  # ]
   dns_zone_name         = "hello.azure.unique.dev"
   dns_zone_root_records = [module.workloads.application_gateway_ip_address]
   dns_zone_sub_domain_records = {
