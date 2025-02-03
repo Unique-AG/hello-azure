@@ -89,12 +89,13 @@ module "workloads" {
   document_intelligence_user_assigned_identity_id = module.identities.document_intelligence_user_assigned_identity_id
   ingestion_cache_user_assigned_identity_id       = module.identities.ingestion_cache_user_assigned_identity_id
   ingestion_storage_user_assigned_identity_id     = module.identities.ingestion_storage_user_assigned_identity_id
-  log_analytics_workspace_id                      = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.OperationalInsights/workspaces/loganalytics"
-  main_kv_id                                      = module.perimeter.key_vault_main_id
+  log_analytics_workspace_id                      = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.OperationalInsights/workspaces/${module.perimeter.log_analytics_workspace_name}"
+  main_kv_id                                      = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.KeyVault/vaults/${module.perimeter.key_vault_main_name}"
   node_resource_group_name                        = "${module.identities.resource_group_core_name}-aks-nodes"
   postgresql_private_dns_zone_id                  = module.perimeter.postgresql_private_dns_zone_id
   postgresql_server_name                          = "hello-azure-psql"
   name_prefix                                     = "hello-azure"
+  custom_subdomain_name                           = "hello-azure"          
   postgresql_subnet_id                            = module.vnet.subnets["snet-psql"].resource_id
   psql_user_assigned_identity_id                  = module.identities.psql_user_assigned_identity_id
   resource_group_core_name                        = module.identities.resource_group_core_name
