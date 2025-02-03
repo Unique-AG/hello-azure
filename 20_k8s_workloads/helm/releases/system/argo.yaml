@@ -140,7 +140,7 @@ releases:
                 - path: "20_k8s_workloads/argo/{{ .Values.self.argo.appSetChat.name }}/*.app.yaml"
             template:
               metadata:
-                name: '{{ "{{" }}.spec.name{{ "}}" }}'
+                name: '{{`{{.spec.name}}`}}'
                 namespace: {{ .Values.self.namespace }}
               spec:
                 project: default
