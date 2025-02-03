@@ -44,12 +44,10 @@ output "psql_database_connection_strings_secret_names" {
   value       = module.workloads.psql_database_connection_strings_secret_names
   description = "The secret names for PostgreSQL database connection strings."
 }
-
 output "rabbitmq_password_chat_secret_name" {
   value       = module.workloads.rabbitmq_password_chat_secret_name
   description = "The secret name for RabbitMQ password for chat."
 }
-
 output "redis_cache_port_secret_name" {
   value       = module.workloads.redis_cache_port_secret_name
   description = "The secret name for Redis cache port."
