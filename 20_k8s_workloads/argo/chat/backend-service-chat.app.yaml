@@ -2,8 +2,9 @@ spec:
   name: backend-service-chat
   autoSync: false
   source:
-    repoURL: oci://ghcr.io/unique-ag/helm-charts/backend-service
+    repoURL: oci://ghcr.io/unique-ag/helm-charts
     targetRevision: 3.1.1
+    chart: backend-service
     helm:
       releaseName: backend-service-chat
       valuesObject:
