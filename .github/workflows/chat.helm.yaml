@@ -5,22 +5,22 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - .github/workflows/chat.helm.yaml
-      - 20_k8s_workloads/helm/releases/chat/**
-      - 20_k8s_workloads/helm/params.yaml
-      - 20_k8s_workloads/helm/versions.yaml
-  push:
-    branches:
-      - main
-    paths:
-      - .github/workflows/chat.helm.yaml
-      - 20_k8s_workloads/helm/releases/chat/**
-      - 20_k8s_workloads/helm/params.yaml
-      - 20_k8s_workloads/helm/versions.yaml
+  # pull_request:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - .github/workflows/chat.helm.yaml
+  #     - 20_k8s_workloads/helm/releases/chat/**
+  #     - 20_k8s_workloads/helm/params.yaml
+  #     - 20_k8s_workloads/helm/versions.yaml
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - .github/workflows/chat.helm.yaml
+  #     - 20_k8s_workloads/helm/releases/chat/**
+  #     - 20_k8s_workloads/helm/params.yaml
+  #     - 20_k8s_workloads/helm/versions.yaml
   workflow_dispatch:
 
 permissions:
