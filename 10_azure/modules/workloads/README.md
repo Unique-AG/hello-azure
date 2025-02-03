@@ -18,7 +18,7 @@ No requirements.
 | <a name="module_document_intelligence"></a> [document\_intelligence](#module\_document\_intelligence) | github.com/Unique-AG/terraform-modules.git//modules/azure-document-intelligence | azure-document-intelligence-2.0.0 |
 | <a name="module_ingestion_cache"></a> [ingestion\_cache](#module\_ingestion\_cache) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.0.2 | n/a |
 | <a name="module_ingestion_storage"></a> [ingestion\_storage](#module\_ingestion\_storage) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.0.2 | n/a |
-| <a name="module_kubernetes_cluster"></a> [kubernetes\_cluster](#module\_kubernetes\_cluster) | github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service | azure-kubernetes-service-2.0.0-rc.1 |
+| <a name="module_kubernetes_cluster"></a> [kubernetes\_cluster](#module\_kubernetes\_cluster) | github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service | azure-kubernetes-service-2.0.0 |
 | <a name="module_openai"></a> [openai](#module\_openai) | github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=azure-openai-2.0.1 | n/a |
 | <a name="module_postgresql"></a> [postgresql](#module\_postgresql) | github.com/unique-ag/terraform-modules.git//modules/azure-postgresql?depth=1&ref=azure-postgresql-2.0.0-rc.2 | n/a |
 | <a name="module_redis"></a> [redis](#module\_redis) | github.com/unique-ag/terraform-modules.git//modules/azure-redis?depth=1&ref=azure-redis-2.0.0-rc.2 | n/a |
@@ -71,7 +71,7 @@ No requirements.
 | <a name="input_ip_name"></a> [ip\_name](#input\_ip\_name) | Name of the public IP for the Application Gateway | `string` | `"default-public-ip-name"` | no |
 | <a name="input_log_analytics_workspace_id"></a> [log\_analytics\_workspace\_id](#input\_log\_analytics\_workspace\_id) | The ID of the Log Analytics workspace. | `string` | n/a | yes |
 | <a name="input_main_kv_id"></a> [main\_kv\_id](#input\_main\_kv\_id) | The ID of the main key vault. | `string` | n/a | yes |
-| <a name="input_name_prefix"></a> [name\_prefix](#input\_name\_prefix) | Prefix for the name of the Application Gateway | `string` | `"agw_"` | no |
+| <a name="input_name_prefix"></a> [name\_prefix](#input\_name\_prefix) | Prefix for the name of the Application Gateway | `string` | `"agw"` | no |
 | <a name="input_node_resource_group_name"></a> [node\_resource\_group\_name](#input\_node\_resource\_group\_name) | The name of the resource group for AKS nodes. | `string` | n/a | yes |
 | <a name="input_postgresql_private_dns_zone_id"></a> [postgresql\_private\_dns\_zone\_id](#input\_postgresql\_private\_dns\_zone\_id) | n/a | `string` | n/a | yes |
 | <a name="input_postgresql_server_name"></a> [postgresql\_server\_name](#input\_postgresql\_server\_name) | The name of the PostgreSQL server. | `string` | n/a | yes |
@@ -80,9 +80,11 @@ No requirements.
 | <a name="input_rabbitmq_password_chat_secret_name"></a> [rabbitmq\_password\_chat\_secret\_name](#input\_rabbitmq\_password\_chat\_secret\_name) | The name of the secret containing the rabbitmq password. | `string` | `"rabbitmq-password-chat"` | no |
 | <a name="input_redis_name"></a> [redis\_name](#input\_redis\_name) | n/a | `string` | `"uniquehelloazureredis"` | no |
 | <a name="input_registry_diagnostic_name"></a> [registry\_diagnostic\_name](#input\_registry\_diagnostic\_name) | n/a | `string` | `"log-helloazure"` | no |
+| <a name="input_resource_group_core_location"></a> [resource\_group\_core\_location](#input\_resource\_group\_core\_location) | The core resource group location. | `string` | `"westeurope"` | no |
 | <a name="input_resource_group_core_name"></a> [resource\_group\_core\_name](#input\_resource\_group\_core\_name) | The core resource group name. | `string` | n/a | yes |
 | <a name="input_resource_group_sensitive_name"></a> [resource\_group\_sensitive\_name](#input\_resource\_group\_sensitive\_name) | The sensitive resource group name. | `string` | n/a | yes |
 | <a name="input_sensitive_kv_id"></a> [sensitive\_kv\_id](#input\_sensitive\_kv\_id) | The ID of the sensitive key vault. | `string` | n/a | yes |
+| <a name="input_subnet_agw_cidr"></a> [subnet\_agw\_cidr](#input\_subnet\_agw\_cidr) | The CIDR range of the application gateway subnet. | `string` | n/a | yes |
 | <a name="input_subnet_agw_id"></a> [subnet\_agw\_id](#input\_subnet\_agw\_id) | The ID of the application gateway subnet. | `string` | n/a | yes |
 | <a name="input_subnet_aks_nodes_id"></a> [subnet\_aks\_nodes\_id](#input\_subnet\_aks\_nodes\_id) | The ID of the AKS nodes subnet. | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to assign to the resources. | `map(string)` | n/a | yes |

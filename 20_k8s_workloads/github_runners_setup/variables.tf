@@ -1,6 +1,7 @@
 variable "resource_group_vnet_name" {}
 variable "tags" {}
 variable "vnet_name" {}
+variable "subnet_name" {}
 variable "github_org_id" {}
 variable "subscription_id" {
   description = "The UUID ID of the suscription (not the full Azure Resource ID)."
