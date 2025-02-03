@@ -112,7 +112,7 @@ releases:
                 p, role:sync-only, applications, sync, *, allow
                 p, role:sync-only, applications, action/apps/Deployment/restart, *, allow
                 p, role:sync-only, applications, action/batch/CronJob/create-job, *, allow
-                p, role:sync-only, logs, get, core/*, deny
+                p, role:sync-only, logs, get, chat/*, deny
                 
                 # role:no-access
                 p, role:no-access, *, *, *, deny
@@ -121,3 +121,4 @@ releases:
                 # role:admin
                 p, role:admin, *, *, *, allow
         extraObjects: []
+          
