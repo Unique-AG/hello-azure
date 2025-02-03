@@ -5,6 +5,7 @@ data "azuread_service_principal" "terraform" {
 data "azurerm_kubernetes_cluster" "cluster" {
   name                = var.cluster_name
   resource_group_name = azurerm_resource_group.core.name
+  depends_on          = [var.cluster_id]
 }
 
 
