@@ -61,12 +61,12 @@ module "perimeter" {
   }
   kv_sku                        = "premium"
   log_analytics_workspace_name  = "loganalytics"
-  main_kv_name                  = "helloazuremainkv"
+  main_kv_name                  = "helloazuremain"
   resource_group_core_location  = local.resource_group_core_location
   resource_group_core_name      = module.identities.resource_group_core_name
   resource_group_sensitive_name = module.identities.resource_group_sensitive_name
   resource_group_vnet_name      = azurerm_resource_group.vnet.name
-  sensitive_kv_name             = "helloazuresensitivekv"
+  sensitive_kv_name             = "helloazuresensitive"
   tags = {
     app = "hello-azure"
   }
