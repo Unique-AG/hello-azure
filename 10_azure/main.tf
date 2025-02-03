@@ -77,12 +77,12 @@ module "workloads" {
 
   aks_public_ip_id = module.perimeter.aks_public_ip_id
   cluster_name     = "aks-cluster"
-  depends_on = [
-    module.identities.resource_group_core_id,
-    module.identities.resource_group_sensitive_id,
-    module.identities.resource_group_vnet_id,
-    module.perimeter.log_analytics_workspace_id
-  ]
+  # depends_on = [
+  #   module.identities.resource_group_core_id,
+  #   module.identities.resource_group_sensitive_id,
+  #   module.identities.resource_group_vnet_id,
+  #   module.perimeter.log_analytics_workspace_id
+  # ]
   document_intelligence_user_assigned_identity_id = module.identities.document_intelligence_user_assigned_identity_id
   ingestion_cache_user_assigned_identity_id       = module.identities.ingestion_cache_user_assigned_identity_id
   ingestion_storage_user_assigned_identity_id     = module.identities.ingestion_storage_user_assigned_identity_id
