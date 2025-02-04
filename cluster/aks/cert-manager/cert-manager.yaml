@@ -89,10 +89,10 @@ releases:
                     azureDNS:
                       subscriptionID: {{ requiredEnv "ARM_SUBSCRIPTION_ID" }}
                       resourceGroupName: {{ .Values.params.resourceGroups.vnet.name }} # this has to match the resource group of the Azure DNS zone
-                      hostedZoneName: {{ .Values.params.zoneName }}
+                      hostedZoneName: hello.azure.unique.dev
                       environment: AzurePublicCloud
                       managedIdentity:
                         clientID: {{ .Values.params.identities.kubelet.clientId }}
                   selector:
                     dnsZones:
-                      - {{ .Values.params.zoneName }}
+                      - hello.azure.unique.dev

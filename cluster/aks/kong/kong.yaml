@@ -126,7 +126,7 @@ releases:
           plugin: cors
           config:
             origins:
-              - https://{{ .Values.params.zoneName }}
+              - https://hello.azure.unique.dev
         - apiVersion: configuration.konghq.com/v1
           kind: KongClusterPlugin
           metadata:
@@ -194,7 +194,7 @@ releases:
           spec:
             ingressClassName: azure-application-gateway
             rules:
-              - host: {{ .Values.params.zoneName }}
+              - host: hello.azure.unique.dev
                 http:
                   paths:
                     - backend:
@@ -206,7 +206,7 @@ releases:
                       pathType: Prefix
             tls:
               - hosts:
-                  - {{ .Values.params.zoneName }}
+                  - hello.azure.unique.dev
                 secretName: kong-tls
         - apiVersion: networking.k8s.io/v1
           kind: Ingress

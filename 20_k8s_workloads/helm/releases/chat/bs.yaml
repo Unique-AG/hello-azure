@@ -25,9 +25,9 @@ releases:
           tag: "2025.04"
           repository: uniquehelloazure.azurecr.io/backend-service-theme
         env:
-          CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
+          CORS_ALLOWED_ORIGINS: https://hello.azure.unique.dev
           ZITADEL_PROJECT_ID: {{ .Values.plain.zitadel.projectId | quote }}
-          UNIQUE_INSTALLATION_ID: {{ .Values.params.zoneName }}
+          UNIQUE_INSTALLATION_ID: hello.azure.unique.dev
         routes:
           hostname: api.gateway.azure.unique.dev
         secretProvider:
@@ -50,10 +50,10 @@ releases:
           tag: "2025.04"
           repository: uniquehelloazure.azurecr.io/backend-service-scope-management
         env:
-          CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
+          CORS_ALLOWED_ORIGINS: https://hello.azure.unique.dev
           ZITADEL_HOST: {{ printf "%s%s.%s" "https://" .Values.plain.zitadel.subDomainName .Values.params.zoneName }}
           ZITADEL_PROJECT_ID: {{ .Values.plain.zitadel.projectId | quote }}
-          UNIQUE_INSTALLATION_ID: {{ .Values.params.zoneName }}
+          UNIQUE_INSTALLATION_ID: hello.azure.unique.dev
         envVars:
           - name: AMQP_USERNAME
             valueFrom:
@@ -103,9 +103,9 @@ releases:
           tag: "2025.04"
           repository: uniquehelloazure.azurecr.io/backend-service-ingestion
         env:
-          CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
+          CORS_ALLOWED_ORIGINS: https://hello.azure.unique.dev
           ZITADEL_PROJECT_ID: {{ .Values.plain.zitadel.projectId | quote }}
-          UNIQUE_INSTALLATION_ID: {{ .Values.params.zoneName }}
+          UNIQUE_INSTALLATION_ID: hello.azure.unique.dev
           INGESTION_UPLOAD_API_URL: https://api.gateway.azure.unique.dev/scoped/ingestion/upload
           ZITADEL_ROOT_ORG_ID: {{ .Values.plain.zitadel.rootOrgId | quote }}
         envVars:
@@ -170,9 +170,9 @@ releases:
           tag: "2025.04"
           repository: uniquehelloazure.azurecr.io/backend-service-ingestion-worker
         env:
-          CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
+          CORS_ALLOWED_ORIGINS: https://hello.azure.unique.dev
           ZITADEL_PROJECT_ID: {{ .Values.plain.zitadel.projectId | quote }}
-          UNIQUE_INSTALLATION_ID: {{ .Values.params.zoneName }}
+          UNIQUE_INSTALLATION_ID: hello.azure.unique.dev
         envVars:
           - name: RABBITMQ_USERNAME #! FIXME: @evrim should refactor to respect AMQP_USERNAME as well
             valueFrom:
@@ -229,9 +229,9 @@ releases:
           tag: "2025.04"
           repository: uniquehelloazure.azurecr.io/backend-service-ingestion-worker
         env:
-          CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
+          CORS_ALLOWED_ORIGINS: https://hello.azure.unique.dev
           ZITADEL_PROJECT_ID: {{ .Values.plain.zitadel.projectId | quote }}
-          UNIQUE_INSTALLATION_ID: {{ .Values.params.zoneName }}
+          UNIQUE_INSTALLATION_ID: hello.azure.unique.dev
         envVars:
           - name: RABBITMQ_USERNAME #! FIXME: @evrim should refactor to respect AMQP_USERNAME as well
             valueFrom:
