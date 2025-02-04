@@ -24,6 +24,16 @@ spec:
         namespace: unique
   templatePatch: |
     spec:
+      {{- if hasKey .spec "sources" }}
+      sources:
+        {{- .spec.sources | toYaml | nindent 4 }}
+      {{- else }}
+      source:
+        {{- .spec.source | toYaml | nindent 4 }}
+      {{- end }}
+      {{- if hasKey .spec "additionalValues" }}
+      {{- .spec.additionalValues | toYaml | nindent 2 }}
+      {{- end }}
       {{- if .spec.autoSync }}
       syncPolicy:
         automated:
