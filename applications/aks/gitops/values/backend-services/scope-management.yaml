@@ -1,0 +1,96 @@
+cronJob:
+  concurrencyPolicy: Forbid
+  enabled: true
+  env:
+    RUNNING_MODE: user-sync
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    containers:
+      name: scope-management-user-sync
+    restartPolicy: Never
+  name: user-sync
+  schedule: "*/5 * * * *"
+  startingDeadlineSeconds: 10
+  successfulJobsHistoryLimit: 1
+  suspend: false
+  timeZone: Europe/Zurich
+image:
+  tag: "2025.04"
+  repository: uniquehelloazure.azurecr.io/backend-service-scope-management
+env:
+  AUDIT_LOG_DIR: /dev/stdout
+  CHAT_API_URL: http://backend-service-chat.unique.svc
+  ENABLE_CLIENT_INSIGHT_SHIPPER: "true"
+  INGESTION_API_URL: http://backend-service-ingestion.unique.svc
+  LOG_LEVEL: info
+  MAX_HEAP_MB: 750
+  ZITADEL_HOST: https://id.hello.azure.unique.dev
+  ZITADEL_INTERNAL_HOST: http://zitadel.unique.svc.cluster.local:8080
+envVars:
+  - name: AMQP_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: username
+  - name: AMQP_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: password
+  - name: AMQP_HOST
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: host
+  - name: AMQP_PORT
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: port
+extraRoutes:
+  scim:
+    enabled: true
+    annotations:
+      konghq.com/plugins: unique-route-metrics
+    parentRefs:
+      - name: kong
+        namespace: unique
+        group: gateway.networking.k8s.io
+        kind: Gateway
+    hostnames:
+      - api.hello.azure.unique.dev
+    matches:
+      - path:
+          type: PathPrefix
+          value: /scim
+nodeSelector:
+  scalability: steady
+  lifecycle: persistent
+hooks:
+  migration:
+    command: |
+      cd /node/dist/apps/node-scope-management; npx prisma migrate deploy; cd /node; RUNNING_MODE=DATA_MIGRATION  node /node/dist/apps/node-scope-management/main.js up;
+    enabled: true
+replicaCount: 1
+resources:
+  limits:
+    cpu: 1
+    memory: 900Mi
+  requests:
+    cpu: 500m
+    memory: 850Mi
+routes:
+  gateway:
+    namespace: unique
+  pathPrefix: /scope-management
+  paths:
+    default:
+      enabled: true
+    probe:
+      enabled: true
+secretProvider:
+  vaults:
+    helloazuresensitive:
+      DATABASE_URL: database-url-scope-management
+    helloazuremain:
+      ZITADEL_PAT: manual-zitadel-scope-mgmt-pat

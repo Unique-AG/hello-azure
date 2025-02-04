@@ -1,0 +1,36 @@
+env:
+  AUDIT_LOG_DIR: /dev/stdout
+  LOG_LEVEL: info
+  MAX_HEAP_MB: 200
+image:
+  tag: "2025.04"
+  repository: uniquehelloazure.azurecr.io/backend-service-theme
+hooks:
+  migration:
+    command: |
+      cd /node/dist/apps/node-theme; npx prisma migrate deploy
+    enabled: true
+replicaCount: 1
+nodeSelector:
+  scalability: steady
+  lifecycle: persistent
+resources:
+  limits:
+    cpu: 100m
+    memory: 350Mi
+  requests:
+    cpu: 100m
+    memory: 300Mi
+routes:
+  gateway:
+    namespace: unique
+  pathPrefix: /theme
+  paths:
+    default:
+      enabled: true
+    probe:
+      enabled: true
+secretProvider:
+  vaults:
+    helloazuresensitive:
+      DATABASE_URL: database-url-theme

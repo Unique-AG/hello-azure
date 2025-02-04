@@ -1,0 +1,98 @@
+environments:
+  default:
+    values:
+      - ../params.yaml
+      -
+        self:
+          namespace: unique
+
+---
+
+repositories:
+  - name: jetstack
+    url: https://charts.jetstack.io
+  - name: bedag
+    url: https://bedag.github.io/helm-charts
+
+releases:
+  - name: cert-manager
+    createNamespace: true
+    namespace: {{ .Values.self.namespace }}
+    chart: jetstack/cert-manager
+    version: 1.12.2
+    wait: false
+    values:
+      - global:
+          priorityClassName: system-cluster-critical
+        installCRDs: true
+        image:
+          repository: uniquehelloazure.azurecr.io/jetstack/cert-manager-controller
+          tag: "v1.12.2"
+        nodeSelector:
+          scalability: steady
+          lifecycle: persistent
+        extraArgs:
+          - --dns01-recursive-nameservers={{- join ":53," .Values.params.nameServers -}}:53
+          - --dns01-recursive-nameservers-only
+        resources:
+          limits:
+              cpu: 50m
+              memory: 128Mi
+          requests:
+              cpu: 50m
+              memory: 128Mi
+        webhook:
+          image:
+            repository: uniquehelloazure.azurecr.io/jetstack/cert-manager-webhook
+            tag: "v1.12.2"
+          resources:
+            limits:
+              cpu: 50m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 128Mi
+        cainjector:
+          image:
+            repository: uniquehelloazure.azurecr.io/jetstack/cert-manager-cainjector
+            tag: "v1.12.2"
+          resources:
+            limits:
+              cpu: 100m
+              memory: 400Mi
+            requests:
+              cpu: 100m
+              memory: 400Mi
+
+  # https://cert-manager.io/docs/configuration/acme/dns01/azuredns/#managed-identity-using-aks-kubelet-identity
+  - name: clusterissuer-azure-dns
+    namespace: {{ .Values.self.namespace }}
+    chart: bedag/raw
+    version: 2.0.0
+    wait: false
+    needs:
+      - cert-manager
+    values:
+      - resources:
+        - apiVersion: cert-manager.io/v1
+          kind: ClusterIssuer
+          metadata:
+            name: {{ .Values.plain.clusterIssuer.name }}
+          spec:
+            acme:
+              privateKeySecretRef:
+                name: letsencrypt-account-key
+              server: {{ .Values.plain.clusterIssuer.server }}
+              solvers:
+                - dns01:
+                    cnameStrategy: Follow
+                    azureDNS:
+                      subscriptionID: {{ requiredEnv "ARM_SUBSCRIPTION_ID" }}
+                      resourceGroupName: {{ .Values.params.resourceGroups.vnet.name }} # this has to match the resource group of the Azure DNS zone
+                      hostedZoneName: hello.azure.unique.dev
+                      environment: AzurePublicCloud
+                      managedIdentity:
+                        clientID: {{ .Values.params.identities.kubelet.clientId }}
+                  selector:
+                    dnsZones:
+                      - hello.azure.unique.dev

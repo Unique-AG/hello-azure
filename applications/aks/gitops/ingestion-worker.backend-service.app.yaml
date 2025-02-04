@@ -1,0 +1,16 @@
+spec:
+  name: backend-service-ingestion-worker
+  autoSync: false
+  sources:
+    - repoURL: 'https://github.com/Unique-AG/hello-azure'
+      targetRevision: preview
+      ref: values
+    - repoURL: ghcr.io/unique-ag/helm-charts
+      chart: backend-service
+      targetRevision: 3.1.1
+      helm:
+        releaseName: backend-service-ingestion-worker
+        valueFiles: 
+          - $values/applications/aks/gitops/values/backend-services/_all.yaml
+          - $values/applications/aks/gitops/values/backend-services/ingestion-worker.yaml
+        valuesObject: {}

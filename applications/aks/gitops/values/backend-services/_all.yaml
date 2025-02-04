@@ -1,0 +1,10 @@
+env:
+  CORS_ALLOWED_ORIGINS: https://hello.azure.unique.dev
+  ZITADEL_PROJECT_ID: "305512913743905383"
+  UNIQUE_INSTALLATION_ID: hello.azure.unique.dev # the hostname of the cluster
+routes:
+  hostname: api.hello.azure.unique.dev
+secretProvider:
+  useVMManagedIdentity: "true"
+  tenantId: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
+  userAssignedIdentityID: 93a58fa9-689d-4e76-b250-a164e4829742
