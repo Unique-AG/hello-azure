@@ -30,6 +30,7 @@ routes:
 serviceAccount:
   enabled: true
   workloadIdentity:
+    clientId: 
     enabled: true
 image:
   tag: "2025.04"

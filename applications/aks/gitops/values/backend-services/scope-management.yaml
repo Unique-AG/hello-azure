@@ -88,8 +88,6 @@ routes:
       enabled: true
     probe:
       enabled: true
-serviceAccount:
-  enabled: false
 secretProvider:
   vaults:
     helloazuresensitive:

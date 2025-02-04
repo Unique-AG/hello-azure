@@ -8,8 +8,3 @@ secretProvider:
   useVMManagedIdentity: "true"
   tenantId: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
   userAssignedIdentityID: 93a58fa9-689d-4e76-b250-a164e4829742
-serviceAccount:
-  enabled: true
-  workloadIdentity:
-    clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
-    enabled: true

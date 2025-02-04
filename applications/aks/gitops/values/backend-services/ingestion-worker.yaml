@@ -7,6 +7,37 @@ env:
   INGESTION_QUEUE: queue
   LOG_LEVEL: info
   MAX_HEAP_MB: 850
+envVars:
+  - name: RABBITMQ_USERNAME #! FIXME: @evrim should refactor to respect AMQP_USERNAME as well
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: username
+  - name: AMQP_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: username
+  - name: RABBITMQ_PASSWORD #! FIXME: @evrim should refactor to respect AMQP_PASSWORD as well
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: password
+  - name: AMQP_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: password
+  - name: AMQP_HOST
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: host
+  - name: AMQP_PORT
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: port
 image:
   tag: "2025.04"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion-worker
@@ -40,9 +71,15 @@ resources:
   requests:
     cpu: 0.5
     memory: 1Gi
+secretProvider:
+  vaults:
+    helloazuremain:
+      AZURE_OPENAI_API_ENDPOINT: cognitive-account-swedencentral-ep
+      AZURE_DOCUMENT_INTELLIGENCE_ENDPOINTS: azure-document-intelligence-endpoints
 serviceAccount:
   enabled: true
   workloadIdentity:
+    clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
     enabled: true
 terminationGracePeriodSeconds: 900
 volumeMounts:
