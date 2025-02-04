@@ -13,16 +13,4 @@ spec:
         valueFiles: 
           - $values/applications/aks/gitops/values/web-apps/_all.yaml
           - $values/applications/aks/gitops/values/web-apps/admin.yaml
-        valuesObject:
-          image:
-            tag: "2025.04"
-            repository: uniquehelloazure.azurecr.io/web-app-admin
-          env:
-            CONTENT_SECURITY_POLICY_VALUE: "default-src 'self'; img-src https: blob: data: *.blob.core.windows.net; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' blob: *.hello.azure.unique.dev *.core.windows.net wss://*.hello.azure.unique.dev; media-src 'self' *.blob.core.windows.net; frame-ancestors 'self'; frame-src 'self' https://*.hello.azure.unique.dev;"
-            ADMIN_APP_URL: https://hello.azure.unique.dev/admin
-            INGESTION_BACKEND_API_URL: https://api.hello.azure.unique.dev/ingestion
-            SCOPE_MANAGEMENT_BACKEND_API_URL: https://api.hello.azure.unique.dev/scope-management
-            SELF_URL: https://hello.azure.unique.dev/admin
-            APP_REPOSITORY_BACKEND_API_URL: https://api.hello.azure.unique.dev/apps
-          routes:
-            hostname: hello.azure.unique.dev
+        valuesObject: {}
