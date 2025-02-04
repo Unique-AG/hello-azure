@@ -10,7 +10,7 @@ spec:
   generators:
   - git:
       repoURL: https://github.com/Unique-AG/hello-azure
-      revision: main
+      revision: preview
       files:
       - path: "applications/aks/gitops/*.app.yaml"
   template:

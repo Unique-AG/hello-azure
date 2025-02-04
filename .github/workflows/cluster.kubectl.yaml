@@ -7,14 +7,14 @@ concurrency:
 on:
   pull_request:
     branches:
-      - main
+      - preview
     paths:
       - .github/workflows/kubectl.yaml
       - .github/workflows/cluster.kubectl.yaml
       - cluster/aks/application-sets/chat.application-set.yaml
   push:
     branches:
-      - main
+      - preview
     paths:
       - .github/workflows/kubectl.yaml
       - .github/workflows/unique.kubectl.yaml
@@ -35,5 +35,5 @@ jobs:
           - cluster/aks/application-sets/chat.application-set.yaml
     with:
       file_name: ${{ matrix.release }}
-      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'apply' || 'diff' }}
+      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/preview' && 'apply' || 'diff' }}
     secrets: inherit

@@ -3,13 +3,13 @@ name: '[tf] Actions Runner 🏃🏽'
 on:
   pull_request:
     branches:
-      - main
+      - preview
     paths:
       - .github/workflows/gar.infrastructure.tf.yaml
       - infrastructure/github-runners-setup/**
   push:
     branches:
-      - main
+      - preview
     paths:
       - .github/workflows/gar.infrastructure.tf.yaml
       - infrastructure/github-runners-setup/**
@@ -55,7 +55,7 @@ jobs:
         run: terraform plan -no-color
       
       - name: Terraform Apply
-        if: ${{ github.event.ref == 'refs/heads/main' || github.event.ref == 'refs/heads/dev'}}
+        if: ${{ github.event.ref == 'refs/heads/preview' || github.event.ref == 'refs/heads/dev'}}
         run: terraform apply -auto-approve -input=false
       
       - uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea #v7.0.1

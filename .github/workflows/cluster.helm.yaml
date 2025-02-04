@@ -7,14 +7,14 @@ concurrency:
 on:
   pull_request:
     branches:
-      - main
+      - preview
     paths:
       - .github/workflows/helm.yaml
       - .github/workflows/cluster.helm.yaml
       - cluster/aks/**
   push:
     branches:
-      - main
+      - preview
     paths:
       - .github/workflows/helm.yaml
       - .github/workflows/cluster.helm.yaml
@@ -40,7 +40,7 @@ jobs:
           - cluster/aks/rabbitmq/rabbitmq-operator.yaml
     with:
       file_name: ${{ matrix.release }}
-      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}
+      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/preview' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}
     secrets: inherit
 
   sync-wave-1:
@@ -54,5 +54,5 @@ jobs:
           - cluster/aks/zitadel/zitadel.yaml
     with:
       file_name: ${{ matrix.release }}
-      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}
+      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/preview' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}
     secrets: inherit
