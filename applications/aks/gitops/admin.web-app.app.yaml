@@ -9,7 +9,7 @@ spec:
       chart: web-app
       targetRevision: 3.1.0
       helm:
-        releaseName: assistants-core
+        releaseName: web-app-admin
         valueFiles: 
           - $values/applications/aks/gitops/values/web-apps/_all.yaml
           - $values/applications/aks/gitops/values/web-apps/admin.yaml
