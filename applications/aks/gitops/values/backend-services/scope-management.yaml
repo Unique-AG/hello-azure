@@ -24,7 +24,7 @@ env:
   INGESTION_API_URL: http://backend-service-ingestion.unique.svc
   LOG_LEVEL: info
   MAX_HEAP_MB: 750
-  ZITADEL_HOST: {{ printf "%s%s.%s" "https://" .Values.plain.zitadel.subDomainName .Values.params.zoneName }}
+  ZITADEL_HOST: https://id.hello.azure.unique.dev
   ZITADEL_INTERNAL_HOST: http://zitadel.unique.svc.cluster.local:8080
 envVars:
   - name: AMQP_USERNAME
