@@ -4,8 +4,13 @@ env:
   AZURE_DOCUMENT_INTELLIGENCE_LOCATION: switzerlandnorth
   AZURE_DOCUMENT_INTELLIGENCE_API_VERSION: 2023-07-31
   ENABLED_MIME_TYPES_DOCUMENT_TRANSLATION: '["DOCX", "MSEXCEL", "EXCEL"]'
+  API_BASE: http://backend-service-chat.unique.svc
+  QUARTR_API_CREDS: "unset_value" # will need to be loaded using .secretProvider and put there via GHA (pre-encrypted locally)
 eventBasedAutoscaling:
   enabled: false
+image:
+  tag: "2025.04"
+  repository: uniquehelloazure.azurecr.io/ai-service-assistants-core
 nodeSelector:
   scalability: steady
   lifecycle: persistent
@@ -27,6 +32,10 @@ securityContext:
     type: RuntimeDefault
 strategy:
   type: RollingUpdate
+secretProvider:
+  vaults:
+    helloazuremain:
+      AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT_DEFINITIONS: azure-document-intelligence-endpoint-definitions
 serviceAccount:
   enabled: true
   workloadIdentity:
