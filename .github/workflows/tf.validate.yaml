@@ -2,8 +2,8 @@ name: '[terraform] Lint & Secure'
 on:
   pull_request:
     paths:
-      - 00_init/**/*.tf"
-      - 10_azure/**/*.tf"
+      - governance/**/*.tf"
+      - infrastructure/**/*.tf"
       - .github/workflows/tf.validate.yaml
       - .github/configs/**
       - scripts/**

@@ -1,9 +1,10 @@
-name: '⛴️ Mirror Public Artifacts'
+name: '[rel] Mirror Public Artifacts 🪞'
 
 on:
   workflow_dispatch:
   push:
-    branches : ["main","dev"]
+    branches:
+      - main
     paths:
       - .github/workflows/mirror-public-artifacts.yaml
 
@@ -16,20 +17,21 @@ env:
   UNIQUECR_USERNAME: hello-azure
 
 jobs:
-  clone-release:
+  import:
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
+        working-directory: applications/aks/release
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
 
       - name: Install node
-        uses: actions/setup-node@v4.0.4
+        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a #v4.2.0
 
       - name: Azure Login action
-        uses: azure/login@v2
+        uses: azure/login@a65d910e8af852a8061c627c456678983e180302 #v2.2.0
         with:
           client-id: "a0e34ba0-b64c-49f4-8d94-1c74d7b3090e"
           tenant-id: "aeade8c4-d4f7-4ae7-9149-4975fa3a7f91"
@@ -42,6 +44,6 @@ jobs:
         timeout-minutes: 15
         run: |
           az acr login --name uniquehelloazure
-          qcli mirror images -f 20_k8s_workloads/mirror_artifacts/io.docker.yaml
-          qcli mirror images -f 20_k8s_workloads/mirror_artifacts/io.ghcr.yaml
-          qcli mirror images -f 20_k8s_workloads/mirror_artifacts/io.quay.yaml
+          qcli mirror images -f io.docker.yaml
+          qcli mirror images -f io.ghcr.yaml
+          qcli mirror images -f io.quay.yaml

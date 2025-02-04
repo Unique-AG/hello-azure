@@ -1,4 +1,4 @@
-name: "[helm] command"
+name: "[helm]"
 
 on:
   workflow_call:
@@ -33,24 +33,22 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
 
       - name: Azure Login action
-        uses: azure/login@v2
+        uses: azure/login@a65d910e8af852a8061c627c456678983e180302 #v2.2.0
         with:
           tenant-id: ${{ vars.TENANT_ID }}
           client-id: ${{ vars.CLIENT_ID }}
           subscription-id: ${{ vars.SUBSCRIPTION_ID }}
 
-      # Set up kubelogin for non-interactive authentication with Azure Kubernetes Service (AKS)
       - name: Set up kubelogin
-        uses: azure/use-kubelogin@v1
+        uses: azure/use-kubelogin@76597ae0fcbaace21b05e13a2cbf8daee2c6e820 #v1.2
         with:
           kubelogin-version: v0.1.6
 
-      # Retrieve the Kubernetes context for the AKS cluster
       - name: Get AKS context
-        uses: azure/aks-set-context@v3
+        uses: azure/aks-set-context@feeca6405be94202afcb1c395616ff29b1811b9f #v4.0.2
         with:
           resource-group: "resource-group-core"
           cluster-name: "aks-cluster"
@@ -58,7 +56,7 @@ jobs:
           use-kubelogin: 'true'
 
       - name: Setup Helm
-        uses: mamezou-tech/setup-helmfile@v2.0.0
+        uses: mamezou-tech/setup-helmfile@fd46979d2984c886929c416fbdf859b1c5efa0ea #v2.1.0
         with:
           helm-diff-plugin-version: v3.9.10
           helm-version: v3.15.4
@@ -67,52 +65,21 @@ jobs:
           helm-s3-plugin-version: v0.16.2
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
+        uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd #v3.1.2
         with:
           terraform_version: 1.10.0
 
-      - name: Terraform Init
-        id: init
-        run : terraform -chdir=20_k8s_workloads/terraform-helm-mapping init -backend-config=config.auto.tfvars
-
-      - name: Terraform save output
-        id: output
-        run : |
-          terraform -chdir=20_k8s_workloads/terraform-helm-mapping output -json
-
-      - name: Render terraform-outputs.yaml
-        run: |
-          echo '${{ steps.output.outputs.stdout }}' > 20_k8s_workloads/terraform-helm-mapping/terraform_output.json
-          python 20_k8s_workloads/terraform-helm-mapping/terraform_helm_mapping.py --terraform-output=20_k8s_workloads/terraform-helm-mapping/terraform_output.json --template-file=20_k8s_workloads/helm/terraform-outputs.yaml.jinja --output-yaml-path=20_k8s_workloads/helm/terraform-outputs.yaml
-          cat 20_k8s_workloads/helm/terraform-outputs.yaml
-
       - name: "🔍 Helm Template"
         if: inputs.action == 'template'
-        #! Do not add --debug, it will print secrets!
-        # Debug locally as described in repo readme
         run: |
           helmfile -f ${{ inputs.file_name }} ${{ inputs.release_name && format('-l name={0}', inputs.release_name) || '' }} template
 
       - name: "🪞 Helm Diff"
         if: inputs.action == 'diff'
-        #! Do not add --debug, it will print secrets!
-        # Debug locally as described in repo readme
         run: |
           helmfile -f ${{ inputs.file_name }} --concurrency 4 ${{ inputs.release_name && format('-l name={0}', inputs.release_name) || '' }} diff
 
       - name: "🚀 Helm Apply/Sync"
         if: inputs.action == 'apply' || inputs.action == 'sync'
-        #! Do not add --debug, it will print secrets!
-        # Debug locally as described in repo readme
-        run: helmfile -f ${{ inputs.file_name }} ${{ inputs.release_name && format('-l name={0}', inputs.release_name) || '' }} sync
-
-      - name: "💔 Helm Destroy"
-        if: inputs.action && inputs.action == 'destroy'
-        #! Do not add --debug, it will print secrets!
-        # Debug locally as described in repo readme
         run: |
-          if [[ -z "${{ inputs.release_name }}" ]]; then
-            echo "error=Release name must be specified for destroy action." >> $GITHUB_OUTPUT
-            exit 1
-          fi
-          helmfile -f ${{ inputs.file_name }} -l name=${{ inputs.release_name }} destroy
+          helmfile -f ${{ inputs.file_name }} ${{ inputs.release_name && format('-l name={0}', inputs.release_name) || '' }} sync

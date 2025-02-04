@@ -1,4 +1,4 @@
-name: "[kubectl] command"
+name: "[k8s]"
 
 on:
   workflow_call:
@@ -33,24 +33,22 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
 
       - name: Azure Login action
-        uses: azure/login@v2
+        uses: azure/login@a65d910e8af852a8061c627c456678983e180302 #v2.2.0
         with:
           tenant-id: ${{ vars.TENANT_ID }}
           client-id: ${{ vars.CLIENT_ID }}
           subscription-id: ${{ vars.SUBSCRIPTION_ID }}
 
-      # Set up kubelogin for non-interactive authentication with Azure Kubernetes Service (AKS)
       - name: Set up kubelogin
-        uses: azure/use-kubelogin@v1
+        uses: azure/use-kubelogin@76597ae0fcbaace21b05e13a2cbf8daee2c6e820 #v1.2
         with:
           kubelogin-version: v0.1.6
 
-      # Retrieve the Kubernetes context for the AKS cluster
       - name: Get AKS context
-        uses: azure/aks-set-context@v3
+        uses: azure/aks-set-context@feeca6405be94202afcb1c395616ff29b1811b9f #v4.0.2
         with:
           resource-group: "resource-group-core"
           cluster-name: "aks-cluster"
@@ -59,14 +57,10 @@ jobs:
 
       - name: "🪞 Kubectl Diff"
         if: inputs.action == 'diff'
-        #! Do not add --debug, it will print secrets!
-        # Debug locally as described in repo readme
-        #  || true will not fail the job if there are changes
         run: |
           kubectl diff -f ${{ inputs.file_name }} || true
 
       - name: "🚀 Kubectl Apply"
         if: inputs.action == 'apply'
-        #! Do not add --debug, it will print secrets!
-        # Debug locally as described in repo readme
-        run: kubectl apply -f ${{ inputs.file_name }}
+        run: |
+          kubectl apply -f ${{ inputs.file_name }}
