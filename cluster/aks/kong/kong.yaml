@@ -59,11 +59,11 @@ releases:
       -
         controller:
           image:
-            repository: {{ .Values.plain.registryUrl }}/kong/kubernetes-ingress-controller
+            repository: uniquehelloazure.azurecr.io/kong/kubernetes-ingress-controller
             tag: "3.4.1"
         gateway:
           image:
-            repository: {{ .Values.plain.registryUrl }}/kong
+            repository: uniquehelloazure.azurecr.io/kong
             tag: "3.9.0"
           nodeSelector:
             scalability: steady
@@ -220,7 +220,7 @@ releases:
           spec:
             ingressClassName: azure-application-gateway
             rules:
-              - host: {{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}
+              - host: api.gateway.azure.unique.dev
                 http:
                   paths:
                     - backend:
@@ -232,5 +232,5 @@ releases:
                       pathType: Prefix
             tls:
               - hosts:
-                  - {{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}
+                  - api.gateway.azure.unique.dev
                 secretName: kong-api-tls

@@ -11,55 +11,6 @@ environments:
 ---
 
 releases:
-  - name: backend-service-app-repository
-    chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
-    version: 3.1.1
-    namespace: {{ .Values.self.namespace }}
-    createNamespace: true
-    wait: false
-    values:
-      - ./values/app-repository.bs.yaml
-      -
-        image:
-          tag: {{ index .Values.versions.apps.backendService "app-repository" }}
-          repository: {{ .Values.plain.registryUrl }}/backend-service-app-repository
-        env:
-          CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
-          ZITADEL_PROJECT_ID: {{ .Values.plain.zitadel.projectId | quote }}
-        envVars:
-          - name: AMQP_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
-                key: username
-          - name: AMQP_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
-                key: password
-          - name: AMQP_HOST
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
-                key: host
-          - name: AMQP_PORT
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
-                key: port
-        routes:
-          hostname: {{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}
-        secretProvider:
-          tenantId: {{ requiredEnv "ARM_TENANT_ID" }}
-          userAssignedIdentityID: {{ .Values.params.identities.keyVaultSecretsProvider.clientId }}
-          vaults:
-            {{ .Values.params.keyVaults.sensitive.name }}:
-              DATABASE_URL: {{ .Values.kvRefs.psql.databases.appRepository }}
-              ENCRYPTION_KEY:  {{ .Values.kvRefs.synthetic.appRepository.encryptionKey }}
-        serviceAccount:
-          workloadIdentity:
-            clientId: {{ .Values.params.identities.kubelet.clientId }}
-
   - name: backend-service-webhook-worker
     chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
     version: 3.1.1
@@ -70,28 +21,28 @@ releases:
       - ./values/webhook-worker.bs.yaml
       -
         image:
-          tag: {{ index .Values.versions.apps.backendService "webhook-worker" }}
-          repository: {{ .Values.plain.registryUrl }}/backend-service-webhook-worker
+          tag: "2025.04"
+          repository: uniquehelloazure.azurecr.io/backend-service-webhook-worker
         envVars:
           - name: AMQP_USERNAME
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
+                name: rabbitmqcluster-chat-default-user
                 key: username
           - name: AMQP_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
+                name: rabbitmqcluster-chat-default-user
                 key: password
           - name: AMQP_HOST
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
+                name: rabbitmqcluster-chat-default-user
                 key: host
           - name: AMQP_PORT
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
+                name: rabbitmqcluster-chat-default-user
                 key: port
 
   - name: backend-service-webhook-scheduler
@@ -104,28 +55,28 @@ releases:
       - ./values/webhook-scheduler.bs.yaml
       -
         image:
-          tag: {{ index .Values.versions.apps.backendService "webhook-scheduler" }}
-          repository: {{ .Values.plain.registryUrl }}/backend-service-webhook-scheduler
+          tag: "2025.04"
+          repository: uniquehelloazure.azurecr.io/backend-service-webhook-scheduler
         envVars:
           - name: AMQP_USERNAME
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
+                name: rabbitmqcluster-chat-default-user
                 key: username
           - name: AMQP_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
+                name: rabbitmqcluster-chat-default-user
                 key: password
           - name: AMQP_HOST
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
+                name: rabbitmqcluster-chat-default-user
                 key: host
           - name: AMQP_PORT
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
+                name: rabbitmqcluster-chat-default-user
                 key: port
 
   - name: backend-service-event-socket
@@ -138,33 +89,33 @@ releases:
       - ./values/event-socket.bs.yaml
       -
         image:
-          tag: {{ index .Values.versions.apps.backendService "event-socket" }}
-          repository: {{ .Values.plain.registryUrl }}/backend-service-event-socket
+          tag: "2025.04"
+          repository: uniquehelloazure.azurecr.io/backend-service-event-socket
         env:
           ZITADEL_PROJECT_ID: {{ .Values.plain.zitadel.projectId | quote }}
         envVars:
           - name: AMQP_USERNAME
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
+                name: rabbitmqcluster-chat-default-user
                 key: username
           - name: AMQP_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
+                name: rabbitmqcluster-chat-default-user
                 key: password
           - name: AMQP_HOST
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
+                name: rabbitmqcluster-chat-default-user
                 key: host
           - name: AMQP_PORT
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
+                name: rabbitmqcluster-chat-default-user
                 key: port
         routes:
-          hostname: {{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}
+          hostname: api.gateway.azure.unique.dev
 
   - name: client-insights-exporter
     chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
@@ -176,4 +127,4 @@ releases:
       - ./values/client-insights-exporter.bs.yaml
       -
         image:
-          tag: {{ index .Values.versions.apps.backendService "client-insights-exporter" }}
+          tag: "2025.04"

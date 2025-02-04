@@ -32,7 +32,6 @@ resources:
 routes:
   gateway:
     namespace: unique
-  hostname: unset_default_value
   pathPrefix: /admin
   paths:
     default:

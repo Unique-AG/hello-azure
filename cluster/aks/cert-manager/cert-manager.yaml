@@ -26,7 +26,7 @@ releases:
           priorityClassName: system-cluster-critical
         installCRDs: true
         image:
-          repository: {{ .Values.plain.registryUrl }}/jetstack/cert-manager-controller
+          repository: uniquehelloazure.azurecr.io/jetstack/cert-manager-controller
           tag: "v1.12.2"
         nodeSelector:
           scalability: steady
@@ -43,7 +43,7 @@ releases:
               memory: 128Mi
         webhook:
           image:
-            repository: {{ .Values.plain.registryUrl }}/jetstack/cert-manager-webhook
+            repository: uniquehelloazure.azurecr.io/jetstack/cert-manager-webhook
             tag: "v1.12.2"
           resources:
             limits:
@@ -54,7 +54,7 @@ releases:
               memory: 128Mi
         cainjector:
           image:
-            repository: {{ .Values.plain.registryUrl }}/jetstack/cert-manager-cainjector
+            repository: uniquehelloazure.azurecr.io/jetstack/cert-manager-cainjector
             tag: "v1.12.2"
           resources:
             limits:

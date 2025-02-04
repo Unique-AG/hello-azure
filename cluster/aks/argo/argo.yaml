@@ -24,10 +24,10 @@ releases:
       -
         keeper:
           image:
-            repository: {{ .Values.plain.registryUrl }}/busybox
+            repository: uniquehelloazure.azurecr.io/busybox
             tag: "1.37"
         spc:
-          kvName: {{ .Values.params.keyVaults.sensitive.name }}
+          kvName: helloazuresensitive
           tenantId: {{ requiredEnv "ARM_TENANT_ID" }}
           identityId: {{ .Values.params.identities.keyVaultSecretsProvider.clientId }}
           labels:

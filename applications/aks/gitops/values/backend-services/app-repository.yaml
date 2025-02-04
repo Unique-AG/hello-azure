@@ -21,17 +21,45 @@ resources:
 routes:
   gateway:
     namespace: unique
-  hostname: unset_default_value
   pathPrefix: /apps
   paths:
     default:
       enabled: true
     probe:
       enabled: true
-secretProvider:
-  useVMManagedIdentity: "true"
 serviceAccount:
   enabled: true
   workloadIdentity:
-    clientId: unset_default_value
     enabled: true
+image:
+  tag: "2025.04"
+  repository: uniquehelloazure.azurecr.io/backend-service-app-repository
+env: {}
+envVars:
+  - name: AMQP_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: username
+  - name: AMQP_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: password
+  - name: AMQP_HOST
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: host
+  - name: AMQP_PORT
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: port
+routes:
+  hostname: api.gateway.azure.unique.dev
+secretProvider:
+  vaults:
+    helloazuresensitive:
+      DATABASE_URL: database-url-app-repository
+      ENCRYPTION_KEY: encryption-key-app-repository

@@ -24,7 +24,7 @@ releases:
         reloader:
           deployment:
             image:
-              name: {{ .Values.plain.registryUrl }}/stakater/reloader
+              name: uniquehelloazure.azurecr.io/stakater/reloader
               tag: "v1.1.0"
             securityContext:
               allowPrivilegeEscalation: false

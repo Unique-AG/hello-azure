@@ -27,7 +27,7 @@ releases:
           kind: Secret
           type: Opaque
           metadata:
-            name: {{ .Values.plain.rabbit.secret.secretName }}
+            name: rabbitmqcluster-chat-default-user
           stringData:
             default_user.conf: |
               default_user = {{ .Values.plain.rabbit.username }}
@@ -54,7 +54,7 @@ releases:
           metadata:
             name: rabbitmqcluster-chat
           spec:
-            image: {{ .Values.plain.registryUrl }}/bitnami/rabbitmq:3.13.7-debian-12-r3
+            image: uniquehelloazure.azurecr.io/bitnami/rabbitmq:3.13.7-debian-12-r3
             replicas: 3
             resources:
               requests:
@@ -67,7 +67,7 @@ releases:
               lifecycle: persistent
             secretBackend:
               externalSecret:
-                name: {{ .Values.plain.rabbit.secret.secretName }}
+                name: rabbitmqcluster-chat-default-user
             rabbitmq:
               additionalConfig: |
                 cluster_partition_handling = pause_minority
