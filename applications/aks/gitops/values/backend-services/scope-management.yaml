@@ -82,7 +82,6 @@ resources:
 routes:
   gateway:
     namespace: unique
-  hostname: unset_default_value
   pathPrefix: /scope-management
   paths:
     default:

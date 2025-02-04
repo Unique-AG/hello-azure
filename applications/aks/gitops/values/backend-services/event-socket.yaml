@@ -15,7 +15,7 @@ resources:
 routes:
   gateway:
     namespace: unique
-  hostname: unset_default_value
+  hostname: api.gateway.azure.unique.dev
   pathPrefix: /event-socket
   paths:
     versioned:

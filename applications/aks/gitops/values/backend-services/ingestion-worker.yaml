@@ -7,7 +7,6 @@ env:
   INGESTION_QUEUE: queue
   LOG_LEVEL: info
   MAX_HEAP_MB: 850
-  ZITADEL_PROJECT_ID: unset_default_value
 image:
   tag: "2025.04"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion-worker
@@ -44,7 +43,6 @@ resources:
 serviceAccount:
   enabled: true
   workloadIdentity:
-    clientId: unset_default_value
     enabled: true
 terminationGracePeriodSeconds: 900
 volumeMounts:

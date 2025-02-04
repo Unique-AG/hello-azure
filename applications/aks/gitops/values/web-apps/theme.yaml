@@ -30,7 +30,6 @@ resources:
 routes:
   gateway:
     namespace: unique
-  hostname: unset_default_value
   pathPrefix: /theme
   paths:
     default:

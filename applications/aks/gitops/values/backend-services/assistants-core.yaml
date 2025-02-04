@@ -37,5 +37,5 @@ secretProvider:
 serviceAccount:
   enabled: true
   workloadIdentity:
-    clientId: unset_default_value
+    clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
     enabled: true
