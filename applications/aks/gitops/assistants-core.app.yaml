@@ -1,0 +1,10 @@
+spec:
+  name: assistants-core
+  autoSync: false
+  source:
+    chart: ai-service
+    repoURL: ghcr.io/unique-ag/helm-charts
+    targetRevision: 1.1.2
+    helm:
+      releaseName: assistants-core
+      valuesObject: {}

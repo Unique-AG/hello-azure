@@ -1,0 +1,5 @@
+env:
+  INGESTION_QUEUE: chat_queue
+eventBasedAutoscaling:
+  rabbitmq:
+    queueName: unique.node.ingestion.chat_queue

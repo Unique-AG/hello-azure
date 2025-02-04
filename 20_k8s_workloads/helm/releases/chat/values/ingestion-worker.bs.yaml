@@ -1,0 +1,55 @@
+env:
+  CONVERT_OFFICE_FILES_TO_PDF: "true"
+  CUSTOM_API_DEFINITIONS: >-
+    [ {"identifier": "Unique Text Extraction API", "url": "http://assistants-core.unique.svc/core/text-extractions"} ]
+  EMBEDDING_BATCH_SIZE: 16
+  INGESTION_API_URL: http://backend-service-ingestion.unique.svc
+  INGESTION_QUEUE: queue
+  LOG_LEVEL: info
+  MAX_HEAP_MB: 850
+  ZITADEL_PROJECT_ID: unset_default_value
+eventBasedAutoscaling:
+  cron: null
+  enabled: true
+  maxReplicaCount: 6
+  minReplicaCount: 0
+  rabbitmq:
+    queueName: unique.node.ingestion.queue
+nodeSelector:
+  scalability: rapid
+  lifecycle: ephemeral
+tolerations:
+  - key: "scalability"
+    operator: "Equal" 
+    value: "rapid"
+    effect: "NoSchedule"
+  - key: "lifecycle"
+    operator: "Equal"
+    value: "ephemeral" 
+    effect: "NoSchedule"
+probes:
+  liveness:
+    failureThreshold: 36
+replicaCount: 0
+resources:
+  limits:
+    cpu: 0.5
+    memory: 1050Mi
+  requests:
+    cpu: 0.5
+    memory: 1Gi
+secretProvider:
+  useVMManagedIdentity: "true"
+serviceAccount:
+  enabled: true
+  workloadIdentity:
+    clientId: unset_default_value
+    enabled: true
+terminationGracePeriodSeconds: 900
+volumeMounts:
+  - mountPath: /tmp
+    name: tmp-volume
+volumes:
+  - emptyDir:
+      sizeLimit: 20Gi
+    name: tmp-volume

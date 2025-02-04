@@ -1,0 +1,34 @@
+environments:
+  default:
+    values:
+      - ../../params.yaml
+      - ../../terraform-outputs.yaml
+      - ../../versions.yaml
+      -
+        self:
+          namespace: unique
+
+---
+
+releases:
+  - name: assistants-core
+    chart: oci://ghcr.io/unique-ag/helm-charts/ai-service
+    version: 1.1.2
+    namespace: {{ .Values.self.namespace }}
+    createNamespace: true
+    wait: false
+    values:
+      - ./values/core.ai.yaml
+      -
+        image:
+          tag: {{ index .Values.versions.chat.ai "core" }}
+          repository: {{ .Values.plain.registryUrl }}/ai-service-assistants-core
+        env:
+          API_BASE: http://backend-service-chat.unique.svc
+          QUARTR_API_CREDS: "unset_value" # will need to be loaded using .secretProvider and put there via GHA (pre-encrypted locally)
+        secretProvider:
+          tenantId: {{ requiredEnv "ARM_TENANT_ID" }}
+          userAssignedIdentityID: {{ .Values.params.identities.keyVaultSecretsProvider.clientId }}
+          vaults:
+            {{ .Values.params.keyVaults.main.name }}:
+              AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT_DEFINITIONS: {{ .Values.kvRefs.adi.endpointDefinitions }}

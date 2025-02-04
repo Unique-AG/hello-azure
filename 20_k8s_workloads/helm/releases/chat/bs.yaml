@@ -1,0 +1,334 @@
+environments:
+  default:
+    values:
+      - ../../params.yaml
+      - ../../terraform-outputs.yaml
+      - ../../versions.yaml
+      -
+        self:
+          namespace: unique
+
+---
+
+releases:
+  # - name: backend-service-chat
+  #   chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
+  #   version: 3.1.1
+  #   namespace: {{ .Values.self.namespace }}
+  #   createNamespace: true
+  #   wait: false
+  #   values:
+  #     - ./values/chat.bs.yaml
+  #     -
+  #       image:
+  #         tag: {{ index .Values.versions.chat.backendService "chat" }}
+  #         repository: {{ .Values.plain.registryUrl }}/backend-service-chat
+  #       env:
+  #         CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
+  #         ZITADEL_PROJECT_ID: {{ .Values.plain.zitadel.projectId | quote }}
+  #         UNIQUE_INSTALLATION_ID: {{ .Values.params.zoneName }}
+  #       envVars:
+  #         - name: AMQP_USERNAME
+  #           valueFrom:
+  #             secretKeyRef:
+  #               name: {{ .Values.plain.rabbit.secret.secretName }}
+  #               key: username
+  #         - name: AMQP_PASSWORD
+  #           valueFrom:
+  #             secretKeyRef:
+  #               name: {{ .Values.plain.rabbit.secret.secretName }}
+  #               key: password
+  #         - name: AMQP_HOST
+  #           valueFrom:
+  #             secretKeyRef:
+  #               name: {{ .Values.plain.rabbit.secret.secretName }}
+  #               key: host
+  #         - name: AMQP_PORT
+  #           valueFrom:
+  #             secretKeyRef:
+  #               name: {{ .Values.plain.rabbit.secret.secretName }}
+  #               key: port
+  #         - name: PUBSUB_REDIS_PASSWORD
+  #           valueFrom:
+  #             secretKeyRef:
+  #               name: {{ .Values.plain.redis.secret.secretName }}
+  #               key: {{ .Values.plain.redis.secret.secretKeyName }}
+  #       routes:
+  #         hostname: {{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}
+  #       secretProvider:
+  #         tenantId: {{ requiredEnv "ARM_TENANT_ID" }}
+  #         userAssignedIdentityID: {{ .Values.params.identities.keyVaultSecretsProvider.clientId }}
+  #         vaults:
+  #           {{ .Values.params.keyVaults.sensitive.name }}:
+  #             DATABASE_URL: {{ .Values.kvRefs.psql.databases.chat }}
+  #             PUBSUB_REDIS_HOST: {{ .Values.kvRefs.redis.host }}
+  #             PUBSUB_REDIS_PORT: {{ .Values.kvRefs.redis.port }}
+  #             AZURE_FGPT_STORAGE_CONNECTION_STRING: {{ .Values.kvRefs.st.permanentStorageConnectionString }}
+  #             CHAT_LXM_ENCRYPTION_KEY: {{ .Values.kvRefs.synthetic.chat.encryptionKeyLxm }}
+  #           {{ .Values.params.keyVaults.main.name }}:
+  #             AZURE_OPENAI_API_ENDPOINTS_JSON: {{ .Values.kvRefs.aoi.cognitiveEndpoints }}
+  #       serviceAccount:
+  #         workloadIdentity:
+  #           clientId: {{ .Values.params.identities.aksWorkloadIdentityCognitiveServices.clientId }}
+
+  - name: backend-service-theme
+    chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
+    version: 3.1.1
+    namespace: {{ .Values.self.namespace }}
+    createNamespace: true
+    wait: false
+    values:
+      - ./values/theme.bs.yaml
+      -
+        image:
+          tag: {{ index .Values.versions.chat.backendService "theme" }}
+          repository: {{ .Values.plain.registryUrl }}/backend-service-theme
+        env:
+          CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
+          ZITADEL_PROJECT_ID: {{ .Values.plain.zitadel.projectId | quote }}
+          UNIQUE_INSTALLATION_ID: {{ .Values.params.zoneName }}
+        routes:
+          hostname: {{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}
+        secretProvider:
+          tenantId: {{ requiredEnv "ARM_TENANT_ID" }}
+          userAssignedIdentityID: {{ .Values.params.identities.keyVaultSecretsProvider.clientId }}
+          vaults:
+            {{ .Values.params.keyVaults.sensitive.name }}:
+              DATABASE_URL: {{ .Values.kvRefs.psql.databases.theme }}
+
+  - name: backend-service-scope-management
+    chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
+    version: 3.1.1
+    namespace: {{ .Values.self.namespace }}
+    createNamespace: true
+    wait: false
+    values:
+      - ./values/scope-management.bs.yaml
+      -
+        image:
+          tag: {{ index .Values.versions.chat.backendService "scope-management" }}
+          repository: {{ .Values.plain.registryUrl }}/backend-service-scope-management
+        env:
+          CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
+          ZITADEL_HOST: {{ printf "%s%s.%s" "https://" .Values.plain.zitadel.subDomainName .Values.params.zoneName }}
+          ZITADEL_PROJECT_ID: {{ .Values.plain.zitadel.projectId | quote }}
+          UNIQUE_INSTALLATION_ID: {{ .Values.params.zoneName }}
+        envVars:
+          - name: AMQP_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: username
+          - name: AMQP_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: password
+          - name: AMQP_HOST
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: host
+          - name: AMQP_PORT
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: port
+        extraRoutes:
+          scim:
+            hostnames:
+              - {{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}
+        routes:
+          hostname: {{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}
+        secretProvider:
+          tenantId: {{ requiredEnv "ARM_TENANT_ID" }}
+          userAssignedIdentityID: {{ .Values.params.identities.keyVaultSecretsProvider.clientId }}
+          vaults:
+            {{ .Values.params.keyVaults.sensitive.name }}:
+              DATABASE_URL: {{ .Values.kvRefs.psql.databases.scopeManagement }}
+            {{ .Values.params.keyVaults.main.name }}:
+              ZITADEL_PAT: {{ .Values.kvRefs.synthetic.zitadel.patScopeManagement }}
+
+  - name: backend-service-ingestion
+    chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
+    version: 3.1.1
+    namespace: {{ .Values.self.namespace }}
+    createNamespace: true
+    wait: false
+    values:
+      - ./values/ingestion.bs.yaml
+      -
+        image:
+          tag: {{ index .Values.versions.chat.backendService "ingestion" }}
+          repository: {{ .Values.plain.registryUrl }}/backend-service-ingestion
+        env:
+          CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
+          ZITADEL_PROJECT_ID: {{ .Values.plain.zitadel.projectId | quote }}
+          UNIQUE_INSTALLATION_ID: {{ .Values.params.zoneName }}
+          INGESTION_UPLOAD_API_URL: https://{{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}/scoped/ingestion/upload
+          ZITADEL_ROOT_ORG_ID: {{ .Values.plain.zitadel.rootOrgId | quote }}
+        envVars:
+          - name: RABBITMQ_USERNAME #! FIXME: @evrim should refactor to respect AMQP_USERNAME as well
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: username
+          - name: AMQP_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: username
+          - name: RABBITMQ_PASSWORD #! FIXME: @evrim should refactor to respect AMQP_PASSWORD as well
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: password
+          - name: AMQP_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: password
+          - name: AMQP_HOST
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: host
+          - name: AMQP_PORT
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: port
+        routes:
+          hostname: {{ printf "%s.%s" .Values.plain.apiGateway.subDomainName .Values.params.zoneName }}
+        secretProvider:
+          tenantId: {{ requiredEnv "ARM_TENANT_ID" }}
+          userAssignedIdentityID: {{ .Values.params.identities.keyVaultSecretsProvider.clientId }}
+          vaults:
+            {{ .Values.params.keyVaults.sensitive.name }}:
+              DATABASE_URL: {{ .Values.kvRefs.psql.databases.ingestion }}
+              AZURE_FGPT_STORAGE_CONNECTION_STRING: {{ .Values.kvRefs.st.permanentStorageConnectionString }}
+              AZURE_INGESTION_CACHE_STORAGE_CONNECTION_STRING: {{ .Values.kvRefs.st.cacheStorageConnectionString }}
+              INGESTION_ENCRYPTION_KEY: {{ .Values.kvRefs.synthetic.ingestion.encryptionKey }}
+            {{ .Values.params.keyVaults.main.name }}:
+              AZURE_OPENAI_API_ENDPOINT: {{ .Values.kvRefs.aoi.apiEndpoint }}
+              AZURE_DOCUMENT_INTELLIGENCE_ENDPOINTS: {{ .Values.kvRefs.adi.endpoints }}
+        serviceAccount:
+          workloadIdentity:
+            clientId: {{ .Values.params.identities.aksWorkloadIdentityCognitiveServices.clientId }}
+
+  - name: backend-service-ingestion-worker
+    chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
+    version: 3.1.1
+    namespace: {{ .Values.self.namespace }}
+    createNamespace: true
+    wait: false
+    values:
+      - ./values/ingestion-worker.bs.yaml
+      -
+        image:
+          tag: {{ index .Values.versions.chat.backendService "ingestion-worker" }}
+          repository: {{ .Values.plain.registryUrl }}/backend-service-ingestion-worker
+        env:
+          CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
+          ZITADEL_PROJECT_ID: {{ .Values.plain.zitadel.projectId | quote }}
+          UNIQUE_INSTALLATION_ID: {{ .Values.params.zoneName }}
+        envVars:
+          - name: RABBITMQ_USERNAME #! FIXME: @evrim should refactor to respect AMQP_USERNAME as well
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: username
+          - name: AMQP_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: username
+          - name: RABBITMQ_PASSWORD #! FIXME: @evrim should refactor to respect AMQP_PASSWORD as well
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: password
+          - name: AMQP_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: password
+          - name: AMQP_HOST
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: host
+          - name: AMQP_PORT
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: port
+        secretProvider:
+          tenantId: {{ requiredEnv "ARM_TENANT_ID" }}
+          userAssignedIdentityID: {{ .Values.params.identities.keyVaultSecretsProvider.clientId }}
+          vaults:
+            {{ .Values.params.keyVaults.main.name }}:
+              AZURE_OPENAI_API_ENDPOINT: {{ .Values.kvRefs.aoi.apiEndpoint }}
+              AZURE_DOCUMENT_INTELLIGENCE_ENDPOINTS: {{ .Values.kvRefs.adi.endpoints }}
+        serviceAccount:
+          workloadIdentity:
+            clientId: {{ .Values.params.identities.aksWorkloadIdentityCognitiveServices.clientId }}
+
+  - name: backend-service-ingestion-worker-chat
+    chart: oci://ghcr.io/unique-ag/helm-charts/backend-service
+    version: 3.1.1
+    namespace: {{ .Values.self.namespace }}
+    createNamespace: true
+    wait: false
+    values:
+      - ./values/ingestion-worker.bs.yaml
+      - ./values/ingestion-worker-chat.bs.yaml
+      -
+        image:
+          tag: {{ index .Values.versions.chat.backendService "ingestion-worker" }}
+          repository: {{ .Values.plain.registryUrl }}/backend-service-ingestion-worker
+        env:
+          CORS_ALLOWED_ORIGINS: https://{{ .Values.params.zoneName }}
+          ZITADEL_PROJECT_ID: {{ .Values.plain.zitadel.projectId | quote }}
+          UNIQUE_INSTALLATION_ID: {{ .Values.params.zoneName }}
+        envVars:
+          - name: RABBITMQ_USERNAME #! FIXME: @evrim should refactor to respect AMQP_USERNAME as well
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: username
+          - name: AMQP_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: username
+          - name: RABBITMQ_PASSWORD #! FIXME: @evrim should refactor to respect AMQP_PASSWORD as well
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: password
+          - name: AMQP_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: password
+          - name: AMQP_HOST
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: host
+          - name: AMQP_PORT
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: port
+        secretProvider:
+          tenantId: {{ requiredEnv "ARM_TENANT_ID" }}
+          userAssignedIdentityID: {{ .Values.params.identities.keyVaultSecretsProvider.clientId }}
+          vaults:
+            {{ .Values.params.keyVaults.main.name }}:
+              AZURE_OPENAI_API_ENDPOINT: {{ .Values.kvRefs.aoi.apiEndpoint }}
+              AZURE_DOCUMENT_INTELLIGENCE_ENDPOINTS: {{ .Values.kvRefs.adi.endpoints }}
+        serviceAccount:
+          workloadIdentity:
+            clientId: {{ .Values.params.identities.aksWorkloadIdentityCognitiveServices.clientId }}
