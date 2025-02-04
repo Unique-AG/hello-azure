@@ -1,4 +1,4 @@
-name: '[helm][cluster]'
+name: '[helm][cluster] ☸️'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -45,6 +45,7 @@ jobs:
     secrets: inherit
 
   sync-wave-1:
+    needs: sync-wave-0
     uses: ./.github/workflows/helm.yaml
     strategy:
       fail-fast: false

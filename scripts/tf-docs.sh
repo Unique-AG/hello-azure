@@ -9,11 +9,16 @@ REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 echo "Repo root: $REPO_ROOT"
 
 echo "Running tf-docs"
-docker run \
-    --rm --volume "$(pwd):/workdir" \
-    -u $(id -u) quay.io/terraform-docs/terraform-docs:$TF_DOCS_VERSION /workdir/governance \
-    --config /workdir/.github/configs/tfdocs.yaml
-docker run \
-    --rm --volume "$(pwd):/workdir" \
-    -u $(id -u) quay.io/terraform-docs/terraform-docs:$TF_DOCS_VERSION /workdir/infrastructure \
-    --config /workdir/.github/configs/tfdocs_infrastructure.yaml
+
+# Find all tfdocs.yaml files and process each one
+find . -name "tfdocs.yaml" | while read -r config_file; do
+    # Get the directory containing the tfdocs.yaml file
+    dir=$(dirname "$config_file")
+    
+    echo "Processing $dir with config $config_file"
+    
+    docker run \
+        --rm --volume "$(pwd):/workdir" \
+        -u $(id -u) quay.io/terraform-docs/terraform-docs:$TF_DOCS_VERSION "/workdir/$dir" \
+        --config "/workdir/$config_file"
+done

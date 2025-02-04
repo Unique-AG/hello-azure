@@ -23,10 +23,10 @@ See also [identities](modules/identities/README.md), [perimeter](modules/perimet
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_identities"></a> [identities](#module\_identities) | ./modules/identities | n/a |
-| <a name="module_perimeter"></a> [perimeter](#module\_perimeter) | ./modules/perimeter | n/a |
+| <a name="module_identities"></a> [identities](#module\_identities) | ../terraform-modules/identities | n/a |
+| <a name="module_perimeter"></a> [perimeter](#module\_perimeter) | ../terraform-modules/perimeter | n/a |
 | <a name="module_vnet"></a> [vnet](#module\_vnet) | Azure/avm-res-network-virtualnetwork/azurerm | v0.7.1 |
-| <a name="module_workloads"></a> [workloads](#module\_workloads) | ./modules/workloads | n/a |
+| <a name="module_workloads"></a> [workloads](#module\_workloads) | ../terraform-modules/workloads | n/a |
 
 ## Resources
 

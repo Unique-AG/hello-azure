@@ -1,4 +1,4 @@
-name: '[k8s][cluster]'
+name: '[k8s][cluster] 🐳'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
