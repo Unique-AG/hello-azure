@@ -37,3 +37,5 @@ resources:
     memory: 300Mi
 service:
   enabled: false
+serviceAccount:
+  enabled: false
