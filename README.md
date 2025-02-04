@@ -17,6 +17,38 @@ The directory is primarily targeted towards specific personas or teams.
 └── infrastructure          # targets Day 1 IT/Infrastructure and contains the landing zone components
 ```
 
+## Branches
+
+The repository logic bases on two main branches:
+
+- `release` - contains the stable and tested release artefacts/configurations/files
+- `preview` - contains the continously updated preview artefacts/configurations/files
+
+```mermaid
+%%{init: { 'logLevel': 'debug', 'theme': 'base', 'gitGraph': {'showBranches': true, 'showCommitLabel':true,'mainBranchName': 'preview', 'mainBranchOrder':'9'}} }%%
+      gitGraph
+        branch release order: 1
+        commit id:"…"
+        checkout preview
+        commit id:"prep 2025.06-rc.1"
+        commit id:"prep 2025.06-rc.2"
+        commit id:"prep 2025.06-rc…"
+        checkout release
+        merge preview tag:"2025.06"
+        checkout preview
+        commit id:"prep 2025.08-rc.1"
+        commit id:"prep 2025.08-rc.2"
+        commit id:"prep 2025.08-rc…"
+        checkout release
+        merge preview tag:"2025.08"
+        checkout preview
+        commit id:"prep 2025.08.1"
+        checkout release
+        merge preview tag:"2025.08.1"
+        checkout preview
+        commit id:"prep …"
+```
+
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any changes.  See the [CONTRIBUTING](CONTRIBUTING) for more information
 

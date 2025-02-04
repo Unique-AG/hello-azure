@@ -1,10 +1,27 @@
 spec:
   name: web-app-admin
   autoSync: false
-  source:
-    chart: web-app
-    repoURL: ghcr.io/unique-ag/helm-charts
-    targetRevision: 3.1.0
-    helm:
-      releaseName: web-app-admin
-      valuesObject: {}
+  sources:
+    - repoURL: 'https://github.com/Unique-AG/hello-azure'
+      targetRevision: preview
+      ref: values
+    - chart: web-app
+      repoURL: ghcr.io/unique-ag/helm-charts
+      targetRevision: 3.1.0
+      helm:
+        releaseName: web-app-admin
+        valueFiles: 
+          - $values/applications/aks/gitops/values/backend-services/assistants-core.yaml
+        valuesObject:
+          image:
+            tag: "2025.04"
+            repository: uniquehelloazure.azurecr.io/backend-service-chat
+          env:
+            API_BASE: http://backend-service-chat.unique.svc
+            QUARTR_API_CREDS: "unset_value" # will need to be loaded using .secretProvider and put there via GHA (pre-encrypted locally)
+          secretProvider:
+            tenantId: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
+            userAssignedIdentityID: 93a58fa9-689d-4e76-b250-a164e4829742
+            vaults:
+              helloazuremain:
+                AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT_DEFINITIONS: azure-document-intelligence-endpoint-definitions
