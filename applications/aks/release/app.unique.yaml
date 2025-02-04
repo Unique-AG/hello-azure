@@ -1,0 +1,19 @@
+sourceRegistry: uniquecr.azurecr.io
+targetRegistryName: uniquehelloazure
+images:
+- name: ai-service-assistants-core:2025.04
+- name: ai-service-assistants-reranker:2025.04
+- name: backend-service-app-repository:2025.04
+- name: backend-service-chat:2025.04
+- name: backend-service-event-socket:2025.04
+- name: backend-service-client-insights-exporter:2025.04
+- name: backend-service-ingestion-worker:2025.04
+- name: backend-service-ingestion:2025.04
+- name: backend-service-scope-management:2025.04
+- name: backend-service-theme:2025.04
+- name: backend-service-webhook-scheduler:2025.04
+- name: backend-service-webhook-worker:2025.04
+- name: web-app-admin:2025.04
+- name: web-app-chat:2025.04
+- name: web-app-knowledge-upload:2025.04
+- name: web-app-theme:2025.04

@@ -1,0 +1,39 @@
+name: '[k8s][cluster] 🐳'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false # otherwise helm upgrade can get stuck and one needs to manually clean the secrets and helm database
+
+on:
+  pull_request:
+    branches:
+      - preview
+    paths:
+      - .github/workflows/kubectl.yaml
+      - .github/workflows/cluster.kubectl.yaml
+      - cluster/aks/application-sets/chat.application-set.yaml
+  push:
+    branches:
+      - preview
+    paths:
+      - .github/workflows/kubectl.yaml
+      - .github/workflows/unique.kubectl.yaml
+      - cluster/aks/application-sets/chat.application-set.yaml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  base:
+    uses: ./.github/workflows/kubectl.yaml
+    strategy:
+      fail-fast: false
+      matrix:
+        release:
+          - cluster/aks/application-sets/chat.application-set.yaml
+    with:
+      file_name: ${{ matrix.release }}
+      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/preview' && 'apply' || 'diff' }}
+    secrets: inherit

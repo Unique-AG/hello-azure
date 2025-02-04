@@ -1,0 +1,20 @@
+env:
+  ADMIN_APP_URL: https://hello.azure.unique.dev/admin
+  APP_REPOSITORY_BACKEND_API_URL: https://api.hello.azure.unique.dev/apps
+  CHAT_APP_URL: https://hello.azure.unique.dev/chat
+  CHAT_BACKEND_API_URL: https://api.hello.azure.unique.dev/chat
+  CONTENT_SECURITY_POLICY_VALUE: "default-src 'self'; img-src https: blob: data: *.blob.core.windows.net; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' blob: *.hello.azure.unique.dev *.core.windows.net wss://*.hello.azure.unique.dev; media-src 'self' *.blob.core.windows.net; frame-ancestors 'self'; frame-src 'self' https://*.hello.azure.unique.dev;"
+  INGESTION_BACKEND_API_URL: https://api.hello.azure.unique.dev/ingestion
+  KNOWLEDGE_UPLOAD_APP_URL: https://hello.azure.unique.dev/knowledge-upload
+  SCOPE_MANAGEMENT_BACKEND_API_URL: https://api.hello.azure.unique.dev/scope-management
+  STATIC_BACKGROUND_COLOR: "#F7F7F7"
+  STATIC_TAB_NAME: "Hello Azure"
+  THEME_BACKEND_API_URL: https://api.hello.azure.unique.dev/theme
+  ZITADEL_CLIENT_ID: "305512969981198951"
+  ZITADEL_ISSUER: https://id.hello.azure.unique.dev
+  ZITADEL_ORG_ID: ""
+  ZITADEL_PROJECT_ID: "305512913743905383"
+  STATIC_THEME_COLORS: >-
+    {"color-primary-cta": "#8D4C82", "color-primary-variant": "#744B6D", "color-secondary": "#5b5b5b", "color-secondary-variant": "#3e3e3e", "color-background": "#f6f6f6", "color-background-variant": "#ececec", "color-surface": "#ffffff", "color-control": "#cfcfcf", "color-info": "#4167a6", "color-success-light": "#ebfaf2", "color-success-dark": "#0f9451", "color-error-light": "#cc5e71", "color-error-dark": "#d12a46", "color-attention": "#db7600", "color-attention-variant": "#8d4c82", "color-on-primary": "#ffffff", "color-on-secondary": "#ffffff", "color-on-background-main": "#3e3e3e", "color-on-background-dimmed": "#787878", "color-on-surface": "#3e3e3e", "color-on-control-main": "#3e3e3e", "color-on-control-dimmed": "#b3b3b3", "color-on-info": "#ffffff", "color-on-success-light": "#3e3e3e", "color-on-success-dark": "#ffffff", "color-on-error-light": "#ffffff", "color-on-error-dark": "#ffffff", "color-on-attention": "#ffffff", "color-on-attention-variant": "#ffffff"}
+routes:
+  hostname: hello.azure.unique.dev

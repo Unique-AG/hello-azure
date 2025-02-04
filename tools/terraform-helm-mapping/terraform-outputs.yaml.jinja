@@ -1,0 +1,75 @@
+# This file is a template that is automatically filled based on Terraform outputs. {# The variables (between brackets) are the direct names of the Terraform outputs. #}
+kvRefs:
+  adi:
+    endpointDefinitions: {{ document_inteliigence_endpoint_definitions_secret_name }}
+    endpoints: {{ document_inteliigence_endpoints_secret_name }}
+  aoi:
+    apiEndpoint: {{ oai_cognitive_account_endpoints_secret_names[0] }}
+    cognitiveEndpoints: {{ oai_model_version_endpoints_secret_name }}
+  psql:
+    databases:
+      appRepository: {{ psql_database_connection_strings_secret_names["app-repository"] }}
+      chat: {{ psql_database_connection_strings_secret_names["chat"] }}
+      ingestion: {{ psql_database_connection_strings_secret_names["ingestion"] }}
+      scopeManagement: {{ psql_database_connection_strings_secret_names["scope-management"] }}
+      theme: {{ psql_database_connection_strings_secret_names["theme"] }}
+    host: {{ psql_host_secret_name  }}
+    password: {{ psql_password_secret_name }}
+    port: {{ psql_port_secret_name }}
+    username: {{ psql_username_secret_name }}
+  rabbit:
+    password: {{ rabbitmq_password_chat_secret_name }}
+  redis:
+    host: {{ redis_cache_host_secret_name }}
+    password: {{ redis_cache_password_secret_name }}
+    port: {{ redis_cache_port_secret_name }}
+  st:
+    cacheStorageConnectionString: {{ ingestion_cache_connection_string_1_secret_name }}
+    permanentStorageConnectionString: {{ ingestion_storage_connection_string_1_secret_name }}
+  synthetic:
+    appRepository:
+      encryptionKey: {{ encryption_key_app_repository_secret_name }}
+    chat:
+      encryptionKeyLxm: {{ encryption_key_node_chat_lxm_secret_name }}
+    ingestion:
+      encryptionKey: {{ encryption_key_ingestion_secret_name }}
+    zitadel:
+      patScopeManagement: {{ zitadel_pat_secret_name }}
+      psql:
+        password: {{ zitadel_db_user_password_secret_name }}
+params:
+  identities:
+    aksWorkloadIdentityCognitiveServices:
+      clientId: {{ aks_workload_identity_client_id }}
+    keyVaultSecretsProvider:
+      clientId: {{ key_vault_secrets_provider_client_id }}
+    kubelet:
+      clientId: {{ cluster_kublet_client_id }}
+  keyVaults:
+    sensitive:
+      name: {{ sensitive_keyvault_name }}
+    main:
+      name: {{ main_keyvault_name }}
+  nameServers: {{ dns_zone_name_servers }}
+  resourceGroups:
+    core:
+      name: {{ resource_group_core_name }}
+    vnet:
+      name: {{ resource_group_vnet_name }}
+  zoneName: {{ dns_zone_name }}
+plain:
+  registryUrl: {{ container_registry_url }}
+  redis:
+    secret:
+      kvSecretName:  {{ redis_cache_password_secret_name }}
+  # sdkDeploy: #TODO
+  #   botObjectId: 83352105-b3ab-40b2-a386-cef6372d1b04
+  #   key1:
+  #     kvSecretName: sops-age-key-1
+  #     secretKeyName: SOPS_AGE_KEY_1
+  #   key2:
+  #     kvSecretName: sops-age-key-2
+  #     secretKeyName: SOPS_AGE_KEY_2
+  zitadel:
+    secretMasterKey:
+      kvSecretName: {{ zitadel_master_key_secret_name }}

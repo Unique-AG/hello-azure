@@ -1,0 +1,66 @@
+env:
+  LOG_LEVEL: info
+  MAX_HEAP_MB: 400
+hooks:
+  migration:
+    command: |
+      cd /node/dist/apps/node-app-repository; npx prisma migrate deploy
+    enabled: true
+nodeSelector:
+  scalability: steady
+  lifecycle: persistent
+probes:
+  enabled: false
+replicaCount: 1
+resources:
+  limits:
+    memory: 550Mi
+  requests:
+    cpu: 300m
+    memory: 500Mi
+routes:
+  gateway:
+    namespace: unique
+  pathPrefix: /apps
+  paths:
+    default:
+      enabled: true
+    probe:
+      enabled: true
+serviceAccount:
+  enabled: true
+  workloadIdentity:
+    clientId: 
+    enabled: true
+image:
+  tag: "2025.04"
+  repository: uniquehelloazure.azurecr.io/backend-service-app-repository
+env: {}
+envVars:
+  - name: AMQP_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: username
+  - name: AMQP_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: password
+  - name: AMQP_HOST
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: host
+  - name: AMQP_PORT
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: port
+routes:
+  hostname: api.hello.azure.unique.dev
+secretProvider:
+  vaults:
+    helloazuresensitive:
+      DATABASE_URL: database-url-app-repository
+      ENCRYPTION_KEY: encryption-key-app-repository

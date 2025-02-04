@@ -1,0 +1,80 @@
+name: "[helm]"
+
+on:
+  workflow_call:
+    inputs:
+      file_name:
+        description: The path of the file to operate on from root.
+        required: true
+        type: string
+      action:
+        description: "Helm action to perform: template, diff, sync or apply."
+        default: template
+        type: string
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  ARM_SUBSCRIPTION_ID: ${{ vars.SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ vars.TENANT_ID }}
+  ARM_CLIENT_ID: ${{ vars.CLIENT_ID }}
+
+jobs:
+  command:
+    environment: 20-wl
+    runs-on:
+      group: hello.azure.unique.dev
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
+
+      - name: Azure Login action
+        uses: azure/login@a65d910e8af852a8061c627c456678983e180302 #v2.2.0
+        with:
+          tenant-id: ${{ vars.TENANT_ID }}
+          client-id: ${{ vars.CLIENT_ID }}
+          subscription-id: ${{ vars.SUBSCRIPTION_ID }}
+
+      - name: Set up kubelogin
+        uses: azure/use-kubelogin@76597ae0fcbaace21b05e13a2cbf8daee2c6e820 #v1.2
+        with:
+          kubelogin-version: v0.1.6
+
+      - name: Get AKS context
+        uses: azure/aks-set-context@feeca6405be94202afcb1c395616ff29b1811b9f #v4.0.2
+        with:
+          resource-group: "resource-group-core"
+          cluster-name: "aks-cluster"
+          admin: 'false'
+          use-kubelogin: 'true'
+
+      - name: Setup Helm
+        uses: mamezou-tech/setup-helmfile@fd46979d2984c886929c416fbdf859b1c5efa0ea #v2.1.0
+        # todo: do we need to pin dependencies? the pinned sha above uses versioned dependencies at least
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd #v3.1.2
+        with:
+          terraform_version: 1.10.0
+
+      - name: "🔍 Helm Template"
+        if: inputs.action == 'template'
+        run: |
+          helmfile -f ${{ inputs.file_name }} ${{ inputs.release_name && format('-l name={0}', inputs.release_name) || '' }} template
+
+      - name: "🪞 Helm Diff"
+        if: inputs.action == 'diff'
+        run: |
+          helmfile -f ${{ inputs.file_name }} --concurrency 4 ${{ inputs.release_name && format('-l name={0}', inputs.release_name) || '' }} diff
+
+      - name: "🚀 Helm Apply/Sync"
+        if: inputs.action == 'apply' || inputs.action == 'sync'
+        run: |
+          helmfile -f ${{ inputs.file_name }} ${{ inputs.release_name && format('-l name={0}', inputs.release_name) || '' }} sync

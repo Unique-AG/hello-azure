@@ -1,0 +1,58 @@
+name: '[helm][cluster] ☸️'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false # otherwise helm upgrade can get stuck and one needs to manually clean the secrets and helm database
+
+on:
+  pull_request:
+    branches:
+      - preview
+    paths:
+      - .github/workflows/helm.yaml
+      - .github/workflows/cluster.helm.yaml
+      - cluster/aks/**
+  push:
+    branches:
+      - preview
+    paths:
+      - .github/workflows/helm.yaml
+      - .github/workflows/cluster.helm.yaml
+      - cluster/aks/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  # The Sync Waves are a bit a fake to mimic and make sure the cluster is updated in a controlled way.
+  sync-wave-0:
+    uses: ./.github/workflows/helm.yaml
+    strategy:
+      fail-fast: false
+      matrix:
+        release:
+          - cluster/aks/cert-manager/cert-manager.yaml
+          - cluster/aks/aks-extensions/aks-extensions.yaml
+          - cluster/aks/reloader/reloader.yaml
+          - cluster/aks/argo/argo.yaml
+          - cluster/aks/rabbitmq/rabbitmq-operator.yaml
+    with:
+      file_name: ${{ matrix.release }}
+      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/preview' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}
+    secrets: inherit
+
+  sync-wave-1:
+    needs: sync-wave-0
+    uses: ./.github/workflows/helm.yaml
+    strategy:
+      fail-fast: false
+      matrix:
+        release:
+          - cluster/aks/kong/kong.yaml
+          - cluster/aks/zitadel/zitadel.yaml
+    with:
+      file_name: ${{ matrix.release }}
+      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/preview' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}
+    secrets: inherit
