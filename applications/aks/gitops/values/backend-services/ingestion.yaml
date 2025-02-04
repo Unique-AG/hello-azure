@@ -114,5 +114,5 @@ secretProvider:
       AZURE_INGESTION_CACHE_STORAGE_CONNECTION_STRING: ingestion-cache-connection-string-1
       INGESTION_ENCRYPTION_KEY: encryption-key-ingestion
     helloazuremain:
-      AZURE_OPENAI_API_ENDPOINT: azure-openai-endpoint-definitions
+      AZURE_OPENAI_API_ENDPOINT: cognitive-account-swedencentral-ep
       AZURE_DOCUMENT_INTELLIGENCE_ENDPOINTS: azure-document-intelligence-endpoints
