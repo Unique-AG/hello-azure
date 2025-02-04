@@ -58,7 +58,7 @@ envVars:
         name: rabbitmqcluster-chat-default-user
         key: port
 routes:
-  hostname: api.gateway.azure.unique.dev
+  hostname: api.hello.azure.unique.dev
 secretProvider:
   vaults:
     helloazuresensitive:

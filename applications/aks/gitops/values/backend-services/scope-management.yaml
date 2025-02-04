@@ -58,7 +58,7 @@ extraRoutes:
         group: gateway.networking.k8s.io
         kind: Gateway
     hostnames:
-      - api.gateway.azure.unique.dev
+      - api.hello.azure.unique.dev
     matches:
       - path:
           type: PathPrefix

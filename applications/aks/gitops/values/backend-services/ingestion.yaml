@@ -32,7 +32,7 @@ env:
   EMBEDDING_DIMENSION: 1536
   ENABLE_MALWARE_SCAN: "true"
   FILE_RETENTION_IN_DAYS: 30
-  INGESTION_UPLOAD_API_URL: https://api.gateway.azure.unique.dev/scoped/ingestion/upload
+  INGESTION_UPLOAD_API_URL: https://api.hello.azure.unique.dev/scoped/ingestion/upload
   LOG_LEVEL: info
   MAX_HEAP_MB: 550
   QDRANT_URL: http://qdrant-headless.unique.svc.cluster.local:6333
