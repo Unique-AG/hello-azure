@@ -14,6 +14,9 @@ cronJob:
   successfulJobsHistoryLimit: 1
   suspend: false
   timeZone: Europe/Zurich
+image:
+  tag: "2025.04"
+  repository: uniquehelloazure.azurecr.io/backend-service-scope-management
 env:
   AUDIT_LOG_DIR: /dev/stdout
   CHAT_API_URL: http://backend-service-chat.unique.svc
@@ -21,9 +24,29 @@ env:
   INGESTION_API_URL: http://backend-service-ingestion.unique.svc
   LOG_LEVEL: info
   MAX_HEAP_MB: 750
-  ZITADEL_HOST: unset_default_value
+  ZITADEL_HOST: {{ printf "%s%s.%s" "https://" .Values.plain.zitadel.subDomainName .Values.params.zoneName }}
   ZITADEL_INTERNAL_HOST: http://zitadel.unique.svc.cluster.local:8080
-  ZITADEL_PROJECT_ID: unset_default_value
+envVars:
+  - name: AMQP_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: username
+  - name: AMQP_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: password
+  - name: AMQP_HOST
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: host
+  - name: AMQP_PORT
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: port
 extraRoutes:
   scim:
     enabled: true
@@ -35,7 +58,7 @@ extraRoutes:
         group: gateway.networking.k8s.io
         kind: Gateway
     hostnames:
-      - unset_default_value
+      - api.gateway.azure.unique.dev
     matches:
       - path:
           type: PathPrefix
@@ -67,4 +90,8 @@ routes:
     probe:
       enabled: true
 secretProvider:
-  useVMManagedIdentity: "true"
+  vaults:
+    helloazuresensitive:
+      DATABASE_URL: database-url-scope-management
+    helloazuremain:
+      ZITADEL_PAT: manual-zitadel-scope-mgmt-pat

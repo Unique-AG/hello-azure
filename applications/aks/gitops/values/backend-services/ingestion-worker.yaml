@@ -8,6 +8,9 @@ env:
   LOG_LEVEL: info
   MAX_HEAP_MB: 850
   ZITADEL_PROJECT_ID: unset_default_value
+image:
+  tag: "2025.04"
+  repository: uniquehelloazure.azurecr.io/backend-service-ingestion-worker
 eventBasedAutoscaling:
   cron: null
   enabled: true
@@ -38,8 +41,6 @@ resources:
   requests:
     cpu: 0.5
     memory: 1Gi
-secretProvider:
-  useVMManagedIdentity: "true"
 serviceAccount:
   enabled: true
   workloadIdentity:

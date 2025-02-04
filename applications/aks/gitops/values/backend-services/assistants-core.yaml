@@ -22,8 +22,6 @@ resources:
   requests:
     cpu: 500m
     memory: 2Gi
-secretProvider:
-  useVMManagedIdentity: "true"
 securityContext:
   allowPrivilegeEscalation: false
   runAsNonRoot: true
