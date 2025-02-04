@@ -19,6 +19,9 @@ env:
   CLIENT_INSIGHT_SERVER_URL: https://gateway.unique.app/insights/client-insights
   LOG_LEVEL: info
   MAX_HEAP_MB: 200
+image:
+  tag: "2025.04"
+  repository: uniquehelloazure.azurecr.io/backend-service-client-insights-exporter
 nodeSelector:
   scalability: steady
   lifecycle: persistent
