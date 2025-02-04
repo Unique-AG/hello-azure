@@ -8,6 +8,10 @@ environments:
 
 ---
 
+repositories:
+  - name: bedag
+    url: https://bedag.github.io/helm-charts
+
 
 releases:
   - name: rabbitmq-cluster-operator

@@ -61,12 +61,3 @@ spec:
               labelSelector:
                 matchLabels:
                   app.kubernetes.io/name: rabbitmqcluster-chat
-- apiVersion: policy/v1
-kind: PodDisruptionBudget
-metadata:
-  name: rabbitmqcluster-chat
-spec:
-  maxUnavailable: 1
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: rabbitmqcluster-chat
