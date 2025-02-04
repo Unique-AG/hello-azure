@@ -1,6 +1,10 @@
 env:
   FEATURE_FLAG_ENABLE_NOTIFICATION_BANNER_UN_9411: "true"
   MAX_HEAP_MB: 350
+  SELF_URL: https://hello.azure.unique.dev/knowledge-upload
+image:
+  tag: "2025.04"
+  repository: uniquehelloazure.azurecr.io/web-app-knowledge-upload
 nodeSelector:
   scalability: steady
   lifecycle: persistent

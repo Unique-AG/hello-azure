@@ -1,6 +1,10 @@
 env:
   MAX_HEAP_MB: 200
   FEATURE_FLAG_ENABLE_NOTIFICATION_BANNER_UN_9411: "true"
+  SELF_URL: https://hello.azure.unique.dev/theme
+image:
+  tag: "2025.04"
+  repository: uniquehelloazure.azurecr.io/web-app-theme
 nodeSelector:
   scalability: steady
   lifecycle: persistent
