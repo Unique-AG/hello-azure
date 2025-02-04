@@ -57,12 +57,7 @@ jobs:
 
       - name: Setup Helm
         uses: mamezou-tech/setup-helmfile@fd46979d2984c886929c416fbdf859b1c5efa0ea #v2.1.0
-        with:
-          helm-diff-plugin-version: v3.9.10
-          helm-version: v3.15.4
-          helmfile-version: v0.161.0
-          kubectl-version: '1.29.0'
-          helm-s3-plugin-version: v0.16.2
+        # todo: do we need to pin dependencies? the pinned sha above uses versioned dependencies at least
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd #v3.1.2

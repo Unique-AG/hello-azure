@@ -16,21 +16,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
-      with:
-        fetch-depth: 0
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
+        with:
+          fetch-depth: 0
 
-    - name: Format & Docs
-      run: |
-        ./scripts/tf-docs.sh
-        ./scripts/tf-fmt.sh
-        if [[ $(git diff --stat) != '' ]]; then
-          echo -e '\033[0;31mDocumentation outdated or terraform not formatted, pre-commit hook was not installed or skipped!\033[0m ❌'
-          git diff --color
-          exit 1
-        else
-          echo -e '\033[0;32mDocumentation and Format up to date\033[0m ✔'
-        fi
+      - name: Setup Terraform 
+        uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd #v3.1.2
+        with:
+          terraform_version: 1.10.0
 
-    - name: Sec
-      run: ./scripts/tf-sec.sh
+      - name: Format & Docs
+        run: |
+          ./scripts/tf-docs.sh
+          ./scripts/tf-fmt.sh
+          if [[ $(git diff --stat) != '' ]]; then
+            echo -e '\033[0;31mDocumentation outdated or terraform not formatted, pre-commit hook was not installed or skipped!\033[0m ❌'
+            git diff --color
+            exit 1
+          else
+            echo -e '\033[0;32mDocumentation and Format up to date\033[0m ✔'
+          fi
+
+      - name: Sec
+        run: ./scripts/tf-sec.sh
