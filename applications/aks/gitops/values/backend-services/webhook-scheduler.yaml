@@ -2,6 +2,30 @@ env:
   APP_REPOSITORY_URL: http://backend-service-app-repository.unique.svc
   LOG_LEVEL: debug
   MAX_HEAP_MB: 200
+envVars:
+  - name: AMQP_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: username
+  - name: AMQP_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: password
+  - name: AMQP_HOST
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: host
+  - name: AMQP_PORT
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: port
+image:
+  tag: "2025.04"
+  repository: uniquehelloazure.azurecr.io/backend-service-webhook-scheduler
 nodeSelector:
   scalability: steady
   lifecycle: persistent
