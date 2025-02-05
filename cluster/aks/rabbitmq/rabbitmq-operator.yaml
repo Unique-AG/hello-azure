@@ -84,7 +84,7 @@ releases:
               default_user = {{ .Values.plain.rabbit.username }}
               default_pass = {{ printf "%s%s/%s" "ref+azurekeyvault://" .Values.params.keyVaults.sensitive.name .Values.kvRefs.rabbit.password | fetchSecretValue }}
             host: rabbitmqcluster-chat.unique.svc.cluster.local
-            host_fq: amqp://rabbitmqcluster-chat.unique.svc.cluster.local/
+            host_fq: amqp://rabbitmqcluster-chat.unique.svc.cluster.local:5672/
             username: {{ .Values.plain.rabbit.username }}
             password: {{ printf "%s%s/%s" "ref+azurekeyvault://" .Values.params.keyVaults.sensitive.name .Values.kvRefs.rabbit.password | fetchSecretValue }}
             port: "5672"
