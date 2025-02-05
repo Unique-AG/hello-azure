@@ -31,7 +31,7 @@ spec:
                 - type: rabbitmq
                   metadata:
                     protocol: amqp
-                    queueName: unique.node.ingestion.queue
+                    queueName: unique.node.ingestion.chat_queue
                     mode: QueueLength
                     value: "1"
                   authenticationRef:
