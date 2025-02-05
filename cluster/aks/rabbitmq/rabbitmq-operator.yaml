@@ -95,7 +95,7 @@ releases:
           metadata:
             name: {{ .Values.plain.rabbit.secret.secretName }}-ta
           stringData:
-            host: amqp://rabbitmqcluster-chat.unique.svc.cluster.local:5672/
+            host: amqp://rabbitmqcluster-chat.unique.svc.cluster.local:5672/%2f
             username: {{ .Values.plain.rabbit.username }}
             password: {{ printf "%s%s/%s" "ref+azurekeyvault://" .Values.params.keyVaults.sensitive.name .Values.kvRefs.rabbit.password | fetchSecretValue }}
         - apiVersion: keda.sh/v1alpha1
