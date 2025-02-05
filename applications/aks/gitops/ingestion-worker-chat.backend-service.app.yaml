@@ -23,7 +23,7 @@ spec:
             - apiVersion: keda.sh/v1alpha1
               kind: ScaledObject
               metadata:
-                name: ingestion-worker-chat
+                name: backend-service-ingestion-worker-chat
               spec:
                 scaleTargetRef:
                   name: backend-service-ingestion-worker-chat
