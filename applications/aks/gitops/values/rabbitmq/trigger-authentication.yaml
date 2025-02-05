@@ -1,0 +1,9 @@
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: rabbitmqcluster-chat-unique-user
+spec:
+  secretTargetRef:
+    - parameter: host
+      name: rabbitmqcluster-chat-default-user
+      key: host_full
