@@ -65,7 +65,7 @@ releases:
               ephemeral-storage: 2Gi
               memory: 192Mi
 
-# We need to manually create the secret for the rabbitmq cluster in order to be able to use the credentials in two namespaces
+  # We need to manually create the secret for the rabbitmq cluster in order to be able to use the credentials in two namespaces
   # https://github.com/rabbitmq/cluster-operator/tree/main/docs/examples/external-admin-secret-credentials
   - name: rabbitmqcluster-chat-unique-user
     chart: bedag/raw
@@ -84,9 +84,9 @@ releases:
               default_user = {{ .Values.plain.rabbit.username }}
               default_pass = {{ printf "%s%s/%s" "ref+azurekeyvault://" .Values.params.keyVaults.sensitive.name .Values.kvRefs.rabbit.password | fetchSecretValue }}
             host: rabbitmqcluster-chat.unique.svc.cluster.local
+            host_fq: amqp://rabbitmqcluster-chat.unique.svc.cluster.local/
             username: {{ .Values.plain.rabbit.username }}
             password: {{ printf "%s%s/%s" "ref+azurekeyvault://" .Values.params.keyVaults.sensitive.name .Values.kvRefs.rabbit.password | fetchSecretValue }}
-            full_host: amqp://{{ .Values.plain.rabbit.username }}:{{ printf "%s%s/%s" "ref+azurekeyvault://" .Values.params.keyVaults.sensitive.name .Values.kvRefs.rabbit.password | fetchSecretValue }}@rabbitmqcluster-chat.unique.svc.cluster.local:5672/
             port: "5672"
             provider: rabbitmq
             type: rabbitmq
@@ -98,5 +98,10 @@ releases:
             secretTargetRef:
               - parameter: host
                 name: {{ .Values.plain.rabbit.secret.secretName }}
-                key: full_host
-                #! fixme: we can't use that as of now, our chart is broken…
+                key: host_fq
+              - parameter: username
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: username
+              - parameter: password
+                name: {{ .Values.plain.rabbit.secret.secretName }}
+                key: password 
