@@ -19,3 +19,20 @@ spec:
           eventBasedAutoscaling:
             rabbitmq:
               queueName: unique.node.ingestion.chat_queue
+          extraObjects:
+            - apiVersion: keda.sh/v1alpha1
+              kind: ScaledObject
+              metadata:
+                name: backend-service-ingestion-worker-chat
+              spec:
+                scaleTargetRef:
+                  name: backend-service-ingestion-worker-chat
+                triggers:
+                - type: rabbitmq
+                  metadata:
+                    protocol: amqp
+                    queueName: unique.node.ingestion.chat_queue
+                    mode: QueueLength
+                    value: "1"
+                  authenticationRef:
+                    name: rabbitmqcluster-chat-unique-user

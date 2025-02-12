@@ -1,6 +1,6 @@
 spec:
   name: rabbitmq-chat
-  autoSync: true
+  autoSync: false
   source:
     repoURL: https://github.com/Unique-AG/hello-azure
     targetRevision: preview
