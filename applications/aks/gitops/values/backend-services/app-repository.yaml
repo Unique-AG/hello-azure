@@ -33,7 +33,7 @@ serviceAccount:
     clientId: 
     enabled: true
 image:
-  tag: "2025.04"
+  tag: "2025.06"
   repository: uniquehelloazure.azurecr.io/backend-service-app-repository
 env: {}
 envVars:
