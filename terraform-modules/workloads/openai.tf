@@ -1,5 +1,5 @@
 module "openai" {
-  source                      = "github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=azure-openai-2.0.1"
+  source                      = "github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=azure-openai-2.0.3"
   resource_group_name         = data.azurerm_resource_group.core.name
   tags                        = var.tags
   endpoint_secret_name_suffix = "-ep"
@@ -7,7 +7,7 @@ module "openai" {
     "cognitive-account-swedencentral" = {
       name                          = "cognitive-account-swedencentral"
       location                      = "swedencentral"
-      local_auth_enabled            = true
+      local_auth_enabled            = false
       custom_subdomain_name         = var.custom_subdomain_name
       public_network_access_enabled = true # FIXME: use private endpoints
       cognitive_deployments = [
