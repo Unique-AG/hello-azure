@@ -42,7 +42,7 @@ env:
   TRUSTED_DOMAINS: '["*.blob.core.windows.net"]'
   USE_NEW_FTS_QUERY_APPROACH: "true"
   USE_SCOPE_MANAGEMENT: "true"
-  ZITADEL_ROOT_ORG_ID: ""
+  ZITADEL_ROOT_ORG_ID: "305515282535809639"
 envVars:
   - name: RABBITMQ_USERNAME #! FIXME: @evrim should refactor to respect AMQP_USERNAME as well
     valueFrom:
