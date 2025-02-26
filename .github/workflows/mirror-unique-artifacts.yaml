@@ -16,9 +16,13 @@ permissions:
 
 env:
   UNIQUECR_USERNAME: ext-hello-azure
+  ARM_SUBSCRIPTION_ID: ${{ vars.SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ vars.TENANT_ID }}
+  ARM_CLIENT_ID: ${{ vars.CLIENT_ID }}
 
 jobs:
   clone-release:
+    environment: 20-wl
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -34,9 +38,9 @@ jobs:
       - name: Azure Login action
         uses: azure/login@a65d910e8af852a8061c627c456678983e180302 #v2.2.0
         with:
-          client-id: "a0e34ba0-b64c-49f4-8d94-1c74d7b3090e"
-          tenant-id: "aeade8c4-d4f7-4ae7-9149-4975fa3a7f91"
-          subscription-id: "be4e82ff-bf83-4173-a750-15e807845579"
+          tenant-id: ${{ vars.TENANT_ID }}
+          client-id: ${{ vars.CLIENT_ID }}
+          subscription-id: ${{ vars.SUBSCRIPTION_ID }}
 
       - name: Install unique-ag/cli
         run: npm install -g @unique-ag/cli@0.5.1
