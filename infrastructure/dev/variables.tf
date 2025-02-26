@@ -23,17 +23,14 @@ variable "resource_group_name" {
   description = "The resource group name for the tfstate."
   type        = string
 }
-
 variable "storage_account_name" {
   description = "The resource group name for the storage account name"
   type        = string
 }
-
 variable "container_name" {
   description = "The resource group name for the tfstate container name"
   type        = string
 }
-
 variable "key" {
   description = "The key for the tfstate"
   type        = string
