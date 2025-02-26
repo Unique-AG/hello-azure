@@ -42,35 +42,32 @@ image:
   tag: "2025.06"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion-worker
 eventBasedAutoscaling:
-  enabled: false #! fixme: can only be enabled if the helm chart is fixed
-extraObjects:
-  - apiVersion: keda.sh/v1alpha1
-    kind: ScaledObject
-    metadata:
-      name: backend-service-ingestion-worker
-    spec:
-      scaleTargetRef:
-        name: backend-service-ingestion-worker
-      triggers:
-      - type: rabbitmq
-        metadata:
-          protocol: amqp
-          queueName: unique.node.ingestion.queue
-          mode: QueueLength
-          value: "1"
+  enabled: false
+keda:
+  enabled: true
+  minReplicaCount: 0
+  maxReplicaCount: 5
+  scalers:
+    - type: rabbitmq
+      metadata:
+        protocol: amqp
+        queueName: unique.node.ingestion.queue
+        mode: QueueLength
+        value: "1"
         authenticationRef:
           name: rabbitmqcluster-chat-unique-user
+
 nodeSelector:
   scalability: rapid
   lifecycle: ephemeral
 tolerations:
   - key: "scalability"
-    operator: "Equal" 
+    operator: "Equal"
     value: "rapid"
     effect: "NoSchedule"
   - key: "lifecycle"
     operator: "Equal"
-    value: "ephemeral" 
+    value: "ephemeral"
     effect: "NoSchedule"
 probes:
   liveness:
