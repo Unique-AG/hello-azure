@@ -24,6 +24,7 @@ The repository logic bases on two main branches:
 - `release` - contains the stable and tested release artefacts/configurations/files
 - `preview` - contains the continously updated preview artefacts/configurations/files
 
+<!-- https://mermaid.live/edit#pako:eNqtVMtOwzAQ_JWVpciXgtpCUfERkLhUcOCGcnGSxbEax5HjtEJRJL6GD-NLsPNQoVCIKDnFs-PZmbXsmsQ6QcJIENQyl5ZBDTTTYoUbzCgDmmBUCToBalNU6JGIl-gBIe2t4UXqsJqWqd5eGZ7HKZYOsKZCR_HotVZK2hWPvF6LU8Vl3pHveKdZGNxI3HrZXfHeJGgoo5e0aaAJgjCH9hsaD2uAqOWDwQydOdB-I4PZjhC3JkAmLCRvL68h-VBKMV7rykLv4ftNrljAfDpfnE4vTkx8Ovsk8QNxPpJ4yFWfaVdRaAQOZsFy4bR6maNiLcfGWn6J1Y-_L_fjn03HKZ2NbXk-Ll43n8FLN599qcXInv9wKMvjDmXvRP5i4IDE7xba9GRCnLa7lIl7JGrPDkn7FISEud-Em7WXbxyPV1Y_POcx6a45MboSKWFPPCvdqioSbvFGcmG4GigFzx-1Vj2peQct510C -->
 ```mermaid
 %%{init: { 'logLevel': 'debug', 'theme': 'base', 'gitGraph': {'showBranches': true, 'showCommitLabel':true,'mainBranchName': 'preview', 'mainBranchOrder':'9'}} }%%
       gitGraph
@@ -38,6 +39,11 @@ The repository logic bases on two main branches:
         checkout preview
         commit id:"prep 2025.08-rc.1"
         commit id:"prep 2025.08-rc.2"
+        branch 2025.08 order:10
+        commit id:"prep 2025.08-rc.3"
+        commit id:"prep 2025.08-rc.4"
+        checkout preview
+        merge 2025.08 tag:"prep 2025.08-rc.5"
         commit id:"prep 2025.08-rc…"
         checkout release
         merge preview tag:"2025.08"

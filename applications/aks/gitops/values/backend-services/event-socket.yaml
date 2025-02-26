@@ -23,7 +23,7 @@ envVars:
         name: rabbitmqcluster-chat-default-user
         key: port
 image:
-  tag: "2025.04"
+  tag: "2025.06"
   repository: uniquehelloazure.azurecr.io/backend-service-event-socket
 nodeSelector:
   scalability: steady

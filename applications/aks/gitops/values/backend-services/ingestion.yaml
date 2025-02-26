@@ -21,7 +21,7 @@ cronJob:
   suspend: false
   timeZone: Europe/Zurich
 image:
-  tag: "2025.04"
+  tag: "2025.06"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion
 env:
   ADDITIONAL_INGESTION_QUEUES: '["chat_queue"]'
@@ -42,7 +42,7 @@ env:
   TRUSTED_DOMAINS: '["*.blob.core.windows.net"]'
   USE_NEW_FTS_QUERY_APPROACH: "true"
   USE_SCOPE_MANAGEMENT: "true"
-  ZITADEL_ROOT_ORG_ID: ""
+  ZITADEL_ROOT_ORG_ID: "305515282535809639"
 envVars:
   - name: RABBITMQ_USERNAME #! FIXME: @evrim should refactor to respect AMQP_USERNAME as well
     valueFrom:

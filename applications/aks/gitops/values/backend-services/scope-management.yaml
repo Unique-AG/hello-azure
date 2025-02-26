@@ -15,7 +15,7 @@ cronJob:
   suspend: false
   timeZone: Europe/Zurich
 image:
-  tag: "2025.04"
+  tag: "2025.06"
   repository: uniquehelloazure.azurecr.io/backend-service-scope-management
 env:
   AUDIT_LOG_DIR: /dev/stdout

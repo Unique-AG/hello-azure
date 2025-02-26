@@ -12,7 +12,9 @@ No requirements.
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_defender"></a> [defender](#module\_defender) | github.com/unique-ag/terraform-modules.git//modules/azure-defender?depth=1&ref=azure-defender-2.0.0-rc.1 | n/a |
 
 ## Resources
 

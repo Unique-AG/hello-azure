@@ -7,13 +7,10 @@ spec:
   replicas: 1
   resources:
     requests:
-      cpu: 1
+      cpu: '1'
       memory: 1Gi
     limits:
       memory: 1Gi
-  nodeSelector:
-    scalability: steady
-    lifecycle: persistent
   secretBackend:
     externalSecret:
       name: rabbitmqcluster-chat-default-user
@@ -53,6 +50,9 @@ spec:
               securityContext:
                 privileged: false
                 allowPrivilegeEscalation: false
+            nodeSelector:
+              scalability: steady
+              lifecycle: persistent
             topologySpreadConstraints:
             - maxSkew: 1
               topologyKey: "topology.kubernetes.io/zone"
