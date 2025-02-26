@@ -3,7 +3,7 @@ locals {
 }
 
 module "identities" {
-  source = "../terraform-modules/identities"
+  source = "../../terraform-modules/identities"
 
   aks_user_assigned_identity_name              = "aks-identity"
   application_gateway_id                       = module.workloads.application_gateway_id
@@ -32,7 +32,7 @@ module "identities" {
 }
 
 module "perimeter" {
-  source = "../terraform-modules/perimeter"
+  source = "../../terraform-modules/perimeter"
 
   aks_node_rg_name      = module.identities.resource_group_core_name
   budget_contact_emails = ["support@unique.ch"]
@@ -74,7 +74,7 @@ module "perimeter" {
 }
 
 module "workloads" {
-  source = "../terraform-modules/workloads"
+  source = "../../terraform-modules/workloads"
 
   aks_public_ip_id = module.perimeter.aks_public_ip_id
   cluster_name     = "aks-cluster"
