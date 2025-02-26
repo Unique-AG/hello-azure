@@ -3,7 +3,7 @@ env:
   LOG_LEVEL: info
   MAX_HEAP_MB: 200
 image:
-  tag: "2025.04"
+  tag: "2025.06"
   repository: uniquehelloazure.azurecr.io/backend-service-theme
 hooks:
   migration:
