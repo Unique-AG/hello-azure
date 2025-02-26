@@ -55,7 +55,7 @@ jobs:
         run: terraform plan -no-color
 
       - name: Terraform Apply
-        if: ${{ github.event.ref == 'refs/heads/preview' || github.event.ref == 'refs/heads/dev'}}
+        if: github.event_name == 'push' && github.ref == 'refs/heads/preview'
         run: terraform apply -auto-approve -input=false
 
       - uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea #v7.0.1
