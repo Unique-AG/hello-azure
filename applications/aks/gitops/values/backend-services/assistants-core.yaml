@@ -9,7 +9,7 @@ env:
 eventBasedAutoscaling:
   enabled: false
 image:
-  tag: "2025.04"
+  tag: "2025.06"
   repository: uniquehelloazure.azurecr.io/ai-service-assistants-core
 nodeSelector:
   scalability: steady

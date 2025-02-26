@@ -3,7 +3,7 @@ env:
   MAX_HEAP_MB: 350
   SELF_URL: https://hello.azure.unique.dev/knowledge-upload
 image:
-  tag: "2025.04"
+  tag: "2025.06"
   repository: uniquehelloazure.azurecr.io/web-app-knowledge-upload
 nodeSelector:
   scalability: steady
