@@ -3,7 +3,7 @@ env:
   MAX_HEAP_MB: 350
   SELF_URL: https://hello.azure.unique.dev/admin
 image:
-  tag: "2025.06"
+  tag: "2025.08"
   repository: uniquehelloazure.azurecr.io/web-app-admin
 nodeSelector:
   scalability: steady
