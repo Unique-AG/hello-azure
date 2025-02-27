@@ -34,8 +34,7 @@ dns_subdomain_records = {
 
 # Tags
 tags = {
-  app         = "hello-azure"
-  environment = "dev"
+  app = "hello-azure"
 }
 
 # Resource locations
