@@ -29,5 +29,5 @@ spec:
                   queueName: unique.node.ingestion.chat_queue
                   mode: QueueLength
                   value: "1"
-                  authenticationRef:
-                    name: rabbitmqcluster-chat-unique-user
+                authenticationRef:
+                  name: rabbitmqcluster-chat-unique-user

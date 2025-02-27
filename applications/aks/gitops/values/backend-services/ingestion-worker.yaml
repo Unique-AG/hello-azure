@@ -54,8 +54,8 @@ keda:
         queueName: unique.node.ingestion.queue
         mode: QueueLength
         value: "1"
-        authenticationRef:
-          name: rabbitmqcluster-chat-unique-user
+      authenticationRef:
+        name: rabbitmqcluster-chat-unique-user
 
 nodeSelector:
   scalability: rapid
