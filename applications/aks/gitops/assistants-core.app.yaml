@@ -7,10 +7,10 @@ spec:
       ref: values
     - repoURL: ghcr.io/unique-ag/helm-charts
       chart: ai-service
-      targetRevision: 1.1.2
+      targetRevision: 1.2.6
       helm:
         releaseName: assistants-core
-        valueFiles: 
+        valueFiles:
           - $values/applications/aks/gitops/values/backend-services/_all.yaml
           - $values/applications/aks/gitops/values/backend-services/assistants-core.yaml
         valuesObject: {}
