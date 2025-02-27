@@ -59,7 +59,7 @@ module "perimeter" {
   sensitive_kv_name             = var.sensitive_kv_name
   tags                          = var.tags
   virtual_network_id            = module.vnet.resource_id
-  
+
   depends_on = [
     module.identities.resource_group_core_id,
     module.identities.resource_group_sensitive_id,
@@ -70,30 +70,30 @@ module "perimeter" {
 module "workloads" {
   source = "../../terraform-modules/workloads"
 
-  aks_public_ip_id                               = module.perimeter.aks_public_ip_id
-  cluster_name                                   = var.cluster_name
-  custom_subdomain_name                          = var.custom_subdomain_name
+  aks_public_ip_id                                = module.perimeter.aks_public_ip_id
+  cluster_name                                    = var.cluster_name
+  custom_subdomain_name                           = var.custom_subdomain_name
   document_intelligence_user_assigned_identity_id = module.identities.document_intelligence_user_assigned_identity_id
-  ingestion_cache_user_assigned_identity_id      = module.identities.ingestion_cache_user_assigned_identity_id
-  ingestion_storage_user_assigned_identity_id    = module.identities.ingestion_storage_user_assigned_identity_id
-  log_analytics_workspace_id                     = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.OperationalInsights/workspaces/${module.perimeter.log_analytics_workspace_name}"
-  main_kv_id                                     = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.KeyVault/vaults/${module.perimeter.key_vault_main_name}"
-  name_prefix                                    = var.name_prefix
-  node_resource_group_name                       = "${module.identities.resource_group_core_name}-aks-nodes"
-  postgresql_private_dns_zone_id                 = module.perimeter.postgresql_private_dns_zone_id
-  postgresql_server_name                         = "${var.name_prefix}-psql"
-  postgresql_subnet_id                           = module.vnet.subnets["snet-psql"].resource_id
-  psql_user_assigned_identity_id                 = module.identities.psql_user_assigned_identity_id
-  resource_group_core_location                   = var.resource_group_core_location
-  resource_group_core_name                       = module.identities.resource_group_core_name
-  resource_group_sensitive_name                  = module.identities.resource_group_sensitive_name
-  sensitive_kv_id                                = module.perimeter.key_vault_sensitive_id
-  subnet_agw_cidr                                = var.subnet_agw_cidr
-  subnet_agw_id                                  = module.vnet.subnets["snet-agw"].resource_id
-  subnet_aks_nodes_id                            = module.vnet.subnets["snet-aks-nodes"].resource_id
-  tags                                           = var.tags
-  tenant_id                                      = var.tenant_id
-  
+  ingestion_cache_user_assigned_identity_id       = module.identities.ingestion_cache_user_assigned_identity_id
+  ingestion_storage_user_assigned_identity_id     = module.identities.ingestion_storage_user_assigned_identity_id
+  log_analytics_workspace_id                      = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.OperationalInsights/workspaces/${module.perimeter.log_analytics_workspace_name}"
+  main_kv_id                                      = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.KeyVault/vaults/${module.perimeter.key_vault_main_name}"
+  name_prefix                                     = var.name_prefix
+  node_resource_group_name                        = "${module.identities.resource_group_core_name}-aks-nodes"
+  postgresql_private_dns_zone_id                  = module.perimeter.postgresql_private_dns_zone_id
+  postgresql_server_name                          = "${var.name_prefix}-psql"
+  postgresql_subnet_id                            = module.vnet.subnets["snet-psql"].resource_id
+  psql_user_assigned_identity_id                  = module.identities.psql_user_assigned_identity_id
+  resource_group_core_location                    = var.resource_group_core_location
+  resource_group_core_name                        = module.identities.resource_group_core_name
+  resource_group_sensitive_name                   = module.identities.resource_group_sensitive_name
+  sensitive_kv_id                                 = module.perimeter.key_vault_sensitive_id
+  subnet_agw_cidr                                 = var.subnet_agw_cidr
+  subnet_agw_id                                   = module.vnet.subnets["snet-agw"].resource_id
+  subnet_aks_nodes_id                             = module.vnet.subnets["snet-aks-nodes"].resource_id
+  tags                                            = var.tags
+  tenant_id                                       = var.tenant_id
+
   depends_on = [
     module.identities.resource_group_core_id,
     module.identities.resource_group_sensitive_id,
