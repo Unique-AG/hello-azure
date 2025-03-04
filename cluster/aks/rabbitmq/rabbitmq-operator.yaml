@@ -90,3 +90,4 @@ releases:
             port: "5672"
             provider: rabbitmq
             type: rabbitmq
+            
