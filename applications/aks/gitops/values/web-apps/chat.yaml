@@ -35,7 +35,7 @@ extraRoutes:
           type: Exact
           value: /
 image:
-  tag: "2025.06"
+  tag: "2025.08"
   repository: uniquehelloazure.azurecr.io/web-app-chat
 nodeSelector:
   scalability: steady
