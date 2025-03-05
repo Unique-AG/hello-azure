@@ -13,7 +13,7 @@ images:
 - name: backend-service-theme:2025.10
 - name: backend-service-webhook-scheduler:2025.10
 - name: backend-service-webhook-worker:2025.10
-- name: configuration-backend:2025:10
+- name: backend-service-configuration:2025:10
 - name: web-app-admin:2025.10
 - name: web-app-chat:2025.10
 - name: web-app-knowledge-upload:2025.10

@@ -8,7 +8,7 @@ hooks:
       cd /home/node/app/prisma; npx prisma migrate deploy
     enabled: true
 image:
-  repository: uniquehelloazure.azurecr.io/configuration-backend
+  repository: uniquehelloazure.azurecr.io/backend-service-configuration
   tag: "2025.10"
 replicaCount: 1
 resources:
