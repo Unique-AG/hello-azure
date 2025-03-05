@@ -1,20 +1,20 @@
 # Environment-specific configuration
-dns_zone_name                       = "hello.azure.unique.dev"
-name_prefix                         = "hello-azure"
-subnet_agw_cidr                     = "10.201.3.0/28"
+dns_zone_name                       = "hello.azure.unique.test"
+name_prefix                         = "ha-test"
+subnet_agw_cidr                     = "10.202.3.0/28"
 budget_contact_emails               = ["support@unique.ch"]
 kv_sku                              = "premium"
-log_analytics_workspace_name        = "loganalytics"
-aks_identity_name                   = "aks-identity"
-cluster_name                        = "aks-cluster"
+log_analytics_workspace_name        = "la-test"
+aks_identity_name                   = "aks-id-test"
+cluster_name                        = "aks-test"
 gitops_display_name                 = "GitOps"
-document_intelligence_identity_name = "document-intelligence-identity"
-ingestion_cache_identity_name       = "ingestion-cache-identity"
-ingestion_storage_identity_name     = "ingestion-storage-identity"
-psql_identity_name                  = "psql-identity"
-csi_identity_name                   = "csi_identity"
-main_kv_name                        = "helloazuremain"
-sensitive_kv_name                   = "helloazuresensitive"
+document_intelligence_identity_name = "docint-id-test"
+ingestion_cache_identity_name       = "cache-id-test"
+ingestion_storage_identity_name     = "storage-id-test"
+psql_identity_name                  = "psql-id-test"
+csi_identity_name                   = "csi-id-test"
+main_kv_name                        = "hakv1test"
+sensitive_kv_name                   = "hakv2test"
 
 # DNS subdomain records
 dns_subdomain_records = {
@@ -65,4 +65,4 @@ telemetry_observer_user_ids = [
   "3b48f167-cb68-4655-b45b-878e170af84d"
 ]
 
-custom_subdomain_name = "hello-azure" 
+custom_subdomain_name = "ha-test" 
