@@ -15,11 +15,14 @@ psql_identity_name                  = "psql-id-test"
 csi_identity_name                   = "csi-id-test"
 main_kv_name                        = "hakv1test"
 sensitive_kv_name                   = "hakv2test"
+<<<<<<< HEAD
 environment                         = "test"
 container_registry_name             = "uqhacrtest"
 redis_name                          = "uqharedis-test"
 ingestion_cache_sa_name             = "uqhacachetest"
 ingestion_storage_sa_name           = "uqhastoragetest"
+=======
+>>>>>>> 91f8af9 (chore: update test environment network and configuration (#42))
 
 # DNS subdomain records
 dns_subdomain_records = {
