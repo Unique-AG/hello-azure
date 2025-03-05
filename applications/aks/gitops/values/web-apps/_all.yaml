@@ -9,7 +9,7 @@ env:
   SCOPE_MANAGEMENT_BACKEND_API_URL: https://api.hello.azure.unique.dev/scope-management
   STATIC_BACKGROUND_COLOR: "#F7F7F7"
   STATIC_TAB_NAME: "Hello Azure"
-  THEME_BACKEND_API_URL: https://api.hello.azure.unique.dev/theme
+  THEME_BACKEND_API_URL: https://api.hello.azure.unique.dev/configuration
   ZITADEL_CLIENT_ID: "305512969981198951"
   ZITADEL_ISSUER: https://id.hello.azure.unique.dev
   ZITADEL_ORG_ID: ""
