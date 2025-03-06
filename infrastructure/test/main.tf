@@ -87,7 +87,7 @@ module "workloads" {
   resource_group_core_location                    = var.resource_group_core_location
   resource_group_core_name                        = module.identities.resource_group_core_name
   resource_group_sensitive_name                   = module.identities.resource_group_sensitive_name
-  sensitive_kv_id                                 = module.perimeter.key_vault_sensitive_id
+  sensitive_kv_id                                 = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_sensitive_name}/providers/Microsoft.KeyVault/vaults/${module.perimeter.key_vault_sensitive_name}"
   subnet_agw_cidr                                 = var.subnet_agw_cidr
   subnet_agw_id                                   = module.vnet.subnets["snet-agw"].resource_id
   subnet_aks_nodes_id                             = module.vnet.subnets["snet-aks-nodes"].resource_id
