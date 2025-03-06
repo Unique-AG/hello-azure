@@ -5,13 +5,13 @@ on:
     branches:
       - preview
     paths:
-      - .github/workflows/test.governance.tf.yaml.
+      - .github/workflows/test.governance.tf.yaml
       - governance/test/**
   push:
     branches:
       - preview
     paths:
-      - .github/workflows/test.governance.tf.yaml.
+      - .github/workflows/test.governance.tf.yaml
       - governance/test/**
 
 permissions:
