@@ -1,5 +1,6 @@
 name: '[tf] [test] Governance 🔐'
 on:
+  workflow_dispatch: 
   pull_request:
     branches:
       - preview
@@ -12,7 +13,6 @@ on:
     paths:
       - .github/workflows/test.governance.tf.yaml.
       - governance/test/**
-  workflow_dispatch:
 
 permissions:
   contents: read
