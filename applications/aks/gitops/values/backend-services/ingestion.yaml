@@ -21,7 +21,7 @@ cronJob:
   suspend: false
   timeZone: Europe/Zurich
 image:
-  tag: "2025.08"
+  tag: "2025.10"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion
 env:
   ADDITIONAL_INGESTION_QUEUES: '["chat_queue"]'
