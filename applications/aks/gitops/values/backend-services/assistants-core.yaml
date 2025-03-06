@@ -4,7 +4,7 @@ env:
   AZURE_DOCUMENT_INTELLIGENCE_LOCATION: switzerlandnorth
   AZURE_DOCUMENT_INTELLIGENCE_API_VERSION: 2023-07-31
   ENABLED_MIME_TYPES_DOCUMENT_TRANSLATION: '["DOCX", "MSEXCEL", "EXCEL"]'
-  API_BASE: http://backend-service-chat.unique.svc
+  API_BASE: http://backend-service-chat.unique.svc/public
   QUARTR_API_CREDS: "unset_value" # will need to be loaded using .secretProvider and put there via GHA (pre-encrypted locally)
 eventBasedAutoscaling:
   enabled: false
