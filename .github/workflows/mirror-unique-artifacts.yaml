@@ -7,7 +7,7 @@ on:
       - preview
     paths:
       - .github/workflows/mirror-unique-artifacts.yaml
-      - 20_k8s_workloads/mirror_artifacts/app.unique.yaml
+      - applications/aks/release/app.unique.yaml
 
 permissions:
   contents: read

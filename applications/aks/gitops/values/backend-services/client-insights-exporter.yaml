@@ -20,7 +20,7 @@ env:
   LOG_LEVEL: info
   MAX_HEAP_MB: 200
 image:
-  tag: "2025.08"
+  tag: "2025.10"
   repository: uniquehelloazure.azurecr.io/backend-service-client-insights-exporter
 nodeSelector:
   scalability: steady

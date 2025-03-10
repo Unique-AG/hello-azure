@@ -38,6 +38,7 @@ env:
     {"name": "ComplianceCheck", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/compliance_check"},
     {"name": "QuestionExtractor", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/question_extractor"},
     {"name": "QuestionAnswerer", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/question_answerer"},
+    {"name": "Questionnaire", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/question_answerer"},
     {"name": "QuestionPredictor", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/question_predictor"},
     {"name": "DocumentSummarizerV2", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/document_summarizer"},
     {"name": "ImageUpload", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/image_upload"},
@@ -46,7 +47,9 @@ env:
     {"name": "TranslatorV2", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/translator_v2"},
     {"name": "InvestmentResearch", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/investment_research"},
     {"name": "EarningCallsBeta", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/earning_calls"},
-    {"name": "HallucinationLevelEvaluation", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/evaluations/hallucination-level"}
+    {"name": "HallucinationLevelEvaluation", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/evaluations/hallucination-level"},
+    {"name": "DueDiligence", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/magic_table_dd"},
+    {"name": "RfpAgent", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/rfp_agent"}
     ]
   LOG_LEVEL: info
   MAX_HEAP_MB: 3700
@@ -82,7 +85,7 @@ hooks:
       cd /node/dist/apps/node-chat; npx prisma migrate deploy; cd /node; RUNNING_MODE=DATA_MIGRATION  node /node/dist/apps/node-chat/main.js up;
     enabled: true
 image:
-  tag: "2025.08"
+  tag: "2025.10"
   repository: uniquehelloazure.azurecr.io/backend-service-chat
 nodeSelector:
   scalability: steady
