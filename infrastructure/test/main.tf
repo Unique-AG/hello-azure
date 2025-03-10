@@ -13,6 +13,7 @@ locals {
 module "identities" {
   source = "../../terraform-modules/identities"
 
+  environment                                  = var.environment
   aks_user_assigned_identity_name              = var.aks_identity_name
   application_gateway_id                       = module.workloads.application_gateway_id
   application_registration_gitops_display_name = var.gitops_display_name
@@ -93,6 +94,10 @@ module "workloads" {
   subnet_aks_nodes_id                             = module.vnet.subnets["snet-aks-nodes"].resource_id
   tags                                            = var.tags
   tenant_id                                       = var.tenant_id
+  container_registry_name                         = var.container_registry_name
+  redis_name                                      = var.redis_name
+  ingestion_cache_sa_name                         = var.ingestion_cache_sa_name
+  ingestion_storage_sa_name                       = var.ingestion_storage_sa_name
 
   depends_on = [
     module.identities.resource_group_core_id,
