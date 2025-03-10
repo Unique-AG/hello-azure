@@ -19,9 +19,13 @@ resources:
     cpu: 100m
     memory: 300Mi
 routes:
+  gateway:
+    namespace: unique
   pathPrefix: /configuration
   paths:
     default:
+      enabled: true
+    scoped:
       enabled: true
     probe:
       enabled: true
