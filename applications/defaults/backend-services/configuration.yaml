@@ -22,6 +22,8 @@ routes:
   paths:
     default:
       enabled: true
+    scoped:
+      enabled: true
     probe:
       enabled: true
 service:
