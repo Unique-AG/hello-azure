@@ -18,8 +18,8 @@ sensitive_kv_name                   = "hakv2test"
 environment                         = "test"
 container_registry_name             = "uqhacrtest"
 redis_name                          = "uqharedis-test"
-ingestion_cache_sa_name             = "uqhacache-test"
-ingestion_storage_sa_name           = "uqhastorage-test"
+ingestion_cache_sa_name             = "uqhacachetest"
+ingestion_storage_sa_name           = "uqhastoragetest"
 
 # DNS subdomain records
 dns_subdomain_records = {
