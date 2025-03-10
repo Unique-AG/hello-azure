@@ -82,7 +82,7 @@ module "workloads" {
   name_prefix                                     = var.name_prefix
   node_resource_group_name                        = "${module.identities.resource_group_core_name}-aks-nodes"
   postgresql_private_dns_zone_id                  = module.perimeter.postgresql_private_dns_zone_id
-  postgresql_server_name                          = "${var.name_prefix}-psql"
+  postgresql_server_name                          = "psql-${random_string.psql_suffix.result}"
   postgresql_subnet_id                            = module.vnet.subnets["snet-psql"].resource_id
   psql_user_assigned_identity_id                  = module.identities.psql_user_assigned_identity_id
   resource_group_core_location                    = var.resource_group_core_location
@@ -107,4 +107,10 @@ module "workloads" {
     # module.identities.resource_group_vnet_id,
     # module.perimeter.log_analytics_workspace_id
   ]
+}
+
+resource "random_string" "psql_suffix" {
+  length  = 8
+  special = false
+  upper   = false
 }
