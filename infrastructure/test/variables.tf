@@ -188,3 +188,23 @@ variable "environment" {
   description = "Environment name (e.g., dev, staging, prod)"
   type        = string
 }
+
+variable "container_registry_name" {
+  description = "Name of the Azure Container Registry"
+  type        = string
+}
+
+variable "redis_name" {
+  description = "Name of the Azure Redis Cache instance"
+  type        = string
+}
+
+variable "ingestion_cache_sa_name" {
+  description = "Name of the storage account used for ingestion cache"
+  type        = string
+}
+
+variable "ingestion_storage_sa_name" {
+  description = "Name of the storage account used for ingestion storage"
+  type        = string
+}

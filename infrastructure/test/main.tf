@@ -94,6 +94,10 @@ module "workloads" {
   subnet_aks_nodes_id                             = module.vnet.subnets["snet-aks-nodes"].resource_id
   tags                                            = var.tags
   tenant_id                                       = var.tenant_id
+  container_registry_name                         = var.container_registry_name
+  redis_name                                      = var.redis_name
+  ingestion_cache_sa_name                         = var.ingestion_cache_sa_name
+  ingestion_storage_sa_name                       = var.ingestion_storage_sa_name
 
   depends_on = [
     module.identities.resource_group_core_id,
