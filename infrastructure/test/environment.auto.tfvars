@@ -15,6 +15,7 @@ psql_identity_name                  = "psql-id-test"
 csi_identity_name                   = "csi-id-test"
 main_kv_name                        = "hakv1test"
 sensitive_kv_name                   = "hakv2test"
+environment                         = "test"
 
 # DNS subdomain records
 dns_subdomain_records = {

@@ -13,6 +13,7 @@ locals {
 module "identities" {
   source = "../../terraform-modules/identities"
 
+  environment                                  = var.environment
   aks_user_assigned_identity_name              = var.aks_identity_name
   application_gateway_id                       = module.workloads.application_gateway_id
   application_registration_gitops_display_name = var.gitops_display_name

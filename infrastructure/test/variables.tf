@@ -183,3 +183,8 @@ variable "telemetry_observer_user_ids" {
   description = "List of user object IDs that will be granted permissions to view telemetry data"
   type        = list(string)
 }
+
+variable "environment" {
+  description = "Environment name (e.g., dev, staging, prod)"
+  type        = string
+}
