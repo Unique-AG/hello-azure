@@ -10,40 +10,75 @@ See also [identities](modules/identities/README.md), [perimeter](modules/perimet
 |------|---------|
 | <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) | 2.2.0 |
 | <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | 3.0.2 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=4.14.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 4.20.0 |
+| <a name="requirement_modtm"></a> [modtm](#requirement\_modtm) | 0.3.2 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | 3.6.3 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >=4.14.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.20.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.6.3 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_identities"></a> [identities](#module\_identities) | ../terraform-modules/identities | n/a |
-| <a name="module_perimeter"></a> [perimeter](#module\_perimeter) | ../terraform-modules/perimeter | n/a |
+| <a name="module_identities"></a> [identities](#module\_identities) | ../../terraform-modules/identities | n/a |
+| <a name="module_perimeter"></a> [perimeter](#module\_perimeter) | ../../terraform-modules/perimeter | n/a |
 | <a name="module_vnet"></a> [vnet](#module\_vnet) | Azure/avm-res-network-virtualnetwork/azurerm | v0.7.1 |
-| <a name="module_workloads"></a> [workloads](#module\_workloads) | ../terraform-modules/workloads | n/a |
+| <a name="module_workloads"></a> [workloads](#module\_workloads) | ../../terraform-modules/workloads | n/a |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [azurerm_resource_group.vnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
+| [azurerm_resource_group.vnet](https://registry.terraform.io/providers/hashicorp/azurerm/4.20.0/docs/resources/resource_group) | resource |
+| [random_string.psql_suffix](https://registry.terraform.io/providers/hashicorp/random/3.6.3/docs/resources/string) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_aks_identity_name"></a> [aks\_identity\_name](#input\_aks\_identity\_name) | Name of the AKS user-assigned identity | `string` | n/a | yes |
+| <a name="input_budget_contact_emails"></a> [budget\_contact\_emails](#input\_budget\_contact\_emails) | List of email addresses for budget notifications | `list(string)` | n/a | yes |
 | <a name="input_client_id"></a> [client\_id](#input\_client\_id) | The client ID for OIDC | `string` | n/a | yes |
+| <a name="input_cluster_admin_user_ids"></a> [cluster\_admin\_user\_ids](#input\_cluster\_admin\_user\_ids) | List of user object IDs that will be granted cluster administrator permissions | `list(string)` | n/a | yes |
+| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the AKS cluster | `string` | n/a | yes |
 | <a name="input_container_name"></a> [container\_name](#input\_container\_name) | The resource group name for the tfstate container name | `string` | n/a | yes |
+| <a name="input_container_registry_name"></a> [container\_registry\_name](#input\_container\_registry\_name) | Name of the Azure Container Registry | `string` | n/a | yes |
+| <a name="input_csi_identity_name"></a> [csi\_identity\_name](#input\_csi\_identity\_name) | Name of the CSI identity | `string` | n/a | yes |
+| <a name="input_custom_subdomain_name"></a> [custom\_subdomain\_name](#input\_custom\_subdomain\_name) | The custom subdomain name to use for the application | `string` | n/a | yes |
+| <a name="input_dns_subdomain_records"></a> [dns\_subdomain\_records](#input\_dns\_subdomain\_records) | Map of DNS subdomain records | <pre>map(object({<br/>    name    = string<br/>    records = list(string)<br/>  }))</pre> | n/a | yes |
+| <a name="input_dns_zone_name"></a> [dns\_zone\_name](#input\_dns\_zone\_name) | The DNS zone name for the environment | `string` | n/a | yes |
+| <a name="input_document_intelligence_identity_name"></a> [document\_intelligence\_identity\_name](#input\_document\_intelligence\_identity\_name) | Name of the document intelligence identity | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Environment name (e.g., dev, staging, prod) | `string` | n/a | yes |
+| <a name="input_gitops_display_name"></a> [gitops\_display\_name](#input\_gitops\_display\_name) | Display name for GitOps application registration | `string` | n/a | yes |
+| <a name="input_gitops_maintainer_user_ids"></a> [gitops\_maintainer\_user\_ids](#input\_gitops\_maintainer\_user\_ids) | List of user object IDs that will be granted GitOps maintainer permissions | `list(string)` | n/a | yes |
+| <a name="input_ingestion_cache_identity_name"></a> [ingestion\_cache\_identity\_name](#input\_ingestion\_cache\_identity\_name) | Name of the ingestion cache identity | `string` | n/a | yes |
+| <a name="input_ingestion_cache_sa_name"></a> [ingestion\_cache\_sa\_name](#input\_ingestion\_cache\_sa\_name) | Name of the storage account used for ingestion cache | `string` | n/a | yes |
+| <a name="input_ingestion_storage_identity_name"></a> [ingestion\_storage\_identity\_name](#input\_ingestion\_storage\_identity\_name) | Name of the ingestion storage identity | `string` | n/a | yes |
+| <a name="input_ingestion_storage_sa_name"></a> [ingestion\_storage\_sa\_name](#input\_ingestion\_storage\_sa\_name) | Name of the storage account used for ingestion storage | `string` | n/a | yes |
 | <a name="input_key"></a> [key](#input\_key) | The key for the tfstate | `string` | n/a | yes |
+| <a name="input_keyvault_secret_writer_user_ids"></a> [keyvault\_secret\_writer\_user\_ids](#input\_keyvault\_secret\_writer\_user\_ids) | List of user object IDs that will be granted permissions to write secrets to Key Vault | `list(string)` | n/a | yes |
+| <a name="input_kv_sku"></a> [kv\_sku](#input\_kv\_sku) | SKU for Key Vault | `string` | n/a | yes |
+| <a name="input_log_analytics_workspace_name"></a> [log\_analytics\_workspace\_name](#input\_log\_analytics\_workspace\_name) | Name of the Log Analytics workspace | `string` | n/a | yes |
+| <a name="input_main_kv_name"></a> [main\_kv\_name](#input\_main\_kv\_name) | Name of the main Key Vault | `string` | n/a | yes |
+| <a name="input_name_prefix"></a> [name\_prefix](#input\_name\_prefix) | Prefix used for naming resources | `string` | n/a | yes |
+| <a name="input_psql_identity_name"></a> [psql\_identity\_name](#input\_psql\_identity\_name) | Name of the PostgreSQL identity | `string` | n/a | yes |
+| <a name="input_redis_name"></a> [redis\_name](#input\_redis\_name) | Name of the Azure Redis Cache instance | `string` | n/a | yes |
+| <a name="input_resource_audit_location"></a> [resource\_audit\_location](#input\_resource\_audit\_location) | The location for resource audit resources | `string` | n/a | yes |
+| <a name="input_resource_group_core_location"></a> [resource\_group\_core\_location](#input\_resource\_group\_core\_location) | The location for core resource group | `string` | n/a | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The resource group name for the tfstate. | `string` | n/a | yes |
+| <a name="input_resource_group_sensitive_location"></a> [resource\_group\_sensitive\_location](#input\_resource\_group\_sensitive\_location) | The location for sensitive resource group | `string` | n/a | yes |
+| <a name="input_resource_vnet_location"></a> [resource\_vnet\_location](#input\_resource\_vnet\_location) | The location for virtual network resources | `string` | n/a | yes |
+| <a name="input_sensitive_kv_name"></a> [sensitive\_kv\_name](#input\_sensitive\_kv\_name) | Name of the sensitive key vault | `string` | n/a | yes |
 | <a name="input_storage_account_name"></a> [storage\_account\_name](#input\_storage\_account\_name) | The resource group name for the storage account name | `string` | n/a | yes |
+| <a name="input_subnet_agw_cidr"></a> [subnet\_agw\_cidr](#input\_subnet\_agw\_cidr) | CIDR block for the Application Gateway subnet | `string` | n/a | yes |
 | <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | The UUID ID of the suscription (not the full Azure Resource ID). | `string` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to all resources | `map(string)` | n/a | yes |
+| <a name="input_telemetry_observer_user_ids"></a> [telemetry\_observer\_user\_ids](#input\_telemetry\_observer\_user\_ids) | List of user object IDs that will be granted permissions to view telemetry data | `list(string)` | n/a | yes |
 | <a name="input_tenant_id"></a> [tenant\_id](#input\_tenant\_id) | The ID of the tenenat | `string` | n/a | yes |
 | <a name="input_use_oidc"></a> [use\_oidc](#input\_use\_oidc) | Whether to use OIDC | `bool` | n/a | yes |
 
