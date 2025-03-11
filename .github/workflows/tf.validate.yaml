@@ -14,14 +14,16 @@ permissions:
 jobs:
   lint:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+      security-events: write  # Required for uploading SARIF results
     steps:
 
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
         with:
           fetch-depth: 0
 
-      - name: Setup Terraform 
+      - name: Setup Terraform
         uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd #v3.1.2
         with:
           terraform_version: 1.10.0
@@ -40,3 +42,8 @@ jobs:
 
       - name: Sec
         run: ./scripts/tf-sec.sh
+
+      - name: Upload SARIF results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: tfsec-results.sarif
