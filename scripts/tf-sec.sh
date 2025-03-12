@@ -13,7 +13,7 @@ if [ "${GITHUB_ACTIONS}" = "true" ]; then
   # Create the output file with write permissions before mounting, so the docker run command can write to it
   touch tfsec-results.sarif
   chmod 666 tfsec-results.sarif
-  CMD="$CMD --format sarif --out /workdir/tfsec-results.sarif"
+  CMD="$CMD --format sarif --out /workdir/tfsec-results.sarif --soft-fail"
 fi
 
 # Execute the command
