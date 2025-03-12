@@ -1,4 +1,4 @@
-name: '[dev][k8s][cluster] 🐳'
+name: '[k8s][cluster] 🐳'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -10,14 +10,14 @@ on:
       - preview
     paths:
       - .github/workflows/kubectl.yaml
-      - .github/workflows/dev.cluster.kubectl.yaml
+      - .github/workflows/cluster.kubectl.yaml
       - cluster/aks/dev/application-sets/dev.chat.application-set.yaml
   push:
     branches:
       - preview
     paths:
       - .github/workflows/kubectl.yaml
-      - .github/workflows/dev.cluster.kubectl.yaml
+      - .github/workflows/cluster.kubectl.yaml
       - cluster/aks/dev/application-sets/dev.chat.application-set.yaml
   workflow_dispatch:
 
