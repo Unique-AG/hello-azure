@@ -3,4 +3,4 @@ images:
   - name: zitadel/zitadel:v2.62.7
   - name: stakater/reloader:v1.1.0
 sourceRegistry: ghcr.io
-targetRegistry: uniquehelloazure.azurecr.io
+targetRegistry: uqhacrtest.azurecr.io

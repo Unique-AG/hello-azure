@@ -3,4 +3,4 @@ images:
   - name: jetstack/cert-manager-webhook:v1.12.2
   - name: jetstack/cert-manager-controller:v1.12.2
 sourceRegistry: quay.io
-targetRegistry: uniquehelloazure.azurecr.io
+targetRegistry: uqhacrtest.azurecr.io
