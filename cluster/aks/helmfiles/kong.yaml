@@ -23,7 +23,7 @@ releases:
     wait: false
     values:
       - ../values/default/kong-plugins.yaml.gotmpl
-      {{- if isFile "values/{{ .Environment.Name }}/kong-plugins.yaml.gotmpl" }}
+      {{- if isFile "../values/{{ .Environment.Name }}/kong-plugins.yaml.gotmpl" }}
       - ../values/{{ .Environment.Name }}/kong-plugins.yaml.gotmpl
       {{- end }}
 
@@ -37,7 +37,7 @@ releases:
     wait: false
     values:
       - ../values/default/kong-gateway-environment.yaml.gotmpl
-      {{- if isFile "values/{{ .Environment.Name }}/kong-gateway-environment.yaml.gotmpl" }}
+      {{- if isFile "../values/{{ .Environment.Name }}/kong-gateway-environment.yaml.gotmpl" }}
       - ../values/{{ .Environment.Name }}/kong-gateway-environment.yaml.gotmpl
       {{- end }}
 
@@ -52,7 +52,7 @@ releases:
     disableValidationOnInstall: true # todo can be removed after first apply
     values:
       - ../values/default/kong-controller.yaml.gotmpl
-      {{- if isFile "values/{{ .Environment.Name }}/kong-controller.yaml.gotmpl" }}
+      {{- if isFile "../values/{{ .Environment.Name }}/kong-controller.yaml.gotmpl" }}
       - ../values/{{ .Environment.Name }}/kong-controller.yaml.gotmpl
       {{- end }}
 
@@ -65,7 +65,7 @@ releases:
     wait: false
     values:
       - ../values/default/kong-cluster-plugins.yaml.gotmpl
-      {{- if isFile "values/{{ .Environment.Name }}/kong-cluster-plugins.yaml.gotmpl" }}
+      {{- if isFile (printf "../values/%s/kong-cluster-plugins.yaml.gotmpl" .Environment.Name) }}
       - ../values/{{ .Environment.Name }}/kong-cluster-plugins.yaml.gotmpl
       {{- end }}
 
@@ -78,7 +78,7 @@ releases:
     wait: false
     values:
       - ../values/default/kong-gateway.yaml.gotmpl
-      {{- if isFile "values/{{ .Environment.Name }}/kong-gateway.yaml.gotmpl" }}
+      {{- if isFile (printf "../values/%s/kong-gateway.yaml.gotmpl" .Environment.Name) }}
       - ../values/{{ .Environment.Name }}/kong-gateway.yaml.gotmpl
       {{- end }}
 
@@ -91,6 +91,6 @@ releases:
     wait: false
     values:
       - ../values/default/kong-ingress.yaml.gotmpl
-      {{- if isFile "values/{{ .Environment.Name }}/kong-ingress.yaml.gotmpl" }}
+      {{- if isFile (printf "../values/%s/kong-ingress.yaml.gotmpl" .Environment.Name) }}
       - ../values/{{ .Environment.Name }}/kong-ingress.yaml.gotmpl
       {{- end }}

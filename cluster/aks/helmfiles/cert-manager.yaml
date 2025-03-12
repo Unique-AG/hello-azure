@@ -23,7 +23,7 @@ releases:
     wait: false
     values:
       - ../values/default/cert-manager.yaml.gotmpl
-      {{- if isFile "values/{{ .Environment.Name }}/cert-manager.yaml.gotmpl" }}
+      {{- if isFile (printf "../values/%s/cert-manager.yaml.gotmpl" .Environment.Name) }}
       - ../values/{{ .Environment.Name }}/cert-manager.yaml.gotmpl
       {{- end }}
 
@@ -37,6 +37,6 @@ releases:
       - cert-manager
     values:
       - ../values/default/cluster-issuer.yaml.gotmpl
-      {{- if isFile "values/{{ .Environment.Name }}/cluster-issuer.yaml.gotmpl" }}
+      {{- if isFile (printf "../values/%s/cluster-issuer.yaml.gotmpl" .Environment.Name) }}
       - ../values/{{ .Environment.Name }}/cluster-issuer.yaml.gotmpl
       {{- end }}

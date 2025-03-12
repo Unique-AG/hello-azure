@@ -22,7 +22,7 @@ releases:
     wait: false
     values:
       - ../values/default/argo-azure-entra-secret.yaml.gotmpl
-      {{- if isFile "values/{{ .Environment.Name }}/argo-azure-entra-secret.yaml.gotmpl" }}
+      {{- if isFile (printf "../values/%s/argo-azure-entra-secret.yaml.gotmpl" .Environment.Name) }}
       - ../values/{{ .Environment.Name }}/argo-azure-entra-secret.yaml.gotmpl
       {{- end }}
         
@@ -37,6 +37,6 @@ releases:
     wait: false
     values:
       - ../values/default/argo.yaml.gotmpl
-      {{- if isFile "values/{{ .Environment.Name }}/argo.yaml.gotmpl" }}
+      {{- if isFile (printf "../values/%s/argo.yaml.gotmpl" .Environment.Name) }}
       - ../values/{{ .Environment.Name }}/argo.yaml.gotmpl
       {{- end }}

@@ -21,6 +21,6 @@ releases:
     wait: false
     values:
       - ../values/default/reloader.yaml.gotmpl
-      {{- if isFile "values/{{ .Environment.Name }}/reloader.yaml.gotmpl" }}
+      {{- if isFile (printf "../values/%s/reloader.yaml.gotmpl" .Environment.Name) }}
       - ../values/{{ .Environment.Name }}/reloader.yaml.gotmpl
       {{- end }}

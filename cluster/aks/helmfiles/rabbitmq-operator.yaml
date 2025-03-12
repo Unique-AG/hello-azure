@@ -22,7 +22,7 @@ releases:
     wait: false
     values:
       - ../values/default/rabbitmq-operator.yaml.gotmpl
-      {{- if isFile "values/{{ .Environment.Name }}/rabbitmq-operator.yaml.gotmpl" }}
+      {{- if isFile (printf "../values/%s/rabbitmq-operator.yaml.gotmpl" .Environment.Name) }}
       - ../values/{{ .Environment.Name }}/rabbitmq-operator.yaml.gotmpl
       {{- end }}
 
@@ -36,6 +36,6 @@ releases:
     wait: false
     values:
       - ../values/default/rabbitmq-cluster-operator-secret.yaml.gotmpl
-      {{- if isFile "values/{{ .Environment.Name }}/rabbitmq-cluster-operator-secret.yaml.gotmpl" }}
+      {{- if isFile (printf "../values/%s/rabbitmq-cluster-operator-secret.yaml.gotmpl" .Environment.Name) }}
       - ../values/{{ .Environment.Name }}/rabbitmq-cluster-operator-secret.yaml.gotmpl
       {{- end }}
