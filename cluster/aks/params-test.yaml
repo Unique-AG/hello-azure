@@ -12,16 +12,16 @@ kvRefs:
       ingestion: database-url-ingestion
       scopeManagement: database-url-scope-management
       theme: database-url-theme
-    host: hello-azure-psql-host
-    password: hello-azure-psql-password
-    port: hello-azure-psql-port
-    username: hello-azure-psql-username
+    host: ha-test-psql-host
+    password: ha-test-psql-password
+    port: ha-test-psql-port
+    username: ha-test-psql-username
   rabbit:
     password: rabbitmq-password-chat
   redis:
-    host: uniquehelloazureredis-host
-    password: uniquehelloazureredis-password
-    port: uniquehelloazureredis-port
+    host: uqharedis-test-host
+    password: uqharedis-test-password
+    port: uqharedis-test-port
   st:
     cacheStorageConnectionString: ingestion-cache-connection-string-1 
     permanentStorageConnectionString: ingestion-storage-connection-string-1 
@@ -70,7 +70,7 @@ plain:
     secret:
       secretKeyName: pass 
       secretName: redis-secret-sscsid-keeper 
-      kvSecretName: uniquehelloazureredis-password 
+      kvSecretName: uqharedis-test-password 
   registryUrl: uqhacrtest.azurecr.io 
   zitadel:
     clientId: '305512969981198951' #TODO
