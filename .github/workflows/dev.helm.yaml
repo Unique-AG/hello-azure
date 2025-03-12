@@ -38,9 +38,9 @@ jobs:
       - name: Azure Login action
         uses: azure/login@a65d910e8af852a8061c627c456678983e180302 #v2.2.0
         with:
-          subscription_id: be4e82ff-bf83-4173-a750-15e807845579
-          tenant_id: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
-          client_id: a0e34ba0-b64c-49f4-8d94-1c74d7b3090e
+          subscription-id: be4e82ff-bf83-4173-a750-15e807845579
+          tenant-id: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
+          client-id: a0e34ba0-b64c-49f4-8d94-1c74d7b3090e
 
       - name: Set up kubelogin
         uses: azure/use-kubelogin@76597ae0fcbaace21b05e13a2cbf8daee2c6e820 #v1.2
