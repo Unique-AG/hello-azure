@@ -38,6 +38,7 @@ releases:
     namespace: {{ .Values.self.namespace }}
     chart: bedag/raw
     version: {{ .Values.versions.charts.raw }}
+    disableValidationOnInstall: true # todo can be removed after first apply
     wait: false
     needs:
       - cert-manager
