@@ -11,14 +11,14 @@ on:
     paths:
       - .github/workflows/kubectl.yaml
       - .github/workflows/cluster.kubectl.yaml
-      - cluster/aks/dev/application-sets/dev.chat.application-set.yaml
+      - cluster/aks/application-sets/dev.chat.application-set.yaml
   push:
     branches:
       - preview
     paths:
       - .github/workflows/kubectl.yaml
       - .github/workflows/cluster.kubectl.yaml
-      - cluster/aks/dev/application-sets/dev.chat.application-set.yaml
+      - cluster/aks/application-sets/dev.chat.application-set.yaml
   workflow_dispatch:
 
 permissions:
@@ -32,7 +32,7 @@ jobs:
       fail-fast: false
       matrix:
         release:
-          - cluster/aks/dev/application-sets/dev.chat.application-set.yaml
+          - cluster/aks/application-sets/dev.chat.application-set.yaml
     with:
       file_name: ${{ matrix.release }}
       subscription_id: be4e82ff-bf83-4173-a750-15e807845579

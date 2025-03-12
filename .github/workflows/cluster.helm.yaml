@@ -11,14 +11,20 @@ on:
     paths:
       - .github/workflows/helm.yaml
       - .github/workflows/cluster.helm.yaml
-      - cluster/aks/**
+      - cluster/aks/helmfiles/**
+      - cluster/aks/values/dev/**
+      - cluster/aks/values/default/**
+      - cluster/aks/params-dev.yaml
   push:
     branches:
       - preview
     paths:
       - .github/workflows/helm.yaml
       - .github/workflows/cluster.helm.yaml
-      - cluster/aks/**
+      - cluster/aks/helmfiles/**
+      - cluster/aks/values/dev/**
+      - cluster/aks/values/default/**
+      - cluster/aks/params-dev.yaml
   workflow_dispatch:
 
 permissions:
@@ -33,11 +39,11 @@ jobs:
       fail-fast: false
       matrix:
         release:
-          - cluster/aks/cert-manager/cert-manager.yaml
-          - cluster/aks/aks-extensions/aks-extensions.yaml
-          - cluster/aks/reloader/reloader.yaml
-          - cluster/aks/argo/argo.yaml
-          - cluster/aks/rabbitmq/rabbitmq-operator.yaml
+          - cluster/aks/helmfiles/cert-manager.yaml
+          - cluster/aks/helmfiles/aks-extensions.yaml
+          - cluster/aks/helmfiles/reloader.yaml
+          - cluster/aks/helmfiles/argo.yaml
+          - cluster/aks/helmfiles/rabbitmq-operator.yaml
     with:
       file_name: ${{ matrix.release }}
       subscription_id: be4e82ff-bf83-4173-a750-15e807845579
@@ -54,8 +60,8 @@ jobs:
       fail-fast: false
       matrix:
         release:
-          - cluster/aks/kong/kong.yaml
-          - cluster/aks/zitadel/zitadel.yaml
+          - cluster/aks/helmfiles/kong.yaml
+          - cluster/aks/helmfiles/zitadel.yaml
     with:
       file_name: ${{ matrix.release }}
       subscription_id: be4e82ff-bf83-4173-a750-15e807845579
