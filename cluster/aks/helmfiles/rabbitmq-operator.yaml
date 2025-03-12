@@ -1,0 +1,41 @@
+environments:
+  dev:
+    values:
+      - ../params-dev.yaml
+      -
+        self:
+          namespace: unique
+
+---
+
+repositories:
+  - name: bedag
+    url: https://bedag.github.io/helm-charts
+
+
+releases:
+  - name: rabbitmq-cluster-operator
+    createNamespace: true
+    namespace: {{ .Values.self.namespace }}
+    chart: oci://registry-1.docker.io/bitnamicharts/rabbitmq-cluster-operator
+    version: {{ .Values.versions.charts.rabbitmqClusterOperator }}
+    wait: false
+    values:
+      - ../values/default/rabbitmq-operator.yaml.gotmpl
+      {{- if isFile "values/{{ .Environment.Name }}/rabbitmq-operator.yaml.gotmpl" }}
+      - ../values/{{ .Environment.Name }}/rabbitmq-operator.yaml.gotmpl
+      {{- end }}
+
+
+  # We need to manually create the secret for the rabbitmq cluster in order to be able to use the credentials in two namespaces
+  # https://github.com/rabbitmq/cluster-operator/tree/main/docs/examples/external-admin-secret-credentials
+  - name: rabbitmqcluster-chat-unique-user
+    chart: bedag/raw
+    version: {{ .Values.versions.charts.raw }}
+    namespace: {{ .Values.self.namespace }}
+    wait: false
+    values:
+      - ../values/default/rabbitmq-cluster-operator-secret.yaml.gotmpl
+      {{- if isFile "values/{{ .Environment.Name }}/rabbitmq-cluster-operator-secret.yaml.gotmpl" }}
+      - ../values/{{ .Environment.Name }}/rabbitmq-cluster-operator-secret.yaml.gotmpl
+      {{- end }}

@@ -1,0 +1,42 @@
+environments:
+  dev:
+    values:
+      - ../params-dev.yaml
+      -
+        self:
+          namespace: unique
+
+---
+
+repositories:
+  - name: jetstack
+    url: https://charts.jetstack.io
+  - name: bedag
+    url: https://bedag.github.io/helm-charts
+
+releases:
+  - name: cert-manager
+    createNamespace: true
+    namespace: {{ .Values.self.namespace }}
+    chart: jetstack/cert-manager
+    version: {{ .Values.versions.charts.certManager }}
+    wait: false
+    values:
+      - ../values/default/cert-manager.yaml.gotmpl
+      {{- if isFile "values/{{ .Environment.Name }}/cert-manager.yaml.gotmpl" }}
+      - ../values/{{ .Environment.Name }}/cert-manager.yaml.gotmpl
+      {{- end }}
+
+  # https://cert-manager.io/docs/configuration/acme/dns01/azuredns/#managed-identity-using-aks-kubelet-identity
+  - name: clusterissuer-azure-dns
+    namespace: {{ .Values.self.namespace }}
+    chart: bedag/raw
+    version: {{ .Values.versions.charts.raw }}
+    wait: false
+    needs:
+      - cert-manager
+    values:
+      - ../values/default/cluster-issuer.yaml.gotmpl
+      {{- if isFile "values/{{ .Environment.Name }}/cluster-issuer.yaml.gotmpl" }}
+      - ../values/{{ .Environment.Name }}/cluster-issuer.yaml.gotmpl
+      {{- end }}

@@ -1,0 +1,53 @@
+resources:
+  - apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      annotations:
+        appgw.ingress.kubernetes.io/request-timeout: "120"
+        appgw.ingress.kubernetes.io/rewrite-rule-set: security-headers
+        appgw.ingress.kubernetes.io/ssl-redirect: "true"
+        cert-manager.io/cluster-issuer: {{ .Values.plain.clusterIssuer.name }}
+      name: kong-web-apps
+    spec:
+      ingressClassName: azure-application-gateway
+      rules:
+        - host: hello.azure.unique.dev
+          http:
+            paths:
+              - backend:
+                  service:
+                    name: kong-gateway-proxy
+                    port:
+                      number: 80
+                path: /
+                pathType: Prefix
+      tls:
+        - hosts:
+            - hello.azure.unique.dev
+          secretName: kong-tls
+  - apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      annotations:
+        appgw.ingress.kubernetes.io/request-timeout: "120"
+        appgw.ingress.kubernetes.io/rewrite-rule-set: security-headers
+        appgw.ingress.kubernetes.io/ssl-redirect: "true"
+        cert-manager.io/cluster-issuer: {{ .Values.plain.clusterIssuer.name }}
+      name: kong-backend-services
+    spec:
+      ingressClassName: azure-application-gateway
+      rules:
+        - host: api.hello.azure.unique.dev
+          http:
+            paths:
+              - backend:
+                  service:
+                    name: kong-gateway-proxy
+                    port:
+                      number: 80
+                path: /
+                pathType: Prefix
+      tls:
+        - hosts:
+            - api.hello.azure.unique.dev
+          secretName: kong-api-tls
