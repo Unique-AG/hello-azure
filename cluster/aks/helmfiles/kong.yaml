@@ -82,6 +82,7 @@ releases:
     chart: bedag/raw
     version: {{ .Values.versions.charts.raw }}
     namespace: {{ .Values.self.namespace }}
+    disableValidationOnInstall: true # todo can be removed after first apply
     wait: false
     values:
       - ../values/default/kong-gateway.yaml.gotmpl
@@ -95,7 +96,6 @@ releases:
     chart: bedag/raw
     version: {{ .Values.versions.charts.raw }}
     namespace: {{ .Values.self.namespace }}
-    disableValidationOnInstall: true # todo can be removed after first apply
     wait: false
     values:
       - ../values/default/kong-ingress.yaml.gotmpl
