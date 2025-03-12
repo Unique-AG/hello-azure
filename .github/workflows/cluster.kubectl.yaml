@@ -35,5 +35,9 @@ jobs:
           - cluster/aks/dev/application-sets/dev.chat.application-set.yaml
     with:
       file_name: ${{ matrix.release }}
+      subscription_id: be4e82ff-bf83-4173-a750-15e807845579
+      tenant_id: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
+      client_id: a0e34ba0-b64c-49f4-8d94-1c74d7b3090e
+      runner_group_name: ha.uq.dev
       action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/preview' && 'apply' || 'diff' }}
     secrets: inherit

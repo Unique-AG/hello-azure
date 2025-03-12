@@ -23,6 +23,10 @@ on:
         description: "Azure Client ID"
         required: true
         type: string
+      runner_group_name:
+        description: "Runner Group Name"
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -37,7 +41,7 @@ jobs:
   command:
     environment: 20-wl
     runs-on:
-      group: hello.azure.unique.dev
+      group: ${{ inputs.runner_group_name }}
 
     defaults:
       run:
