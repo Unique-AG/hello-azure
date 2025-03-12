@@ -12,10 +12,10 @@ kvRefs:
       ingestion: database-url-ingestion
       scopeManagement: database-url-scope-management
       theme: database-url-theme
-    host: ha-test-psql-host
-    password: ha-test-psql-password
-    port: ha-test-psql-port
-    username: ha-test-psql-username
+    host: psql-3fod5wcj-host
+    password: psql-3fod5wcj-password
+    port: psql-3fod5wcj-port
+    username: psql-3fod5wcj-username
   rabbit:
     password: rabbitmq-password-chat
   redis:
