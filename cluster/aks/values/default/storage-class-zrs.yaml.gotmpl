@@ -1,0 +1,13 @@
+resources:
+  - apiVersion: storage.k8s.io/v1
+    kind: StorageClass
+    metadata:
+      name: default-zrs
+      labels:
+        addonmanager.kubernetes.io/mode: EnsureExists
+    provisioner: disk.csi.azure.com
+    parameters:
+      skuname: StandardSSD_ZRS
+    reclaimPolicy: Delete
+    allowVolumeExpansion: true
+    volumeBindingMode: WaitForFirstConsumer

@@ -1,0 +1,55 @@
+environments:
+  dev:
+    values:
+      - ../params-dev.yaml
+      -
+        self:
+          namespace: unique
+
+---
+
+repositories:
+  - name: zitadel
+    url: https://charts.zitadel.com
+  - name: bedag
+    url: https://bedag.github.io/helm-charts
+
+releases:
+  - name: zitadel-certs
+    chart: bedag/raw
+    namespace: {{ .Values.self.namespace }}
+    version: {{ .Values.versions.charts.raw }}
+    wait: false
+    values:
+      - ../values/default/zitadel-certs.yaml.gotmpl
+      {{- if isFile "values/{{ .Environment.Name }}/zitadel-certs.yaml.gotmpl" }}
+      - ../values/{{ .Environment.Name }}/zitadel-certs.yaml.gotmpl
+      {{- end }}
+
+
+  - name: zitadel-secret
+    chart: oci://ghcr.io/unique-ag/helm-charts/sscsid-keeper
+    version: {{ .Values.versions.charts.sscsidKeeper }}
+    namespace: {{ .Values.self.namespace }}
+    wait: false
+    values:
+      - ../values/default/zitadel-secret.yaml.gotmpl
+      {{- if isFile "values/{{ .Environment.Name }}/zitadel-secret.yaml.gotmpl" }}
+      - ../values/{{ .Environment.Name }}/zitadel-secret.yaml.gotmpl
+      {{- end }}
+
+
+  - name: zitadel
+    chart: zitadel/zitadel
+    namespace: {{ .Values.self.namespace }}
+    version: {{ .Values.versions.charts.zitadel }}
+    createNamespace: true
+    wait: false
+    needs:
+      - zitadel-certs
+      - zitadel-secret
+    values:
+      - ../values/default/zitadel.yaml.gotmpl
+      {{- if isFile "values/{{ .Environment.Name }}/zitadel.yaml.gotmpl" }}
+      - ../values/{{ .Environment.Name }}/zitadel.yaml.gotmpl
+      {{- end }}
