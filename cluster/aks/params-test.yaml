@@ -23,39 +23,39 @@ kvRefs:
     password: uniquehelloazureredis-password
     port: uniquehelloazureredis-port
   st:
-    cacheStorageConnectionString: ingestion-cache-connection-string-1
-    permanentStorageConnectionString: ingestion-storage-connection-string-1
+    cacheStorageConnectionString: ingestion-cache-connection-string-1 
+    permanentStorageConnectionString: ingestion-storage-connection-string-1 
   synthetic:
     appRepository:
-      encryptionKey: encryption-key-app-repository
+      encryptionKey: encryption-key-app-repository 
     chat:
-      encryptionKeyLxm: encryption-key-chat-lxm
+      encryptionKeyLxm: encryption-key-chat-lxm 
     ingestion:
-      encryptionKey: encryption-key-ingestion
+      encryptionKey: encryption-key-ingestion 
     zitadel:
-      patScopeManagement: manual-zitadel-scope-mgmt-pat
+      patScopeManagement: manual-zitadel-scope-mgmt-pat 
       psql:
-        password: zitadel-db-user-password
+        password: zitadel-db-user-password 
 params:
   identities:
     aksWorkloadIdentityCognitiveServices:
-      clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
+      clientId: 2ffd1adb-50e7-4a89-bbef-26f6f944e2d3
     keyVaultSecretsProvider:
-      clientId: 93a58fa9-689d-4e76-b250-a164e4829742
+      clientId: a6f5a4a6-11c3-4e03-b82c-5c2a677e8a1c
     kubelet:
-      clientId: ecb08638-d0b6-42fa-8805-b390c62c491d
+      clientId: 2c77b08c-2630-49d9-bd6b-680b381216b7
   keyVaults:
     main:
-      name: helloazuremain
+      name: hakv1test
     sensitive:
-      name: helloazuresensitive
-  nameServers: ['ns1-08.azure-dns.com.', 'ns2-08.azure-dns.net.', 'ns3-08.azure-dns.org.', 'ns4-08.azure-dns.info.']
+      name: hakv2test
+  nameServers: ['ns1-09.azure-dns.com.', 'ns2-09.azure-dns.net.', 'ns3-09.azure-dns.org.', 'ns4-09.azure-dns.info.']
   resourceGroups:
     core:
-      name: resource-group-core
+      name: resource-group-core 
     vnet:
-      name: rg-vnet-002
-  zoneName: hello.azure.unique.dev
+      name: rg-vnet-002 
+  zoneName: hello.azure.unique.test
 plain:
   apiGateway:
     subDomainName: api
@@ -64,18 +64,18 @@ plain:
     server: https://acme-v02.api.letsencrypt.org/directory
   rabbit:
     secret:
-      secretName: rabbitmqcluster-chat-default-user
-    username: helloazuredev
+      secretName: rabbitmqcluster-chat-default-user 
+    username: helloazuretest
   redis:
     secret:
-      secretKeyName: pass
-      secretName: redis-secret-sscsid-keeper
-      kvSecretName: uniquehelloazureredis-password
-  registryUrl: uniquehelloazure.azurecr.io
+      secretKeyName: pass 
+      secretName: redis-secret-sscsid-keeper 
+      kvSecretName: uniquehelloazureredis-password 
+  registryUrl: uqhacrtest.azurecr.io 
   zitadel:
-    clientId: '305512969981198951'
-    projectId: '305512913743905383'
-    rootOrgId: ''
+    clientId: '305512969981198951' #TODO
+    projectId: '305512913743905383' #TODO
+    rootOrgId: '' #TODO
     secretCerts:
       secretName: zitadel-certs
     secretMasterKey:
