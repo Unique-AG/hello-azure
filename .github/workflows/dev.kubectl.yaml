@@ -11,37 +11,21 @@ on:
         description: "Kubectl action to perform: diff or apply."
         default: diff
         type: string
-      subscription_id:
-        description: "Azure Subscription ID"
-        required: true
-        type: string
-      tenant_id:
-        description: "Azure Tenant ID"
-        required: true
-        type: string
-      client_id:
-        description: "Azure Client ID"
-        required: true
-        type: string
-      runner_group_name:
-        description: "Runner Group Name"
-        required: true
-        type: string
 
 permissions:
   contents: read
   id-token: write
 
 env:
-  ARM_SUBSCRIPTION_ID: ${{ inputs.subscription_id }}
-  ARM_TENANT_ID: ${{ inputs.tenant_id }}
-  ARM_CLIENT_ID: ${{ inputs.client_id }}
+  ARM_SUBSCRIPTION_ID: be4e82ff-bf83-4173-a750-15e807845579
+  ARM_TENANT_ID: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
+  ARM_CLIENT_ID: a0e34ba0-b64c-49f4-8d94-1c74d7b3090e
 
 jobs:
   command:
     environment: 20-wl
     runs-on:
-      group: ${{ inputs.runner_group_name }}
+      group: ha.uq.dev
 
     defaults:
       run:
@@ -54,9 +38,9 @@ jobs:
       - name: Azure Login action
         uses: azure/login@a65d910e8af852a8061c627c456678983e180302 #v2.2.0
         with:
-          tenant-id: ${{ inputs.tenant_id }}
-          client-id: ${{ inputs.client_id }}
-          subscription-id: ${{ inputs.subscription_id }}
+          tenant-id: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
+          client-id: a0e34ba0-b64c-49f4-8d94-1c74d7b3090e
+          subscription-id: be4e82ff-bf83-4173-a750-15e807845579
 
       - name: Set up kubelogin
         uses: azure/use-kubelogin@76597ae0fcbaace21b05e13a2cbf8daee2c6e820 #v1.2
