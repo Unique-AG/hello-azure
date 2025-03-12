@@ -7,9 +7,15 @@ environments:
           namespace: unique
           argo:
             subDomainName: argo
-
+  test:
+    values:
+      - ../params-test.yaml
+      -
+        self:
+          namespace: unique
+          argo:
+            subDomainName: argo
 ---
-
 repositories:
   - name: argo
     url: https://argoproj.github.io/argo-helm

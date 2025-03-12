@@ -5,6 +5,13 @@ environments:
       -
         self:
           namespace: unique
+  test:
+    values:
+      - ../params-test.yaml
+      -
+        self:
+          namespace: unique
+
 
 ---
 
