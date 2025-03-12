@@ -88,15 +88,15 @@ Now we are ready to make all the changes from within CI pipelines.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | 3.0.1 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=4.14.0 |
+| <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | 3.1.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 4.21.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azuread"></a> [azuread](#provider\_azuread) | 3.0.1 |
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >=4.14.0 |
+| <a name="provider_azuread"></a> [azuread](#provider\_azuread) | 3.1.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.21.1 |
 
 ## Modules
 
@@ -108,21 +108,19 @@ Now we are ready to make all the changes from within CI pipelines.
 
 | Name | Type |
 |------|------|
-| [azuread_app_role_assignment.read_users](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/app_role_assignment) | resource |
-| [azuread_app_role_assignment.read_write_application](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/app_role_assignment) | resource |
-| [azuread_app_role_assignment.read_write_groups](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/app_role_assignment) | resource |
-| [azuread_app_role_assignment.read_write_role_management](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/app_role_assignment) | resource |
-| [azuread_application_federated_identity_credential.github_actions_terraform_dev](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/application_federated_identity_credential) | resource |
-| [azuread_application_federated_identity_credential.github_actions_terraform_env](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/application_federated_identity_credential) | resource |
-| [azuread_application_federated_identity_credential.github_actions_terraform_main](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/application_federated_identity_credential) | resource |
-| [azuread_application_registration.terraform](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/application_registration) | resource |
-| [azuread_service_principal.msgraph](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/service_principal) | resource |
-| [azuread_service_principal.terraform](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/resources/service_principal) | resource |
-| [azurerm_resource_group.tfstate](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
-| [azurerm_role_assignment.terraform_owner](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
-| [azurerm_role_assignment.terraform_user_access_admin](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
-| [azuread_application_published_app_ids.well_known](https://registry.terraform.io/providers/hashicorp/azuread/3.0.1/docs/data-sources/application_published_app_ids) | data source |
-| [azurerm_subscription.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscription) | data source |
+| [azuread_app_role_assignment.read_users](https://registry.terraform.io/providers/hashicorp/azuread/3.1.0/docs/resources/app_role_assignment) | resource |
+| [azuread_app_role_assignment.read_write_application](https://registry.terraform.io/providers/hashicorp/azuread/3.1.0/docs/resources/app_role_assignment) | resource |
+| [azuread_app_role_assignment.read_write_groups](https://registry.terraform.io/providers/hashicorp/azuread/3.1.0/docs/resources/app_role_assignment) | resource |
+| [azuread_app_role_assignment.read_write_role_management](https://registry.terraform.io/providers/hashicorp/azuread/3.1.0/docs/resources/app_role_assignment) | resource |
+| [azuread_application_federated_identity_credential.github_actions_terraform_env](https://registry.terraform.io/providers/hashicorp/azuread/3.1.0/docs/resources/application_federated_identity_credential) | resource |
+| [azuread_application_registration.terraform](https://registry.terraform.io/providers/hashicorp/azuread/3.1.0/docs/resources/application_registration) | resource |
+| [azuread_service_principal.msgraph](https://registry.terraform.io/providers/hashicorp/azuread/3.1.0/docs/resources/service_principal) | resource |
+| [azuread_service_principal.terraform](https://registry.terraform.io/providers/hashicorp/azuread/3.1.0/docs/resources/service_principal) | resource |
+| [azurerm_resource_group.tfstate](https://registry.terraform.io/providers/hashicorp/azurerm/4.21.1/docs/resources/resource_group) | resource |
+| [azurerm_role_assignment.terraform_owner](https://registry.terraform.io/providers/hashicorp/azurerm/4.21.1/docs/resources/role_assignment) | resource |
+| [azurerm_role_assignment.terraform_user_access_admin](https://registry.terraform.io/providers/hashicorp/azurerm/4.21.1/docs/resources/role_assignment) | resource |
+| [azuread_application_published_app_ids.well_known](https://registry.terraform.io/providers/hashicorp/azuread/3.1.0/docs/data-sources/application_published_app_ids) | data source |
+| [azurerm_subscription.this](https://registry.terraform.io/providers/hashicorp/azurerm/4.21.1/docs/data-sources/subscription) | data source |
 
 ## Inputs
 

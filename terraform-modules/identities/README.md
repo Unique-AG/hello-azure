@@ -105,6 +105,7 @@ No requirements.
 | <a name="input_dns_zone_name"></a> [dns\_zone\_name](#input\_dns\_zone\_name) | Name of the DNS zone | `string` | n/a | yes |
 | <a name="input_document_intelligence_identity_name"></a> [document\_intelligence\_identity\_name](#input\_document\_intelligence\_identity\_name) | The name of the document intelligence identity. | `string` | n/a | yes |
 | <a name="input_emergency_admin_group_display_name"></a> [emergency\_admin\_group\_display\_name](#input\_emergency\_admin\_group\_display\_name) | Display name for the Emergency Admin group | `string` | `"Emergency Admin"` | no |
+| <a name="input_environment"></a> [environment](#input\_environment) | Environment name (e.g., dev, staging, prod) | `string` | `null` | no |
 | <a name="input_gitops_maintainers"></a> [gitops\_maintainers](#input\_gitops\_maintainers) | n/a | `set(string)` | n/a | yes |
 | <a name="input_ingestion_cache_identity_name"></a> [ingestion\_cache\_identity\_name](#input\_ingestion\_cache\_identity\_name) | The name of the ingestion cache identity. | `string` | n/a | yes |
 | <a name="input_ingestion_storage_identity_name"></a> [ingestion\_storage\_identity\_name](#input\_ingestion\_storage\_identity\_name) | The name of the ingestion storage identity. | `string` | n/a | yes |
