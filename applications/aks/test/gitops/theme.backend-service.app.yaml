@@ -11,6 +11,7 @@ spec:
       helm:
         releaseName: backend-service-theme
         valueFiles:
+          - $values/applications/aks/default/gitops/values/backend-services/theme.yaml
           - $values/applications/aks/test/gitops/values/backend-services/_all.yaml
           - $values/applications/aks/test/gitops/values/backend-services/theme.yaml
         valuesObject: {}

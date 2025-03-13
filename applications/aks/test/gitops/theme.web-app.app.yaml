@@ -11,6 +11,7 @@ spec:
       helm:
         releaseName: web-app-theme
         valueFiles: 
+          - $values/applications/aks/default/gitops/values/web-apps/theme.yaml
           - $values/applications/aks/test/gitops/values/web-apps/_all.yaml
           - $values/applications/aks/test/gitops/values/web-apps/theme.yaml
         valuesObject: {}

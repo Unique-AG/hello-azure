@@ -11,6 +11,7 @@ spec:
       helm:
         releaseName: backend-service-event-socket
         valueFiles:
+          - $values/applications/aks/default/gitops/values/backend-services/event-socket.yaml
           - $values/applications/aks/dev/gitops/values/backend-services/_all.yaml
           - $values/applications/aks/dev/gitops/values/backend-services/event-socket.yaml
         valuesObject: {}

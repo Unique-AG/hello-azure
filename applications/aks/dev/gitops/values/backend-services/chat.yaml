@@ -1,25 +1,3 @@
-autoscaling:
-  enabled: true
-  maxReplicas: 6
-  minReplicas: 2
-  targetCPUUtilizationPercentage: 80
-  targetMemoryUtilizationPercentage: 80
-cronJob:
-  concurrencyPolicy: Forbid
-  enabled: true
-  env:
-    RUNNING_MODE: "DATA_REDACTION_TASK"
-  failedJobsHistoryLimit: 2
-  jobTemplate:
-    containers:
-      name: redaction-job
-    restartPolicy: Never
-  name: data-redaction-task
-  schedule: 0 0 * * *
-  startingDeadlineSeconds: 10
-  successfulJobsHistoryLimit: 1
-  suspend: false
-  timeZone: Europe/Zurich
 env:
   AMQP_BENCHMARK_PREFETCH: 1
   ANONYMIZED_CHAT_INTERACTIONS_EXPORT: "false"
@@ -54,42 +32,11 @@ env:
   LOG_LEVEL: info
   MAX_HEAP_MB: 3700
   MIN_NO_OF_MESSAGES_BY_USER_BEFORE_NPS_TRIGGER: "30"
-  OPENAI_PROVIDER: azure
-  PUBSUB_BACKEND: redis
   PUBSUB_REDIS_DB: 2
   SCOPE_MANAGEMENT_API_URL: http://backend-service-scope-management.unique.svc
-envVars:
-  - name: AMQP_USERNAME
-    valueFrom:
-      secretKeyRef:
-        name: rabbitmqcluster-chat-default-user
-        key: username
-  - name: AMQP_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: rabbitmqcluster-chat-default-user
-        key: password
-  - name: AMQP_HOST
-    valueFrom:
-      secretKeyRef:
-        name: rabbitmqcluster-chat-default-user
-        key: host
-  - name: AMQP_PORT
-    valueFrom:
-      secretKeyRef:
-        name: rabbitmqcluster-chat-default-user
-        key: port
-hooks:
-  migration:
-    command: |
-      cd /node/dist/apps/node-chat; npx prisma migrate deploy; cd /node; RUNNING_MODE=DATA_MIGRATION  node /node/dist/apps/node-chat/main.js up;
-    enabled: true
 image:
   tag: "2025.10"
   repository: uniquehelloazure.azurecr.io/backend-service-chat
-nodeSelector:
-  scalability: steady
-  lifecycle: persistent
 resources:
   limits:
     cpu: 500m
@@ -97,17 +44,6 @@ resources:
   requests:
     cpu: 500m
     memory: 550Mi
-routes:
-  gateway:
-    namespace: unique
-  pathPrefix: /chat
-  paths:
-    default:
-      enabled: true
-    versioned:
-      enabled: true
-    probe:
-      enabled: true
 secretProvider:
   vaults:
     helloazuresensitive:

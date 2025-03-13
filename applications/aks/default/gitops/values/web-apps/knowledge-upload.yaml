@@ -1,0 +1,33 @@
+env:
+  MAX_HEAP_MB: 350
+nodeSelector:
+  scalability: steady
+  lifecycle: persistent
+probes:
+  liveness:
+    httpGet:
+      path: /knowledge-upload/api/health
+      port: http
+    initialDelaySeconds: 5
+  readiness:
+    httpGet:
+      path: /knowledge-upload/api/health
+      port: http
+    initialDelaySeconds: 5
+replicaCount: 2
+resources:
+  limits:
+    cpu: 300m
+    memory: 500Mi
+  requests:
+    cpu: 300m
+    memory: 450Mi
+routes:
+  gateway:
+    namespace: unique
+  pathPrefix: /knowledge-upload
+  paths:
+    default:
+      enabled: true
+strategy:
+  type: Recreate

@@ -11,6 +11,7 @@ spec:
       helm:
         releaseName: web-app-chat
         valueFiles: 
+          - $values/applications/aks/default/gitops/values/web-apps/chat.yaml
           - $values/applications/aks/dev/gitops/values/web-apps/_all.yaml
           - $values/applications/aks/dev/gitops/values/web-apps/chat.yaml
         valuesObject: {}

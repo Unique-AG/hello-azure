@@ -11,6 +11,7 @@ spec:
       helm:
         releaseName: assistants-core
         valueFiles:
+          - $values/applications/aks/default/gitops/values/backend-services/assistants-core.yaml
           - $values/applications/aks/dev/gitops/values/backend-services/_all.yaml
           - $values/applications/aks/dev/gitops/values/backend-services/assistants-core.yaml
         valuesObject: {}

@@ -1,37 +1,7 @@
-env:
-  AUDIT_LOG_DIR: /dev/stdout
-  LOG_LEVEL: info
-  MAX_HEAP_MB: 200
-hooks:
-  migration:
-    command: |
-      cd /home/node/app/prisma; npx prisma migrate deploy
-    enabled: true
 image:
   repository: uniquehelloazure.azurecr.io/backend-service-configuration
   tag: "2025.10"
-replicaCount: 1
-resources:
-  limits:
-    cpu: 100m
-    memory: 350Mi
-  requests:
-    cpu: 100m
-    memory: 300Mi
-routes:
-  gateway:
-    namespace: unique
-  pathPrefix: /configuration
-  paths:
-    default:
-      enabled: true
-    scoped:
-      enabled: true
-    probe:
-      enabled: true
 secretProvider:
   vaults:
     helloazuresensitive:
       DATABASE_URL: database-url-theme
-service:
-  port: 8095
