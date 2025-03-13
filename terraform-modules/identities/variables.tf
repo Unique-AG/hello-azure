@@ -195,3 +195,9 @@ variable "application_registration_gitops_display_name" {
   description = "Display name for the GitOps application registration"
   type        = string
 }
+
+variable "environment" {
+  description = "Environment name (e.g., dev, staging, prod)"
+  type        = string
+  default     = null
+}

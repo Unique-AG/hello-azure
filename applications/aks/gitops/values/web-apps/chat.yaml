@@ -1,10 +1,11 @@
 env:
+  FEATURE_FLAG_ENABLE_CHAT_HISTORY_UN_5803: "true"
   FEATURE_FLAG_ENABLE_LATEX_UN_8603: "true"
   FEATURE_FLAG_ENABLE_NOTIFICATION_BANNER_UN_9411: "true"
   FEATURE_FLAG_IN_DOCUMENT_TRANSLATOR_UN_8405: "true"
   FEATURE_FLAG_NET_PROMOTER_SCORE_UI_UN_7747: "true"
   FEATURE_FLAG_NEW_TRANSLATION_UI_UN_7233: "true"
-  FILE_TYPES_DOCUMENT_TRANSLATOR: "docx,xlsx"
+  FILE_TYPES_DOCUMENT_TRANSLATOR: "docx,xls,pptx"
   MAX_FILE_SIZE_IN_MB: 200
   MAX_HEAP_MB: 400
   SELF_URL: https://hello.azure.unique.dev/chat
@@ -35,7 +36,7 @@ extraRoutes:
           type: Exact
           value: /
 image:
-  tag: "2025.08"
+  tag: "2025.10"
   repository: uniquehelloazure.azurecr.io/web-app-chat
 nodeSelector:
   scalability: steady

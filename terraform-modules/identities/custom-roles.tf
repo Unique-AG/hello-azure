@@ -1,5 +1,9 @@
+locals {
+  env_suffix = var.environment != null ? "-${var.environment}" : ""
+}
+
 resource "azurerm_role_definition" "emergency_admin" {
-  name  = "Emergency Admin"
+  name  = "Emergency Admin${local.env_suffix}"
   scope = data.azurerm_subscription.current.id
 
   permissions {
@@ -15,7 +19,7 @@ resource "azurerm_role_definition" "emergency_admin" {
 }
 
 resource "azurerm_role_definition" "devops_preview" {
-  name  = "DevOps"
+  name  = "DevOps${local.env_suffix}"
   scope = data.azurerm_subscription.current.id
 
   permissions {
@@ -32,7 +36,7 @@ resource "azurerm_role_definition" "devops_preview" {
 }
 
 resource "azurerm_role_definition" "telemetry_observer" {
-  name  = "Telemetry Observer"
+  name  = "Telemetry Observer${local.env_suffix}"
   scope = data.azurerm_subscription.current.id
 
   permissions {
@@ -49,7 +53,7 @@ resource "azurerm_role_definition" "telemetry_observer" {
 }
 
 resource "azurerm_role_definition" "sensitive_data_observer" {
-  name  = "Sensitive Data Observer"
+  name  = "Sensitive Data Observer${local.env_suffix}"
   scope = data.azurerm_subscription.current.id
 
   permissions {
@@ -65,7 +69,7 @@ resource "azurerm_role_definition" "sensitive_data_observer" {
 }
 
 resource "azurerm_role_definition" "vnet_subnet_access" {
-  name  = "VNet Subnet Access (Preview)"
+  name  = "VNet Subnet Access (Preview)${local.env_suffix}"
   scope = data.azurerm_subscription.current.id
 
   permissions {
@@ -84,7 +88,7 @@ resource "azurerm_role_definition" "vnet_subnet_access" {
 }
 
 resource "azurerm_role_definition" "acr_puller" {
-  name  = "AcrPull Principals"
+  name  = "AcrPull Principals${local.env_suffix}"
   scope = data.azurerm_subscription.current.id
 
   permissions {
