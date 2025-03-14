@@ -49,7 +49,7 @@ params:
       name: hakv1test
     sensitive:
       name: hakv2test
-  nameServers: ['ns1-09.azure-dns.com.', 'ns2-09.azure-dns.net.', 'ns3-09.azure-dns.org.', 'ns4-09.azure-dns.info.']
+  nameServers: ['ns1-04.azure-dns.com.', 'ns2-04.azure-dns.net.', 'ns3-04.azure-dns.org.', 'ns4-04.azure-dns.info.']
   resourceGroups:
     core:
       name: resource-group-core 
