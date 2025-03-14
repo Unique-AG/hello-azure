@@ -1,0 +1,32 @@
+environments:
+  dev:
+    values:
+      - ../params-dev.yaml
+      -
+        self:
+          namespace: unique
+  test:
+    values:
+      - ../params-test.yaml
+      -
+        self:
+          namespace: unique
+
+---
+
+repositories:
+  - name: stakater
+    url: https://stakater.github.io/stakater-charts
+
+releases:
+  - name: reloader
+    createNamespace: true
+    namespace: {{ .Values.self.namespace }}
+    chart: stakater/reloader
+    version: {{ .Values.versions.charts.reloader }}
+    wait: false
+    values:
+      - ../values/default/reloader.yaml.gotmpl
+      {{- if isFile (printf "../values/%s/reloader.yaml.gotmpl" .Environment.Name) }}
+      - ../values/{{ .Environment.Name }}/reloader.yaml.gotmpl
+      {{- end }}

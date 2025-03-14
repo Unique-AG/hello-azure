@@ -1,5 +1,5 @@
 # Environment-specific configuration
-dns_zone_name                       = "hello.azure.unique.test"
+dns_zone_name                       = "test-hello.azure.unique.dev"
 name_prefix                         = "ha-test"
 subnet_agw_cidr                     = "10.202.3.0/28"
 budget_contact_emails               = ["support@unique.ch"]
@@ -74,4 +74,4 @@ telemetry_observer_user_ids = [
   "0a28a069-6af6-43a3-9ef4-4b2a9c6d1b86"
 ]
 
-custom_subdomain_name = "ha-test" 
+custom_subdomain_name = "ha-test"

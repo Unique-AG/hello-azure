@@ -1,0 +1,104 @@
+environments:
+  dev:
+    values:
+      - ../params-dev.yaml
+      -
+        self:
+          namespace: unique
+  test:
+    values:
+      - ../params-test.yaml
+      -
+        self:
+          namespace: unique
+
+---
+
+repositories:
+  - name: kong
+    url: https://charts.konghq.com
+  - name: bedag
+    url: https://bedag.github.io/helm-charts
+
+releases:
+  - name: kong-plugins
+    createNamespace: true
+    namespace: {{ .Values.self.namespace }}
+    chart: oci://ghcr.io/unique-ag/helm-charts/kong-plugins
+    version: {{ .Values.versions.charts.kongPlugins }}
+    wait: false
+    values:
+      - ../values/default/kong-plugins.yaml.gotmpl
+      {{- if isFile "../values/{{ .Environment.Name }}/kong-plugins.yaml.gotmpl" }}
+      - ../values/{{ .Environment.Name }}/kong-plugins.yaml.gotmpl
+      {{- end }}
+
+
+  - name: kong-gateway-environment
+    needs:
+      - kong-plugins
+    chart: bedag/raw
+    version: {{ .Values.versions.charts.raw }}
+    namespace: {{ .Values.self.namespace }}
+    wait: false
+    values:
+      - ../values/default/kong-gateway-environment.yaml.gotmpl
+      {{- if isFile "../values/{{ .Environment.Name }}/kong-gateway-environment.yaml.gotmpl" }}
+      - ../values/{{ .Environment.Name }}/kong-gateway-environment.yaml.gotmpl
+      {{- end }}
+
+  - name: kong
+    needs:
+      - kong-gateway-environment
+    createNamespace: true
+    namespace: {{ .Values.self.namespace }}
+    chart: kong/ingress
+    version: {{ .Values.versions.charts.kongIngress }}
+    wait: false
+    disableValidationOnInstall: true # todo can be removed after first apply
+    values:
+      - ../values/default/kong-controller.yaml.gotmpl
+      {{- if isFile "../values/{{ .Environment.Name }}/kong-controller.yaml.gotmpl" }}
+      - ../values/{{ .Environment.Name }}/kong-controller.yaml.gotmpl
+      {{- end }}
+
+  - name: kong-cluster-plugins
+    needs:
+      - kong
+    chart: bedag/raw
+    version: {{ .Values.versions.charts.raw }}
+    namespace: {{ .Values.self.namespace }}
+    disableValidationOnInstall: true # todo can be removed after first apply
+    wait: false
+    values:
+      - ../values/default/kong-cluster-plugins.yaml.gotmpl
+      {{- if isFile (printf "../values/%s/kong-cluster-plugins.yaml.gotmpl" .Environment.Name) }}
+      - ../values/{{ .Environment.Name }}/kong-cluster-plugins.yaml.gotmpl
+      {{- end }}
+
+  - name: kong-gateway
+    needs:
+      - kong-cluster-plugins
+    chart: bedag/raw
+    version: {{ .Values.versions.charts.raw }}
+    namespace: {{ .Values.self.namespace }}
+    disableValidationOnInstall: true # todo can be removed after first apply
+    wait: false
+    values:
+      - ../values/default/kong-gateway.yaml.gotmpl
+      {{- if isFile (printf "../values/%s/kong-gateway.yaml.gotmpl" .Environment.Name) }}
+      - ../values/{{ .Environment.Name }}/kong-gateway.yaml.gotmpl
+      {{- end }}
+
+  - name: kong-ingress
+    needs:
+      - kong-gateway
+    chart: bedag/raw
+    version: {{ .Values.versions.charts.raw }}
+    namespace: {{ .Values.self.namespace }}
+    wait: false
+    values:
+      - ../values/default/kong-ingress.yaml.gotmpl
+      {{- if isFile (printf "../values/%s/kong-ingress.yaml.gotmpl" .Environment.Name) }}
+      - ../values/{{ .Environment.Name }}/kong-ingress.yaml.gotmpl
+      {{- end }}

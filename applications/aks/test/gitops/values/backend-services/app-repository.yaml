@@ -1,0 +1,15 @@
+serviceAccount:
+  enabled: true
+  workloadIdentity:
+    clientId: 
+    enabled: true
+image:
+  tag: "2025.10"
+  repository: uqhacrtest.azurecr.io/backend-service-app-repository
+routes:
+  hostname: api.test-hello.azure.unique.dev
+secretProvider:
+  vaults:
+    hakv2test:
+      DATABASE_URL: database-url-app-repository
+      ENCRYPTION_KEY: encryption-key-app-repository

@@ -1,0 +1,64 @@
+name: '[dev][helm][cluster] ☸️'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false # otherwise helm upgrade can get stuck and one needs to manually clean the secrets and helm database
+
+on:
+  pull_request:
+    branches:
+      - preview
+    paths:
+      - .github/workflows/helm.yaml
+      - .github/workflows/cluster.helm.yaml
+      - cluster/aks/helmfiles/**
+      - cluster/aks/values/dev/**
+      - cluster/aks/values/default/**
+      - cluster/aks/params-dev.yaml
+  push:
+    branches:
+      - preview
+    paths:
+      - .github/workflows/helm.yaml
+      - .github/workflows/cluster.helm.yaml
+      - cluster/aks/helmfiles/**
+      - cluster/aks/values/dev/**
+      - cluster/aks/values/default/**
+      - cluster/aks/params-dev.yaml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  # The Sync Waves are a bit a fake to mimic and make sure the cluster is updated in a controlled way.
+  sync-wave-0:
+    uses: ./.github/workflows/dev.helm.yaml
+    strategy:
+      fail-fast: false
+      matrix:
+        release:
+          - cluster/aks/helmfiles/cert-manager.yaml
+          - cluster/aks/helmfiles/aks-extensions.yaml
+          - cluster/aks/helmfiles/reloader.yaml
+          - cluster/aks/helmfiles/argo.yaml
+          - cluster/aks/helmfiles/rabbitmq-operator.yaml
+    with:
+      file_name: ${{ matrix.release }}
+      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/preview' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}
+    secrets: inherit
+
+  sync-wave-1:
+    needs: sync-wave-0
+    uses: ./.github/workflows/dev.helm.yaml
+    strategy:
+      fail-fast: false
+      matrix:
+        release:
+          - cluster/aks/helmfiles/kong.yaml
+          - cluster/aks/helmfiles/zitadel.yaml
+    with:
+      file_name: ${{ matrix.release }}
+      action: ${{ github.event_name == 'push' && github.ref == 'refs/heads/preview' && 'apply' || github.event_name == 'pull_request' && 'diff' || 'template' }}
+    secrets: inherit
