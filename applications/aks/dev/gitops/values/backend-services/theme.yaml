@@ -1,0 +1,7 @@
+image:
+  tag: "2025.10"
+  repository: uniquehelloazure.azurecr.io/backend-service-theme
+secretProvider:
+  vaults:
+    helloazuresensitive:
+      DATABASE_URL: database-url-theme
