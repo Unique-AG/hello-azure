@@ -7,7 +7,7 @@ env:
   FEATURE_FLAG_NEW_TRANSLATION_UI_UN_7233: "true"
   FILE_TYPES_DOCUMENT_TRANSLATOR: "docx,xls,pptx"
   MAX_FILE_SIZE_IN_MB: 200
-  SELF_URL: https://hello.azure.unique.test/chat
+  SELF_URL: https://test-hello.azure.unique.dev/chat
 # todo: A workaround to redirect the root route to the chat route is needed due to
 # https://github.com/Kong/kubernetes-ingress-controller/issues/6851
 extraObjects:
@@ -17,7 +17,7 @@ extraObjects:
       name: uniquens-chat-redirect
     plugin: redirect
     config:
-      location: https://hello.azure.unique.test/chat
+      location: https://test-hello.azure.unique.dev/chat
 extraRoutes:
   root-redirect:
     enabled: true
@@ -29,7 +29,7 @@ extraRoutes:
         group: gateway.networking.k8s.io
         kind: Gateway
     hostnames:
-      - hello.azure.unique.test
+      - test-hello.azure.unique.dev
     matches:
       - path:
           type: Exact

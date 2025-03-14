@@ -7,7 +7,7 @@ image:
   tag: "2025.10"
   repository: uqhacrtest.azurecr.io/backend-service-app-repository
 routes:
-  hostname: api.hello.azure.unique.test
+  hostname: api.test-hello.azure.unique.dev
 secretProvider:
   vaults:
     hakv2test:

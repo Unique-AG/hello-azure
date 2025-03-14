@@ -4,7 +4,7 @@ image:
 routes:
   gateway:
     namespace: unique
-  hostname: api.hello.azure.unique.test
+  hostname: api.test-hello.azure.unique.dev
   pathPrefix: /event-socket
   paths:
     versioned:

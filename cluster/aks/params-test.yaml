@@ -55,7 +55,7 @@ params:
       name: resource-group-core 
     vnet:
       name: rg-vnet-002 
-  zoneName: hello.azure.unique.test
+  zoneName: test-hello.azure.unique.dev
 plain:
   apiGateway:
     subDomainName: api
