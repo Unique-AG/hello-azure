@@ -34,7 +34,7 @@ resources:
     plugin: cors
     config:
       origins:
-        - https://hello.azure.unique.dev
+        - https://{{ .Values.params.zoneName }}
   - apiVersion: configuration.konghq.com/v1
     kind: KongClusterPlugin
     metadata:
