@@ -48,9 +48,9 @@ secretProvider:
   vaults:
     hakv2test:
       DATABASE_URL: database-url-chat
-      PUBSUB_REDIS_HOST: uniquehelloazureredis-host
-      PUBSUB_REDIS_PORT: uniquehelloazureredis-port
-      PUBSUB_REDIS_PASSWORD: uniquehelloazureredis-password
+      PUBSUB_REDIS_HOST: uqharedis-test-host
+      PUBSUB_REDIS_PORT: uqharedis-test-port
+      PUBSUB_REDIS_PASSWORD: uqharedis-test-password
       AZURE_FGPT_STORAGE_CONNECTION_STRING: ingestion-storage-connection-string-1
       CHAT_LXM_ENCRYPTION_KEY: encryption-key-chat-lxm
     hakv1test:
