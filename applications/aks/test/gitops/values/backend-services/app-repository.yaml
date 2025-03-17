@@ -1,7 +1,7 @@
 serviceAccount:
   enabled: true
   workloadIdentity:
-    clientId: 
+    clientId: 2ffd1adb-50e7-4a89-bbef-26f6f944e2d3
     enabled: true
 image:
   tag: "2025.10"
