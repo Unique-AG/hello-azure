@@ -73,9 +73,9 @@ plain:
       kvSecretName: uqharedis-test-password 
   registryUrl: uqhacrtest.azurecr.io 
   zitadel:
-    clientId: '305512969981198951' #TODO
-    projectId: '305512913743905383' #TODO
-    rootOrgId: '' #TODO
+    clientId: '311604519932854903'
+    projectId: '311604321709982327'
+    rootOrgId: ''
     secretCerts:
       secretName: zitadel-certs
     secretMasterKey:
