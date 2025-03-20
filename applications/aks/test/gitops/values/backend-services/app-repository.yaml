@@ -4,7 +4,7 @@ serviceAccount:
     clientId: 2ffd1adb-50e7-4a89-bbef-26f6f944e2d3
     enabled: true
 image:
-  tag: "2025.10"
+  tag: "2025.12"
   repository: uqhacrtest.azurecr.io/backend-service-app-repository
 routes:
   hostname: api.test-hello.azure.unique.dev
