@@ -4,7 +4,7 @@ serviceAccount:
     clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
     enabled: true
 image:
-  tag: "2025.10"
+  tag: "2025.12"
   repository: uniquehelloazure.azurecr.io/backend-service-app-repository
 routes:
   hostname: api.hello.azure.unique.dev
