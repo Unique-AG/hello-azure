@@ -56,7 +56,7 @@ module "ingestion_storage" {
     blob_to_deleted_after_last_modified_days = 5 * 365
   }
 
-  private_endpoint {
+  private_endpoint = {
     subnet_id           = var.ingestion_storage_subnet_id
     private_dns_zone_id = var.ingestion_storage_private_dns_zone_id
     resource_group_name = var.ingestion_storage_resource_group_name
