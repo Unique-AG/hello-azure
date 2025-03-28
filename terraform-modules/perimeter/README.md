@@ -27,7 +27,9 @@ No requirements.
 | [azurerm_key_vault.main_kv](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault) | resource |
 | [azurerm_key_vault.sensitive_kv](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault) | resource |
 | [azurerm_log_analytics_workspace.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace) | resource |
+| [azurerm_private_dns_zone.ingestion_storage_private_dns_zone](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone) | resource |
 | [azurerm_private_dns_zone.psql_private_dns_zone](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone) | resource |
+| [azurerm_private_dns_zone_virtual_network_link.ingestion_storage_private_dns_zone_vnet_link](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone_virtual_network_link) | resource |
 | [azurerm_private_dns_zone_virtual_network_link.psql-private-dns-zone-vnet-link](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone_virtual_network_link) | resource |
 | [azurerm_public_ip.aks_public_ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) | resource |
 | [azurerm_resource_provider_registration.azure_alerts_provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_provider_registration) | resource |
@@ -51,6 +53,8 @@ No requirements.
 | <a name="input_dns_zone_name"></a> [dns\_zone\_name](#input\_dns\_zone\_name) | Name for the DNS zone | `string` | n/a | yes |
 | <a name="input_dns_zone_root_records"></a> [dns\_zone\_root\_records](#input\_dns\_zone\_root\_records) | List of IP addresses for the root A record in the DNS zone | `set(string)` | n/a | yes |
 | <a name="input_dns_zone_sub_domain_records"></a> [dns\_zone\_sub\_domain\_records](#input\_dns\_zone\_sub\_domain\_records) | Map of subdomain names to their respective A record IP addresses | <pre>map(object({<br/>    name    = string<br/>    records = set(string)<br/>  }))</pre> | n/a | yes |
+| <a name="input_ingestion_storage_private_dns_zone_name"></a> [ingestion\_storage\_private\_dns\_zone\_name](#input\_ingestion\_storage\_private\_dns\_zone\_name) | The name of the private DNS zone for the ingestion storage | `string` | `"privatelink.blob.core.windows.net"` | no |
+| <a name="input_ingestion_storage_private_dns_zone_virtual_network_link_name"></a> [ingestion\_storage\_private\_dns\_zone\_virtual\_network\_link\_name](#input\_ingestion\_storage\_private\_dns\_zone\_virtual\_network\_link\_name) | The name of the private DNS zone virtual network link for the ingestion storage | `string` | `"IngestionStorageVnetZone.com"` | no |
 | <a name="input_kv_sku"></a> [kv\_sku](#input\_kv\_sku) | Name of the KeyVault SKU. | `string` | `"standard"` | no |
 | <a name="input_log_analytics_workspace_name"></a> [log\_analytics\_workspace\_name](#input\_log\_analytics\_workspace\_name) | The name of the Log Analytics workspace. | `string` | n/a | yes |
 | <a name="input_main_kv_name"></a> [main\_kv\_name](#input\_main\_kv\_name) | The name of the main key vault. | `string` | n/a | yes |

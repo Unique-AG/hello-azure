@@ -101,6 +101,11 @@ variable "ingestion_storage_subnet_id" {
   type        = string
 }
 
+variable "ingestion_storage_private_dns_zone_id" {
+  description = "The ID of the private DNS zone for the ingestion storage"
+  type        = string
+}
+
 variable "document_intelligence_user_assigned_identity_id" {
   description = "The ID of the document intelligence user-assigned identity."
   type        = string

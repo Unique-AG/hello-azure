@@ -56,3 +56,7 @@ output "dns_zone_id" {
   value = azurerm_dns_zone.dns_zone.id
 }
 
+output "ingestion_storage_private_dns_zone_id" {
+  description = "ID of the ingestion storage private DNS zone"
+  value       = azurerm_private_dns_zone.ingestion_storage_private_dns_zone.id
+}

@@ -37,7 +37,7 @@ module "ingestion_cache" {
 #tfsec:ignore:azure-keyvault-content-type-for-secret
 #tfsec:ignore:azure-keyvault-ensure-key-expiry
 module "ingestion_storage" {
-  source = "github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=feat/storage-account-hardening1"
+  source = "github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=feat%2Fstorage-account-hardening1"
 
   name                = var.ingestion_storage_sa_name
   resource_group_name = data.azurerm_resource_group.sensitive.name
@@ -59,7 +59,8 @@ module "ingestion_storage" {
   private_endpoint = {
     subnet_id           = var.ingestion_storage_subnet_id
     private_dns_zone_id = var.ingestion_storage_private_dns_zone_id
-    resource_group_name = var.ingestion_storage_resource_group_name
+    resource_group_name = data.azurerm_resource_group.sensitive.name
+    location            = data.azurerm_resource_group.sensitive.location
   }
 
   self_cmk = {
