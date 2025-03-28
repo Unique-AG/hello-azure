@@ -34,3 +34,15 @@ resource "azurerm_dns_a_record" "adnsar_sub_domains" {
   records             = each.value.records
   tags                = var.tags
 }
+
+resource "azurerm_private_dns_zone" "ingestion_storage_private_dns_zone" {
+  name                = var.ingestion_storage_private_dns_zone_name
+  resource_group_name = var.resource_group_vnet_name
+}
+
+resource "azurerm_private_dns_zone_virtual_network_link" "ingestion_storage_private_dns_zone_vnet_link" {
+  name                  = var.ingestion_storage_private_dns_zone_virtual_network_link_name
+  private_dns_zone_name = azurerm_private_dns_zone.ingestion_storage_private_dns_zone.name
+  virtual_network_id    = var.virtual_network_id
+  resource_group_name   = var.resource_group_vnet_name
+}

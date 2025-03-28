@@ -103,3 +103,13 @@ variable "dns_zone_sub_domain_records" {
     records = set(string)
   }))
 }
+variable "ingestion_storage_private_dns_zone_name" {
+  description = "The name of the private DNS zone for the ingestion storage"
+  default     = "privatelink.blob.core.windows.net"
+  type        = string
+}
+variable "ingestion_storage_private_dns_zone_virtual_network_link_name" {
+  description = "The name of the private DNS zone virtual network link for the ingestion storage"
+  default     = "IngestionStorageVnetZone.com"
+  type        = string
+}
