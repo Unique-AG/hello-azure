@@ -4,3 +4,4 @@ build
 mkdocs
 *.tfstate
 *.tfstate.backup
+.vscode

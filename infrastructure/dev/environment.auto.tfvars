@@ -47,22 +47,26 @@ resource_vnet_location            = "swedencentral"
 cluster_admin_user_ids = [
   "4b89a1f0-8038-4929-81e6-6d128dac7aa0",
   "084a1c45-5010-4aab-bab6-7b86a9d10e5c",
-  "3b48f167-cb68-4655-b45b-878e170af84d"
+  "3b48f167-cb68-4655-b45b-878e170af84d",
+  "45caeab6-e1dd-4f9a-aa0c-ea1fb6c0c5ff"
 ]
 gitops_maintainer_user_ids = [
   "4b89a1f0-8038-4929-81e6-6d128dac7aa0",
   "084a1c45-5010-4aab-bab6-7b86a9d10e5c",
-  "3b48f167-cb68-4655-b45b-878e170af84d"
+  "3b48f167-cb68-4655-b45b-878e170af84d",
+  "45caeab6-e1dd-4f9a-aa0c-ea1fb6c0c5ff"
 ]
 keyvault_secret_writer_user_ids = [
   "4b89a1f0-8038-4929-81e6-6d128dac7aa0",
   "084a1c45-5010-4aab-bab6-7b86a9d10e5c",
-  "3b48f167-cb68-4655-b45b-878e170af84d"
+  "3b48f167-cb68-4655-b45b-878e170af84d",
+  "45caeab6-e1dd-4f9a-aa0c-ea1fb6c0c5ff"
 ]
 telemetry_observer_user_ids = [
   "4b89a1f0-8038-4929-81e6-6d128dac7aa0",
   "084a1c45-5010-4aab-bab6-7b86a9d10e5c",
-  "3b48f167-cb68-4655-b45b-878e170af84d"
+  "3b48f167-cb68-4655-b45b-878e170af84d",
+  "45caeab6-e1dd-4f9a-aa0c-ea1fb6c0c5ff"
 ]
 
-custom_subdomain_name = "hello-azure" 
+custom_subdomain_name = "hello-azure"
