@@ -11,5 +11,4 @@ module "application_gateway" {
   private_ip                 = cidrhost(var.subnet_agw_cidr, 6)
   log_analytics_workspace_id = var.log_analytics_workspace_id
   ip_name                    = var.ip_name
-  public_ip_enabled          = false # FIXME: revert to using public IP once confirmed that using private IP alone is enough
 }
