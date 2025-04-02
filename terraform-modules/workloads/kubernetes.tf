@@ -1,5 +1,5 @@
 module "kubernetes_cluster" {
-  source                 = "github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service?ref=azure-kubernetes-service-2.0.0"
+  source                 = "github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service?ref=fix/aks-accept-second-node-subnet"
   application_gateway_id = module.application_gateway.appgw_id
   azure_prometheus_grafana_monitor = {
     azure_monitor_location = var.resource_group_core_location
