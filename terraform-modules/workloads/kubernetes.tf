@@ -10,6 +10,10 @@ module "kubernetes_cluster" {
   cluster_name                 = var.cluster_name
   kubernetes_default_node_size = var.kubernetes_default_node_size
   log_analytics_workspace_id   = var.log_analytics_workspace_id
+  network_profile = {
+    idle_timeout_in_minutes = 100
+    outbound_ip_address_ids = [var.aks_public_ip_id]
+  }
   node_pool_settings = {
     rapid = {
       auto_scaling_enabled = true
@@ -51,11 +55,10 @@ module "kubernetes_cluster" {
     }
   }
   node_rg_name            = var.node_resource_group_name
-  outbound_ip_address_ids = [var.aks_public_ip_id]
   resource_group_location = data.azurerm_resource_group.core.location
   resource_group_name     = data.azurerm_resource_group.core.name
-  subnet_nodes_id         = var.subnet_aks_nodes_id
-  subnet_pods_id          = var.subnet_aks_pods_id
+  default_subnet_nodes_id = var.subnet_aks_nodes_id
+  default_subnet_pods_id  = var.subnet_aks_pods_id
   tags                    = var.tags
   tenant_id               = data.azurerm_client_config.current.tenant_id
 }
