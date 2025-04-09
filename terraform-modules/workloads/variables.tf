@@ -56,6 +56,10 @@ variable "subnet_aks_nodes_id" {
   description = "The ID of the AKS nodes subnet."
   type        = string
 }
+variable "subnet_aks_pods_id" {
+  description = "The ID of the AKS pods subnet."
+  type        = string
+}
 
 variable "aks_public_ip_id" {
   description = "The ID of the AKS public IP."
@@ -191,3 +195,54 @@ variable "zitadel_pat_secret_name" {
   type        = string
   default     = "manual-zitadel-scope-mgmt-pat"
 }
+variable "kubernetes_default_node_size" {
+  description = "The default node size for the AKS cluster"
+  type        = string
+  default     = "Standard_D2ps_v6"
+}
+variable "kubernetes_rapid_node_size" {
+  description = "The rapid node pool node size for the AKS cluster"
+  type        = string
+  default     = "Standard_D8s_v4"
+}
+variable "kubernetes_steady_node_size" {
+  description = "The steady node pool node size for the AKS cluster"
+  type        = string
+  default     = "Standard_D8as_v5"
+}
+variable "kubernetes_rapid_min_count" {
+  description = "The minimum number of nodes for the rapid node pool"
+  type        = number
+  default     = 1
+}
+
+variable "kubernetes_rapid_max_count" {
+  description = "The maximum number of nodes for the rapid node pool"
+  type        = number
+  default     = 3
+}
+
+variable "kubernetes_rapid_node_count" {
+  description = "The number of nodes for the rapid node pool"
+  type        = number
+  default     = 0
+}
+
+variable "kubernetes_steady_min_count" {
+  description = "The minimum number of nodes for the steady node pool"
+  type        = number
+  default     = 0
+}
+
+variable "kubernetes_steady_max_count" {
+  description = "The maximum number of nodes for the steady node pool"
+  type        = number
+  default     = 4
+}
+
+variable "kubernetes_steady_node_count" {
+  description = "The number of nodes for the steady node pool"
+  type        = number
+  default     = 2
+}
+
