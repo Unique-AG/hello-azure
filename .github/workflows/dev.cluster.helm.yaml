@@ -19,8 +19,8 @@ on:
     branches:
       - preview
     paths:
-      - .github/workflows/helm.yaml
-      - .github/workflows/cluster.helm.yaml
+      - .github/workflows/dev.helm.yaml
+      - .github/workflows/dev.cluster.helm.yaml
       - cluster/aks/helmfiles/**
       - cluster/aks/values/dev/**
       - cluster/aks/values/default/**
