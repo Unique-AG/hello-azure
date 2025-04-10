@@ -9,8 +9,8 @@ on:
     branches:
       - preview
     paths:
-      - .github/workflows/kubectl.yaml
-      - .github/workflows/cluster.kubectl.yaml
+      - .github/workflows/dev.kubectl.yaml
+      - .github/workflows/dev.cluster.kubectl.yaml
       - cluster/aks/application-sets/dev.chat.application-set.yaml
   push:
     branches:
