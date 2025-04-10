@@ -265,3 +265,9 @@ variable "zitadel_pat_secret_name" {
   type        = string
   default     = "manual-zitadel-scope-mgmt-pat"
 }
+
+variable "kubernetes_version" {
+  description = "The version of Kubernetes to use for the AKS cluster."
+  type        = string
+  default     = "1.30.10"
+}
