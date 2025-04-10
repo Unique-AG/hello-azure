@@ -9,8 +9,8 @@ on:
     branches:
       - preview
     paths:
-      - .github/workflows/helm.yaml
-      - .github/workflows/cluster.helm.yaml
+      - .github/workflows/test.helm.yaml
+      - .github/workflows/test.cluster.helm.yaml
       - cluster/aks/helmfiles/**
       - cluster/aks/values/test/**
       - cluster/aks/values/default/**
@@ -19,8 +19,8 @@ on:
     branches:
       - preview
     paths:
-      - .github/workflows/helm.yaml
-      - .github/workflows/cluster.helm.yaml
+      - .github/workflows/test.helm.yaml
+      - .github/workflows/test.cluster.helm.yaml
       - cluster/aks/helmfiles/**
       - cluster/aks/values/test/**
       - cluster/aks/values/default/**
