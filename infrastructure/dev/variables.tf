@@ -183,3 +183,9 @@ variable "telemetry_observer_user_ids" {
   description = "List of user object IDs that will be granted permissions to view telemetry data"
   type        = list(string)
 }
+
+variable "kubernetes_version" {
+  description = "The version of Kubernetes to use for the AKS cluster"
+  type        = string
+  default     = "1.30.0"
+}
