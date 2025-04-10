@@ -87,7 +87,7 @@ variable "ip_name" {
 variable "kubernetes_default_node_size" {
   description = "The default node size for the AKS cluster"
   type        = string
-  default     = "Standard_D2ps_v6"
+  default     = "Standard_D2s_v6"
 }
 
 variable "kubernetes_rapid_max_count" {
