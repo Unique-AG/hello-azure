@@ -41,9 +41,9 @@ params:
     aksWorkloadIdentityCognitiveServices:
       clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
     keyVaultSecretsProvider:
-      clientId: 93a58fa9-689d-4e76-b250-a164e4829742
+      clientId: 656b2988-6508-4df3-ba88-5a0d721863ae
     kubelet:
-      clientId: ecb08638-d0b6-42fa-8805-b390c62c491d
+      clientId: b5fafa71-2f65-4166-a7f2-eb55d08d2b8d
   keyVaults:
     main:
       name: helloazuremain
