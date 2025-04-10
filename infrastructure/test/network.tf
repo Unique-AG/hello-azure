@@ -18,6 +18,15 @@ module "vnet" {
     "snet-aks-pods" = {
       name             = "snet-aks-pods"
       address_prefixes = ["10.202.0.0/23"]
+      delegation = [{
+        name = "aks-delegation"
+        service_delegation = {
+          name = "Microsoft.ContainerService/managedClusters"
+          actions = [
+            "Microsoft.Network/virtualNetworks/subnets/join/action",
+          ]
+        }
+      }]
     }
     "snet-aks-nodes" = {
       name             = "snet-aks-nodes"
