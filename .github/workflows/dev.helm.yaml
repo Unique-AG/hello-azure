@@ -51,7 +51,7 @@ jobs:
         uses: azure/aks-set-context@feeca6405be94202afcb1c395616ff29b1811b9f #v4.0.2
         with:
           resource-group: "resource-group-core"
-          cluster-name: "aks-cluster"
+          cluster-name: "aks-dev"
           admin: 'false'
           use-kubelogin: 'true'
 
