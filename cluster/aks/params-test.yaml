@@ -41,9 +41,9 @@ params:
     aksWorkloadIdentityCognitiveServices:
       clientId: 2ffd1adb-50e7-4a89-bbef-26f6f944e2d3
     keyVaultSecretsProvider:
-      clientId: a6f5a4a6-11c3-4e03-b82c-5c2a677e8a1c
+      clientId: 4817ad12-ecb1-4009-bfe2-966200fcd84c
     kubelet:
-      clientId: 2c77b08c-2630-49d9-bd6b-680b381216b7
+      clientId: b5fafa71-2f65-4166-a7f2-eb55d08d2b8d
   keyVaults:
     main:
       name: hakv1test
