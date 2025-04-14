@@ -64,7 +64,7 @@ module "perimeter" {
   depends_on = [
     module.identities.resource_group_core_id,
     module.identities.resource_group_sensitive_id,
-    module.identities.resource_group_vnet_id
+    # module.identities.resource_group_vnet_id
   ]
 }
 
