@@ -1,5 +1,5 @@
 image:
-  tag: "2025.12"
+  tag: "2025.14"
   repository: uqhacrtest.azurecr.io/backend-service-ingestion
 env:
   INGESTION_UPLOAD_API_URL: https://api.test-hello.azure.unique.dev/scoped/ingestion/upload

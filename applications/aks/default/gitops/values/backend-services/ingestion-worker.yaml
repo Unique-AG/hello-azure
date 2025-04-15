@@ -3,6 +3,7 @@ env:
   CUSTOM_API_DEFINITIONS: >-
     [ {"identifier": "Unique Text Extraction API", "url": "http://assistants-core.unique.svc/core/text-extractions"} ]
   EMBEDDING_BATCH_SIZE: 16
+  FEATURE_FLAG_ENABLE_PPT_PAGE_BASED_CHUNKING_UN_9444: "true"
   INGESTION_API_URL: http://backend-service-ingestion.unique.svc
   INGESTION_QUEUE: queue
   LOG_LEVEL: info
