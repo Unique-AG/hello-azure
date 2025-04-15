@@ -35,5 +35,5 @@ extraRoutes:
           type: Exact
           value: /
 image:
-  tag: "2025.14"
+  tag: "2025.14.3"
   repository: uqhacrtest.azurecr.io/web-app-chat

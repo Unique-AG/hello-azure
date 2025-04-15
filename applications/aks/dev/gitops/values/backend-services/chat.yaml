@@ -35,7 +35,7 @@ env:
   PUBSUB_REDIS_DB: 2
   SCOPE_MANAGEMENT_API_URL: http://backend-service-scope-management.unique.svc
 image:
-  tag: "2025.14"
+  tag: "2025.14.3"
   repository: uniquehelloazure.azurecr.io/backend-service-chat
 resources:
   limits:
