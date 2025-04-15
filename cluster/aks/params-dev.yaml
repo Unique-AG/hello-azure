@@ -1,0 +1,119 @@
+kvRefs:
+  adi:
+    endpointDefinitions: azure-document-intelligence-endpoint-definitions
+    endpoints: azure-document-intelligence-endpoints
+  aoi:
+    apiEndpoint: cognitive-account-swedencentral-ep
+    cognitiveEndpoints: azure-openai-endpoint-definitions
+  psql:
+    databases:
+      appRepository: database-url-app-repository
+      chat: database-url-chat
+      ingestion: database-url-ingestion
+      scopeManagement: database-url-scope-management
+      theme: database-url-theme
+    host: hello-azure-psql-host
+    password: hello-azure-psql-password
+    port: hello-azure-psql-port
+    username: hello-azure-psql-username
+  rabbit:
+    password: rabbitmq-password-chat
+  redis:
+    host: uniquehelloazureredis-host
+    password: uniquehelloazureredis-password
+    port: uniquehelloazureredis-port
+  st:
+    cacheStorageConnectionString: ingestion-cache-connection-string-1
+    permanentStorageConnectionString: ingestion-storage-connection-string-1
+  synthetic:
+    appRepository:
+      encryptionKey: encryption-key-app-repository
+    chat:
+      encryptionKeyLxm: encryption-key-chat-lxm
+    ingestion:
+      encryptionKey: encryption-key-ingestion
+    zitadel:
+      patScopeManagement: manual-zitadel-scope-mgmt-pat
+      psql:
+        password: zitadel-db-user-password
+params:
+  identities:
+    aksWorkloadIdentityCognitiveServices:
+      clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
+    keyVaultSecretsProvider:
+      clientId: 656b2988-6508-4df3-ba88-5a0d721863ae
+    kubelet:
+      clientId: b5fafa71-2f65-4166-a7f2-eb55d08d2b8d
+  keyVaults:
+    main:
+      name: helloazuremain
+    sensitive:
+      name: helloazuresensitive
+  nameServers: ['ns1-08.azure-dns.com.', 'ns2-08.azure-dns.net.', 'ns3-08.azure-dns.org.', 'ns4-08.azure-dns.info.']
+  resourceGroups:
+    core:
+      name: resource-group-core
+    vnet:
+      name: rg-vnet-002
+  zoneName: hello.azure.unique.dev
+plain:
+  apiGateway:
+    subDomainName: api
+  clusterIssuer:
+    name: letsencrypt-azure-dns
+    server: https://acme-v02.api.letsencrypt.org/directory
+  rabbit:
+    secret:
+      secretName: rabbitmqcluster-chat-default-user
+    username: helloazuredev
+  redis:
+    secret:
+      secretKeyName: pass
+      secretName: redis-secret-sscsid-keeper
+      kvSecretName: uniquehelloazureredis-password
+  registryUrl: uniquehelloazure.azurecr.io
+  zitadel:
+    clientId: '305512969981198951'
+    projectId: '305512913743905383'
+    rootOrgId: ''
+    secretCerts:
+      secretName: zitadel-certs
+    secretMasterKey:
+      secretKeyName: masterkey
+      secretName: zitadel-secret-sscsid-keeper
+      kvSecretName: zitadel-master-key
+    subDomainName: id
+versions:
+  charts:
+    raw: 2.0.0
+    reloader: 1.1.0
+    sscsidKeeper: 1.1.7
+    zitadel: 8.1.0
+    rabbitmqClusterOperator: 4.3.21
+    kongPlugins: 1.0.2
+    kongIngress: 0.17.0
+    certManager: 1.12.2
+    argo: v7.7.23
+  images:
+    busybox:
+      tag: 1.37
+    alpine:
+      tag: 3.19
+    zitadel:
+      tag: v2.62.7
+    reloader:
+      tag: v1.1.0
+    rabbitmqClusterOperator:
+      tag: 2.10.0-debian-12-r0
+    rabbitmqMsgTopologyOperator:
+      tag: 1.14.2-debian-12-r5
+    kongIngressController:
+      tag: 3.4.1
+    kongGateway:
+      tag: 3.9.0
+    certManagerController:
+      tag: v1.12.2
+    certManagerCainjector:
+      tag: v1.12.2
+    certManagerWebhook:
+      tag: v1.12.2

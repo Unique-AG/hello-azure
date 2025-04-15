@@ -1,0 +1,46 @@
+env:
+  LOG_LEVEL: info
+  MAX_HEAP_MB: 200
+envVars:
+  - name: AMQP_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: username
+  - name: AMQP_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: password
+  - name: AMQP_HOST
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: host
+  - name: AMQP_PORT
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: port
+nodeSelector:
+  scalability: steady
+  lifecycle: persistent
+replicaCount: 1
+resources:
+  limits:
+    cpu: 200m
+    memory: 350Mi
+  requests:
+    cpu: 100m
+    memory: 300Mi
+routes:
+  gateway:
+    namespace: unique
+  pathPrefix: /event-socket
+  paths:
+    versioned:
+      enabled: true
+    probe:
+      enabled: true
+serviceAccount:
+  enabled: false

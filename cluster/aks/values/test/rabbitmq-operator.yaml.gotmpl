@@ -1,0 +1,24 @@
+clusterOperator:
+  resources:
+    # Matches 'nano' Preset which is the default
+    # https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15
+    requests:
+      cpu: 100m
+      ephemeral-storage: 50Mi
+      memory: 128Mi
+    limits:
+      cpu: 150m
+      ephemeral-storage: 2Gi
+      memory: 192Mi
+msgTopologyOperator:
+  # Matches 'nano' Preset which is the default
+  # https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15
+  resources:
+    requests:
+      cpu: 100m
+      ephemeral-storage: 50Mi
+      memory: 128Mi
+    limits:
+      cpu: 150m
+      ephemeral-storage: 2Gi
+      memory: 192Mi

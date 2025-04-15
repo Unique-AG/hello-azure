@@ -71,6 +71,7 @@ module "workloads" {
   source = "../../terraform-modules/workloads"
 
   aks_public_ip_id                                = module.perimeter.aks_public_ip_id
+  kubernetes_version                              = var.kubernetes_version
   cluster_name                                    = var.cluster_name
   custom_subdomain_name                           = var.custom_subdomain_name
   document_intelligence_user_assigned_identity_id = module.identities.document_intelligence_user_assigned_identity_id
@@ -91,6 +92,7 @@ module "workloads" {
   subnet_agw_cidr                                 = var.subnet_agw_cidr
   subnet_agw_id                                   = module.vnet.subnets["snet-agw"].resource_id
   subnet_aks_nodes_id                             = module.vnet.subnets["snet-aks-nodes"].resource_id
+  subnet_aks_pods_id                              = module.vnet.subnets["snet-aks-pods"].resource_id
   tags                                            = var.tags
   tenant_id                                       = var.tenant_id
 
