@@ -12,12 +12,14 @@ resource "azurerm_role_assignment" "csi_identity_secret_reader_main_kv" {
   principal_id         = data.azurerm_kubernetes_cluster.cluster.key_vault_secrets_provider[0].secret_identity[0].object_id
   role_definition_name = local.secret_reader_key_vault_role_name
   scope                = var.main_kv_id
+  depends_on           = [var.cluster_id]
 }
 
 resource "azurerm_role_assignment" "csi_identity_secret_reader" {
   principal_id         = data.azurerm_kubernetes_cluster.cluster.key_vault_secrets_provider[0].secret_identity[0].object_id
   role_definition_name = local.secret_reader_key_vault_role_name
   scope                = var.sensitive_kv_id
+  depends_on           = [var.cluster_id]
 }
 
 resource "azurerm_role_assignment" "psql_identity_role_assignment" {
@@ -103,16 +105,19 @@ resource "azurerm_role_assignment" "cluster_user_terraform" {
   principal_id         = data.azuread_service_principal.terraform.object_id
   role_definition_name = local.cluster_user_role_name
   scope                = data.azurerm_kubernetes_cluster.cluster.id
+  depends_on           = [var.cluster_id]
 }
 resource "azurerm_role_assignment" "cluster_rbac_admin_terraform" {
   principal_id         = data.azuread_service_principal.terraform.object_id
   role_definition_name = local.cluster_rbac_admin_role_name
   scope                = data.azurerm_kubernetes_cluster.cluster.id
+  depends_on           = [var.cluster_id]
 }
 resource "azurerm_role_assignment" "kubelet_identity_acr_puller_assignment" {
   principal_id         = data.azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
   role_definition_name = azurerm_role_definition.acr_puller.name
   scope                = azurerm_resource_group.core.id
+  depends_on           = [var.cluster_id]
 }
 
 resource "azurerm_role_assignment" "acrpush_terraform" {
@@ -140,6 +145,7 @@ resource "azurerm_role_assignment" "application_gateway_ingres_controller_contri
   scope                = var.application_gateway_id
   role_definition_name = "Contributor"
   principal_id         = data.azurerm_kubernetes_cluster.cluster.ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
+  depends_on           = [var.cluster_id]
 }
 
 # AGIC Identity needs at least 'Read and join' access to Subnet
@@ -147,6 +153,7 @@ resource "azurerm_role_assignment" "application_gateway_ingres_controller_vnet_s
   scope                = var.resource_group_vnet_id
   role_definition_name = azurerm_role_definition.vnet_subnet_access.name
   principal_id         = data.azurerm_kubernetes_cluster.cluster.ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
+  depends_on           = [var.cluster_id]
 }
 
 #Azure Active Directory group assignments
@@ -154,11 +161,13 @@ resource "azurerm_role_assignment" "cluster_user_group" {
   principal_id         = azuread_group.admin_kubernetes_cluster.object_id
   role_definition_name = local.cluster_user_role_name
   scope                = data.azurerm_kubernetes_cluster.cluster.id
+  depends_on           = [var.cluster_id]
 }
 resource "azurerm_role_assignment" "cluster_rbac_admin_group" {
   principal_id         = azuread_group.admin_kubernetes_cluster.object_id
   role_definition_name = local.cluster_rbac_admin_role_name
   scope                = data.azurerm_kubernetes_cluster.cluster.id
+  depends_on           = [var.cluster_id]
 }
 
 resource "azurerm_role_assignment" "main_keyvault_secret_manager_group" {
@@ -180,6 +189,7 @@ resource "azurerm_role_assignment" "cluster_user_users" {
   principal_id         = each.value.object_id
   role_definition_name = local.cluster_user_role_name
   scope                = data.azurerm_kubernetes_cluster.cluster.id
+  depends_on           = [var.cluster_id]
 }
 
 resource "azurerm_role_assignment" "cluster_rbac_admin_users" {
@@ -187,6 +197,7 @@ resource "azurerm_role_assignment" "cluster_rbac_admin_users" {
   principal_id         = each.value.object_id
   role_definition_name = local.cluster_rbac_admin_role_name
   scope                = data.azurerm_kubernetes_cluster.cluster.id
+  depends_on           = [var.cluster_id]
 }
 
 resource "azurerm_role_assignment" "main_keyvault_key_reader_users" {
@@ -213,4 +224,5 @@ resource "azurerm_role_assignment" "dns_contributor" {
   role_definition_name             = "DNS Zone Contributor"
   principal_id                     = data.azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
   skip_service_principal_aad_check = true
+  depends_on                       = [var.cluster_id]
 }
