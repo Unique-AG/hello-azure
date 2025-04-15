@@ -5,7 +5,7 @@ data "azuread_service_principal" "terraform" {
 data "azurerm_kubernetes_cluster" "cluster" {
   name                = var.cluster_name
   resource_group_name = azurerm_resource_group.core.name
-  depends_on          = [var.cluster_id] # this is needed for the initial bootstrap
+  # depends_on          = [var.cluster_id] # this is needed for the initial bootstrap. However, it leads to role assignment being recreated if left uncommented. One solution would be to use outputs of the AKS module passed as variables. However ATM the needed outputs are not available.
 }
 
 data "azurerm_role_definition" "contributor" {
