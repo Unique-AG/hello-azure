@@ -1,9 +1,9 @@
 image:
-  tag: "2025.14.3"
+  tag: "2025.16"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion
 env:
   INGESTION_UPLOAD_API_URL: https://api.hello.azure.unique.dev/scoped/ingestion/upload
-  ZITADEL_ROOT_ORG_ID: "305515282535809639"
+  ZITADEL_ROOT_ORG_ID: "305511794535891578"
 replicaCount: 2
 resources:
   limits:

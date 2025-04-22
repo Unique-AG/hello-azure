@@ -1,8 +1,9 @@
 image:
-  tag: "2025.14.3"
+  tag: "2025.16"
   repository: uqhacrtest.azurecr.io/backend-service-scope-management
 env:
   ZITADEL_HOST: https://id.test-hello.azure.unique.dev
+  ZITADEL_ROOT_ORG_ID: "311604240139158135" 
 extraRoutes:
   scim:
     enabled: true
