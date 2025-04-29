@@ -1,5 +1,5 @@
 image:
-  tag: "2025.12"
+  tag: "2025.14.3"
   repository: uniquehelloazure.azurecr.io/ai-service-assistants-core
 replicaCount: 2
 resources:
