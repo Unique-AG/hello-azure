@@ -6,6 +6,9 @@ on:
     branches:
       - preview
     paths:
+      - applications/aks/dev/release/io.docker.yaml
+      - applications/aks/dev/release/io.ghcr.yaml
+      - applications/aks/dev/release/io.quay.yaml
       - .github/workflows/dev.mirror-public-artifacts.yaml
 
 permissions:
