@@ -43,7 +43,7 @@ params:
     keyVaultSecretsProvider:
       clientId: 4817ad12-ecb1-4009-bfe2-966200fcd84c
     kubelet:
-      clientId: b5fafa71-2f65-4166-a7f2-eb55d08d2b8d
+      clientId: e7245417-572d-4797-9327-81febabc01cf
   keyVaults:
     main:
       name: hakv1test
@@ -100,7 +100,7 @@ versions:
     alpine:
       tag: 3.19
     zitadel:
-      tag: v2.62.7
+      tag: v2.63.9
     reloader:
       tag: v1.1.0
     rabbitmqClusterOperator:

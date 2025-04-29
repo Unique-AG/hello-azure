@@ -7,7 +7,7 @@ spec:
       ref: values
     - repoURL: ghcr.io/unique-ag/helm-charts
       chart: backend-service
-      targetRevision: 3.3.0
+      targetRevision: 3.3.1
       helm:
         releaseName: backend-service-scope-management
         valueFiles:
