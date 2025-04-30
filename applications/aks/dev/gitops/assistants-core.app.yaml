@@ -7,7 +7,7 @@ spec:
       ref: values
     - repoURL: ghcr.io/unique-ag/helm-charts
       chart: ai-service
-      targetRevision: 1.2.6
+      targetRevision: 1.2.7
       helm:
         releaseName: assistants-core
         valueFiles:
