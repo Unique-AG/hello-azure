@@ -7,4 +7,4 @@ routes:
 secretProvider:
   useVMManagedIdentity: "true"
   tenantId: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
-  userAssignedIdentityID: a6f5a4a6-11c3-4e03-b82c-5c2a677e8a1c
+  userAssignedIdentityID: 4817ad12-ecb1-4009-bfe2-966200fcd84c
