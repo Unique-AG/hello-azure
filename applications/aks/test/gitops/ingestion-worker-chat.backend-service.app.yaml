@@ -32,3 +32,8 @@ spec:
                   value: "1"
                 authenticationRef:
                   name: rabbitmqcluster-chat-unique-user
+  ignoreDifferences:
+    - group: "apps"
+      kind: Deployment
+      jsonPointers:
+        - /spec/replicas

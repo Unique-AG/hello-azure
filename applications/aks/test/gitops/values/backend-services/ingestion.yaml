@@ -1,9 +1,9 @@
 image:
-  tag: "2025.16"
+  tag: "2025.20-rc.1"
   repository: uqhacrtest.azurecr.io/backend-service-ingestion
 env:
   INGESTION_UPLOAD_API_URL: https://api.test-hello.azure.unique.dev/scoped/ingestion/upload
-  ZITADEL_ROOT_ORG_ID: "311604240139158135" 
+  ZITADEL_ROOT_ORG_ID: "311155409127801468" 
 replicaCount: 2
 resources:
   limits:

@@ -1,0 +1,31 @@
+spec:
+  name: argocd
+  autoSync: false
+  sources:
+    - repoURL: 'https://github.com/Unique-AG/hello-azure'
+      targetRevision: preview
+      ref: values
+    - chart: sscsid-keeper
+      repoURL: ghcr.io/unique-ag/helm-charts
+      targetRevision: 1.1.7
+      helm:
+        releaseName: argo-azure-entra-secret
+        valueFiles:
+          - $values/cluster/aks/test/gitops/values/argo/argo-azure-entra-secret.yaml
+    - chart: argo-cd
+      repoURL: https://argoproj.github.io/argo-helm
+      targetRevision: 8.0.0
+      helm:
+        releaseName: argo
+        valueFiles:
+          - $values/cluster/aks/test/gitops/values/argo/argo.yaml
+    - chart: argocd-apps
+      repoURL: https://argoproj.github.io/argo-helm
+      targetRevision: 2.0.2
+      disableValidationOnInstall: true
+      helm:
+        releaseName: argo-appsets
+        valueFiles:
+          - $values/cluster/aks/test/gitops/values/argo/argo-appsets.yaml
+
+        

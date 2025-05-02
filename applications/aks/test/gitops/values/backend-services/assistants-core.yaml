@@ -1,5 +1,5 @@
 image:
-  tag: "2025.16"
+  tag: "2025.20-rc.1"
   repository: uqhacrtest.azurecr.io/ai-service-assistants-core
 replicaCount: 2
 resources:

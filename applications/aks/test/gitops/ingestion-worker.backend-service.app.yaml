@@ -15,3 +15,8 @@ spec:
           - $values/applications/aks/test/gitops/values/backend-services/_all.yaml
           - $values/applications/aks/test/gitops/values/backend-services/ingestion-worker.yaml
         valuesObject: {}
+  ignoreDifferences:
+    - group: "apps"
+      kind: Deployment
+      jsonPointers:
+        - /spec/replicas

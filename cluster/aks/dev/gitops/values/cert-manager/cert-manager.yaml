@@ -1,0 +1,43 @@
+global:
+  priorityClassName: system-cluster-critical
+installCRDs: true
+image:
+  repository: uniquehelloazure.azurecr.io/jetstack/cert-manager-controller
+  tag: v1.12.2
+nodeSelector:
+  scalability: steady
+  lifecycle: persistent
+extraArgs:
+  - --dns01-recursive-nameservers=ns1-08.azure-dns.com.:53,ns2-08.azure-dns.net.:53,ns3-08.azure-dns.org.:53,ns4-08.azure-dns.info.:53
+  - --dns01-recursive-nameservers-only
+webhook:
+  image:
+    repository: uniquehelloazure.azurecr.io/jetstack/cert-manager-webhook
+    tag: v1.12.2
+cainjector:
+  image:
+    repository: uniquehelloazure.azurecr.io/jetstack/cert-manager-cainjector
+    tag: v1.12.2
+resources:
+  limits:
+      cpu: 50m
+      memory: 128Mi
+  requests:
+      cpu: 50m
+      memory: 128Mi
+webhook:
+  resources:
+    limits:
+      cpu: 50m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 128Mi
+cainjector:
+  resources:
+    limits:
+      cpu: 100m
+      memory: 400Mi
+    requests:
+      cpu: 100m
+      memory: 400Mi

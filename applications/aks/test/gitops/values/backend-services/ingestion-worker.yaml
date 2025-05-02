@@ -1,5 +1,7 @@
+env:
+  FILE_UPLOAD_METADATA_REQUIRED_FILTERS: '{"MSIP_Label_48ed5431-0ab7-4c1b-98f4-d4e50f674d02_Enabled": "true","MSIP_Label_8ffbc0b8-e97b-47d1-beac-cb0955d66f3b_Enabled": "true"}'
 image:
-  tag: "2025.16"
+  tag: "2025.20-rc.1"
   repository: uqhacrtest.azurecr.io/backend-service-ingestion-worker
 secretProvider:
   vaults:

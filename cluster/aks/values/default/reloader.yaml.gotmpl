@@ -1,9 +1,0 @@
-reloader:
-  deployment:
-    image:
-      name: {{ .Values.plain.registryUrl }}/stakater/reloader
-      tag: {{ .Values.versions.images.reloader.tag | quote }}
-    securityContext:
-      allowPrivilegeEscalation: false
-  watchGlobally: true
-  logFormat: json

@@ -56,6 +56,8 @@ keda:
         value: "1"
       authenticationRef:
         name: rabbitmqcluster-chat-unique-user
+  extraAnnotations:
+    argocd.argoproj.io/sync-wave: "10"
 
 nodeSelector:
   scalability: rapid
@@ -72,7 +74,7 @@ tolerations:
 probes:
   liveness:
     failureThreshold: 36
-replicaCount: 0
+replicaCount: 1
 resources:
   limits:
     cpu: 0.5
