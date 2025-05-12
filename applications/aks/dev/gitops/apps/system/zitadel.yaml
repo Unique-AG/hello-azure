@@ -1,0 +1,16 @@
+spec:
+  name: zitadel
+  autoSync: false
+  sources:
+    - repoURL: 'https://github.com/Unique-AG/hello-azure'
+      targetRevision: preview
+      ref: values
+    - chart: zitadel
+      repoURL: https://charts.zitadel.com
+      targetRevision: 8.13.1
+      helm:
+        releaseName: zitadel
+        valueFiles: 
+          - $values/applications/aks/dev/gitops/values/zitadel/zitadel-secrets.yaml
+          - $values/applications/aks/dev/gitops/values/zitadel/zitadel.yaml
+        valuesObject: {} 

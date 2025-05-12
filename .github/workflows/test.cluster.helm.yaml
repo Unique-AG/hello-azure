@@ -1,4 +1,4 @@
-name: '[dev][bootstrap ArgoCD] 🐙'
+name: '[test][helm][cluster] ☸️'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -19,7 +19,7 @@ permissions:
 jobs:
   # The Sync Waves are a bit a fake to mimic and make sure the cluster is updated in a controlled way.
   argo-bootstrap:
-    uses: ./.github/workflows/dev.helm.yaml
+    uses: ./.github/workflows/test.helm.yaml
     with:
       file_name: applications/aks/argo-bootstrap.yaml
       action: ${{ inputs.action }}

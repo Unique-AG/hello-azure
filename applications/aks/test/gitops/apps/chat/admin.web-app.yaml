@@ -1,0 +1,20 @@
+spec:
+  name: web-app-admin
+  autoSync: false
+  sources:
+    - repoURL: 'https://github.com/Unique-AG/hello-azure'
+      targetRevision: preview
+      ref: values
+    - repoURL: ghcr.io/unique-ag/helm-charts
+      chart: web-app
+      targetRevision: 3.2.0
+      helm:
+        releaseName: web-app-admin
+        valueFiles: 
+          - $values/applications/aks/default/gitops/values/web-apps/admin.yaml
+          - $values/applications/aks/test/gitops/values/web-apps/_all.yaml
+          - $values/applications/aks/test/gitops/values/web-apps/admin.yaml
+        valuesObject: {}
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
