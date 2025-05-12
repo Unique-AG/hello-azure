@@ -1,5 +1,5 @@
 image:
-  tag: "2025.16"
+  tag: "2025.18"
   repository: uniquehelloazure.azurecr.io/backend-service-event-socket
 routes:
   gateway:

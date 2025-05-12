@@ -2,5 +2,5 @@ env:
   FEATURE_FLAG_ENABLE_NOTIFICATION_BANNER_UN_9411: "true"
   SELF_URL: https://hello.azure.unique.dev/knowledge-upload
 image:
-  tag: "2025.16"
+  tag: "2025.18"
   repository: uniquehelloazure.azurecr.io/web-app-knowledge-upload

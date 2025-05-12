@@ -10,8 +10,8 @@ resources:
       algorithm: RS256
       allowed_iss:
         - https://id.test-hello.azure.unique.dev
-      # jwks_extra_headers:
-      #   forwarded: host=zitadel.unique.svc.cluster.local;proto=http
+      # jwks_extra_headers: # This can be uncommented if you want to avoid hairpinning (going outisde of the cluster to reach Zitadel which is deployed in the same cluster)
+      #   forwarded: host=id.test-hello.azure.unique.dev
       # jwks_uri: http://zitadel.unique.svc.cluster.local:8080/oauth/v2/keys
       uri_param_names:
         - token
