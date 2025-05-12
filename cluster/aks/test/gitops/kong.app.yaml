@@ -21,7 +21,7 @@ spec:
           - $values/cluster/aks/test/gitops/values/kong/kong-gateway-environment.yaml
     - chart: ingress
       repoURL: https://charts.konghq.com
-      targetRevision: 0.17.0
+      targetRevision: 0.19.0
       helm:
         releaseName: kong
         valueFiles:
@@ -66,4 +66,5 @@ spec:
         - /webhooks/0/clientConfig/caBundle
         - /webhooks/1/clientConfig/caBundle
         - /webhooks/2/clientConfig/caBundle
-      name: kong-controller-validations
+      name: kong-controller-unique-validations
+

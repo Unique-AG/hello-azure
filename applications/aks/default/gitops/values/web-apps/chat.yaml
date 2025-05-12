@@ -1,7 +1,5 @@
 env:
   MAX_HEAP_MB: 400
-# todo: A workaround to redirect the root route to the chat route is needed due to
-# https://github.com/Kong/kubernetes-ingress-controller/issues/6851
 nodeSelector:
   scalability: steady
   lifecycle: persistent
@@ -30,9 +28,9 @@ routes:
   pathPrefix: /chat
   paths:
     default:
-      enabled: true # todo: once kong released and we tested the newer kong version, we can again default here and remove the extraObjects and extraRoutes
+      enabled: true
     root:
-      enabled: false
+      enabled: true
       redirectPath: /chat
 securityContext:
   allowPrivilegeEscalation: false
