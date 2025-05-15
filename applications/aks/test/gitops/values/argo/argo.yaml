@@ -57,7 +57,7 @@ configs:
         # role:sync-only
         p, role:sync-only, applications, get, *, allow
         p, role:sync-only, applications, sync, *, allow
-        p, role:sync-only, applications, action/apps/Deployment/restart, *, allow
+        p, role:sync-only, applications, action/apps/*/restart, *, allow
         p, role:sync-only, applications, action/batch/CronJob/create-job, *, allow
         p, role:sync-only, logs, get, chat/*, deny
         
