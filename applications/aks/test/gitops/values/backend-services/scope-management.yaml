@@ -4,10 +4,6 @@ image:
 env:
   ZITADEL_HOST: http://zitadel.unique.svc.cluster.local:8080
   ZITADEL_ROOT_ORG_ID: "311155409127801468"
-  ZITADEL_GRPC_SSL_TARGET_NAME_OVERRIDE: https://id.test-hello.azure.unique.dev
-  ZITADEL_GRPC_DEFAULT_AUTHORITY: https://id.test-hello.azure.unique.dev
-  ZITADEL_GRPC_HOST: http://zitadel.unique.svc.cluster.local:8080
-  ZITADEL_HTTP_EXTRA_HEADERS: '{"forwarded": "host=zitadel.unique.svc.cluster.local;proto=http"}'
 extraRoutes:
   scim:
     enabled: true
