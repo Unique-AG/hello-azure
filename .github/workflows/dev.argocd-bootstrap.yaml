@@ -21,6 +21,6 @@ jobs:
   argo-bootstrap:
     uses: ./.github/workflows/dev.helm.yaml
     with:
-      file_name: applications/aks/argo-bootstrap.yaml
+      file_name: applications/argo-bootstrap.yaml
       action: ${{ inputs.action }}
     secrets: inherit

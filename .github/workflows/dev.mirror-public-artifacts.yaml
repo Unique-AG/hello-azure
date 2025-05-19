@@ -6,9 +6,9 @@ on:
     branches:
       - preview
     paths:
-      - applications/aks/dev/release/io.docker.yaml
-      - applications/aks/dev/release/io.ghcr.yaml
-      - applications/aks/dev/release/io.quay.yaml
+      - mirroring/dev/io.docker.yaml
+      - mirroring/dev/io.ghcr.yaml
+      - mirroring/dev/io.quay.yaml
       - .github/workflows/dev.mirror-public-artifacts.yaml
 
 permissions:
@@ -23,7 +23,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: applications/aks/dev/release
+        working-directory: mirroring/dev/release
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
