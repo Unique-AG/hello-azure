@@ -1,0 +1,61 @@
+resources:
+  - apiVersion: configuration.konghq.com/v1
+    kind: KongClusterPlugin
+    metadata:
+      name: unique-jwt-auth
+      annotations:
+        kubernetes.io/ingress.class: kong
+    plugin: unique-jwt-auth
+    config:
+      algorithm: RS256
+      allowed_iss:
+        - https://id.hello.azure.unique.dev
+      # jwks_extra_headers: # This can be uncommented if you want to avoid hairpinning (going outisde of the cluster to reach Zitadel which is deployed in the same cluster)
+      #   forwarded: host=id.hello.azure.unique.dev
+      # jwks_uri: http://zitadel.unique.svc.cluster.local:8080/oauth/v2/keys
+      uri_param_names:
+        - token
+      zitadel_project_id: '305512913743905383'
+  - apiVersion: configuration.konghq.com/v1
+    kind: KongClusterPlugin
+    metadata:
+      name: unique-app-repo-auth
+      annotations:
+        kubernetes.io/ingress.class: kong
+    plugin: unique-app-repo-auth
+    config:
+      app_repository_url: http://backend-service-app-repository.unique.svc
+  - apiVersion: configuration.konghq.com/v1
+    kind: KongClusterPlugin
+    metadata:
+      name: unique-global-cors
+      annotations:
+        kubernetes.io/ingress.class: kong
+      labels:
+        global: "true"
+    plugin: cors
+    config:
+      origins:
+        - https://hello.azure.unique.dev
+  - apiVersion: configuration.konghq.com/v1
+    kind: KongClusterPlugin
+    metadata:
+      name: unique-block-route
+      annotations:
+        kubernetes.io/ingress.class: kong
+    plugin: request-termination
+    config:
+      status_code: 403
+      message: This route is blocked.
+  - apiVersion: configuration.konghq.com/v1
+    kind: KongClusterPlugin
+    metadata:
+      name: unique-route-metrics
+      annotations:
+        kubernetes.io/ingress.class: kong
+    plugin: prometheus
+    config:
+      status_code_metrics: true
+      latency_metrics: true
+      bandwidth_metrics: true
+      upstream_health_metrics: false

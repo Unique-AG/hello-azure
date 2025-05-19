@@ -1,0 +1,38 @@
+env:
+  APP_REPOSITORY_URL: http://backend-service-app-repository.unique.svc
+  LOG_LEVEL: info
+  MAX_HEAP_MB: 200
+envVars:
+  - name: AMQP_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: username
+  - name: AMQP_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: password
+  - name: AMQP_HOST
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: host
+  - name: AMQP_PORT
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: port
+nodeSelector:
+  scalability: steady
+  lifecycle: persistent
+probes:
+  enabled: false
+replicaCount: 1
+resources:
+  limits:
+    cpu: 200m
+    memory: 350Mi
+  requests:
+    cpu: 100m
+    memory: 300Mi

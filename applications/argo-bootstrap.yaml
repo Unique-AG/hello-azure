@@ -1,0 +1,45 @@
+# bootstrapping argo. To be done only once.
+environments:
+  dev:
+    values:
+      -
+        self:
+          namespace: unique
+  test:
+    values:
+      -
+        self:
+          namespace: unique
+---
+repositories:
+  - name: argo
+    url: https://argoproj.github.io/argo-helm
+
+releases:
+  - name: argo-azure-entra-secret
+    chart: oci://ghcr.io/unique-ag/helm-charts/sscsid-keeper
+    version: 1.1.7
+    namespace: {{ .Values.self.namespace }}
+    wait: false
+    values:
+      - {{ .Environment.Name }}/values/argo/argo-azure-entra-secret.yaml
+  - name: argo
+    needs:
+      - argo-azure-entra-secret
+    createNamespace: true
+    namespace: {{ .Values.self.namespace }}
+    chart: argo/argo-cd
+    version: 8.0.0
+    values:
+      - {{ .Environment.Name }}/values/argo/argo.yaml
+
+  - name: argo-appsets
+    needs:
+      - argo
+    createNamespace: true
+    namespace: {{ .Values.self.namespace }}
+    chart: argo/argocd-apps
+    version: 2.0.2
+    values:
+      - {{ .Environment.Name }}/values/argo/argo-appsets.yaml
+

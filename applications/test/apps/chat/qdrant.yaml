@@ -1,0 +1,37 @@
+spec:
+  name: qdrant
+  autoSync: false
+  source:
+    chart: qdrant
+    repoURL: https://qdrant.github.io/qdrant-helm
+    targetRevision: 1.13.1
+    helm:
+      releaseName: qdrant
+      valuesObject:
+        replicaCount: 1
+        image:
+          repository: uqhacrtest.azurecr.io/qdrant/qdrant
+          tag: v1.13.1
+          useUnprivilegedImage: true # auto-appends -unprivileged to the tag
+        updateVolumeFsOwnership: false # as this is a new cluster, the file system was never running as root
+        resources:
+          requests:
+            cpu: 100m
+            memory: 1.8Gi
+          limits:
+            memory: 2Gi
+        nodeSelector:
+          scalability: steady
+          lifecycle: persistent
+        persistence:
+          accessModes:
+            - ReadWriteOnce
+          size: 10Gi
+          storageClassName: default-zrs
+        startupProbe:
+          enabled: true
+          failureThreshold: 30
+          periodSeconds: 30
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"

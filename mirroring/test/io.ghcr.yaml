@@ -1,0 +1,8 @@
+images:
+  - name: zitadel/zitadel:v2.65.1
+  - name: zitadel/zitadel:v2.70.11
+  - name: zitadel/zitadel:v2.63.9
+  - name: stakater/reloader:v1.1.0
+  - name: stakater/reloader:v1.4.2
+sourceRegistry: ghcr.io
+targetRegistry: uqhacrtest.azurecr.io

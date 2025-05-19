@@ -1,0 +1,7 @@
+resources:
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: kong-gateway-environment
+    data:
+      KONG_LOG_LEVEL: warn

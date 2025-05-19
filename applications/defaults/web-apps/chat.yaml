@@ -1,0 +1,42 @@
+env:
+  MAX_HEAP_MB: 400
+nodeSelector:
+  scalability: steady
+  lifecycle: persistent
+probes:
+  liveness:
+    httpGet:
+      path: /chat/api/health
+      port: http
+    initialDelaySeconds: 5
+  readiness:
+    httpGet:
+      path: /chat/api/health
+      port: http
+    initialDelaySeconds: 5
+replicaCount: 2
+resources:
+  limits:
+    cpu: 300m
+    memory: 550Mi
+  requests:
+    cpu: 300m
+    memory: 500Mi
+routes:
+  gateway:
+    namespace: unique
+  pathPrefix: /chat
+  paths:
+    default:
+      enabled: true
+    root:
+      enabled: true
+      redirectPath: /chat
+securityContext:
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  runAsUser: 1000
+  seccompProfile:
+    type: RuntimeDefault
+strategy:
+  type: Recreate

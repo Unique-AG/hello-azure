@@ -1,0 +1,72 @@
+spec:
+  name: kong
+  autoSync: false
+  sources:
+    - repoURL: 'https://github.com/Unique-AG/hello-azure'
+      targetRevision: preview
+      ref: values
+    - chart: kong-plugins
+      repoURL: ghcr.io/unique-ag/helm-charts
+      targetRevision: 1.2.0
+      helm:
+        releaseName: kong-plugins
+        valueFiles:
+          - $values/applications/test/values/kong/kong-plugins.yaml
+    - chart: raw
+      repoURL: "https://bedag.github.io/helm-charts"
+      targetRevision: 2.0.0
+      helm:
+        releaseName: kong-gateway-environment
+        valueFiles:
+          - $values/applications/test/values/kong/kong-gateway-environment.yaml
+    - chart: ingress
+      repoURL: https://charts.konghq.com
+      targetRevision: 0.19.0
+      helm:
+        releaseName: kong
+        valueFiles:
+          - $values/applications/test/values/kong/kong-controller.yaml
+    - chart: raw
+      repoURL: "https://bedag.github.io/helm-charts"
+      targetRevision: 2.0.0
+      helm:
+        releaseName: kong-cluster-plugins
+        valueFiles:
+          - $values/applications/test/values/kong/kong-cluster-plugins.yaml
+    - chart: raw
+      repoURL: "https://bedag.github.io/helm-charts"
+      targetRevision: 2.0.0
+      helm:
+        releaseName: kong-gateway
+        valueFiles:
+          - $values/applications/test/values/kong/kong-gateway.yaml
+    - chart: raw
+      repoURL: "https://bedag.github.io/helm-charts"
+      targetRevision: 2.0.0
+      helm:
+        releaseName: kong-ingress
+        valueFiles:
+          - $values/applications/test/values/kong/kong-ingress.yaml
+  ignoreDifferences:
+    - group: ""
+      kind: Secret
+      jsonPointers:
+        - /data/tls.crt
+        - /data/tls.key
+      name: kong-controller-validation-webhook-ca-keypair
+    - group: ""
+      kind: Secret
+      jsonPointers:
+        - /data/tls.crt
+        - /data/tls.key
+      name: kong-controller-validation-webhook-keypair
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+      jsonPointers:
+        - /webhooks/0/clientConfig/caBundle
+        - /webhooks/1/clientConfig/caBundle
+        - /webhooks/2/clientConfig/caBundle
+      name: kong-controller-unique-validations
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"

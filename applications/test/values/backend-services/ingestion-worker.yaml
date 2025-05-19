@@ -1,0 +1,13 @@
+image:
+  tag: "2025.18"
+  repository: uqhacrtest.azurecr.io/backend-service-ingestion-worker
+secretProvider:
+  vaults:
+    hakv1test:
+      AZURE_OPENAI_API_ENDPOINT: cognitive-account-swedencentral-ep
+      AZURE_DOCUMENT_INTELLIGENCE_ENDPOINTS: azure-document-intelligence-endpoints
+serviceAccount:
+  enabled: true
+  workloadIdentity:
+    clientId: 2ffd1adb-50e7-4a89-bbef-26f6f944e2d3
+    enabled: true

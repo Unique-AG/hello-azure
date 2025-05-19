@@ -1,0 +1,71 @@
+nameOverride: argo
+global:
+  domain: argo.hello.azure.unique.dev
+  nodeSelector:
+    scalability: steady
+    lifecycle: persistent
+repoServer:
+  extraArgs:
+    - --repo-cache-expiration=15m
+server:
+  ingress:
+    enabled: true
+    ingressClassName: azure-application-gateway
+    annotations:
+      appgw.ingress.kubernetes.io/ssl-redirect: "true"
+      appgw.ingress.kubernetes.io/backend-protocol: "https"
+      cert-manager.io/cluster-issuer: letsencrypt-azure-dns
+    hosts:
+      - argo.hello.azure.unique.dev
+    tls:
+      - secretName: argo-le-tls
+        hosts:
+          - argo.hello.azure.unique.dev
+configs:
+  cm:
+    create: true
+    url: https://argo.hello.azure.unique.dev
+    admin.enabled: false
+    timeout.reconciliation: 30s
+    oidc.config: |
+      name: AzureAD
+      issuer: https://login.microsoftonline.com/aeade8c4-d4f7-4ae7-9149-4975fa3a7f91/v2.0
+      clientID: $argo-azure-entra-secret-sscsid-keeper:oidc.azure.client_id
+      clientSecret: $argo-azure-entra-secret-sscsid-keeper:oidc.azure.client_secret
+      requestedIDTokenClaims:
+        groups:
+          essential: true
+      requestedScopes:
+        - openid
+        - profile
+        - email
+  rbac:
+      create: true
+      policy.default: role:no-access
+      scopes: '[roles]'
+      policy.csv: |
+        #################################################
+        # Policy rules are in the form:
+        #   p, subject, resource, action, object, effect
+        # Role definitions and bindings are in the form:
+        #   g, subject, inherited-subject
+        #################################################
+
+        ################### GROUPS #####################
+        g, maintain, role:admin
+        ################### POLICIES #####################
+        # role:sync-only
+        p, role:sync-only, applications, get, *, allow
+        p, role:sync-only, applications, sync, *, allow
+        p, role:sync-only, applications, action/apps/*/restart, *, allow
+        p, role:sync-only, applications, action/batch/CronJob/create-job, *, allow
+        p, role:sync-only, logs, get, chat/*, deny
+        
+        # role:no-access
+        p, role:no-access, *, *, *, deny
+
+        # maintainers are kings here and only here
+        # role:admin
+        p, role:admin, *, *, *, allow
+extraObjects: []
+  

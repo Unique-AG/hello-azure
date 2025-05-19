@@ -1,0 +1,36 @@
+cronJob:
+  concurrencyPolicy: Forbid
+  enabled: true
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    containers:
+      name: client-insights-exporter
+    restartPolicy: Never
+  name: client-insights-exporter
+  schedule: 0 0 * * *
+  startingDeadlineSeconds: 10
+  successfulJobsHistoryLimit: 1
+  suspend: false
+  timeZone: Europe/Zurich
+deployment:
+  enabled: false
+env:
+  DATA_SOURCE_URLS: http://backend-service-scope-management.chat/insights;http://backend-service-chat.chat/insights
+  CLIENT_INSIGHT_SERVER_URL: https://gateway.unique.app/insights/client-insights
+  LOG_LEVEL: info
+  MAX_HEAP_MB: 200
+nodeSelector:
+  scalability: steady
+  lifecycle: persistent
+probes:
+  enabled: false
+replicaCount: 1
+resources:
+  limits:
+    cpu: 200m
+    memory: 350Mi
+  requests:
+    cpu: 100m
+    memory: 300Mi
+service:
+  enabled: false
