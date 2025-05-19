@@ -1,0 +1,46 @@
+spec:
+  name: rabbitmq-operator
+  autoSync: false
+  sources:
+    - repoURL: 'https://github.com/Unique-AG/hello-azure'
+      targetRevision: preview
+      ref: values
+    - chart: rabbitmq-cluster-operator
+      repoURL: registry-1.docker.io/bitnamicharts
+      targetRevision: 4.3.21
+      helm:
+        releaseName: rabbitmq-cluster-operator
+        valueFiles:
+          - $values/applications/dev/values/rabbitmq-operator/rabbitmq-operator.yaml
+    - chart: raw
+      repoURL: https://bedag.github.io/helm-charts
+      targetRevision: 2.0.0
+      helm:
+        releaseName: rabbitmqcluster-chat-unique-user
+        valueFiles:
+          - $values/applications/dev/values/rabbitmq-operator/rabbitmq-cluster-operator-secret.yaml
+  ignoreDifferences:
+    - group: ""
+      kind: Secret
+      jsonPointers:
+        - /data/tls.crt
+        - /data/tls.key
+        - /data/ca.crt
+      name: rabbitmq-cluster-operator-rabbitmq-messaging-topology-operator
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+      jsonPointers:
+        - /webhooks/0/clientConfig/caBundle
+        - /webhooks/1/clientConfig/caBundle
+        - /webhooks/2/clientConfig/caBundle
+        - /webhooks/3/clientConfig/caBundle
+        - /webhooks/4/clientConfig/caBundle
+        - /webhooks/5/clientConfig/caBundle
+        - /webhooks/6/clientConfig/caBundle
+        - /webhooks/7/clientConfig/caBundle
+        - /webhooks/8/clientConfig/caBundle
+        - /webhooks/9/clientConfig/caBundle
+        - /webhooks/10/clientConfig/caBundle
+        - /webhooks/11/clientConfig/caBundle
+        - /webhooks/12/clientConfig/caBundle
+      name: rabbitmq-cluster-operator-rabbitmq-messaging-topology-operator
