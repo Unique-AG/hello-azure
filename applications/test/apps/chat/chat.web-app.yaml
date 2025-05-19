@@ -11,7 +11,7 @@ spec:
       helm:
         releaseName: web-app-chat
         valueFiles: 
-          - $values/applications/default/web-apps/chat.yaml
+          - $values/applications/defaults/web-apps/chat.yaml
           - $values/applications/test/values/web-apps/_all.yaml
           - $values/applications/test/values/web-apps/chat.yaml
         valuesObject: {}

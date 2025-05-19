@@ -11,7 +11,7 @@ spec:
       helm:
         releaseName: backend-service-configuration
         valueFiles:
-          - $values/applications/default/backend-services/configuration.yaml
+          - $values/applications/defaults/backend-services/configuration.yaml
           - $values/applications/dev/values/backend-services/_all.yaml
           - $values/applications/dev/values/backend-services/configuration.yaml
         valuesObject: {}

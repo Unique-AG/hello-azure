@@ -11,7 +11,7 @@ spec:
       helm:
         releaseName: backend-service-ingestion
         valueFiles:
-          - $values/applications/default/backend-services/ingestion.yaml
+          - $values/applications/defaults/backend-services/ingestion.yaml
           - $values/applications/test/values/backend-services/_all.yaml
           - $values/applications/test/values/backend-services/ingestion.yaml
         valuesObject: {}

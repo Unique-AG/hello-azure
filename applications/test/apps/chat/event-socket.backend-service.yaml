@@ -11,7 +11,7 @@ spec:
       helm:
         releaseName: backend-service-event-socket
         valueFiles:
-          - $values/applications/default/backend-services/event-socket.yaml
+          - $values/applications/defaults/backend-services/event-socket.yaml
           - $values/applications/test/values/backend-services/_all.yaml
           - $values/applications/test/values/backend-services/event-socket.yaml
         valuesObject: {}

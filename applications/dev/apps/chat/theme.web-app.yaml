@@ -11,7 +11,7 @@ spec:
       helm:
         releaseName: web-app-theme
         valueFiles: 
-          - $values/applications/default/web-apps/theme.yaml
+          - $values/applications/defaults/web-apps/theme.yaml
           - $values/applications/dev/values/web-apps/_all.yaml
           - $values/applications/dev/values/web-apps/theme.yaml
         valuesObject: {}

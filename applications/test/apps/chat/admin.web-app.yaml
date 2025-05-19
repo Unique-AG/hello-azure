@@ -11,7 +11,7 @@ spec:
       helm:
         releaseName: web-app-admin
         valueFiles: 
-          - $values/applications/default/web-apps/admin.yaml
+          - $values/applications/defaults/web-apps/admin.yaml
           - $values/applications/test/values/web-apps/_all.yaml
           - $values/applications/test/values/web-apps/admin.yaml
         valuesObject: {}
