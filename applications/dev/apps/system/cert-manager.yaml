@@ -1,0 +1,27 @@
+spec:
+  name: cert-manager
+  autoSync: true
+  sources:
+    - repoURL: 'https://github.com/Unique-AG/hello-azure'
+      targetRevision: preview
+      ref: values
+    - chart: cert-manager
+      repoURL: https://charts.jetstack.io
+      targetRevision: 1.17.2
+      helm:
+        releaseName: cert-manager
+        valueFiles:
+          - $values/applications/dev/values/cert-manager/cert-manager.yaml
+    - chart: raw
+      repoURL: https://bedag.github.io/helm-charts
+      targetRevision: 2.0.0
+      helm:
+        releaseName: clusterissuer-azure-dns
+        valueFiles:
+          - $values/applications/dev/values/cert-manager/cluster-issuer.yaml
+  ignoreDifferences:
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+      jsonPointers:
+        - /webhooks/0/namespaceSelector/matchExpressions
+      name: cert-manager-webhook

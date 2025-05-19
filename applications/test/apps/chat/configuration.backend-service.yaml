@@ -1,0 +1,20 @@
+spec:
+  name: backend-service-configuration
+  autoSync: false
+  sources:
+    - repoURL: 'https://github.com/Unique-AG/hello-azure'
+      targetRevision: preview
+      ref: values
+    - repoURL: ghcr.io/unique-ag/helm-charts
+      chart: backend-service
+      targetRevision: 3.3.1
+      helm:
+        releaseName: backend-service-configuration
+        valueFiles:
+          - $values/applications/default/backend-services/configuration.yaml
+          - $values/applications/test/values/backend-services/_all.yaml
+          - $values/applications/test/values/backend-services/configuration.yaml
+        valuesObject: {}
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"

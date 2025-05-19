@@ -7,7 +7,7 @@ on:
       - preview
     paths:
       - .github/workflows/dev.mirror-unique-artifacts.yaml
-      - applications/aks/dev/release/app.unique.yaml
+      - mirroring/dev/app.unique.yaml
 
 permissions:
   contents: read
@@ -24,7 +24,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: applications/aks/dev/release
+        working-directory: mirroring/dev/release
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
