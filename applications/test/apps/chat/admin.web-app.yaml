@@ -5,10 +5,10 @@ spec:
     - repoURL: 'https://github.com/Unique-AG/hello-azure'
       targetRevision: preview
       ref: values
-    - repoURL: https://github.com/Unique-AG/helm-charts
+    - repoURL: https://github.com/Unique-AG/helm-charts.git
       path: charts/web-app
       chart: web-app
-      targetRevision: "feat/UN-11292-security-hardening"
+      targetRevision: 'feat/UN-11292-security-hardening'
       helm:
         releaseName: web-app-admin
         valueFiles: 
