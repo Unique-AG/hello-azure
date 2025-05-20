@@ -1,0 +1,9 @@
+image:
+  repository: uniquehelloazure.azurecr.io/stakater/reloader
+  tag: v1.4.2
+watchGlobally: true
+reloader:
+  deployment:
+    containerSecurityContext:
+      allowPrivilegeEscalation: false
+  logFormat: json

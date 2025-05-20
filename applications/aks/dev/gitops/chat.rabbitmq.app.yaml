@@ -1,9 +1,0 @@
-spec:
-  name: rabbitmq-chat
-  autoSync: false
-  source:
-    repoURL: https://github.com/Unique-AG/hello-azure
-    targetRevision: preview
-    path: applications/aks/dev/gitops/values/rabbitmq
-    directory:
-      recurse: true

@@ -1,0 +1,20 @@
+spec:
+  name: web-app-theme
+  autoSync: false
+  sources:
+    - repoURL: 'https://github.com/Unique-AG/hello-azure'
+      targetRevision: preview
+      ref: values
+    - repoURL: ghcr.io/unique-ag/helm-charts
+      chart: web-app
+      targetRevision: 3.2.0
+      helm:
+        releaseName: web-app-theme
+        valueFiles: 
+          - $values/applications/defaults/web-apps/theme.yaml
+          - $values/applications/test/values/web-apps/_all.yaml
+          - $values/applications/test/values/web-apps/theme.yaml
+        valuesObject: {}
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"

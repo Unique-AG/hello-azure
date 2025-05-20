@@ -1,0 +1,20 @@
+spec:
+  name: assistants-core
+  autoSync: false
+  sources:
+    - repoURL: 'https://github.com/Unique-AG/hello-azure'
+      targetRevision: preview
+      ref: values
+    - repoURL: ghcr.io/unique-ag/helm-charts
+      chart: ai-service
+      targetRevision: 1.2.7
+      helm:
+        releaseName: assistants-core
+        valueFiles:
+          - $values/applications/defaults/backend-services/assistants-core.yaml
+          - $values/applications/dev/values/backend-services/_all.yaml
+          - $values/applications/dev/values/backend-services/assistants-core.yaml
+        valuesObject: {}
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"

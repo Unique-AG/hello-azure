@@ -1,3 +1,0 @@
-image:
-  tag: "2025.16"
-  repository: uqhacrtest.azurecr.io/backend-service-webhook-worker
