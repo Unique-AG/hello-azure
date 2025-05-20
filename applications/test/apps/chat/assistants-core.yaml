@@ -6,7 +6,7 @@ spec:
       targetRevision: preview
       ref: values
     - repoURL: https://github.com/Unique-AG/helm-charts.git
-      path: charts/assistants-core/
+      path: charts/ai-service/
       targetRevision: feat/UN-11292-security-hardening
       helm:
         releaseName: assistants-core
