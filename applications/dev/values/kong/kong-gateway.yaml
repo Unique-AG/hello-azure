@@ -12,3 +12,15 @@ resources:
           allowedRoutes:
             namespaces:
               from: All
+        - name: https
+          protocol: HTTPS
+          port: 443
+          allowedRoutes:
+            namespaces:
+              from: All
+          tls:
+            certificateRefs:
+              - name: kong-tls
+                kind: Secret
+              - name: kong-api-tls
+                kind: Secret
