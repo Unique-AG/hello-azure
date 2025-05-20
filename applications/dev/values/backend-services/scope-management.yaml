@@ -6,7 +6,7 @@ image:
   tag: "2026.10.2"
   repository: uniquehelloazure.azurecr.io/backend-service-scope-management
 env:
-  ZITADEL_HOST: https://id.hello.azure.unique.dev
+  ZITADEL_HOST: http://zitadel.unique.svc.cluster.local:8080
   ZITADEL_ROOT_ORG_ID: "305511794535891578"
   # This can be uncommented if you want to avoid hairpinning (going outisde of the cluster to reach Zitadel which is deployed in the same cluster)
   # ZITADEL_GRPC_DEFAULT_AUTHORITY: id.hello.azure.unique.dev
