@@ -8,7 +8,7 @@ spec:
     - repoURL: https://github.com/Unique-AG/helm-charts
       path: charts/web-app
       chart: web-app
-      targetRevision: "feat/UN-11292-security-hardening/charts"
+      targetRevision: "feat/UN-11292-security-hardening"
       helm:
         releaseName: web-app-admin
         valueFiles: 
