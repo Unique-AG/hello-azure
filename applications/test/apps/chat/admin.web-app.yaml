@@ -5,7 +5,7 @@ spec:
     - repoURL: 'https://github.com/Unique-AG/hello-azure'
       targetRevision: preview
       ref: values
-    - repoURL: https://github.com/Unique-AG/helm-charts
+    - repoURL: https://github.com/Unique-AG/helm-charts.git
       path: charts/web-app
       chart: web-app
       targetRevision: 4.1.2
