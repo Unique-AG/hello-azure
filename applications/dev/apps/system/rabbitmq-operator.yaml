@@ -44,3 +44,6 @@ spec:
         - /webhooks/11/clientConfig/caBundle
         - /webhooks/12/clientConfig/caBundle
       name: rabbitmq-cluster-operator-rabbitmq-messaging-topology-operator
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
