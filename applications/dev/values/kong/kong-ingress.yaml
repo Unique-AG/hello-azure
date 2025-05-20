@@ -19,7 +19,7 @@ resources:
                   service:
                     name: kong-gateway-proxy
                     port:
-                      number: 80
+                      number: 443
                 path: /
                 pathType: Prefix
       tls:
@@ -46,7 +46,7 @@ resources:
                   service:
                     name: kong-gateway-proxy
                     port:
-                      number: 80
+                      number: 443
                 path: /
                 pathType: Prefix
       tls:
