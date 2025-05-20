@@ -5,9 +5,10 @@ spec:
     - repoURL: 'https://github.com/Unique-AG/hello-azure'
       targetRevision: preview
       ref: values
-    - repoURL: ghcr.io/unique-ag/helm-charts
+    - repoURL: https://github.com/Unique-AG/helm-charts
+      path: charts/web-app
       chart: web-app
-      targetRevision: 3.2.0
+      targetRevision: "feat/UN-11292-security-hardening/charts"
       helm:
         releaseName: web-app-admin
         valueFiles: 
