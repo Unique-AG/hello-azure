@@ -54,3 +54,19 @@ gateway:
   status:
     tls:
       enabled: true
+  certificates:
+    enabled: true
+    clusterIssuer: letsencrypt-azure-dns
+    proxy:
+      enabled: true
+      clusterIssuer: letsencrypt-azure-dns
+      commonName: hello.azure.unique.dev
+      dnsNames:
+        - hello.azure.unique.dev
+        - "*.hello.azure.unique.dev"
+    admin:
+      enabled: false
+    cluster:
+      enabled: false
+    portal:
+      enabled: false
