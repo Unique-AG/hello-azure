@@ -9,8 +9,6 @@ resources:
         appgw.ingress.kubernetes.io/request-timeout: "120"
         appgw.ingress.kubernetes.io/rewrite-rule-set: security-headers
         appgw.ingress.kubernetes.io/ssl-redirect: "true"
-        appgw.ingress.kubernetes.io/health-probe-path: "/healthz"
-        appgw.ingress.kubernetes.io/health-probe-protocol: "https"
         cert-manager.io/cluster-issuer: letsencrypt-azure-dns
       name: kong-web-apps
     spec:
@@ -40,8 +38,6 @@ resources:
         appgw.ingress.kubernetes.io/request-timeout: "120"
         appgw.ingress.kubernetes.io/rewrite-rule-set: security-headers
         appgw.ingress.kubernetes.io/ssl-redirect: "true"
-        appgw.ingress.kubernetes.io/health-probe-path: "/healthz"
-        appgw.ingress.kubernetes.io/health-probe-protocol: "https"
         cert-manager.io/cluster-issuer: letsencrypt-azure-dns
       name: kong-backend-services
     spec:
