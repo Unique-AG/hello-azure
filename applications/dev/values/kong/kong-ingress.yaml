@@ -5,6 +5,7 @@ resources:
       annotations:
         appgw.ingress.kubernetes.io/backend-protocol: https
         # appgw.ingress.kubernetes.io/health-probe-protocol: "https"
+        appgw.ingress.kubernetes.io/health-probe-hostname: kong-gateway-proxy.unique.svc.cluster.local
         appgw.ingress.kubernetes.io/health-probe-port: "8543"
         appgw.ingress.kubernetes.io/request-timeout: "120"
         appgw.ingress.kubernetes.io/rewrite-rule-set: security-headers
