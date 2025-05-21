@@ -5,3 +5,5 @@ resources:
       name: kong-gateway-environment
     data:
       KONG_LOG_LEVEL: info
+      KONG_STATUS_SSL_CERT: /etc/cert-manager/proxy/tls.crt
+      KONG_STATUS_SSL_CERT_KEY: /etc/cert-manager/proxy/tls.key
