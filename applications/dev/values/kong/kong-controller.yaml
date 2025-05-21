@@ -38,6 +38,8 @@ gateway:
     lifecycle: persistent
   proxy:
     type: ClusterIP
+    tls:
+      appProtocol: "https"
   plugins:
     configMaps:
       - name: kong-plugin-unique-jwt-auth
@@ -49,3 +51,6 @@ gateway:
   envFrom:
     - configMapRef:
         name: kong-gateway-environment
+  status:
+    tls:
+      enabled: true
