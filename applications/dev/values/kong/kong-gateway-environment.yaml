@@ -4,4 +4,4 @@ resources:
     metadata:
       name: kong-gateway-environment
     data:
-      KONG_LOG_LEVEL: warn
+      KONG_LOG_LEVEL: info
