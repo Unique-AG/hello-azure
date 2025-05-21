@@ -3,12 +3,11 @@ resources:
     kind: Ingress
     metadata:
       annotations:
-        appgw.ingress.kubernetes.io/backend-protocol: "https"
+        # appgw.ingress.kubernetes.io/backend-protocol: "https"
+        # appgw.ingress.kubernetes.io/health-probe-protocol: "https"
         appgw.ingress.kubernetes.io/request-timeout: "120"
         appgw.ingress.kubernetes.io/rewrite-rule-set: security-headers
         appgw.ingress.kubernetes.io/ssl-redirect: "true"
-        appgw.ingress.kubernetes.io/health-probe-path: "/healthz"
-        appgw.ingress.kubernetes.io/health-probe-protocol: "https"
         cert-manager.io/cluster-issuer: letsencrypt-azure-dns
       name: kong-web-apps
     spec:
@@ -21,7 +20,8 @@ resources:
                   service:
                     name: kong-gateway-proxy
                     port:
-                      number: 443
+                      number: 80
+                      # number: 443
                 path: /
                 pathType: Prefix
       tls:
@@ -32,12 +32,11 @@ resources:
     kind: Ingress
     metadata:
       annotations:
-        appgw.ingress.kubernetes.io/backend-protocol: "https"
+        # appgw.ingress.kubernetes.io/backend-protocol: "https"
+        # appgw.ingress.kubernetes.io/health-probe-protocol: "https"
         appgw.ingress.kubernetes.io/request-timeout: "120"
         appgw.ingress.kubernetes.io/rewrite-rule-set: security-headers
         appgw.ingress.kubernetes.io/ssl-redirect: "true"
-        appgw.ingress.kubernetes.io/health-probe-path: "/healthz"
-        appgw.ingress.kubernetes.io/health-probe-protocol: "https"
         cert-manager.io/cluster-issuer: letsencrypt-azure-dns
       name: kong-backend-services
     spec:
@@ -50,7 +49,8 @@ resources:
                   service:
                     name: kong-gateway-proxy
                     port:
-                      number: 443
+                      number: 80
+                      # number: 443
                 path: /
                 pathType: Prefix
       tls:

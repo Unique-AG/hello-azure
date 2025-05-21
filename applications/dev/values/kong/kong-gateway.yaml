@@ -12,25 +12,25 @@ resources:
           allowedRoutes:
             namespaces:
               from: All
-        - name: https-web
-          protocol: HTTPS
-          port: 443
-          hostname: hello.azure.unique.dev
-          allowedRoutes:
-            namespaces:
-              from: All
-          tls:
-            certificateRefs:
-              - name: kong-tls
-                kind: Secret
-        - name: https-api
-          protocol: HTTPS
-          port: 443
-          hostname: api.hello.azure.unique.dev
-          allowedRoutes:
-            namespaces:
-              from: All
-          tls:
-            certificateRefs:
-              - name: kong-api-tls
-                kind: Secret
+        # - name: https-web
+        #   protocol: HTTPS
+        #   port: 443
+        #   hostname: hello.azure.unique.dev
+        #   allowedRoutes:
+        #     namespaces:
+        #       from: All
+        #   tls:
+        #     certificateRefs:
+        #       - name: kong-tls
+        #         kind: Secret
+        # - name: https-api
+        #   protocol: HTTPS
+        #   port: 443
+        #   hostname: api.hello.azure.unique.dev
+        #   allowedRoutes:
+        #     namespaces:
+        #       from: All
+        #   tls:
+        #     certificateRefs:
+        #       - name: kong-api-tls
+        #         kind: Secret
