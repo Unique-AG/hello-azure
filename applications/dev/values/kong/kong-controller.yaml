@@ -59,3 +59,9 @@ gateway:
     clusterIssuer: letsencrypt-azure-dns
     proxy:
       commonName: hello.azure.unique.dev
+    admin:
+      enabled: false
+    cluster:
+      enabled: false
+    portal:
+      enabled: false
