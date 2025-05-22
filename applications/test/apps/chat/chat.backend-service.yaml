@@ -14,4 +14,9 @@ spec:
           - $values/applications/defaults/backend-services/chat.yaml
           - $values/applications/test/values/backend-services/_all.yaml
           - $values/applications/test/values/backend-services/chat.yaml
-        valuesObject: {}
+        valuesObject:
+          securityContext:
+            allowPrivilegeEscalation: true
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
