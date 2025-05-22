@@ -46,7 +46,7 @@ image:
   repository: uqhacrtest.azurecr.io/backend-service-chat
 resources:
   limits:
-    cpu: 2e2ffkl
+    cpu: 500m
     memory: 600Mi
   requests:
     cpu: 500m
