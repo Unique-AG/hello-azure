@@ -17,3 +17,4 @@ images:
 - name: web-app-chat:2025.22
 - name: web-app-knowledge-upload:2025.22
 - name: web-app-theme:2025.22
+- name: backend-service-speech:2025.22

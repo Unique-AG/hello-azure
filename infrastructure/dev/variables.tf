@@ -194,3 +194,13 @@ variable "kubernetes_version" {
   type        = string
   default     = "1.30.0"
 }
+
+variable "speech_service_private_dns_zone_name" {
+  description = "The name of the private DNS zone for the speech service."
+  type        = string
+}
+
+variable "speech_service_private_dns_zone_virtual_network_link_name" {
+  description = "The name of the virtual network link for the speech service private DNS zone."
+  type        = string
+}

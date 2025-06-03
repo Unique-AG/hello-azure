@@ -1,0 +1,18 @@
+image:
+  repository: uniquehelloazure.azurecr.io/backend-service-speech
+  tag: 2025.22
+replicaCount: 2
+resources:
+  limits:
+    cpu: 100m
+    memory: 300Mi
+  requests:
+    cpu: 100m
+    memory: 300Mi
+serviceAccount:
+  workloadIdentity:
+    clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
+secretProvider:
+  vaults:
+    helloazuresensitive:
+      SPEECH_PRIVATE_ENDPOINT_HOST: swedencentral-speech-fqdn

@@ -59,6 +59,8 @@ module "perimeter" {
   sensitive_kv_name             = var.sensitive_kv_name
   tags                          = var.tags
   virtual_network_id            = module.vnet.resource_id
+  speech_service_private_dns_zone_name = var.speech_service_private_dns_zone_name
+  speech_service_private_dns_zone_virtual_network_link_name = var.speech_service_private_dns_zone_virtual_network_link_name
 
   depends_on = [
     module.identities.resource_group_core_id,
@@ -96,6 +98,9 @@ module "workloads" {
   subnet_aks_pods_id                              = module.vnet.subnets["snet-aks-pods"].resource_id
   tags                                            = var.tags
   tenant_id                                       = var.tenant_id
+  subnet_cognitive_services_id                    = module.vnet.subnets["snet-cognitive"].resource_id
+  vnet_id                                         = module.vnet.resource_id
+  private_dns_zone_speech_service_id              = module.perimeter.speech_service_private_dns_zone_id
 
   depends_on = [
     module.identities.resource_group_core_id,

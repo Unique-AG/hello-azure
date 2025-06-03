@@ -1,0 +1,20 @@
+spec:
+  name: backend-service-speech
+  autoSync: false
+  sources:
+    - repoURL: 'https://github.com/Unique-AG/hello-azure'
+      targetRevision: preview
+      ref: values
+    - repoURL: ghcr.io/unique-ag/helm-charts
+      chart: backend-service
+      targetRevision: 4.1.2
+      helm:
+        releaseName: backend-service-speech
+        valueFiles:
+          - $values/applications/defaults/backend-services/speech.yaml
+          - $values/applications/test/values/backend-services/_all.yaml
+          - $values/applications/test/values/backend-services/speech.yaml
+        valuesObject: {}
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"

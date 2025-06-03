@@ -213,3 +213,13 @@ variable "ingestion_storage_sa_name" {
   description = "Name of the storage account used for ingestion storage"
   type        = string
 }
+
+variable "speech_service_private_dns_zone_name" {
+  description = "The name of the private DNS zone for the speech service."
+  type        = string
+}
+
+variable "speech_service_private_dns_zone_virtual_network_link_name" {
+  description = "The name of the virtual network link for the speech service private DNS zone."
+  type        = string
+}
