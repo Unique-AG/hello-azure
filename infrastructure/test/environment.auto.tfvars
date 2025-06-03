@@ -78,4 +78,4 @@ custom_subdomain_name                       = "ha-test"
 document_intelligence_custom_subdomain_name = "di-ha-test"
 
 speech_service_private_dns_zone_virtual_network_link_name = "speech-service-private-dns-zone-vnet-link-test"
-speech_service_private_dns_zone_name = "speech-service-private-dns-zone-test"
+speech_service_private_dns_zone_name                      = "speech-service-private-dns-zone-test"
