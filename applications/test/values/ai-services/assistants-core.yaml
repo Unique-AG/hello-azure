@@ -1,3 +1,7 @@
+env:
+  CORS_ALLOWED_ORIGINS: https://test-hello.azure.unique.dev
+  ZITADEL_PROJECT_ID: "311604321709982327"
+  UNIQUE_INSTALLATION_ID: test-hello.azure.unique.dev # the hostname of the cluster
 image:
   tag: "2025.22"
   repository: uqhacrtest.azurecr.io/ai-service-assistants-core
@@ -10,6 +14,9 @@ resources:
     cpu: 500m
     memory: 2Gi
 secretProvider:
+  useVMManagedIdentity: "true"
+  tenantId: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
+  userAssignedIdentityID: 4817ad12-ecb1-4009-bfe2-966200fcd84c
   vaults:
     hakv1test:
       AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT_DEFINITIONS: azure-document-intelligence-endpoint-definitions
