@@ -49,6 +49,6 @@ module "document_intelligence" {
       local_auth_enabled = true # https://github.com/Unique-AG/terraform-modules/issues/79
     }
   }
-  #key_vault_id               = var.main_kv_id
+  key_vault_id               = var.main_kv_id
 }
 
