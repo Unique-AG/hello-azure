@@ -1,9 +1,14 @@
 image:
-  tag: "2025.18"
+  tag: "2025.20"
   repository: uqhacrtest.azurecr.io/backend-service-scope-management
 env:
   ZITADEL_HOST: https://id.test-hello.azure.unique.dev
   ZITADEL_ROOT_ORG_ID: "311155409127801468"
+  # This can be uncommented if you want to avoid hairpinning (going outisde of the cluster to reach Zitadel which is deployed in the same cluster)
+  # ZITADEL_GRPC_DEFAULT_AUTHORITY: id.test-hello.azure.unique.dev
+  # ZITADEL_GRPC_SSL_TARGET_NAME_OVERRIDE: id.test-hello.azure.unique.dev
+  # ZITADEL_HTTP_EXTRA_HEADERS: '{"x-zitadel-instance-host": "id.test-hello.azure.unique.dev"}'
+  # ZITADEL_HOST: http://zitadel.unique.svc.cluster.local:8080
 extraRoutes:
   scim:
     enabled: true
