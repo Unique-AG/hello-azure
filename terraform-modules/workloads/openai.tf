@@ -59,3 +59,30 @@ module "document_intelligence" {
   key_vault_id               = var.main_kv_id
 }
 
+module "speech_service" {
+  source              = "github.com/unique-ag/terraform-modules.git//modules/azure-speech-service?depth=1&ref=azure-speech-service-1.0.1"
+  key_vault_id        = var.sensitive_kv_id
+  resource_group_name = data.azurerm_resource_group.core.name
+  speech_service_name = "speech-service"
+
+  accounts = {
+    "swedencentral-speech" = {
+      location              = "swedencentral"
+      account_kind          = "SpeechServices"
+      account_sku_name      = "S0"
+      custom_subdomain_name = var.speech_service_custom_subdomain_name
+
+      private_endpoint = {
+        subnet_id           = var.subnet_cognitive_services_id
+        vnet_id             = var.vnet_id
+        private_dns_zone_id = var.private_dns_zone_speech_service_id
+      }
+
+# Can be used to log audit logs
+      # diagnostic_settings = {
+      #   log_analytics_workspace_id = var.log_analytics_workspace_id
+      #   enabled_log_categories     = ["Audit"]
+      # }
+    }
+  }
+}

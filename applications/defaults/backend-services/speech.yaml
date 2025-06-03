@@ -1,0 +1,15 @@
+env:
+  LOG_LEVEL: info
+routes:
+  gateway:
+    namespace: unique
+  pathPrefix: /speech
+  paths:
+    default:
+      enabled: true
+    probe:
+      enabled: true
+serviceAccount:
+  enabled: true
+  workloadIdentity:
+    enabled: true

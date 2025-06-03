@@ -76,3 +76,7 @@ telemetry_observer_user_ids = [
 
 custom_subdomain_name                       = "ha-test"
 document_intelligence_custom_subdomain_name = "di-ha-test"
+
+speech_service_private_dns_zone_virtual_network_link_name = "speech-service-private-dns-zone-vnet-link-test"
+speech_service_private_dns_zone_name                      = "privatelink.cognitiveservices.azure.com"
+speech_service_custom_subdomain_name                      = "ss-hello-azure-test"
