@@ -7,11 +7,20 @@ env:
   API_BASE: http://backend-service-chat.unique.svc/public
   QUARTR_API_CREDS: "unset_value" # will need to be loaded using .secretProvider and put there via GHA (pre-encrypted locally)
   CRAWL4_AI_BASE_DIRECTORY: '/tmp'
-eventBasedAutoscaling:
-  enabled: false
 nodeSelector:
   scalability: steady
   lifecycle: persistent
+probes:
+  enabled: true
+  liveness:
+    httpGet:
+      path: /bundle
+  readiness:
+    httpGet:
+      path: /bundle
+  startup:
+    httpGet:
+      path: /bundle
 replicaCount: 2
 resources:
   limits:
@@ -21,13 +30,7 @@ resources:
     cpu: 500m
     memory: 2Gi
 securityContext:
-  allowPrivilegeEscalation: false
-  runAsNonRoot: true
-  runAsUser: 1000
-  seccompProfile:
-    type: RuntimeDefault
-strategy:
-  type: RollingUpdate
+  readOnlyRootFilesystem: false
 serviceAccount:
   enabled: true
   workloadIdentity:

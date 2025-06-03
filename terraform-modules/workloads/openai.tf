@@ -29,6 +29,13 @@ module "openai" {
           name          = "gpt-35-turbo-0125"
           sku_capacity  = 120
         },
+        {
+          name          = "gpt-4o-2024-11-20"
+          model_name    = "gpt-4o"
+          model_version = "2024-11-20"
+          sku_name      = "Standard"
+          sku_capacity  = 50
+      }
       ]
     }
   }

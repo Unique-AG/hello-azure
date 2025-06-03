@@ -29,11 +29,5 @@ routes:
   paths:
     default:
       enabled: true
-securityContext:
-  allowPrivilegeEscalation: false
-  runAsNonRoot: true
-  runAsUser: 1000
-  seccompProfile:
-    type: RuntimeDefault
 strategy:
   type: Recreate

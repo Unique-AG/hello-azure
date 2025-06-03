@@ -7,13 +7,12 @@ spec:
       ref: values
     - repoURL: ghcr.io/unique-ag/helm-charts
       chart: ai-service
-      targetRevision: 1.2.7
+      targetRevision: 2.1.1
       helm:
         releaseName: assistants-core
         valueFiles:
-          - $values/applications/defaults/backend-services/assistants-core.yaml
-          - $values/applications/test/values/backend-services/_all.yaml
-          - $values/applications/test/values/backend-services/assistants-core.yaml
+          - $values/applications/defaults/ai-services/assistants-core.yaml
+          - $values/applications/test/values/ai-services/assistants-core.yaml
         valuesObject: {}
 metadata:
   annotations:
