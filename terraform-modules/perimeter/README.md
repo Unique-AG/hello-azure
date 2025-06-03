@@ -85,4 +85,5 @@ No requirements.
 | <a name="output_log_analytics_workspace_id"></a> [log\_analytics\_workspace\_id](#output\_log\_analytics\_workspace\_id) | ID of the Log Analytics workspace |
 | <a name="output_log_analytics_workspace_name"></a> [log\_analytics\_workspace\_name](#output\_log\_analytics\_workspace\_name) | Name of the Log Analytics workspace |
 | <a name="output_postgresql_private_dns_zone_id"></a> [postgresql\_private\_dns\_zone\_id](#output\_postgresql\_private\_dns\_zone\_id) | ID of the PostgreSQL private DNS zone |
+| <a name="output_speech_service_private_dns_zone_id"></a> [speech\_service\_private\_dns\_zone\_id](#output\_speech\_service\_private\_dns\_zone\_id) | ID of the speech service private DNS zone |
 <!-- END_TF_DOCS -->
