@@ -6,6 +6,7 @@ env:
   ENABLED_MIME_TYPES_DOCUMENT_TRANSLATION: '["DOCX", "MSEXCEL", "EXCEL", "PPT", "MSPPT"]'
   API_BASE: http://backend-service-chat.unique.svc/public
   QUARTR_API_CREDS: "unset_value" # will need to be loaded using .secretProvider and put there via GHA (pre-encrypted locally)
+  CRAWL4_AI_BASE_DIRECTORY: '/tmp'
 eventBasedAutoscaling:
   enabled: false
 nodeSelector:
@@ -31,3 +32,10 @@ serviceAccount:
   enabled: true
   workloadIdentity:
     enabled: true
+volumes:
+  - name: tmp-volume
+    emptyDir:
+      sizeLimit: 500Mi
+volumeMounts:
+  - mountPath: /tmp
+    name: tmp-volume
