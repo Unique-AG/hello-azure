@@ -45,7 +45,8 @@ module "document_intelligence" {
     "swedencentral-form-recognizer" = {
       location = "swedencentral"
       custom_subdomain_name = var.document_intelligence_custom_subdomain_name
-      public_network_access_enabled = true # FIXME: use private endpoints
+      public_network_access_enabled = true # FIXME: use private endpoints'
+      local_auth_enabled = true # https://github.com/Unique-AG/terraform-modules/issues/79
     }
   }
   key_vault_id               = var.main_kv_id
