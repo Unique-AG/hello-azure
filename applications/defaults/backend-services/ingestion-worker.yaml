@@ -41,8 +41,6 @@ envVars:
       secretKeyRef:
         name: rabbitmqcluster-chat-default-user
         key: port
-eventBasedAutoscaling:
-  enabled: false
 keda:
   enabled: true
   minReplicaCount: 0

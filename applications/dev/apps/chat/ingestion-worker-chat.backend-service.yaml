@@ -17,8 +17,6 @@ spec:
         valuesObject:
           env:
             INGESTION_QUEUE: chat_queue
-          eventBasedAutoscaling:
-            enabled: false
           keda:
             enabled: true
             minReplicaCount: 0
