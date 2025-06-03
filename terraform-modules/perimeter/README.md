@@ -28,7 +28,9 @@ No requirements.
 | [azurerm_key_vault.sensitive_kv](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault) | resource |
 | [azurerm_log_analytics_workspace.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace) | resource |
 | [azurerm_private_dns_zone.psql_private_dns_zone](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone) | resource |
+| [azurerm_private_dns_zone.speech_service_private_dns_zone](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone) | resource |
 | [azurerm_private_dns_zone_virtual_network_link.psql-private-dns-zone-vnet-link](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone_virtual_network_link) | resource |
+| [azurerm_private_dns_zone_virtual_network_link.speech_service_private_dns_zone_vnet_link](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone_virtual_network_link) | resource |
 | [azurerm_public_ip.aks_public_ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) | resource |
 | [azurerm_resource_provider_registration.azure_alerts_provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_provider_registration) | resource |
 | [azurerm_resource_provider_registration.azure_dashboard_provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_provider_registration) | resource |
@@ -60,6 +62,8 @@ No requirements.
 | <a name="input_resource_group_sensitive_name"></a> [resource\_group\_sensitive\_name](#input\_resource\_group\_sensitive\_name) | The sensitive resource group name. | `string` | n/a | yes |
 | <a name="input_resource_group_vnet_name"></a> [resource\_group\_vnet\_name](#input\_resource\_group\_vnet\_name) | The resource group name for the vnets. | `string` | n/a | yes |
 | <a name="input_sensitive_kv_name"></a> [sensitive\_kv\_name](#input\_sensitive\_kv\_name) | The name of the sensitive key vault. | `string` | n/a | yes |
+| <a name="input_speech_service_private_dns_zone_name"></a> [speech\_service\_private\_dns\_zone\_name](#input\_speech\_service\_private\_dns\_zone\_name) | The name of the private DNS zone for the speech service. | `string` | n/a | yes |
+| <a name="input_speech_service_private_dns_zone_virtual_network_link_name"></a> [speech\_service\_private\_dns\_zone\_virtual\_network\_link\_name](#input\_speech\_service\_private\_dns\_zone\_virtual\_network\_link\_name) | The name of the virtual network link for the speech service private DNS zone. | `string` | n/a | yes |
 | <a name="input_subscription_budget_amount"></a> [subscription\_budget\_amount](#input\_subscription\_budget\_amount) | The amount for the subscription budget | `number` | `2000` | no |
 | <a name="input_subscription_budget_name"></a> [subscription\_budget\_name](#input\_subscription\_budget\_name) | n/a | `string` | `"subscription_budget"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to assign to the resources. | `map(string)` | n/a | yes |
