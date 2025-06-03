@@ -56,3 +56,7 @@ output "dns_zone_id" {
   value = azurerm_dns_zone.dns_zone.id
 }
 
+output "speech_service_private_dns_zone_id" {
+  description = "ID of the speech service private DNS zone"
+  value       = azurerm_private_dns_zone.speech_service_private_dns_zone.id
+}
