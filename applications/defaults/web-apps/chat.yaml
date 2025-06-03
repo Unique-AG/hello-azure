@@ -32,11 +32,5 @@ routes:
     root:
       enabled: true
       redirectPath: /chat
-securityContext:
-  allowPrivilegeEscalation: false
-  runAsNonRoot: true
-  runAsUser: 1000
-  seccompProfile:
-    type: RuntimeDefault
 strategy:
   type: Recreate
