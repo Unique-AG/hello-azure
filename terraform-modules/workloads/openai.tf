@@ -40,11 +40,11 @@ module "document_intelligence" {
   doc_intelligence_name = "doc-intelligence"
   resource_group_name   = data.azurerm_resource_group.core.name
   tags                  = var.tags
-  custom_subdomain_name = var.document_intelligence_custom_subdomain_name
 
   accounts = {
     "swedencentral-form-recognizer" = {
       location = "swedencentral"
+      custom_subdomain_name = var.document_intelligence_custom_subdomain_name
     }
   }
   key_vault_id               = var.main_kv_id
