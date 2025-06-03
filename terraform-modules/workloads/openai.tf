@@ -36,15 +36,19 @@ module "openai" {
 }
 
 module "document_intelligence" {
-  source                = "github.com/Unique-AG/terraform-modules.git//modules/azure-document-intelligence?ref=azure-document-intelligence-2.0.0"
+  source = "github.com/Unique-AG/terraform-modules.git//modules/azure-document-intelligence?ref=azure-document-intelligence-3.0.2"
   doc_intelligence_name = "doc-intelligence"
   resource_group_name   = data.azurerm_resource_group.core.name
   tags                  = var.tags
+
   accounts = {
     "swedencentral-form-recognizer" = {
       location = "swedencentral"
+      custom_subdomain_name = var.document_intelligence_custom_subdomain_name
+      public_network_access_enabled = true # FIXME: use private endpoints'
+      local_auth_enabled = true # https://github.com/Unique-AG/terraform-modules/issues/79
     }
   }
   key_vault_id               = var.main_kv_id
-  user_assigned_identity_ids = [var.document_intelligence_user_assigned_identity_id]
 }
+
