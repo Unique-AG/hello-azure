@@ -38,6 +38,8 @@ gateway:
     lifecycle: persistent
   proxy:
     type: ClusterIP
+    tls:
+      appProtocol: "https"
   plugins:
     configMaps:
       - name: kong-plugin-unique-jwt-auth
@@ -49,3 +51,22 @@ gateway:
   envFrom:
     - configMapRef:
         name: kong-gateway-environment
+  status:
+    tls:
+      enabled: true
+  certificates:
+    enabled: true
+    clusterIssuer: letsencrypt-azure-dns
+    proxy:
+      enabled: true
+      clusterIssuer: letsencrypt-azure-dns
+      commonName: hello.azure.unique.dev
+      dnsNames:
+        - hello.azure.unique.dev
+        - "*.hello.azure.unique.dev"
+    admin:
+      enabled: false
+    cluster:
+      enabled: false
+    portal:
+      enabled: false

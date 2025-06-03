@@ -50,6 +50,10 @@ variable "cluster_workload_identities" {
       name      = "backend-service-chat"
       namespace = "unique"
     }
+    "backend-service-ingestion-worker-chat" : {
+      name      = "backend-service-ingestion-worker-chat"
+      namespace = "unique"
+    }
     "backend-service-ingestion-worker" : {
       name      = "backend-service-ingestion-worker"
       namespace = "unique"

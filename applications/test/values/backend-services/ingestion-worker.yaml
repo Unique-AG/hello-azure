@@ -1,5 +1,5 @@
 image:
-  tag: "2025.18"
+  tag: "2025.20"
   repository: uqhacrtest.azurecr.io/backend-service-ingestion-worker
 secretProvider:
   vaults:

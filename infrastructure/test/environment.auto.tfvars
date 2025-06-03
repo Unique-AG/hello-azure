@@ -74,4 +74,5 @@ telemetry_observer_user_ids = [
   "0a28a069-6af6-43a3-9ef4-4b2a9c6d1b86"
 ]
 
-custom_subdomain_name = "ha-test"
+custom_subdomain_name                       = "ha-test"
+document_intelligence_custom_subdomain_name = "di-ha-test"
