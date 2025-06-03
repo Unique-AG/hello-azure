@@ -69,4 +69,5 @@ telemetry_observer_user_ids = [
   "45caeab6-e1dd-4f9a-aa0c-ea1fb6c0c5ff"
 ]
 
-custom_subdomain_name = "hello-azure"
+custom_subdomain_name                       = "hello-azure"
+document_intelligence_custom_subdomain_name = "di-hello-azure"

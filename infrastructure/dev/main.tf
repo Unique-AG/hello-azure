@@ -74,6 +74,7 @@ module "workloads" {
   kubernetes_version                              = var.kubernetes_version
   cluster_name                                    = var.cluster_name
   custom_subdomain_name                           = var.custom_subdomain_name
+  document_intelligence_custom_subdomain_name     = var.document_intelligence_custom_subdomain_name
   document_intelligence_user_assigned_identity_id = module.identities.document_intelligence_user_assigned_identity_id
   ingestion_cache_user_assigned_identity_id       = module.identities.ingestion_cache_user_assigned_identity_id
   ingestion_storage_user_assigned_identity_id     = module.identities.ingestion_storage_user_assigned_identity_id
