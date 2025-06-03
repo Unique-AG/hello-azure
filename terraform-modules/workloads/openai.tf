@@ -48,5 +48,4 @@ module "document_intelligence" {
     }
   }
   key_vault_id               = var.main_kv_id
-  user_assigned_identity_ids = [var.document_intelligence_user_assigned_identity_id]
 }
