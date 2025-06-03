@@ -29,6 +29,9 @@ env:
   DATABASE_CONNECTION_POOL_LIMIT: "30"
   ENABLE_CLIENT_INSIGHT_SHIPPER: "true"
   EXPORT_PROMPTS_ACCESS_CONTROL: "true"
+  ENABLE_DOWNLOAD_UPLOAD_FILES_AS_STREAM: "true"
+  ENABLE_UPLOAD_CHAT_INTERACTIONS_AS_STREAM: "true"
+  ENABLE_ANALYTICS_CHAT_DETAILED_INTERACTIONS_PRISMA_CURSOR: "true"
   INGESTION_API_URL: http://backend-service-ingestion.unique.svc
   INTERNAL_MODULES_CONFIG: >-
     [
@@ -83,7 +86,7 @@ envVars:
 hooks:
   migration:
     command: |
-      cd /node/dist/apps/node-chat; npx prisma migrate deploy; cd /node; RUNNING_MODE=DATA_MIGRATION  node /node/dist/apps/node-chat/main.js up;
+          cd /home/node/app/services/node-chat/prisma; npx prisma migrate deploy; cd /home/node/app/services/node-chat/dist; RUNNING_MODE=DATA_MIGRATION node /home/node/app/services/node-chat/dist/main.js;
     enabled: true
 nodeSelector:
   scalability: steady

@@ -2,7 +2,7 @@ env:
   CHAT_API_URL: http://backend-service-chat.unique.svc
   CONVERT_OFFICE_FILES_TO_PDF: "true"
   CUSTOM_API_DEFINITIONS: >-
-    [ {"identifier": "Unique Text Extraction API", "url": "http://assistants-core.unique.svc/core/text-extractions"} ]
+    [ {"identifier": "Unique Text Extraction API", "url": "http://assistants-core.unique.svc/core/text-extractions"},{"identifier": "Agentic Ingestion API", "url": "http://agentic-ingestion.chat.svc.cluster.local:8081/agentic-ingestion"}  ]
   EMBEDDING_BATCH_SIZE: 16
   FEATURE_FLAG_ENABLE_LANDSCAPED_PDF_PAGE_BASED_CHUNKING_UN_10606: "true"
   FEATURE_FLAG_ENABLE_PPT_PAGE_BASED_CHUNKING_UN_9444: "true"
