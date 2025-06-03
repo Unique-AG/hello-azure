@@ -85,6 +85,11 @@ variable "custom_subdomain_name" {
   type        = string
 }
 
+variable "document_intelligence_custom_subdomain_name" {
+  description = "The custom subdomain name to use for the document intelligence"
+  type        = string
+}
+
 variable "dns_subdomain_records" {
   description = "Map of DNS subdomain records"
   type = map(object({

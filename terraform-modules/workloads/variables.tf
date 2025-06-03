@@ -18,6 +18,11 @@ variable "custom_subdomain_name" {
   default = "hello-azure-unique-dev"
 }
 
+variable "document_intelligence_custom_subdomain_name" {
+  type    = string
+  default = "di-hello-azure-unique-dev"
+}
+
 variable "document_intelligence_user_assigned_identity_id" {
   description = "The ID of the document intelligence user-assigned identity."
   type        = string
