@@ -43,24 +43,25 @@ module "identities" {
 module "perimeter" {
   source = "../../terraform-modules/perimeter"
 
-  aks_node_rg_name              = module.identities.resource_group_core_name
-  budget_contact_emails         = var.budget_contact_emails
-  client_id                     = var.client_id
-  csi_identity_name             = var.csi_identity_name
-  dns_zone_name                 = var.dns_zone_name
-  dns_zone_root_records         = [module.workloads.application_gateway_ip_address]
-  dns_zone_sub_domain_records   = local.dns_subdomain_records_with_ip
-  kv_sku                        = var.kv_sku
-  log_analytics_workspace_name  = var.log_analytics_workspace_name
-  main_kv_name                  = var.main_kv_name
-  resource_group_core_location  = var.resource_group_core_location
-  resource_group_core_name      = module.identities.resource_group_core_name
-  resource_group_sensitive_name = module.identities.resource_group_sensitive_name
-  resource_group_vnet_name      = azurerm_resource_group.vnet.name
-  sensitive_kv_name             = var.sensitive_kv_name
-  tags                          = var.tags
-  virtual_network_id            = module.vnet.resource_id
-
+  aks_node_rg_name                                          = module.identities.resource_group_core_name
+  budget_contact_emails                                     = var.budget_contact_emails
+  client_id                                                 = var.client_id
+  csi_identity_name                                         = var.csi_identity_name
+  dns_zone_name                                             = var.dns_zone_name
+  dns_zone_root_records                                     = [module.workloads.application_gateway_ip_address]
+  dns_zone_sub_domain_records                               = local.dns_subdomain_records_with_ip
+  kv_sku                                                    = var.kv_sku
+  log_analytics_workspace_name                              = var.log_analytics_workspace_name
+  main_kv_name                                              = var.main_kv_name
+  resource_group_core_location                              = var.resource_group_core_location
+  resource_group_core_name                                  = module.identities.resource_group_core_name
+  resource_group_sensitive_name                             = module.identities.resource_group_sensitive_name
+  resource_group_vnet_name                                  = azurerm_resource_group.vnet.name
+  sensitive_kv_name                                         = var.sensitive_kv_name
+  tags                                                      = var.tags
+  virtual_network_id                                        = module.vnet.resource_id
+  speech_service_private_dns_zone_name                      = var.speech_service_private_dns_zone_name
+  speech_service_private_dns_zone_virtual_network_link_name = var.speech_service_private_dns_zone_virtual_network_link_name
   depends_on = [
     module.identities.resource_group_core_id,
     module.identities.resource_group_sensitive_id,
@@ -100,6 +101,10 @@ module "workloads" {
   redis_name                                      = var.redis_name
   ingestion_cache_sa_name                         = var.ingestion_cache_sa_name
   ingestion_storage_sa_name                       = var.ingestion_storage_sa_name
+  subnet_cognitive_services_id                    = module.vnet.subnets["snet-cognitive"].resource_id
+  vnet_id                                         = module.vnet.resource_id
+  private_dns_zone_speech_service_id              = module.perimeter.speech_service_private_dns_zone_id
+  speech_service_custom_subdomain_name            = var.speech_service_custom_subdomain_name
 
   depends_on = [
     module.identities.resource_group_core_id,

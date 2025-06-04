@@ -52,6 +52,7 @@ See also [identities](modules/identities/README.md), [perimeter](modules/perimet
 | <a name="input_custom_subdomain_name"></a> [custom\_subdomain\_name](#input\_custom\_subdomain\_name) | The custom subdomain name to use for the application | `string` | n/a | yes |
 | <a name="input_dns_subdomain_records"></a> [dns\_subdomain\_records](#input\_dns\_subdomain\_records) | Map of DNS subdomain records | <pre>map(object({<br/>    name    = string<br/>    records = list(string)<br/>  }))</pre> | n/a | yes |
 | <a name="input_dns_zone_name"></a> [dns\_zone\_name](#input\_dns\_zone\_name) | The DNS zone name for the environment | `string` | n/a | yes |
+| <a name="input_document_intelligence_custom_subdomain_name"></a> [document\_intelligence\_custom\_subdomain\_name](#input\_document\_intelligence\_custom\_subdomain\_name) | The custom subdomain name to use for the document intelligence | `string` | n/a | yes |
 | <a name="input_document_intelligence_identity_name"></a> [document\_intelligence\_identity\_name](#input\_document\_intelligence\_identity\_name) | Name of the document intelligence identity | `string` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment name (e.g., dev, staging, prod) | `string` | n/a | yes |
 | <a name="input_gitops_display_name"></a> [gitops\_display\_name](#input\_gitops\_display\_name) | Display name for GitOps application registration | `string` | n/a | yes |
@@ -74,6 +75,9 @@ See also [identities](modules/identities/README.md), [perimeter](modules/perimet
 | <a name="input_resource_group_sensitive_location"></a> [resource\_group\_sensitive\_location](#input\_resource\_group\_sensitive\_location) | The location for sensitive resource group | `string` | n/a | yes |
 | <a name="input_resource_vnet_location"></a> [resource\_vnet\_location](#input\_resource\_vnet\_location) | The location for virtual network resources | `string` | n/a | yes |
 | <a name="input_sensitive_kv_name"></a> [sensitive\_kv\_name](#input\_sensitive\_kv\_name) | Name of the sensitive key vault | `string` | n/a | yes |
+| <a name="input_speech_service_custom_subdomain_name"></a> [speech\_service\_custom\_subdomain\_name](#input\_speech\_service\_custom\_subdomain\_name) | The custom subdomain name to use for the speech service | `string` | n/a | yes |
+| <a name="input_speech_service_private_dns_zone_name"></a> [speech\_service\_private\_dns\_zone\_name](#input\_speech\_service\_private\_dns\_zone\_name) | The name of the private DNS zone for the speech service. | `string` | n/a | yes |
+| <a name="input_speech_service_private_dns_zone_virtual_network_link_name"></a> [speech\_service\_private\_dns\_zone\_virtual\_network\_link\_name](#input\_speech\_service\_private\_dns\_zone\_virtual\_network\_link\_name) | The name of the virtual network link for the speech service private DNS zone. | `string` | n/a | yes |
 | <a name="input_storage_account_name"></a> [storage\_account\_name](#input\_storage\_account\_name) | The resource group name for the storage account name | `string` | n/a | yes |
 | <a name="input_subnet_agw_cidr"></a> [subnet\_agw\_cidr](#input\_subnet\_agw\_cidr) | CIDR block for the Application Gateway subnet | `string` | n/a | yes |
 | <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | The UUID ID of the suscription (not the full Azure Resource ID). | `string` | n/a | yes |

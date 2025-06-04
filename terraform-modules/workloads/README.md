@@ -14,14 +14,15 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_application_gateway"></a> [application\_gateway](#module\_application\_gateway) | github.com/Unique-AG/terraform-modules.git//modules/azure-application-gateway | azure-application-gateway-2.0.0 |
-| <a name="module_document_intelligence"></a> [document\_intelligence](#module\_document\_intelligence) | github.com/Unique-AG/terraform-modules.git//modules/azure-document-intelligence | azure-document-intelligence-2.0.0 |
+| <a name="module_application_gateway"></a> [application\_gateway](#module\_application\_gateway) | github.com/Unique-AG/terraform-modules.git//modules/azure-application-gateway | azure-application-gateway-2.1.0 |
+| <a name="module_document_intelligence"></a> [document\_intelligence](#module\_document\_intelligence) | github.com/Unique-AG/terraform-modules.git//modules/azure-document-intelligence | azure-document-intelligence-3.0.2 |
 | <a name="module_ingestion_cache"></a> [ingestion\_cache](#module\_ingestion\_cache) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.0.2 | n/a |
 | <a name="module_ingestion_storage"></a> [ingestion\_storage](#module\_ingestion\_storage) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.0.2 | n/a |
-| <a name="module_kubernetes_cluster"></a> [kubernetes\_cluster](#module\_kubernetes\_cluster) | github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service | azure-kubernetes-service-2.0.0 |
+| <a name="module_kubernetes_cluster"></a> [kubernetes\_cluster](#module\_kubernetes\_cluster) | github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service | azure-kubernetes-service-3.0.0 |
 | <a name="module_openai"></a> [openai](#module\_openai) | github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=azure-openai-2.0.3 | n/a |
 | <a name="module_postgresql"></a> [postgresql](#module\_postgresql) | github.com/unique-ag/terraform-modules.git//modules/azure-postgresql?depth=1&ref=azure-postgresql-2.0.0-rc.2 | n/a |
 | <a name="module_redis"></a> [redis](#module\_redis) | github.com/unique-ag/terraform-modules.git//modules/azure-redis?depth=1&ref=azure-redis-2.0.0-rc.2 | n/a |
+| <a name="module_speech_service"></a> [speech\_service](#module\_speech\_service) | github.com/unique-ag/terraform-modules.git//modules/azure-speech-service?depth=1&ref=azure-speech-service-1.0.1 | n/a |
 
 ## Resources
 
@@ -56,6 +57,7 @@ No requirements.
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | The name of the AKS cluster. | `string` | n/a | yes |
 | <a name="input_container_registry_name"></a> [container\_registry\_name](#input\_container\_registry\_name) | n/a | `string` | `"uniquehelloazure"` | no |
 | <a name="input_custom_subdomain_name"></a> [custom\_subdomain\_name](#input\_custom\_subdomain\_name) | n/a | `string` | `"hello-azure-unique-dev"` | no |
+| <a name="input_document_intelligence_custom_subdomain_name"></a> [document\_intelligence\_custom\_subdomain\_name](#input\_document\_intelligence\_custom\_subdomain\_name) | n/a | `string` | `"di-hello-azure-unique-dev"` | no |
 | <a name="input_document_intelligence_user_assigned_identity_id"></a> [document\_intelligence\_user\_assigned\_identity\_id](#input\_document\_intelligence\_user\_assigned\_identity\_id) | The ID of the document intelligence user-assigned identity. | `string` | n/a | yes |
 | <a name="input_encryption_key_app_repository_secret_name"></a> [encryption\_key\_app\_repository\_secret\_name](#input\_encryption\_key\_app\_repository\_secret\_name) | n/a | `string` | `"encryption-key-app-repository"` | no |
 | <a name="input_encryption_key_ingestion_secret_name"></a> [encryption\_key\_ingestion\_secret\_name](#input\_encryption\_key\_ingestion\_secret\_name) | n/a | `string` | `"encryption-key-ingestion"` | no |
@@ -69,6 +71,16 @@ No requirements.
 | <a name="input_ingestion_storage_sa_name"></a> [ingestion\_storage\_sa\_name](#input\_ingestion\_storage\_sa\_name) | n/a | `string` | `"helloazureingstorage"` | no |
 | <a name="input_ingestion_storage_user_assigned_identity_id"></a> [ingestion\_storage\_user\_assigned\_identity\_id](#input\_ingestion\_storage\_user\_assigned\_identity\_id) | The ID of the ingestion storage user-assigned identity. | `string` | n/a | yes |
 | <a name="input_ip_name"></a> [ip\_name](#input\_ip\_name) | Name of the public IP for the Application Gateway | `string` | `"default-public-ip-name"` | no |
+| <a name="input_kubernetes_default_node_size"></a> [kubernetes\_default\_node\_size](#input\_kubernetes\_default\_node\_size) | The default node size for the AKS cluster | `string` | `"Standard_D2s_v6"` | no |
+| <a name="input_kubernetes_rapid_max_count"></a> [kubernetes\_rapid\_max\_count](#input\_kubernetes\_rapid\_max\_count) | The maximum number of nodes for the rapid node pool | `number` | `3` | no |
+| <a name="input_kubernetes_rapid_min_count"></a> [kubernetes\_rapid\_min\_count](#input\_kubernetes\_rapid\_min\_count) | The minimum number of nodes for the rapid node pool | `number` | `1` | no |
+| <a name="input_kubernetes_rapid_node_count"></a> [kubernetes\_rapid\_node\_count](#input\_kubernetes\_rapid\_node\_count) | The number of nodes for the rapid node pool | `number` | `0` | no |
+| <a name="input_kubernetes_rapid_node_size"></a> [kubernetes\_rapid\_node\_size](#input\_kubernetes\_rapid\_node\_size) | The rapid node pool node size for the AKS cluster | `string` | `"Standard_D8s_v4"` | no |
+| <a name="input_kubernetes_steady_max_count"></a> [kubernetes\_steady\_max\_count](#input\_kubernetes\_steady\_max\_count) | The maximum number of nodes for the steady node pool | `number` | `4` | no |
+| <a name="input_kubernetes_steady_min_count"></a> [kubernetes\_steady\_min\_count](#input\_kubernetes\_steady\_min\_count) | The minimum number of nodes for the steady node pool | `number` | `0` | no |
+| <a name="input_kubernetes_steady_node_count"></a> [kubernetes\_steady\_node\_count](#input\_kubernetes\_steady\_node\_count) | The number of nodes for the steady node pool | `number` | `2` | no |
+| <a name="input_kubernetes_steady_node_size"></a> [kubernetes\_steady\_node\_size](#input\_kubernetes\_steady\_node\_size) | The steady node pool node size for the AKS cluster | `string` | `"Standard_D8as_v5"` | no |
+| <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | The version of Kubernetes to use for the AKS cluster. | `string` | `"1.30.10"` | no |
 | <a name="input_log_analytics_workspace_id"></a> [log\_analytics\_workspace\_id](#input\_log\_analytics\_workspace\_id) | The ID of the Log Analytics workspace. | `string` | n/a | yes |
 | <a name="input_main_kv_id"></a> [main\_kv\_id](#input\_main\_kv\_id) | The ID of the main key vault. | `string` | n/a | yes |
 | <a name="input_name_prefix"></a> [name\_prefix](#input\_name\_prefix) | Prefix for the name of the Application Gateway | `string` | `"agw"` | no |
@@ -76,6 +88,7 @@ No requirements.
 | <a name="input_postgresql_private_dns_zone_id"></a> [postgresql\_private\_dns\_zone\_id](#input\_postgresql\_private\_dns\_zone\_id) | n/a | `string` | n/a | yes |
 | <a name="input_postgresql_server_name"></a> [postgresql\_server\_name](#input\_postgresql\_server\_name) | The name of the PostgreSQL server. | `string` | n/a | yes |
 | <a name="input_postgresql_subnet_id"></a> [postgresql\_subnet\_id](#input\_postgresql\_subnet\_id) | ID of the subnet dedicated to the PostgreSQL | `string` | n/a | yes |
+| <a name="input_private_dns_zone_speech_service_id"></a> [private\_dns\_zone\_speech\_service\_id](#input\_private\_dns\_zone\_speech\_service\_id) | The ID of the private DNS zone for the speech service. | `string` | n/a | yes |
 | <a name="input_psql_user_assigned_identity_id"></a> [psql\_user\_assigned\_identity\_id](#input\_psql\_user\_assigned\_identity\_id) | The ID of the PostgreSQL user-assigned identity. | `string` | n/a | yes |
 | <a name="input_rabbitmq_password_chat_secret_name"></a> [rabbitmq\_password\_chat\_secret\_name](#input\_rabbitmq\_password\_chat\_secret\_name) | The name of the secret containing the rabbitmq password. | `string` | `"rabbitmq-password-chat"` | no |
 | <a name="input_redis_name"></a> [redis\_name](#input\_redis\_name) | n/a | `string` | `"uniquehelloazureredis"` | no |
@@ -84,11 +97,15 @@ No requirements.
 | <a name="input_resource_group_core_name"></a> [resource\_group\_core\_name](#input\_resource\_group\_core\_name) | The core resource group name. | `string` | n/a | yes |
 | <a name="input_resource_group_sensitive_name"></a> [resource\_group\_sensitive\_name](#input\_resource\_group\_sensitive\_name) | The sensitive resource group name. | `string` | n/a | yes |
 | <a name="input_sensitive_kv_id"></a> [sensitive\_kv\_id](#input\_sensitive\_kv\_id) | The ID of the sensitive key vault. | `string` | n/a | yes |
+| <a name="input_speech_service_custom_subdomain_name"></a> [speech\_service\_custom\_subdomain\_name](#input\_speech\_service\_custom\_subdomain\_name) | n/a | `string` | `"ss-hello-azure-unique-dev"` | no |
 | <a name="input_subnet_agw_cidr"></a> [subnet\_agw\_cidr](#input\_subnet\_agw\_cidr) | The CIDR range of the application gateway subnet. | `string` | n/a | yes |
 | <a name="input_subnet_agw_id"></a> [subnet\_agw\_id](#input\_subnet\_agw\_id) | The ID of the application gateway subnet. | `string` | n/a | yes |
 | <a name="input_subnet_aks_nodes_id"></a> [subnet\_aks\_nodes\_id](#input\_subnet\_aks\_nodes\_id) | The ID of the AKS nodes subnet. | `string` | n/a | yes |
+| <a name="input_subnet_aks_pods_id"></a> [subnet\_aks\_pods\_id](#input\_subnet\_aks\_pods\_id) | The ID of the AKS pods subnet. | `string` | n/a | yes |
+| <a name="input_subnet_cognitive_services_id"></a> [subnet\_cognitive\_services\_id](#input\_subnet\_cognitive\_services\_id) | The ID of the cognitive services subnet. | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to assign to the resources. | `map(string)` | n/a | yes |
 | <a name="input_tenant_id"></a> [tenant\_id](#input\_tenant\_id) | The tenant ID for the Azure subscription. | `string` | n/a | yes |
+| <a name="input_vnet_id"></a> [vnet\_id](#input\_vnet\_id) | The ID of the virtual network. | `string` | n/a | yes |
 | <a name="input_zitadel_db_user_password_secret_name"></a> [zitadel\_db\_user\_password\_secret\_name](#input\_zitadel\_db\_user\_password\_secret\_name) | n/a | `string` | `"zitadel-db-user-password"` | no |
 | <a name="input_zitadel_master_key_secret_name"></a> [zitadel\_master\_key\_secret\_name](#input\_zitadel\_master\_key\_secret\_name) | n/a | `string` | `"zitadel-master-key"` | no |
 | <a name="input_zitadel_pat_secret_name"></a> [zitadel\_pat\_secret\_name](#input\_zitadel\_pat\_secret\_name) | Name of the empty secret placeholder for the Zitadel PAT to be created for manually setting the value later | `string` | `"manual-zitadel-scope-mgmt-pat"` | no |

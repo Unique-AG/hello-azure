@@ -66,6 +66,10 @@ variable "cluster_workload_identities" {
       name      = "assistants-core"
       namespace = "unique"
     }
+    "backend-service-speech" : {
+      name      = "backend-service-speech"
+      namespace = "unique"
+    }
   }
 }
 

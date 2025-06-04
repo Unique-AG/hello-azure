@@ -23,6 +23,11 @@ variable "document_intelligence_custom_subdomain_name" {
   default = "di-hello-azure-unique-dev"
 }
 
+variable "speech_service_custom_subdomain_name" {
+  type    = string
+  default = "ss-hello-azure-unique-dev"
+}
+
 variable "document_intelligence_user_assigned_identity_id" {
   description = "The ID of the document intelligence user-assigned identity."
   type        = string
@@ -237,6 +242,20 @@ variable "subnet_aks_nodes_id" {
 
 variable "subnet_aks_pods_id" {
   description = "The ID of the AKS pods subnet."
+  type        = string
+}
+
+variable "subnet_cognitive_services_id" {
+  description = "The ID of the cognitive services subnet."
+  type        = string
+}
+variable "vnet_id" {
+  description = "The ID of the virtual network."
+  type        = string
+}
+
+variable "private_dns_zone_speech_service_id" {
+  description = "The ID of the private DNS zone for the speech service."
   type        = string
 }
 
