@@ -4,7 +4,7 @@ env:
 hooks:
   migration:
     command: |
-      cd /node/dist/apps/node-app-repository; npx prisma migrate deploy
+      cd /home/node/app/services/node-app-repository/prisma; npx prisma migrate deploy;
     enabled: true
 nodeSelector:
   scalability: steady
