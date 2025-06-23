@@ -7,7 +7,7 @@ spec:
   replicas: 1
   resources:
     requests:
-      cpu: '1'
+      cpu: '200m' # TODO: @PROD-CHANGE: recommended 1 core
       memory: 1Gi
     limits:
       memory: 1Gi
