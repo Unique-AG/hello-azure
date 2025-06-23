@@ -3,25 +3,12 @@ chownImage:
   tag: 3.19
 image:
   repository: uniquehelloazure.azurecr.io/zitadel/zitadel
-  tag: v2.70.11
+  tag: v2.71.11
 nodeSelector:
   scalability: steady
   lifecycle: persistent
 ingress:
-  enabled: true
-  className: azure-application-gateway
-  annotations:
-      appgw.ingress.kubernetes.io/ssl-redirect: "true"
-      cert-manager.io/cluster-issuer: letsencrypt-azure-dns
-  hosts:
-    - host: id.hello.azure.unique.dev
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls:
-    - secretName: zitadel-le-tls
-      hosts:
-        - id.hello.azure.unique.dev
+  enabled: false
 securityContext:
   allowPrivilegeEscalation: false
 env:
