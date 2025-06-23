@@ -15,6 +15,3 @@ spec:
           - $values/applications/dev/values/backend-services/_all.yaml
           - $values/applications/dev/values/backend-services/client-insights-exporter.yaml
         valuesObject: {}
-metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "5"

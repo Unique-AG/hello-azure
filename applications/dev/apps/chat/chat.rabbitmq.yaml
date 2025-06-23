@@ -7,6 +7,3 @@ spec:
     path: applications/dev/values/rabbitmq
     directory:
       recurse: true
-metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "4"
