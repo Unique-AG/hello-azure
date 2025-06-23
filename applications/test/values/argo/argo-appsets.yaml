@@ -20,6 +20,11 @@ applicationsets:
           server: https://kubernetes.default.svc
           namespace: unique
     templatePatch: |
+      {{- if hasKey .metadata "annotations" }}
+      metadata:
+        annotations:
+          {{- .metadata.annotations | toYaml | nindent 4 }}
+      {{- end }}
       spec:
         {{- if hasKey .spec "sources" }}
         sources:
@@ -71,6 +76,11 @@ applicationsets:
           server: https://kubernetes.default.svc
           namespace: unique
     templatePatch: |
+      {{- if hasKey .metadata "annotations" }}
+      metadata:
+        annotations:
+          {{- .metadata.annotations | toYaml | nindent 4 }}
+      {{- end }}
       spec:
         {{- if hasKey .spec "sources" }}
         sources:
