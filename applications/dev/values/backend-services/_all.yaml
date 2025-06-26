@@ -27,6 +27,8 @@ networkPolicy:
           port: 443  # HTTPS
         - protocol: TCP
           port: 80   # HTTP
+        - protocol: TCP
+          port: 5432 # PostgreSQL
     # Allow specific internal cluster services only
     - to:
       - namespaceSelector:
