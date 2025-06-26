@@ -31,6 +31,8 @@ networkPolicy:
           port: 5432 # PostgreSQL
         - protocol: TCP
           port: 8080
+        - protocol: TCP
+          port: 46330
     # Allow specific internal cluster services only
     - to:
       - namespaceSelector:
