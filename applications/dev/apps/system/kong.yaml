@@ -7,7 +7,7 @@ spec:
       ref: values
     - chart: kong-plugins
       repoURL: ghcr.io/unique-ag/helm-charts
-      targetRevision: 1.2.0
+      targetRevision: 1.2.1
       helm:
         releaseName: kong-plugins
         valueFiles:
