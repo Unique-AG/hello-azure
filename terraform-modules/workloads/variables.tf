@@ -121,13 +121,13 @@ variable "kubernetes_rapid_node_count" {
 variable "kubernetes_rapid_node_size" {
   description = "The rapid node pool node size for the AKS cluster"
   type        = string
-  default     = "Standard_D8as_v5"
+  default     = "Standard_D8s_v4"
 }
 
 variable "kubernetes_steady_max_count" {
   description = "The maximum number of nodes for the steady node pool"
   type        = number
-  default     = 8
+  default     = 4
 }
 
 variable "kubernetes_steady_min_count" {
@@ -145,7 +145,7 @@ variable "kubernetes_steady_node_count" {
 variable "kubernetes_steady_node_size" {
   description = "The steady node pool node size for the AKS cluster"
   type        = string
-  default     = "Standard_D8s_v4"
+  default     = "Standard_D8as_v5"
 }
 
 variable "log_analytics_workspace_id" {

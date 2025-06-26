@@ -82,6 +82,7 @@ module "workloads" {
   ingestion_storage_user_assigned_identity_id     = module.identities.ingestion_storage_user_assigned_identity_id
   kubernetes_rapid_node_size                      = "Standard_D4s_v5"
   kubernetes_steady_node_size                     = "Standard_D4s_v5"
+  kubernetes_steady_max_count                     = 8
   log_analytics_workspace_id                      = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.OperationalInsights/workspaces/${module.perimeter.log_analytics_workspace_name}"
   main_kv_id                                      = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.KeyVault/vaults/${module.perimeter.key_vault_main_name}"
   name_prefix                                     = var.name_prefix
