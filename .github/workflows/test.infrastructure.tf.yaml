@@ -50,10 +50,14 @@ jobs:
         id: validate
         run: terraform validate -no-color
 
-      - name: Terraform Plan
-        id: plan
-        run: terraform plan -no-color
+      # - name: Terraform Plan
+      #   id: plan
+      #   run: terraform plan -no-color
+      #
+      # - name: Terraform Apply
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/preview'
+      #   run: terraform apply -auto-approve -input=false
 
-      - name: Terraform Apply
-        if: github.event_name == 'push' && github.ref == 'refs/heads/preview'
-        run: terraform apply -auto-approve -input=false
+      # - name: Terraform Destroy
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/preview'
+      #   run: terraform destroy -auto-approve -input=false

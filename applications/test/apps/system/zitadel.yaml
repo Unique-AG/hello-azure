@@ -11,7 +11,7 @@ spec:
       helm:
         releaseName: zitadel
         valueFiles: 
-          - $values/applications/test/values/zitadel/zitadel-secrets.yaml
+          - $values/applications/test/values/zitadel/zitadel-extra-manifests.yaml
           - $values/applications/test/values/zitadel/zitadel.yaml
         valuesObject: {} 
 metadata:

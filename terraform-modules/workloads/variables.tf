@@ -109,7 +109,7 @@ variable "kubernetes_rapid_max_count" {
 variable "kubernetes_rapid_min_count" {
   description = "The minimum number of nodes for the rapid node pool"
   type        = number
-  default     = 1
+  default     = 0
 }
 
 variable "kubernetes_rapid_node_count" {

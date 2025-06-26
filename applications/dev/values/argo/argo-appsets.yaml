@@ -1,5 +1,7 @@
 applicationsets:
   chat:
+    additionalAnnotations:
+      argocd.argoproj.io/sync-wave: "1"
     namespace: unique
     goTemplate: true
     generators:
@@ -44,6 +46,8 @@ applicationsets:
 
 
   system:
+    additionalAnnotations:
+      argocd.argoproj.io/sync-wave: "0"
     namespace: unique
     goTemplate: true
     generators:

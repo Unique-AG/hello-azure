@@ -40,37 +40,6 @@ env:
   USE_SCOPE_MANAGEMENT: "true"
   MAX_REQUEST_BODY_SIZE: "30mb"
   PDF_READ_MODE: "DOC_INTELLIGENCE_DEFAULT"
-envVars:
-  - name: RABBITMQ_USERNAME #! FIXME: @evrim should refactor to respect AMQP_USERNAME as well
-    valueFrom:
-      secretKeyRef:
-        name: rabbitmqcluster-chat-default-user
-        key: username
-  - name: AMQP_USERNAME
-    valueFrom:
-      secretKeyRef:
-        name: rabbitmqcluster-chat-default-user
-        key: username
-  - name: RABBITMQ_PASSWORD #! FIXME: @evrim should refactor to respect AMQP_PASSWORD as well
-    valueFrom:
-      secretKeyRef:
-        name: rabbitmqcluster-chat-default-user
-        key: password
-  - name: AMQP_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: rabbitmqcluster-chat-default-user
-        key: password
-  - name: AMQP_HOST
-    valueFrom:
-      secretKeyRef:
-        name: rabbitmqcluster-chat-default-user
-        key: host
-  - name: AMQP_PORT
-    valueFrom:
-      secretKeyRef:
-        name: rabbitmqcluster-chat-default-user
-        key: port
 hooks:
   migration:
     command: |

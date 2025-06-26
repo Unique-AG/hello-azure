@@ -51,3 +51,33 @@ resources:
         - hosts:
             - api.test-hello.azure.unique.dev
           secretName: kong-api-tls
+
+  - apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      annotations:
+        appgw.ingress.kubernetes.io/backend-protocol: https
+        appgw.ingress.kubernetes.io/health-probe-hostname: id.test-hello.azure.unique.dev
+        appgw.ingress.kubernetes.io/health-probe-port: "8543"
+        appgw.ingress.kubernetes.io/request-timeout: "120"
+        appgw.ingress.kubernetes.io/rewrite-rule-set: security-headers
+        appgw.ingress.kubernetes.io/ssl-redirect: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-azure-dns
+      name: kong-zitadel
+    spec:
+      ingressClassName: azure-application-gateway
+      rules:
+        - host: id.test-hello.azure.unique.dev
+          http:
+            paths:
+              - backend:
+                  service:
+                    name: kong-gateway-proxy
+                    port:
+                      name: kong-proxy-tls
+                path: /
+                pathType: Prefix
+      tls:
+        - hosts:
+            - id.test-hello.azure.unique.dev
+          secretName: kong-zitadel-tls

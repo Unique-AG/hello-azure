@@ -1,0 +1,10 @@
+spec:
+  name: eck-operator
+  autoSync: true
+  sources:
+    - chart: eck-operator
+      repoURL: https://helm.elastic.co
+      targetRevision: 3.0.0
+      helm:
+        valuesObject:
+          managedNamespaces: [unique]

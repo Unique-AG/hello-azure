@@ -19,16 +19,16 @@ extraManifests:
     data:
       - secretKey: ZITADEL_DATABASE_POSTGRES_HOST
         remoteRef:
-          key: psql-3fod5wcj-host
+          key: hello-azure-psql-host
       - secretKey: ZITADEL_DATABASE_POSTGRES_PORT
         remoteRef:
-          key: psql-3fod5wcj-port
+          key: hello-azure-psql-port
       - secretKey: ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME
         remoteRef:
-          key: psql-3fod5wcj-username
+          key: hello-azure-psql-username
       - secretKey: ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD
         remoteRef:
-          key: psql-3fod5wcj-password
+          key: hello-azure-psql-password
       - secretKey: ZITADEL_DATABASE_POSTGRES_USER_PASSWORD
         remoteRef:
           key: zitadel-db-user-password
@@ -131,3 +131,28 @@ extraManifests:
       AHFiRSdLOkKEW39lt2c0Ui2cFmuqqNh7o0JMcccMyj6D5KbvtwEwXlGjefVwaaZB
       RA+GsCyRxj3qrg+E
       -----END CERTIFICATE-----
+
+- apiVersion: gateway.networking.k8s.io/v1
+  kind: HTTPRoute
+  metadata:
+    labels:
+    name: zitadel
+    namespace: unique
+  spec:
+    hostnames:
+      - id.hello.azure.unique.dev
+    parentRefs:
+      - group: gateway.networking.k8s.io
+        kind: Gateway
+        name: kong
+        namespace: unique
+    rules:
+      - backendRefs:
+          - group: ''
+            kind: Service
+            name: zitadel
+            port: 8080
+        matches:
+          - path:
+              type: PathPrefix
+              value: /

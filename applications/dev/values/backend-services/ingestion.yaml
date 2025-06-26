@@ -1,9 +1,50 @@
 image:
-  tag: "2025.24.1"
+  tag: "2025.26"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion
 env:
+  ELASTICSEARCH_CA_BUNDLE: /etc/ssl/elastic/ca.crt
+  ELASTICSEARCH_URL: https://elasticsearch-ingestion-es-http.unique.svc:9200
+  ELASTICSEARCH_USERNAME: elastic
+  FEATURE_FLAG_ENABLE_ELASTICSEARCH_INDEXING: "true"
+  FEATURE_FLAG_ENABLE_SEARCH_ADAPTER_ELASTICSEARCH_UN_9883: "true"
   INGESTION_UPLOAD_API_URL: https://api.hello.azure.unique.dev/scoped/ingestion/upload
   ZITADEL_ROOT_ORG_ID: "305511794535891578"
+envVars:
+  - name: RABBITMQ_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: username
+  - name: AMQP_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: username
+  - name: RABBITMQ_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: password
+  - name: AMQP_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: password
+  - name: AMQP_HOST
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: host
+  - name: AMQP_PORT
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: port
+  - name: ELASTICSEARCH_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: elasticsearch-ingestion-es-elastic-user
+        key: elastic
 replicaCount: 2
 resources:
   limits:
@@ -27,3 +68,12 @@ secretProvider:
     helloazuremain:
       AZURE_OPENAI_API_ENDPOINT: cognitive-account-swedencentral-ep
       AZURE_DOCUMENT_INTELLIGENCE_ENDPOINTS: azure-document-intelligence-endpoints
+volumeMounts:
+  - name: elastic-certs
+    mountPath: /etc/ssl/elastic/ca.crt
+    readOnly: true
+    subPath: ca.crt
+volumes:
+  - name: elastic-certs
+    secret:
+      secretName: elasticsearch-ingestion-es-http-certs-public
