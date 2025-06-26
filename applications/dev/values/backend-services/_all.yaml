@@ -2,6 +2,36 @@ env:
   CORS_ALLOWED_ORIGINS: https://hello.azure.unique.dev
   ZITADEL_PROJECT_ID: "305512913743905383"
   UNIQUE_INSTALLATION_ID: hello.azure.unique.dev # the hostname of the cluster
+networkPolicies:
+  enabled: true
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            name: unique
+  egress:
+    # Allow DNS resolution
+    - to: []
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+    # Allow all external traffic (outside the cluster)
+    - to: []
+      ports:
+        - protocol: TCP
+          port: 443  # HTTPS
+        - protocol: TCP
+          port: 80   # HTTP
+    # Allow specific internal cluster services only
+    - to:
+      - namespaceSelector:
+          matchLabels:
+            name: unique
 routes:
   hostname: api.hello.azure.unique.dev
 secretProvider:

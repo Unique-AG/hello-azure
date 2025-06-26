@@ -5,9 +5,9 @@ spec:
     - repoURL: 'https://github.com/Unique-AG/hello-azure'
       targetRevision: preview
       ref: values
-    - repoURL: ghcr.io/unique-ag/helm-charts
-      chart: backend-service
-      targetRevision: 4.1.2
+    - repoURL: https://github.com/Unique-AG/helm-charts.git
+      chart: charts/backend-service/
+      targetRevision: feat/allow-defining-network-policies
       helm:
         releaseName: backend-service-event-socket
         valueFiles:

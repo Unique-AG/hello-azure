@@ -5,9 +5,9 @@ spec:
     - repoURL: 'https://github.com/Unique-AG/hello-azure'
       targetRevision: preview
       ref: values
-    - repoURL: ghcr.io/unique-ag/helm-charts
-      chart: web-app
-      targetRevision: 4.1.2
+    - repoURL: https://github.com/Unique-AG/helm-charts.git
+      chart: charts/web-app/
+      targetRevision: feat/allow-defining-network-policies
       helm:
         releaseName: web-app-theme
         valueFiles: 
