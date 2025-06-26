@@ -6,7 +6,7 @@ spec:
       targetRevision: preview
       ref: values
     - repoURL: https://github.com/Unique-AG/helm-charts.git
-      chart: charts/backend-service/
+      path: charts/backend-service/
       targetRevision: feat/allow-defining-network-policies
       helm:
         releaseName: client-insights-exporter

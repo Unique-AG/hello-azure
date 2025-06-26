@@ -6,7 +6,7 @@ spec:
       targetRevision: preview
       ref: values
     - repoURL: https://github.com/Unique-AG/helm-charts.git
-      chart: charts/web-app/
+      path: charts/web-app/
       targetRevision: feat/allow-defining-network-policies
       helm:
         releaseName: web-app-chat
