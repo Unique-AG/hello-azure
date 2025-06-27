@@ -8,7 +8,7 @@ resources:
       auth:
       nodeSets:
         - name: default
-          count: 1 # In production, run cluster with 3 nodes
+          count: 1 # TODO: @PROD-CHANGE In production, run cluster with 3 nodes
           config:
             node.store.allow_mmap: false
           podTemplate:

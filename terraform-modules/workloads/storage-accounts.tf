@@ -52,7 +52,7 @@ module "ingestion_storage" {
     enabled                                  = true
     blob_to_cool_after_last_modified_days    = 7
     blob_to_cold_after_last_modified_days    = 14
-    blob_to_archive_after_last_modified_days = 30
+    blob_to_archive_after_last_modified_days = 30 # TODO: @PROD-CHANGE set to 5*365
     blob_to_deleted_after_last_modified_days = 5 * 365
   }
 

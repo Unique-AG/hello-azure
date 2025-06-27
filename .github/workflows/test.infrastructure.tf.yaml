@@ -50,6 +50,7 @@ jobs:
         id: validate
         run: terraform validate -no-color
 
+      # TODO: @PROD-CHANGE - Uncomment if you want to deploy test env
       # - name: Terraform Plan
       #   id: plan
       #   run: terraform plan -no-color
