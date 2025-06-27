@@ -9,24 +9,24 @@ networkPolicy:
     - Egress
   ingress:
     - from:
-      - namespaceSelector:
-          matchLabels:
-            name: unique
+        - namespaceSelector:
+            matchLabels:
+              name: unique
   egress:
     # Allow DNS resolution
     - to:
-      ports:
-        - protocol: UDP
-          port: 53
-      - namespaceSelector:
-          matchLabels:
-            name: kube-system
+        ports:
+          - protocol: UDP
+            port: 53
+        - namespaceSelector:
+            matchLabels:
+              name: kube-system
     - to: # PostgreSQL
-      ports:
-        - protocol: TCP # PostgreSQL port
-          port: 5432
-      - ipBlock:
-          cidr: "10.201.3.48/28" # PostgreSQL subnet
+        ports:
+          - protocol: TCP # PostgreSQL port
+            port: 5432
+        - ipBlock:
+            cidr: "10.201.3.48/28" # PostgreSQL subnet
     - to: # Redis
       - ipBlock:
           cidr: "10.201.3.64/28"
