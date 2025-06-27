@@ -19,8 +19,8 @@ networkPolicy:
           matchLabels:
             name: kube-system
       ports:
-      - protocol: UDP
-        port: 53
+        - protocol: UDP
+          port: 53
     # # Allow all external traffic (outside the cluster)
     # - to: []
     #   ports:

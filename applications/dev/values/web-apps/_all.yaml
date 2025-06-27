@@ -45,7 +45,7 @@ networkPolicy:
           matchLabels:
             name: kube-system
       ports:
-      - protocol: UDP
-        port: 53
+        - protocol: UDP
+          port: 53
 routes:
   hostname: hello.azure.unique.dev
