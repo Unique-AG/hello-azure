@@ -103,8 +103,6 @@ module "workloads" {
   tenant_id                                       = var.tenant_id
   subnet_cognitive_services_id                    = module.vnet.subnets["snet-cognitive"].resource_id
   vnet_id                                         = module.vnet.resource_id
-  private_dns_zone_speech_service_id              = module.perimeter.speech_service_private_dns_zone_id
-  speech_service_custom_subdomain_name            = var.speech_service_custom_subdomain_name
   subnet_storage_id                               = module.vnet.subnets["snet-storage"].resource_id
   private_dns_zone_storage_id                     = module.perimeter.storage_private_dns_zone_id
   subnet_redis_id                                 = module.vnet.subnets["snet-redis"].resource_id

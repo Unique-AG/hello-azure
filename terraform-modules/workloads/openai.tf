@@ -83,7 +83,7 @@ module "speech_service" {
       private_endpoint = {
         subnet_id           = var.subnet_cognitive_services_id
         vnet_location       = var.vnet_location
-        private_dns_zone_id = var.private_dns_zone_speech_service_id
+        private_dns_zone_id = var.private_dns_zone_cognitive_services_id
       }
 
 # Can be used to log audit logs

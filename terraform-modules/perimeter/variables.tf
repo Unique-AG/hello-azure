@@ -104,18 +104,6 @@ variable "dns_zone_sub_domain_records" {
   }))
 }
 
-variable "speech_service_private_dns_zone_name" {
-  description = "The name of the private DNS zone for the speech service."
-  type        = string
-  default     = "privatelink.cognitiveservices.azure.com"
-}
-
-variable "speech_service_private_dns_zone_virtual_network_link_name" {
-  description = "The name of the virtual network link for the speech service private DNS zone."
-  type        = string
-  default     = "speech-service-private-dns-zone-vnet-link"
-}
-
 variable "storage_private_dns_zone_name" {
   description = "The name of the private DNS zone for the storage."
   type        = string

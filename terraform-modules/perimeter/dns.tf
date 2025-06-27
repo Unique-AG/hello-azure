@@ -20,10 +20,6 @@ locals {
       zone_name = var.aoi_private_dns_zone_name
       link_name = var.azurerm_aoi_private_dns_zone_virtual_network_link_name
     }
-    speech_service = {
-      zone_name = var.speech_service_private_dns_zone_name
-      link_name = var.speech_service_private_dns_zone_virtual_network_link_name
-    }
   }
 }
 
