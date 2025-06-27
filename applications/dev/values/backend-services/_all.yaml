@@ -63,3 +63,7 @@ secretProvider:
   useVMManagedIdentity: "true"
   tenantId: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
   userAssignedIdentityID: 656b2988-6508-4df3-ba88-5a0d721863ae
+resources: # TODO: @PROD-CHANGE: these are minimal resources. Remove this override for more reasonalbe perfromance
+  requests:
+    cpu: 50m
+    memory: 220Mi

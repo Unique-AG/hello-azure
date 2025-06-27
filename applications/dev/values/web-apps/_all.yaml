@@ -49,3 +49,10 @@ networkPolicy:
           port: 53
 routes:
   hostname: hello.azure.unique.dev
+resources: # TODO: @PROD-CHANGE: these are minimal resources. Remove this override for more reasonalbe perfromance
+  limits:
+    cpu: 50m
+    memory: 250Mi
+  requests:
+    cpu: 50m
+    memory: 220Mi
