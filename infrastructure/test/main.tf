@@ -105,7 +105,14 @@ module "workloads" {
   vnet_id                                         = module.vnet.resource_id
   private_dns_zone_speech_service_id              = module.perimeter.speech_service_private_dns_zone_id
   speech_service_custom_subdomain_name            = var.speech_service_custom_subdomain_name
-
+  subnet_storage_id                               = module.vnet.subnets["snet-storage"].resource_id
+  private_dns_zone_storage_id                     = module.perimeter.storage_private_dns_zone_id
+  subnet_redis_id                                 = module.vnet.subnets["snet-redis"].resource_id
+  private_dns_zone_redis_id                       = module.perimeter.private_dns_zone_redis_id
+  private_dns_zone_cognitive_services_id          = module.perimeter.private_dns_zone_cognitive_services_id
+  private_dns_zone_aoi_id                         = module.perimeter.private_dns_zone_aoi_id
+  vnet_location                                   = var.resource_vnet_location
+  
   depends_on = [
     module.identities.resource_group_core_id,
     module.identities.resource_group_sensitive_id,
