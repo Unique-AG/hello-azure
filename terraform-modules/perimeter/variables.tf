@@ -63,11 +63,11 @@ variable "log_analytics_workspace_name" {
 }
 
 variable "psql_private_dns_zone_name" {
-  default = "psql.postgres.database.azure.com"
+  default = "privatelink.postgres.database.azure.com"
   type    = string
 }
 variable "azurerm_private_dns_zone_virtual_network_link_name" {
-  default = "PsqlVnetZone.com"
+  default = "postgres-private-dns-zone-vnet-link"
   type    = string
 }
 
@@ -104,12 +104,45 @@ variable "dns_zone_sub_domain_records" {
   }))
 }
 
-variable "speech_service_private_dns_zone_name" {
-  description = "The name of the private DNS zone for the speech service."
+variable "storage_private_dns_zone_name" {
+  description = "The name of the private DNS zone for the storage."
   type        = string
+  default     = "privatelink.blob.core.windows.net"
 }
 
-variable "speech_service_private_dns_zone_virtual_network_link_name" {
-  description = "The name of the virtual network link for the speech service private DNS zone."
+
+variable "redis_private_dns_zone_name" {
+  description = "The name of the private DNS zone for the redis."
   type        = string
+  default     = "privatelink.redis.cache.windows.net"
+}
+variable "cognitive_services_private_dns_zone_name" {
+  description = "The name of the private DNS zone for the cognitive services."
+  type        = string
+  default     = "privatelink.cognitiveservices.azure.com"
+}
+variable "aoi_private_dns_zone_name" {
+  description = "The name of the private DNS zone for the aoi."
+  type        = string
+  default     = "privatelink.openai.azure.com"
+}
+variable "azurerm_redis_private_dns_zone_virtual_network_link_name" {
+  description = "The name of the virtual network link for the redis private DNS zone."
+  type        = string
+  default     = "redis-private-dns-zone-vnet-link"
+}
+variable "azurerm_cognitive_services_private_dns_zone_virtual_network_link_name" {
+  description = "The name of the virtual network link for the cognitive services private DNS zone."
+  type        = string
+  default     = "cognitive-services-private-dns-zone-vnet-link"
+}
+variable "azurerm_aoi_private_dns_zone_virtual_network_link_name" {
+  description = "The name of the virtual network link for the aoi private DNS zone."
+  type        = string
+  default     = "aoi-private-dns-zone-vnet-link"
+}
+variable "azurerm_storage_private_dns_zone_virtual_network_link_name" {
+  description = "The name of the virtual network link for the storage private DNS zone."
+  type        = string
+  default     = "storage-private-dns-zone-vnet-link"
 }

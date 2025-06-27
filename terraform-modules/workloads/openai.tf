@@ -1,5 +1,5 @@
 module "openai" {
-  source                      = "github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=azure-openai-2.0.3"
+  source                      = "github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=azure-openai-2.1.1"
   resource_group_name         = data.azurerm_resource_group.core.name
   tags                        = var.tags
   endpoint_secret_name_suffix = "-ep"
@@ -9,7 +9,11 @@ module "openai" {
       location                      = "swedencentral"
       local_auth_enabled            = false
       custom_subdomain_name         = var.custom_subdomain_name
-      public_network_access_enabled = true # FIXME: use private endpoints
+      public_network_access_enabled = false
+      private_endpoint = {
+        subnet_id = var.subnet_cognitive_services_id
+        private_dns_zone_id = var.private_dns_zone_aoi_id
+      }
       cognitive_deployments = [
         {
           model_name    = "text-embedding-ada-002"
@@ -43,7 +47,7 @@ module "openai" {
 }
 
 module "document_intelligence" {
-  source = "github.com/Unique-AG/terraform-modules.git//modules/azure-document-intelligence?ref=azure-document-intelligence-3.0.2"
+  source = "github.com/Unique-AG/terraform-modules.git//modules/azure-document-intelligence?ref=azure-document-intelligence-3.0.3"
   doc_intelligence_name = "doc-intelligence"
   resource_group_name   = data.azurerm_resource_group.core.name
   tags                  = var.tags
@@ -52,15 +56,19 @@ module "document_intelligence" {
     "swedencentral-form-recognizer" = {
       location = "swedencentral"
       custom_subdomain_name = var.document_intelligence_custom_subdomain_name
-      public_network_access_enabled = true # FIXME: use private endpoints'
-      local_auth_enabled = true # https://github.com/Unique-AG/terraform-modules/issues/79
+      public_network_access_enabled = false
+      local_auth_enabled = false
+      private_endpoint = {
+        subnet_id = var.subnet_cognitive_services_id
+        private_dns_zone_id = var.private_dns_zone_cognitive_services_id
+      }
     }
   }
   key_vault_id               = var.main_kv_id
 }
 
 module "speech_service" {
-  source              = "github.com/unique-ag/terraform-modules.git//modules/azure-speech-service?depth=1&ref=azure-speech-service-1.0.1"
+  source              = "github.com/unique-ag/terraform-modules.git//modules/azure-speech-service?depth=1&ref=azure-speech-service-3.0.0"
   key_vault_id        = var.sensitive_kv_id
   resource_group_name = data.azurerm_resource_group.core.name
   speech_service_name = "speech-service"
@@ -74,8 +82,8 @@ module "speech_service" {
 
       private_endpoint = {
         subnet_id           = var.subnet_cognitive_services_id
-        vnet_id             = var.vnet_id
-        private_dns_zone_id = var.private_dns_zone_speech_service_id
+        vnet_location       = var.vnet_location
+        private_dns_zone_id = var.private_dns_zone_cognitive_services_id
       }
 
 # Can be used to log audit logs

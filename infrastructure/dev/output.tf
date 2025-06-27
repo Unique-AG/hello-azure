@@ -48,18 +48,6 @@ output "rabbitmq_password_chat_secret_name" {
   value       = module.workloads.rabbitmq_password_chat_secret_name
   description = "The secret name for RabbitMQ password for chat."
 }
-output "redis_cache_port_secret_name" {
-  value       = module.workloads.redis_cache_port_secret_name
-  description = "The secret name for Redis cache port."
-}
-output "redis_cache_host_secret_name" {
-  value       = module.workloads.redis_cache_host_secret_name
-  description = "The secret name for Redis cache host."
-}
-output "redis_cache_password_secret_name" {
-  value       = module.workloads.redis_cache_password_secret_name
-  description = "The secret name for Redis cache password."
-}
 
 output "ingestion_cache_connection_string_1_secret_name" {
   value       = module.workloads.ingestion_cache_connection_string_1_secret_name
@@ -159,4 +147,16 @@ output "zitadel_pat_secret_name" {
 output "resource_group_vnet_name" {
   description = "Name of the resource group for the vnet"
   value       = azurerm_resource_group.vnet.name
+}
+output "redis_cache_host_secret_name" {
+  description = "Name of the secret containing the Redis cache host"
+  value       = module.workloads.redis_cache_host_secret_name
+}
+output "redis_cache_password_secret_name" {
+  description = "Name of the secret containing the Redis cache password"
+  value       = module.workloads.redis_cache_password_secret_name
+}
+output "redis_cache_port_secret_name" {
+  description = "Name of the secret containing the Redis cache port"
+  value       = module.workloads.redis_cache_port_secret_name
 }
