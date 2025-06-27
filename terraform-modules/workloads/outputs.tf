@@ -53,21 +53,6 @@ output "rabbitmq_password_chat_secret_name" {
   description = "The secret name for the RabbitMQ password for chat."
 }
 
-output "redis_cache_port_secret_name" {
-  value       = module.redis.redis_cache_port_secret_name
-  description = "The secret name for the Redis cache port."
-}
-
-output "redis_cache_host_secret_name" {
-  value       = module.redis.redis_cache_host_secret_name
-  description = "The secret name for the Redis cache host."
-}
-
-output "redis_cache_password_secret_name" {
-  value       = module.redis.redis_cache_password_secret_name
-  description = "The secret name for the Redis cache password."
-}
-
 output "ingestion_cache_connection_string_1_secret_name" {
   value       = var.ingestion_cache_connection_string_1_secret_name
   description = "The secret name for the first ingestion cache connection string."
@@ -161,4 +146,18 @@ output "application_gateway_id" {
 }
 output "zitadel_pat_secret_name" {
   value = var.zitadel_pat_secret_name
+}
+output "redis_cache_host_secret_name" {
+  value       = module.redis.host_secret_name
+  description = "The secret name for the Redis cache host."
+}
+
+output "redis_cache_password_secret_name" {
+  value       = module.redis.password_secret_name
+  description = "The secret name for the Redis cache password."
+}
+
+output "redis_cache_port_secret_name" {
+  value       = module.redis.port_secret_name
+  description = "The secret name for the Redis cache port."
 }

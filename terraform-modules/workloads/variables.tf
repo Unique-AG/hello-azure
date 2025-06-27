@@ -249,6 +249,7 @@ variable "subnet_cognitive_services_id" {
   description = "The ID of the cognitive services subnet."
   type        = string
 }
+
 variable "vnet_id" {
   description = "The ID of the virtual network."
   type        = string
@@ -294,4 +295,37 @@ variable "kubernetes_version" {
   description = "The version of Kubernetes to use for the AKS cluster."
   type        = string
   default     = "1.30.10"
+}
+
+variable "subnet_storage_id" {
+  description = "The ID of the storage subnet."
+  type        = string
+}
+variable "subnet_redis_id" {
+  description = "The ID of the redis subnet."
+  type        = string
+}
+
+variable "private_dns_zone_redis_id" {
+  description = "The ID of the private DNS zone for the redis."
+  type        = string
+}
+variable "private_dns_zone_storage_id" {
+  description = "The ID of the private DNS zone for the storage."
+  type        = string
+}
+
+variable "vnet_location" {
+  description = "The location of the virtual network."
+  type        = string
+}
+
+variable "private_dns_zone_cognitive_services_id" {
+  description = "The ID of the private DNS zone for the cognitive services."
+  type        = string
+}
+
+variable "private_dns_zone_aoi_id" {
+  description = "The ID of the private DNS zone for the aoi."
+  type        = string
 }

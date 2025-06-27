@@ -1,7 +1,7 @@
 #tfsec:ignore:azure-keyvault-content-type-for-secret
 #tfsec:ignore:azure-keyvault-ensure-key-expiry
 module "ingestion_cache" {
-  source = "github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.0.2"
+  source = "github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.1.0"
 
   name                          = var.ingestion_cache_sa_name
   resource_group_name           = data.azurerm_resource_group.sensitive.name
@@ -32,12 +32,17 @@ module "ingestion_cache" {
   }
 
   identity_ids = [var.ingestion_cache_user_assigned_identity_id]
+  private_endpoint = {
+    subnet_id = var.subnet_storage_id
+    private_dns_zone_id = var.private_dns_zone_storage_id
+    tags      = var.tags
+  }
 }
 
 #tfsec:ignore:azure-keyvault-content-type-for-secret
 #tfsec:ignore:azure-keyvault-ensure-key-expiry
 module "ingestion_storage" {
-  source = "github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.0.2"
+  source = "github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.1.0"
 
   name                = var.ingestion_storage_sa_name
   resource_group_name = data.azurerm_resource_group.sensitive.name
@@ -69,4 +74,9 @@ module "ingestion_storage" {
   }
 
   identity_ids = [var.ingestion_storage_user_assigned_identity_id]
+  private_endpoint = {
+    subnet_id = var.subnet_storage_id
+    private_dns_zone_id = var.private_dns_zone_storage_id
+    tags      = var.tags
+  }
 }
