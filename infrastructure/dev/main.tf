@@ -108,12 +108,10 @@ module "workloads" {
   subnet_storage_id                               = module.vnet.subnets["snet-storage"].resource_id
   private_dns_zone_storage_id                     = module.perimeter.storage_private_dns_zone_id
   subnet_redis_id                                 = module.vnet.subnets["snet-redis"].resource_id
-  private_dns_zone_redis_id                       = module.perimeter.redis_private_dns_zone_id
-  private_dns_zone_cognitive_services_id          = module.perimeter.cognitive_services_private_dns_zone_id
-  private_dns_zone_aoi_id                         = module.perimeter.aoi_private_dns_zone_id
+  private_dns_zone_redis_id                       = module.perimeter.private_dns_zone_redis_id
+  private_dns_zone_cognitive_services_id          = module.perimeter.private_dns_zone_cognitive_services_id
+  private_dns_zone_aoi_id                         = module.perimeter.private_dns_zone_aoi_id
   vnet_location                                   = var.resource_vnet_location
-  redis_private_dns_zone_id                       = module.perimeter.redis_private_dns_zone_id
-  storage_private_dns_zone_id                     = module.perimeter.storage_private_dns_zone_id
 
   depends_on = [
     module.identities.resource_group_core_id,

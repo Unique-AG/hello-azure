@@ -34,7 +34,7 @@ module "ingestion_cache" {
   identity_ids = [var.ingestion_cache_user_assigned_identity_id]
   private_endpoint = {
     subnet_id = var.subnet_storage_id
-    private_dns_zone_id = var.storage_private_dns_zone_id
+    private_dns_zone_id = var.private_dns_zone_storage_id
     tags      = var.tags
   }
 }
@@ -76,7 +76,7 @@ module "ingestion_storage" {
   identity_ids = [var.ingestion_storage_user_assigned_identity_id]
   private_endpoint = {
     subnet_id = var.subnet_storage_id
-    private_dns_zone_id = var.storage_private_dns_zone_id
+    private_dns_zone_id = var.private_dns_zone_storage_id
     tags      = var.tags
   }
 }
