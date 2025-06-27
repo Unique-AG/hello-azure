@@ -23,48 +23,12 @@ networkPolicy:
     # Allow all external traffic (outside the cluster)
     - to: []
       ports:
-        - protocol: TCP
-          port: 443  # HTTPS
-        - protocol: TCP
-          port: 80   # HTTP
+        # - protocol: TCP
+        #   port: 443  # HTTPS
+        # - protocol: TCP
+        #   port: 80   # HTTP
         - protocol: TCP
           port: 5432 # PostgreSQL
-    # - to:
-    #   - ipBlock:
-    #       cidr: "20.33.171.0/24"
-    # - to:
-    #   - ipBlock:
-    #       cidr: "20.60.78.0/23"
-    # - to:
-    #   - ipBlock:
-    #       cidr: "20.60.234.0/23"
-    # - to:
-    #   - ipBlock:
-    #       cidr: "20.60.252.0/23"
-    # - to:
-    #   - ipBlock:
-    #       cidr: "20.150.44.0/24"
-    # - to:
-    #   - ipBlock:
-    #       cidr: "20.150.120.0/24"
-    # - to:
-    #   - ipBlock:
-    #       cidr: "20.153.8.0/24"
-    # - to:
-    #   - ipBlock:
-    #       cidr: "20.157.151.0/24"
-    # - to:
-    #   - ipBlock:
-    #       cidr: "20.157.232.0/24"
-    # - to:
-    #   - ipBlock:
-    #       cidr: "20.209.216.0/23"
-    # - to:
-    #   - ipBlock:
-    #       cidr: "57.150.58.0/23"
-    # - to:
-    #   - ipBlock:
-    #       cidr: "2603:1020:1005::/48"
     # Allow specific internal cluster services only
     - to:
       - namespaceSelector:
