@@ -18,11 +18,6 @@ networkPolicy:
       ports:
         - protocol: UDP
           port: 53
-    # Allow access to kube-system namespace# TODO: check if neccessary
-    - to:
-        - namespaceSelector:
-            matchLabels:
-              name: kube-system
     - to: # PostgreSQL
         - ipBlock:
             cidr: "10.201.3.48/28" # PostgreSQL subnet
