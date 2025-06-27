@@ -94,13 +94,3 @@ output "private_dns_zone_psql_id" {
   description = "ID of the psql private DNS zone"
   value       = azurerm_private_dns_zone.private_dns_zones["psql"].id
 }
-
-output "private_dns_zone_links" {
-  description = "ID of the private DNS zone links"
-  value       = azurerm_private_dns_zone_virtual_network_link.private_dns_zone_links
-}
-
-output "private_dns_zone_links_ids" {
-  description = "ID of the private DNS zone links"
-  value       = azurerm_private_dns_zone_virtual_network_link.private_dns_zone_links[*].id
-}
