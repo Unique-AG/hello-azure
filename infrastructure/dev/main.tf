@@ -59,8 +59,6 @@ module "perimeter" {
   sensitive_kv_name                                         = var.sensitive_kv_name
   tags                                                      = var.tags
   virtual_network_id                                        = module.vnet.resource_id
-  speech_service_private_dns_zone_name                      = var.speech_service_private_dns_zone_name
-  speech_service_private_dns_zone_virtual_network_link_name = var.speech_service_private_dns_zone_virtual_network_link_name
 
   depends_on = [
     module.identities.resource_group_core_id,

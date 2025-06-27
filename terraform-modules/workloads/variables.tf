@@ -255,10 +255,6 @@ variable "vnet_id" {
   type        = string
 }
 
-variable "private_dns_zone_speech_service_id" {
-  description = "The ID of the private DNS zone for the speech service."
-  type        = string
-}
 
 variable "tags" {
   description = "A map of tags to assign to the resources."
