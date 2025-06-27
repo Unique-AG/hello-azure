@@ -112,7 +112,7 @@ module "workloads" {
   private_dns_zone_cognitive_services_id          = module.perimeter.private_dns_zone_cognitive_services_id
   private_dns_zone_aoi_id                         = module.perimeter.private_dns_zone_aoi_id
   vnet_location                                   = var.resource_vnet_location
-  
+
   depends_on = [
     module.identities.resource_group_core_id,
     module.identities.resource_group_sensitive_id,
