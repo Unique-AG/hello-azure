@@ -147,3 +147,17 @@ output "application_gateway_id" {
 output "zitadel_pat_secret_name" {
   value = var.zitadel_pat_secret_name
 }
+output "redis_cache_host_secret_name" {
+  value       = module.redis.host_secret_name
+  description = "The secret name for the Redis cache host."
+}
+
+output "redis_cache_password_secret_name" {
+  value       = module.redis.password_secret_name
+  description = "The secret name for the Redis cache password."
+}
+
+output "redis_cache_port_secret_name" {
+  value       = module.redis.port_secret_name
+  description = "The secret name for the Redis cache port."
+}

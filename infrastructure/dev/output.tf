@@ -148,3 +148,15 @@ output "resource_group_vnet_name" {
   description = "Name of the resource group for the vnet"
   value       = azurerm_resource_group.vnet.name
 }
+output "redis_cache_host_secret_name" {
+  description = "Name of the secret containing the Redis cache host"
+  value       = module.workloads.redis_cache_host_secret_name
+}
+output "redis_cache_password_secret_name" {
+  description = "Name of the secret containing the Redis cache password"
+  value       = module.workloads.redis_cache_password_secret_name
+}
+output "redis_cache_port_secret_name" {
+  description = "Name of the secret containing the Redis cache port"
+  value       = module.workloads.redis_cache_port_secret_name
+}
