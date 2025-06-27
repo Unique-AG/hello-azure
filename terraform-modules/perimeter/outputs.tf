@@ -47,7 +47,7 @@ output "storage_private_dns_zone_id" {
 }
 output "storage_private_dns_zone_id" {
   description = "ID of the storage private DNS zone"
-  value       = azurerm_private_dns_zone.storage_private_dns_zone.id
+  value       = azurerm_private_dns_zone.private_dns_zones["storage"].id
 }
 
 output "dns_zone_name_servers" {
@@ -101,32 +101,32 @@ output "private_dns_zone_psql_id" {
 
 output "private_dns_zone_aoi_id" {
   description = "ID of the aoi private DNS zone"
-  value       = azurerm_private_dns_zone.aoi_private_dns_zone.id
+  value       = azurerm_private_dns_zone.private_dns_zones["aoi"].id
 }
 
 output "private_dns_zone_cognitive_services_id" {
   description = "ID of the cognitive services private DNS zone"
-  value       = azurerm_private_dns_zone.cognitive_services_private_dns_zone.id
+  value       = azurerm_private_dns_zone.private_dns_zones["cognitive_services"].id
 }
 
 output "private_dns_zone_speech_service_id" {
   description = "ID of the speech service private DNS zone"
-  value       = azurerm_private_dns_zone.speech_service_private_dns_zone.id
+  value       = azurerm_private_dns_zone.private_dns_zones["speech_service"].id
 }
 
 output "private_dns_zone_storage_id" {
   description = "ID of the storage private DNS zone"
-  value       = azurerm_private_dns_zone.storage_private_dns_zone.id
+  value       = azurerm_private_dns_zone.private_dns_zones["storage"].id
 }
 
 output "private_dns_zone_redis_id" {
   description = "ID of the redis private DNS zone"
-  value       = azurerm_private_dns_zone.redis_private_dns_zone.id
+  value       = azurerm_private_dns_zone.private_dns_zones["redis"].id
 }
 
 output "private_dns_zone_psql_id" {
   description = "ID of the psql private DNS zone"
-  value       = azurerm_private_dns_zone.psql_private_dns_zone.id
+  value       = azurerm_private_dns_zone.private_dns_zones["psql"].id
 }
 
 output "private_dns_zone_links" {
