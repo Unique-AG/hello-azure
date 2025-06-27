@@ -6,7 +6,6 @@ networkPolicy:
   enabled: true
   policyTypes:
     - Ingress
-    - Egress
   ingress:
     - from:
       - namespaceSelector:
