@@ -329,3 +329,12 @@ variable "private_dns_zone_aoi_id" {
   description = "The ID of the private DNS zone for the aoi."
   type        = string
 }
+variable "storage_private_dns_zone_id" {
+  description = "The ID of the private DNS zone for the storage."
+  type        = string
+}
+
+variable "redis_private_dns_zone_id" {
+  description = "The ID of the private DNS zone for the redis."
+  type        = string
+}
