@@ -60,11 +60,6 @@ output "dns_zone_id" {
   value = azurerm_dns_zone.dns_zone.id
 }
 
-output "speech_service_private_dns_zone_id" {
-  description = "ID of the speech service private DNS zone"
-  value       = azurerm_private_dns_zone.private_dns_zones["speech_service"].id
-}
-
 output "private_dns_zone_aoi_id" {
   description = "ID of the aoi private DNS zone"
   value       = azurerm_private_dns_zone.private_dns_zones["aoi"].id
@@ -75,10 +70,6 @@ output "private_dns_zone_cognitive_services_id" {
   value       = azurerm_private_dns_zone.private_dns_zones["cognitive_services"].id
 }
 
-output "private_dns_zone_speech_service_id" {
-  description = "ID of the speech service private DNS zone"
-  value       = azurerm_private_dns_zone.private_dns_zones["speech_service"].id
-}
 
 output "private_dns_zone_storage_id" {
   description = "ID of the storage private DNS zone"
