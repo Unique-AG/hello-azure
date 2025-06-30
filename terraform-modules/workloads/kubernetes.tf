@@ -13,6 +13,7 @@ module "kubernetes_cluster" {
   log_analytics_workspace_id   = var.log_analytics_workspace_id
   network_profile = {
     network_plugin = "none"
+    network_policy = null
     idle_timeout_in_minutes = 100
     outbound_ip_address_ids = [var.aks_public_ip_id]
   }
