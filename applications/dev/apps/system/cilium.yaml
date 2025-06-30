@@ -1,0 +1,14 @@
+spec:
+  name: cilium
+  autoSync: true
+  sources:
+    - repoURL: 'https://github.com/Unique-AG/hello-azure'
+      targetRevision: preview
+      ref: values
+    - chart: cilium
+      repoURL: https://helm.cilium.io/
+      targetRevision: 1.17.5
+      helm:
+        releaseName: cilium
+        valueFiles:
+          - $values/applications/dev/values/cilium/cilium.yaml

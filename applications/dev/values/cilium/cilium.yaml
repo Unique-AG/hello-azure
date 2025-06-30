@@ -1,0 +1,13 @@
+aksbyocni:
+  enabled: true
+cluster: # only needed for cluster mesh
+  name: hello-azure-dev
+  id: 1
+resources:
+  limits:
+    memory: 200Mi
+  requests:
+    cpu: 50m
+    memory: 200Mi
+
+ 
