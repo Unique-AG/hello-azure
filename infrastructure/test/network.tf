@@ -6,7 +6,7 @@ resource "azurerm_resource_group" "vnet" {
 # -- use https://www.davidc.net/sites/default/subnets/subnets.html to calculate the CIDR ranges
 module "vnet" {
   source  = "Azure/avm-res-network-virtualnetwork/azurerm"
-  version = "v0.9.1"
+  version = "v0.7.1"
 
   name                = "vnet-001"
   address_space       = ["10.202.0.0/22"]
