@@ -1,5 +1,5 @@
 module "kubernetes_cluster" {
-  source = "github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service?ref=azure-kubernetes-service-3.0.0"
+  source = "github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service?ref=azure-kubernetes-service-3.2.0"
   kubernetes_version = var.kubernetes_version
   application_gateway_id = module.application_gateway.appgw_id
   azure_prometheus_grafana_monitor = {
@@ -12,6 +12,7 @@ module "kubernetes_cluster" {
   kubernetes_default_node_size = var.kubernetes_default_node_size
   log_analytics_workspace_id   = var.log_analytics_workspace_id
   network_profile = {
+    network_plugin = "none"
     idle_timeout_in_minutes = 100
     outbound_ip_address_ids = [var.aks_public_ip_id]
   }
@@ -59,7 +60,7 @@ module "kubernetes_cluster" {
   resource_group_location = data.azurerm_resource_group.core.location
   resource_group_name     = data.azurerm_resource_group.core.name
   default_subnet_nodes_id = var.subnet_aks_nodes_id
-  default_subnet_pods_id  = var.subnet_aks_pods_id
+  default_subnet_pods_id  = var.subnet_aks_pods_id 
   tags                    = var.tags
   tenant_id               = data.azurerm_client_config.current.tenant_id
 }

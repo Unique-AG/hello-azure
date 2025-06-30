@@ -290,7 +290,7 @@ variable "zitadel_pat_secret_name" {
 variable "kubernetes_version" {
   description = "The version of Kubernetes to use for the AKS cluster."
   type        = string
-  default     = "1.30.10"
+  default     = "1.31.8"
 }
 
 variable "subnet_storage_id" {
