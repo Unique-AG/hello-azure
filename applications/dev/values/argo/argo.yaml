@@ -17,10 +17,7 @@ server:
       cert-manager.io/cluster-issuer: letsencrypt-azure-dns
     hosts:
       - argo.hello.azure.unique.dev
-    tls:
-      - secretName: argo-le-tls
-        hosts:
-          - argo.hello.azure.unique.dev
+    tls: true
 configs:
   cm:
     create: true

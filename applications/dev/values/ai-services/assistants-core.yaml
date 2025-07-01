@@ -15,7 +15,7 @@ resources:
 secretProvider:
   useVMManagedIdentity: "true"
   tenantId: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
-  userAssignedIdentityID: 656b2988-6508-4df3-ba88-5a0d721863ae
+  userAssignedIdentityID: 9e34d7f7-bfdb-4ec8-9d76-bc0b250fe913
   vaults:
     helloazuremain:
       AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT_DEFINITIONS: azure-document-intelligence-endpoint-definitions
