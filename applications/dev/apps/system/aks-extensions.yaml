@@ -1,6 +1,6 @@
 spec:
   name: aks-extensions
-  autoSync: false
+  autoSync: true
   sources:
     - repoURL: 'https://github.com/Unique-AG/hello-azure'
       targetRevision: preview
