@@ -148,6 +148,11 @@ resource "azurerm_role_assignment" "application_gateway_ingres_controller_vnet_s
   role_definition_name = azurerm_role_definition.vnet_subnet_access.name
   principal_id         = data.azurerm_kubernetes_cluster.cluster.ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
 }
+# to create lb, aks id needs write access to vnet subnet
+resource "azurerm_role_assignment" "aks_identity_vnet_subnet_access" {
+  scope                = var.resource_group_vnet_id
+  role_definition_name = azurerm_role_definition.vnet_subnet_access.name
+  principal_id         = data.azurerm_kubernetes_cluster.cluster.identity[0].principal_id
 
 #Azure Active Directory group assignments
 resource "azurerm_role_assignment" "cluster_user_group" {
@@ -211,6 +216,22 @@ resource "azurerm_role_assignment" "telemetry_observer_users" {
 resource "azurerm_role_assignment" "dns_contributor" {
   scope                            = var.dns_zone_id
   role_definition_name             = "DNS Zone Contributor"
+  principal_id                     = data.azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
+  skip_service_principal_aad_check = true
+}
+
+# Network Contributor on VNET for LoadBalancer services
+resource "azurerm_role_assignment" "kubelet_identity_network_contributor_vnet" {
+  scope                            = var.resource_group_vnet_id
+  role_definition_name             = "Network Contributor"
+  principal_id                     = data.azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
+  skip_service_principal_aad_check = true
+}
+
+# Network Contributor on core resource group for public IPs and load balancers
+resource "azurerm_role_assignment" "kubelet_identity_network_contributor_core" {
+  scope                            = azurerm_resource_group.core.id
+  role_definition_name             = "Network Contributor"
   principal_id                     = data.azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
   skip_service_principal_aad_check = true
 }
