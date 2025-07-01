@@ -7,7 +7,10 @@ controller:
       - configMapRef:
           name: kong-controller-environment
   proxy:
-    type: ClusterIP
+    type: LoadBalancer
+    annotations:
+      service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+      service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: "/status"
   nodeSelector:
     scalability: steady
   lifecycle: persistent
@@ -37,7 +40,10 @@ gateway:
     scalability: steady
     lifecycle: persistent
   proxy:
-    type: ClusterIP
+    type: LoadBalancer
+    annotations:
+      service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+      service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: "/status"
     tls:
       appProtocol: "https"
   plugins:

@@ -1,7 +1,7 @@
 module "kubernetes_cluster" {
   source = "github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service?ref=feat/allow-not-specifiying-netowork-policy-aks"
   kubernetes_version = var.kubernetes_version
-  application_gateway_id = module.application_gateway.appgw_id
+  application_gateway_id = null
   azure_prometheus_grafana_monitor = {
     azure_monitor_location = var.resource_group_core_location
     azure_monitor_rg_name  = data.azurerm_resource_group.core.name
