@@ -1,0 +1,25 @@
+# bootstrapping cilium. To be done only once.
+environments:
+  dev:
+    values:
+      -
+        self:
+          namespace: unique
+  test:
+    values:
+      -
+        self:
+          namespace: unique
+---
+repositories:
+  - name: cilium
+    url: https://helm.cilium.io/
+
+releases:
+  - name: cilium
+    createNamespace: true
+    namespace: {{ .Values.self.namespace }}
+    chart: cilium/cilium
+    version: 1.17.5
+    values:
+      - {{ .Environment.Name }}/values/cilium/cilium.yaml

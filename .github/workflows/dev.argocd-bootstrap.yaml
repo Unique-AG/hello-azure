@@ -17,7 +17,13 @@ permissions:
   id-token: write
 
 jobs:
-  # The Sync Waves are a bit a fake to mimic and make sure the cluster is updated in a controlled way.
+  cilium-bootstrap:
+    uses: ./.github/workflows/dev.helm.yaml
+    with:
+      file_name: applications/cilium-bootstrap.yaml
+      action: ${{ inputs.action }}
+    secrets: inherit
+
   argo-bootstrap:
     uses: ./.github/workflows/dev.helm.yaml
     with:
