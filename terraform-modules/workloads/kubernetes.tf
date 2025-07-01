@@ -7,7 +7,7 @@ module "kubernetes_cluster" {
     azure_monitor_rg_name  = data.azurerm_resource_group.core.name
     enabled                = true
   }
-  segregated_node_and_pod_subnets_enabled = true
+  segregated_node_and_pod_subnets_enabled = false
   cluster_name                 = var.cluster_name
   kubernetes_default_node_size = var.kubernetes_default_node_size
   log_analytics_workspace_id   = var.log_analytics_workspace_id
