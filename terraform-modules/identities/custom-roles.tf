@@ -75,7 +75,10 @@ resource "azurerm_role_definition" "vnet_subnet_access" {
   permissions {
     actions = [
       "Microsoft.Network/virtualNetworks/subnets/join/action",
-      "Microsoft.Network/virtualNetworks/subnets/read"
+      "Microsoft.Network/virtualNetworks/subnets/read",
+      "Microsoft.Network/virtualNetworks/subnets/write",
+      "Microsoft.Network/routeTables/read",
+      "Microsoft.Network/routeTables/join/action"
     ]
     not_actions      = []
     data_actions     = []
