@@ -153,7 +153,7 @@ resource "azurerm_role_assignment" "aks_identity_vnet_subnet_access" {
   scope                = var.resource_group_vnet_id
   role_definition_name = azurerm_role_definition.vnet_subnet_access.name
   principal_id         = data.azurerm_kubernetes_cluster.cluster.identity[0].principal_id
-
+}
 #Azure Active Directory group assignments
 resource "azurerm_role_assignment" "cluster_user_group" {
   principal_id         = azuread_group.admin_kubernetes_cluster.object_id
