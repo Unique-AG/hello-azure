@@ -9,7 +9,7 @@ repoServer:
     - --repo-cache-expiration=15m
 server:
   ingress:
-    enabled: true
+    enabled: false
     ingressClassName: kong
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-azure-dns
