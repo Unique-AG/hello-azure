@@ -128,19 +128,19 @@ resource "azurerm_role_assignment" "aks_workload_identity_cognitive_services_use
   skip_service_principal_aad_check = true
 }
 
-# AGIC Identity needs at least 'Reader' access to Application Gateway's Resource Group
-resource "azurerm_role_assignment" "application_gateway_ingres_controller_reader_role" {
-  scope                = azurerm_resource_group.core.id
-  role_definition_name = "Reader"
-  principal_id         = data.azurerm_kubernetes_cluster.cluster.ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
-}
+# # AGIC Identity needs at least 'Reader' access to Application Gateway's Resource Group
+# resource "azurerm_role_assignment" "application_gateway_ingres_controller_reader_role" {
+#   scope                = azurerm_resource_group.core.id
+#   role_definition_name = "Reader"
+#   principal_id         = data.azurerm_kubernetes_cluster.cluster.ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
+# }
 
-# AGIC Identity needs at least 'Contributor' access to Application Gateway
-resource "azurerm_role_assignment" "application_gateway_ingres_controller_contributor_role" {
-  scope                = var.application_gateway_id
-  role_definition_name = "Contributor"
-  principal_id         = data.azurerm_kubernetes_cluster.cluster.ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
-}
+# # AGIC Identity needs at least 'Contributor' access to Application Gateway
+# resource "azurerm_role_assignment" "application_gateway_ingres_controller_contributor_role" {
+#   scope                = var.application_gateway_id
+#   role_definition_name = "Contributor"
+#   principal_id         = data.azurerm_kubernetes_cluster.cluster.ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
+# }
 
 # # AGIC Identity needs at least 'Read and join' access to Subnet
 # resource "azurerm_role_assignment" "application_gateway_ingres_controller_vnet_subnet_access" {
