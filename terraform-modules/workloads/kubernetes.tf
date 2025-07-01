@@ -1,5 +1,5 @@
 module "kubernetes_cluster" {
-  source = "github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service?ref=azure-kubernetes-service-3.2.0"
+  source = "github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service?ref=feat/allow-not-specifiying-netowork-policy-aks"
   kubernetes_version = var.kubernetes_version
   application_gateway_id = module.application_gateway.appgw_id
   azure_prometheus_grafana_monitor = {
@@ -13,7 +13,6 @@ module "kubernetes_cluster" {
   log_analytics_workspace_id   = var.log_analytics_workspace_id
   network_profile = {
     network_plugin = "none"
-    network_policy = null
     idle_timeout_in_minutes = 100
     outbound_ip_address_ids = [var.aks_public_ip_id]
   }
