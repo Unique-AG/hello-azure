@@ -9,5 +9,5 @@ secretProvider:
 serviceAccount:
   enabled: true
   workloadIdentity:
-    clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
+    clientId: 9e34d7f7-bfdb-4ec8-9d76-bc0b250fe913
     enabled: true
