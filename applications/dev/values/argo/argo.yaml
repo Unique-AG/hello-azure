@@ -10,30 +10,30 @@ repoServer:
 server:
   ingress:
     enabled: false
-  extraObjects:
-    - apiVersion: gateway.networking.k8s.io/v1
-      kind: HTTPRoute
-      metadata:
-        name: argo-cd
-        namespace: argocd
-      spec:
-        hostnames:
-          - argo.hello.azure.unique.dev
-        parentRefs:
-          - group: gateway.networking.k8s.io
-            kind: Gateway
-            name: kong
-            namespace: unique
-        rules:
-          - backendRefs:
-              - group: ''
-                kind: Service
-                name: argo-argocd-server
-                port: 80
-            matches:
-              - path:
-                  type: PathPrefix
-                  value: /
+extraObjects:
+  - apiVersion: gateway.networking.k8s.io/v1
+    kind: HTTPRoute
+    metadata:
+      name: argo-cd
+      namespace: argocd
+    spec:
+      hostnames:
+        - argo.hello.azure.unique.dev
+      parentRefs:
+        - group: gateway.networking.k8s.io
+          kind: Gateway
+          name: kong
+          namespace: unique
+      rules:
+        - backendRefs:
+            - group: ''
+              kind: Service
+              name: argo-argocd-server
+              port: 80
+          matches:
+            - path:
+                type: PathPrefix
+                value: /
 configs:
   cm:
     create: true
