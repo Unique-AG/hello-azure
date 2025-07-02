@@ -2,6 +2,19 @@ resources:
   - apiVersion: configuration.konghq.com/v1
     kind: KongClusterPlugin
     metadata:
+      name: argo-add-forwarded-proto
+      annotations:
+        kubernetes.io/ingress.class: kong
+      labels:
+        global: "true"
+    config:
+      add:
+        headers:
+          - X-Forwarded-Proto:https
+    plugin: request-transformer
+  - apiVersion: configuration.konghq.com/v1
+    kind: KongClusterPlugin
+    metadata:
       name: unique-jwt-auth
       annotations:
         kubernetes.io/ingress.class: kong
