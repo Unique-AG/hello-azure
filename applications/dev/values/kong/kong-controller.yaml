@@ -9,8 +9,7 @@ controller:
   proxy:
     type: LoadBalancer
     annotations:
-      service.beta.kubernetes.io/azure-load-balancer-internal: "true"
-      service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: "/status"
+      service.beta.kubernetes.io/azure-pip-name: "lb-public-ip"
     tls:
       appProtocol: "https"
   nodeSelector:
@@ -44,8 +43,7 @@ gateway:
   proxy:
     type: LoadBalancer
     annotations:
-      service.beta.kubernetes.io/azure-load-balancer-internal: "true"
-      service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: "/status"
+      service.beta.kubernetes.io/azure-pip-name: "lb-public-ip"
     tls:
       appProtocol: "https"
   plugins:
