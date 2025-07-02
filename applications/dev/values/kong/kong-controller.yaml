@@ -10,6 +10,7 @@ controller:
     type: LoadBalancer
     annotations:
       service.beta.kubernetes.io/azure-pip-name: "lb-public-ip"
+      service.beta.kubernetes.io/azure-load-balancer-resource-group: resource-group-core
     tls:
       appProtocol: "https"
   nodeSelector:
@@ -44,6 +45,7 @@ gateway:
     type: LoadBalancer
     annotations:
       service.beta.kubernetes.io/azure-pip-name: "lb-public-ip"
+      service.beta.kubernetes.io/azure-load-balancer-resource-group: resource-group-core
     tls:
       appProtocol: "https"
   plugins:
