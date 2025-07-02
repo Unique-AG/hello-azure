@@ -11,8 +11,8 @@ controller:
     annotations:
       service.beta.kubernetes.io/azure-pip-name: "lb-public-ip"
       service.beta.kubernetes.io/azure-load-balancer-resource-group: resource-group-core
-    tls:
-      appProtocol: "https"
+    # tls:
+    #   appProtocol: "https"
   nodeSelector:
     scalability: steady
   lifecycle: persistent
@@ -24,7 +24,7 @@ controller:
       metadata:
         name: kong-controller-environment
       data:
-        CONTROLLER_LOG_LEVEL: debug
+        CONTROLLER_LOG_LEVEL: info
         CONTROLLER_PROXY_SYNC_SECONDS: "15"
     - apiVersion: gateway.networking.k8s.io/v1
       kind: GatewayClass
@@ -35,9 +35,6 @@ controller:
       spec:
         controllerName: konghq.com/kic-gateway-controller
 gateway:
-  env:
-    - name: KONG_LOG_LEVEL
-      value: debug
   image:
     repository: uniquehelloazure.azurecr.io/kong
     tag: 3.9.0
@@ -45,15 +42,12 @@ gateway:
     scalability: steady
     lifecycle: persistent
   proxy:
-    env:
-      - name: KONG_LOG_LEVEL
-        value: debug
     type: LoadBalancer
     annotations:
       service.beta.kubernetes.io/azure-pip-name: "lb-public-ip"
       service.beta.kubernetes.io/azure-load-balancer-resource-group: resource-group-core
-    tls:
-      appProtocol: "https"
+    # tls:
+    #   appProtocol: "https"
   plugins:
     configMaps:
       - name: kong-plugin-unique-jwt-auth
