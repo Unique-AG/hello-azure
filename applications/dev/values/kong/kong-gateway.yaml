@@ -21,7 +21,7 @@ resources:
             certificateRefs:
               - group: ""
                 kind: Secret
-                name: kong-tls
+                name: kong-gateway-proxy-cert
           allowedRoutes:
             namespaces:
               from: All
