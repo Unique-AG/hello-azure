@@ -71,6 +71,7 @@ gateway:
       commonName: hello.azure.unique.dev
       dnsNames:
         - hello.azure.unique.dev
+        - argo.hello.azure.unique.dev
         - "*.hello.azure.unique.dev"
     admin:
       enabled: false
