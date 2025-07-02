@@ -235,3 +235,11 @@ resource "azurerm_role_assignment" "kubelet_identity_network_contributor_core" {
   principal_id                     = data.azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
   skip_service_principal_aad_check = true
 }
+
+# Network Contributor for AKS cluster managed identity (for public IP management)
+resource "azurerm_role_assignment" "cluster_identity_network_contributor_core" {
+  scope                            = azurerm_resource_group.core.id
+  role_definition_name             = "Network Contributor"
+  principal_id                     = data.azurerm_kubernetes_cluster.cluster.identity[0].principal_id
+  skip_service_principal_aad_check = true
+}
