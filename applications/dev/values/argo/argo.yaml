@@ -17,6 +17,8 @@ server:
       - argo.hello.azure.unique.dev
     tls: true
 configs:
+  params:
+    "server.insecure": "true"
   cm:
     create: true
     url: https://argo.hello.azure.unique.dev
