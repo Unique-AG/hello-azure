@@ -5,3 +5,11 @@ resource "azurerm_public_ip" "aks_public_ip" {
   resource_group_name = var.resource_group_core_name
   allocation_method   = "Static"
 }
+
+resource "azurerm_public_ip" "load_balancer_public_ip" {
+  name                = "lb-public-ip"
+  sku                 = "Standard"
+  location            = var.resource_group_core_location
+  resource_group_name = var.resource_group_core_name
+  allocation_method   = "Static"
+}
