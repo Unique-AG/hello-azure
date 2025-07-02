@@ -78,7 +78,8 @@ resource "azurerm_role_definition" "vnet_subnet_access" {
       "Microsoft.Network/virtualNetworks/subnets/read",
       "Microsoft.Network/virtualNetworks/subnets/write",
       "Microsoft.Network/routeTables/read",
-      "Microsoft.Network/routeTables/join/action"
+      "Microsoft.Network/routeTables/join/action",
+      "Microsoft.Network/publicIPAddresses/read"
     ]
     not_actions      = []
     data_actions     = []
