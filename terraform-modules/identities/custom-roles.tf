@@ -87,7 +87,8 @@ resource "azurerm_role_definition" "vnet_subnet_access" {
   }
 
   assignable_scopes = [
-    var.resource_group_vnet_id
+    var.resource_group_vnet_id,
+    azurerm_resource_group.core.id
   ]
 }
 
