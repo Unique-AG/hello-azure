@@ -10,4 +10,16 @@ resources:
     cpu: 50m
     memory: 200Mi
 
- 
+hubble:
+  ui:
+    enabled: true
+    ingress:
+      enabled: true
+      className: kong
+      annotations:
+        konghq.com/preserve-host: "true"
+        konghq.com/headers.x-forwarded-proto: "https"
+        konghq.com/headers.x-forwarded-host: "hubble.hello.azure.unique.dev"
+        konghq.com/strip-path: "false"
+      hosts:
+        - hubble.hello.azure.unique.dev

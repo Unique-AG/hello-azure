@@ -54,7 +54,6 @@ resource "azurerm_dns_a_record" "adnsar_root" {
 }
 
 resource "azurerm_dns_a_record" "adnsar_sub_domains" {
-  # for_each            = var.dns_zone_sub_domain_records
   name                = "*"
   zone_name           = azurerm_dns_zone.dns_zone.name
   resource_group_name = var.resource_group_vnet_name
