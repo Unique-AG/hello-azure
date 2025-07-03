@@ -49,7 +49,7 @@ resource "azurerm_dns_a_record" "adnsar_root" {
   zone_name           = azurerm_dns_zone.dns_zone.name
   resource_group_name = var.resource_group_vnet_name
   ttl                 = 300
-  records             = var.dns_zone_root_records
+  records             = [azurerm_public_ip.load_balancer_public_ip.ip_address]
   tags                = var.tags
 }
 
