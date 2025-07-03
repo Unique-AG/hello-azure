@@ -54,11 +54,11 @@ resource "azurerm_dns_a_record" "adnsar_root" {
 }
 
 resource "azurerm_dns_a_record" "adnsar_sub_domains" {
-  for_each            = var.dns_zone_sub_domain_records
-  name                = each.value.name
+  # for_each            = var.dns_zone_sub_domain_records
+  name                = "*"
   zone_name           = azurerm_dns_zone.dns_zone.name
   resource_group_name = var.resource_group_vnet_name
   ttl                 = 300
-  records             = each.value.records
+  records             = [azurerm_public_ip.load_balancer_public_ip.ip_address]
   tags                = var.tags
 }
