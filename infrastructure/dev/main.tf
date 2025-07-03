@@ -1,4 +1,4 @@
-# Local values that are computed or combined from variables
+# Local values that are computed or combined from variables 
 locals {
 
   # Dynamic DNS records
