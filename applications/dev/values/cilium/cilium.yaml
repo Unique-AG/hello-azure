@@ -11,6 +11,8 @@ resources:
     memory: 200Mi
 
 hubble:
+  relay:
+    enabled: true
   ui:
     enabled: true
     ingress:
