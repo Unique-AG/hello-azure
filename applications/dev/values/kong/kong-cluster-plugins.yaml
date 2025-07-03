@@ -1,5 +1,4 @@
 resources:  
-    plugin: request-transformer
   - apiVersion: configuration.konghq.com/v1
     kind: KongClusterPlugin
     metadata:
