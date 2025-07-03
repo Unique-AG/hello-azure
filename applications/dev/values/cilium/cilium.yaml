@@ -10,7 +10,7 @@ resources:
     cpu: 50m
     memory: 200Mi
 
-hubble:
+hubble: # TODO: to be deleted
   relay:
     enabled: true
   ui:
@@ -22,3 +22,9 @@ hubble:
         konghq.com/plugins: unique-jwt-auth
       hosts:
         - hubble.hello.azure.unique.dev
+authentication:
+  mutual:
+    spire:
+      enabled: true
+      install:
+        enabled: true

@@ -12,3 +12,13 @@ spec:
         releaseName: cilium
         valueFiles:
           - $values/applications/dev/values/cilium/cilium.yaml
+  ignoreDifferences:
+    - group: ""
+      kind: Secret
+      name: cilium-ca
+    - group: ""
+      kind: Secret
+      name: hubble-relay-client-certs
+    - group: ""
+      kind: Secret
+      name: hubble-server-certs
