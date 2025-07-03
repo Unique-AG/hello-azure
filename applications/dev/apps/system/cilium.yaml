@@ -1,6 +1,6 @@
 spec:
   name: cilium
-  autoSync: true
+  autoSync: false
   sources:
     - repoURL: 'https://github.com/Unique-AG/hello-azure'
       targetRevision: preview
