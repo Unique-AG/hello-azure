@@ -12,6 +12,12 @@ networkPolicy:
       authentication:
         mode: "required"
   egress:
+    - toPorts:
+      - ports:
+        - port: "53"
+          protocol: UDP
+        - port: "53"
+          protocol: TCP
     - toEndpoints:
       - matchLabels:
           "k8s:io.kubernetes.pod.namespace": unique
