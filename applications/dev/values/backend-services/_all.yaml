@@ -27,6 +27,8 @@ networkPolicy:
         - matchName: "login.microsoftonline.com"
         - matchName: "login.mso.msidentity.com."
         - matchName: "ak.privatelink.msidentity.com"
+        - matchName: "*.login.microsoftonline.com"
+        - matchName: "*.sts.windows.net"
       toPorts:
         - ports:
           - port: "443"
