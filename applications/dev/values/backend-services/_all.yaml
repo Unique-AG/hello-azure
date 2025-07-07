@@ -38,6 +38,8 @@ networkPolicy:
         # - matchName: "ak.privatelink.msidentity.com" #no 
         # - matchPattern: "*.login.microsoftonline.com" # no
         # - matchPattern: "*.sts.windows.net" # no
+        - matchPattern: "*.login.microsoftonline.com"
+        - matchPattern: "*.microsoftonline.com"
         - matchPattern: "*.auth.microsoft.com"
         - matchPattern: "*.msftidentity.com" 
         - matchPattern: "*.msidentity.com" 
