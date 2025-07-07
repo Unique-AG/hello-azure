@@ -39,31 +39,15 @@ networkPolicy:
     # Allow egress to Redis subnet
     - toCIDR:
       - 10.201.3.64/28
-      toPorts:
-        - ports:
-          - port: "6379"
-            protocol: TCP
     # Allow egress to Storage subnet
     - toCIDR:
       - 10.201.3.80/28
-      toPorts:
-        - ports:
-          - port: "443"
-            protocol: TCP
     # Allow egress to Key Vault subnet
     - toCIDR:
       - 10.201.3.32/28
-      toPorts:
-        - ports:
-          - port: "443"
-            protocol: TCP
     # Allow egress to Cognitive Services subnet
     - toCIDR:
       - 10.201.3.16/28
-      toPorts:
-        - ports:
-          - port: "443"
-            protocol: TCP
 routes:
   hostname: api.hello.azure.unique.dev
 secretProvider:
