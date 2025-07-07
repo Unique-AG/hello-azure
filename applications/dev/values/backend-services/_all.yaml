@@ -38,6 +38,8 @@ networkPolicy:
         # - matchName: "ak.privatelink.msidentity.com" #no 
         # - matchPattern: "*.login.microsoftonline.com" # no
         # - matchPattern: "*.sts.windows.net" # no
+        - matchPattern: "*.login.windows.net"
+        - matchPattern: "*.ciamlogin.com"
         - matchPattern: "*.login.microsoftonline.com"
         - matchPattern: "*.microsoftonline.com"
         - matchPattern: "*.auth.microsoft.com"
@@ -90,7 +92,7 @@ networkPolicy:
           - port: "443"
             protocol: TCP
     - toFQDNs:
-        - matchName: "cognitiveservices.azure.com"
+        - matchPattern: "*.cognitiveservices.azure.com"
       toPorts:
         - ports:
           - port: "443"
