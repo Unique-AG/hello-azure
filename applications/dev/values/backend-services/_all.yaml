@@ -25,6 +25,8 @@ networkPolicy:
         mode: "required"
     - toFQDNs:
         - matchName: "login.microsoftonline.com"
+        - matchName: "login.mso.msidentity.com."
+        - matchName: "ak.privatelink.msidentity.com"
       toPorts:
         - ports:
           - port: "443"
