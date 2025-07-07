@@ -99,6 +99,7 @@ networkPolicy:
         - matchName: "device.login.microsoftonline.com"
         - matchName: "graph.microsoft.com"
         - matchName: "graph.windows.net"
+        - matchPattern: "*.graph.windows.net"
         - matchName: "login-us.microsoftonline.com"
         - matchName: "login.microsoft.com"
         - matchName: "login.microsoftonline-p.com"
