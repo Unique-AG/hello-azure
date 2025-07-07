@@ -29,6 +29,12 @@ networkPolicy:
         - ports:
           - port: "443"
             protocol: TCP
+    - toFQDNs:
+        - matchName: "cognitiveservices.azure.com"
+      toPorts:
+        - ports:
+          - port: "443"
+            protocol: TCP
     # Allow egress to PostgreSQL subnet
     - toCIDR:
       - 10.201.3.48/28
