@@ -23,21 +23,28 @@ networkPolicy:
           "k8s:io.kubernetes.pod.namespace": unique
       authentication:
         mode: "required"
-    - toCIDR:
-      - 20.20.32.0/19
-      - 20.190.128.0/18
-      - 20.231.128.0/19
-      - 40.126.0.0/18
-      toPorts:
-        - ports:
-          - port: "443"
-            protocol: TCP
+    # - toCIDR:
+    #   - 20.20.32.0/19
+    #   - 20.190.128.0/18
+    #   - 20.231.128.0/19
+    #   - 40.126.0.0/18
+    #   toPorts:
+    #     - ports:
+    #       - port: "443"
+    #         protocol: TCP
     - toFQDNs:
+        # - matchName: "login.microsoftonline.com" # no
+        # - matchName: "login.mso.msidentity.com." # no
+        # - matchName: "ak.privatelink.msidentity.com" #no 
+        # - matchPattern: "*.login.microsoftonline.com" # no
+        # - matchPattern: "*.sts.windows.net" # no
+        - matchPattern: "*.auth.microsoft.com"
+        - matchPattern: "*.msftidentity.com" 
+        - matchPattern: "*.msidentity.com" 
+        - matchName: "account.activedirectory.windowsazure.com"
+        - matchName: "login.microsoft.com"
+        - matchName: "login.microsoftonline-p.com"
         - matchName: "login.microsoftonline.com"
-        - matchName: "login.mso.msidentity.com."
-        - matchName: "ak.privatelink.msidentity.com"
-        - matchPattern: "*.login.microsoftonline.com"
-        - matchPattern: "*.sts.windows.net"
       toPorts:
         - ports:
           - port: "443"
