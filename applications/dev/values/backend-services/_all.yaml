@@ -52,164 +52,317 @@ networkPolicy:
     - toCIDR:
       - 10.201.3.16/28
   egress2:
-    - toFQDNs:
+    # - toFQDNs:
       # - matchName: "login.microsoftonline.com" # no
       # - matchName: "login.mso.msidentity.com." # no
       # - matchName: "ak.privatelink.msidentity.com" #no 
       # - matchPattern: "*.login.microsoftonline.com" # no
       # - matchPattern: "*.sts.windows.net" # no
-      - matchPattern: "*.msauth.net"
-      - matchPattern: "*.msftauth.net"
-      - matchPattern: "*.msftidentity.com"
-      - matchPattern: "*.msidentity.com"
-      - matchPattern: "*.msidentity.net"
-      - matchPattern: "*.msidentity.net"
-      - matchPattern: "*.aadcdn.msauth.net"
-      - matchPattern: "*.aadcdn.msftauth.net"
-      - matchPattern: "*.aadcdn.msftauthimages.net"
-      - matchPattern: "*.aadcdn.microsoftonline-p.com"
-      - matchPattern: "*.aadcdn.msftauthimages.net"
-      - matchPattern: "*.account.microsoft.com"
-      - matchName: "login.microsoftonline.us"
-      - matchName: "login.windows.net"
-      - matchName: "pass.windows.net"
-      - matchName: "management.azure.com"
-      - matchName: "login.microsoftonline.us"
-      - matchName: "login.windows.net"
-      - matchName: "pass.windows.net"
-      - matchName: "management.azure.com"
-      - matchName: "login.microsoftonline.us"
-      - matchName: "login.windows.net"
-      - matchName: "pass.windows.net"
-      - matchName: "management.azure.com"
-      - matchPattern: "*.his.arc.azure.com"
-      - matchPattern: "gbl.his.arc.azure.com"
-      - matchPattern: "*.login.windows.net"
-      - matchPattern: "*.ciamlogin.com"
-      - matchPattern: "*.login.microsoftonline.com"
-      - matchPattern: "*.microsoftonline.com"
-      - matchPattern: "*.auth.microsoft.com"
-      - matchPattern: "*.msftidentity.com" 
-      - matchPattern: "*.servicebus.windows.net"
-      - matchPattern: "azgn*.servicebus.windows.net"
-      - matchPattern: "guestnotificationservice.azure.com"
-      - matchPattern: "*.guestnotificationservice.azure.com"
-      - matchPattern: "*.login.windows.net"
-      - matchPattern: "*.ciamlogin.com"
-      - matchPattern: "*.login.microsoftonline.com"
-      - matchPattern: "*.microsoftonline.com"
-      - matchPattern: "*.auth.microsoft.com"
-      - matchPattern: "*.msftidentity.com" 
-      - matchPattern: "*.msidentity.com" 
-      - matchName: "account.activedirectory.windowsazure.com"
-      - matchName: "login.microsoft.com"
-      - matchName: "login.microsoftonline-p.com"
-      - matchName: "login.microsoftonline.com"
-      - matchPattern: "*.auth.microsoft.com"
-      - matchPattern: "*.msftidentity.com"
-      - matchPattern: "*.msidentity.com"
-      - matchPattern: "account.activedirectory.windowsazure.com"
-      - matchName: "accounts.accesscontrol.windows.net"
-      - matchName: "adminwebservice.microsoftonline.com"
-      - matchName: "api.passwordreset.microsoftonline.com"
-      - matchName: "becws.microsoftonline.com"
-      - matchName: "ccs.login.microsoftonline.com"
-      - matchName: "clientconfig.microsoftonline-p.net"
-      - matchName: "companymanager.microsoftonline.com"
-      - matchName: "device.login.microsoftonline.com"
-      - matchName: "graph.microsoft.com"
-      - matchName: "graph.windows.net"
-      - matchPattern: "*.graph.windows.net"
-      - matchName: "login-us.microsoftonline.com"
-      - matchName: "login.microsoft.com"
-      - matchName: "login.microsoftonline-p.com"
-      - matchName: "login.microsoftonline.com"
-      - matchName: "login.windows.net"
-      - matchName: "logincert.microsoftonline.com"
-      - matchName: "loginex.microsoftonline.com"
-      - matchName: "nexus.microsoftonline-p.com"
-      - matchName: "passwordreset.microsoftonline.com"
-      - matchName: "provisioningapi.microsoftonline.com"
-      - matchPattern: "*.auth.microsoft.com"
-      - matchPattern: "*.msftidentity.com"
-      - matchPattern: "*.msidentity.com"
-      - matchName: "account.activedirectory.windowsazure.com"
-      - matchName: "accounts.accesscontrol.windows.net"
-      - matchName: "adminwebservice.microsoftonline.com"
-      - matchName: "api.passwordreset.microsoftonline.com"
-      - matchName: "autologon.microsoftazuread-sso.com"
-      - matchName: "becws.microsoftonline.com"
-      - matchName: "ccs.login.microsoftonline.com"
-      - matchName: "clientconfig.microsoftonline-p.net"
-      - matchName: "companymanager.microsoftonline.com"
-      - matchName: "device.login.microsoftonline.com"
-      - matchName: "graph.microsoft.com"
-      - matchName: "mcr.microsoft.com"
-      - matchPattern: "*.dp.kubernetesconfiguration.azure.com"
-      - matchName: "graph.windows.net"
-      - matchPattern: "*.aadg.windows.net"
-      - matchPattern: "*.aadkds.ppe.reporting.msidentity.com"
-      - matchPattern: "*.aadkds.prd.reporting.msidentity.com"
-      - matchPattern: "*.accesscontrol.aadtst3.windows-int.net"
-      - matchPattern: "*.accesscontrol.windows-ppe.net"
-      - matchPattern: "*.accesscontrol.windows.net"
-      - matchPattern: "*.adls.aadkds.ppe.reporting.msidentity.com"
-      - matchPattern: "*.adls.aadkds.prd.reporting.msidentity.com"
-      - matchPattern: "*.adti.aadkds.ppe.reporting.msidentity.com"
-      - matchPattern: "*.adti.aadkds.prd.reporting.msidentity.com"
-      - matchPattern: "*.authapp.net"
-      - matchPattern: "*.b2clogin.com"
-      - matchPattern: "*.cpim.windows.net"
-      - matchPattern: "*.d2k.aadkds.ppe.reporting.msidentity.com"
-      - matchPattern: "*.d2k.aadkds.prd.reporting.msidentity.com"
-      - matchPattern: "*.gateway.windows.net"
-      - matchPattern: "*.login.live-int.com"
-      - matchPattern: "*.login.live.com"
-      - matchPattern: "*.login.microsoft.com"
-      - matchPattern: "*.login.microsoftonline.com"
-      - matchPattern: "*.login.windows-ppe.net"
-      - matchPattern: "*.logincert.microsoft.com"
-      - matchPattern: "*.logincert.windows-ppe.net"
-      - matchPattern: "*.microsoftaik-int.azure-int.net"
-      - matchPattern: "*.microsoftaik.azure.net"
-      - matchPattern: "*.pt.aadg.msidentity.com"
-      - matchPattern: "*.r.login.microsoft.com"
-      - matchPattern: "*.r.login.microsoftonline.com"
-      - matchPattern: "*.r.prd.aadg.msidentity.com"
-      - matchPattern: "*.windows-ppe.net"
-      - matchName: "aadcdn.privatelink.msidentity.com"
-      - matchName: "aadcdnimages.privatelink.msidentity.com"
-      - matchName: "aadg.windows.net"
-      - matchName: "aadgv6.ppe.windows.net"
-      - matchName: "aadgv6.windows.net"
-      - matchName: "accesscontrol.aadtst3.windows-int.net"
-      - matchName: "api.password.ccsctp.com"
-      - matchName: "api.passwordreset.microsoftonline.com"
-      - matchName: "autologon.microsoftazuread-sso.com"
-      - matchName: "clientconfig.microsoftonline-p-int.net"
-      - matchName: "clientconfig.microsoftonline-p.net"
-      - matchName: "directoryproxy.ppe.windows.net"
-      - matchName: "directoryproxy.windows.net"
-      - matchName: "gatewayforking.windows.net"
-      - matchName: "graph.ppe.windows.net"
-      - matchName: "login.live-int.com"
-      - matchName: "login.live.com"
-      - matchName: "login.microsoft-ppe.com"
-      - matchName: "login.microsoft.com"
-      - matchName: "login.microsoftonline-p.com"
-      - matchName: "login.microsoftonline.com"
-      - matchName: "login.windows.net"
-      - matchName: "logincert.microsoftonline.com"
-      - matchName: "microsoftaik-int.azure-int.net"
-      - matchName: "microsoftaik.azure.net"
-      - matchName: "nexus.microsoftonline-p-int.com"
-      - matchName: "nexus.microsoftonline-p.com"
-      - matchName: "nexus.passport-int.com"
-      - matchName: "password.ccsctp.com"
-      - matchName: "passwordreset.microsoftonline.com"
-      - matchName: "ppe.aadcdn.privatelink.msidentity.com"
-      - matchName: "sts.windows.net"
-      - matchPattern: "*.cognitiveservices.azure.com"
+
+    - toFQDNs:
+        - matchPattern: "*.msauth.net"
+    - toFQDNs:
+        - matchPattern: "*.msftauth.net"
+    - toFQDNs:
+        - matchPattern: "*.msftidentity.com"
+    - toFQDNs:
+        - matchPattern: "*.msidentity.com"
+    - toFQDNs:
+        - matchPattern: "*.msidentity.net"
+    - toFQDNs:
+        - matchPattern: "*.msidentity.net"
+    - toFQDNs:
+        - matchPattern: "*.aadcdn.msauth.net"
+    - toFQDNs:
+        - matchPattern: "*.aadcdn.msftauth.net"
+    - toFQDNs:
+        - matchPattern: "*.aadcdn.msftauthimages.net"
+    - toFQDNs:
+        - matchPattern: "*.aadcdn.microsoftonline-p.com"
+    - toFQDNs:
+        - matchPattern: "*.aadcdn.msftauthimages.net"
+    - toFQDNs:
+        - matchPattern: "*.account.microsoft.com"
+    - toFQDNs:
+        - matchName: "login.microsoftonline.us"
+    - toFQDNs:
+        - matchName: "login.windows.net"
+    - toFQDNs:
+        - matchName: "pass.windows.net"
+    - toFQDNs:
+        - matchName: "management.azure.com"
+    - toFQDNs:
+        - matchName: "login.microsoftonline.us"
+    - toFQDNs:
+        - matchName: "login.windows.net"
+    - toFQDNs:
+        - matchName: "pass.windows.net"
+    - toFQDNs:
+        - matchName: "management.azure.com"
+    - toFQDNs:
+        - matchName: "login.microsoftonline.us"
+    - toFQDNs:
+        - matchName: "login.windows.net"
+    - toFQDNs:
+        - matchName: "pass.windows.net"
+    - toFQDNs:
+        - matchName: "management.azure.com"
+    - toFQDNs:
+        - matchPattern: "*.his.arc.azure.com"
+    - toFQDNs:
+        - matchPattern: "gbl.his.arc.azure.com"
+    - toFQDNs:
+        - matchPattern: "*.login.windows.net"
+    - toFQDNs:
+        - matchPattern: "*.ciamlogin.com"
+    - toFQDNs:
+        - matchPattern: "*.login.microsoftonline.com"
+    - toFQDNs:
+        - matchPattern: "*.microsoftonline.com"
+    - toFQDNs:
+        - matchPattern: "*.auth.microsoft.com"
+    - toFQDNs:
+        - matchPattern: "*.msftidentity.com" 
+    - toFQDNs:
+        - matchPattern: "*.servicebus.windows.net"
+    - toFQDNs:
+        - matchPattern: "azgn*.servicebus.windows.net"
+    - toFQDNs:
+        - matchPattern: "guestnotificationservice.azure.com"
+    - toFQDNs:
+        - matchPattern: "*.guestnotificationservice.azure.com"
+    - toFQDNs:
+        - matchPattern: "*.login.windows.net"
+    - toFQDNs:
+        - matchPattern: "*.ciamlogin.com"
+    - toFQDNs:
+        - matchPattern: "*.login.microsoftonline.com"
+    - toFQDNs:
+        - matchPattern: "*.microsoftonline.com"
+    - toFQDNs:
+        - matchPattern: "*.auth.microsoft.com"
+    - toFQDNs:
+        - matchPattern: "*.msftidentity.com" 
+    - toFQDNs:
+        - matchPattern: "*.msidentity.com" 
+    - toFQDNs:
+        - matchName: "account.activedirectory.windowsazure.com"
+    - toFQDNs:
+        - matchName: "login.microsoft.com"
+    - toFQDNs:
+        - matchName: "login.microsoftonline-p.com"
+    - toFQDNs:
+        - matchName: "login.microsoftonline.com"
+    - toFQDNs:
+        - matchPattern: "*.auth.microsoft.com"
+    - toFQDNs:
+        - matchPattern: "*.msftidentity.com"
+    - toFQDNs:
+        - matchPattern: "*.msidentity.com"
+    - toFQDNs:
+        - matchPattern: "account.activedirectory.windowsazure.com"
+    - toFQDNs:
+        - matchName: "accounts.accesscontrol.windows.net"
+    - toFQDNs:
+        - matchName: "adminwebservice.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "api.passwordreset.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "becws.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "ccs.login.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "clientconfig.microsoftonline-p.net"
+    - toFQDNs:
+        - matchName: "companymanager.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "device.login.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "graph.microsoft.com"
+    - toFQDNs:
+        - matchName: "graph.windows.net"
+    - toFQDNs:
+        - matchPattern: "*.graph.windows.net"
+    - toFQDNs:
+        - matchName: "login-us.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "login.microsoft.com"
+    - toFQDNs:
+        - matchName: "login.microsoftonline-p.com"
+    - toFQDNs:
+        - matchName: "login.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "login.windows.net"
+    - toFQDNs:
+        - matchName: "logincert.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "loginex.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "nexus.microsoftonline-p.com"
+    - toFQDNs:
+        - matchName: "passwordreset.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "provisioningapi.microsoftonline.com"
+    - toFQDNs:
+        - matchPattern: "*.auth.microsoft.com"
+    - toFQDNs:
+        - matchPattern: "*.msftidentity.com"
+    - toFQDNs:
+        - matchPattern: "*.msidentity.com"
+    - toFQDNs:
+        - matchName: "account.activedirectory.windowsazure.com"
+    - toFQDNs:
+        - matchName: "accounts.accesscontrol.windows.net"
+    - toFQDNs:
+        - matchName: "adminwebservice.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "api.passwordreset.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "autologon.microsoftazuread-sso.com"
+    - toFQDNs:
+        - matchName: "becws.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "ccs.login.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "clientconfig.microsoftonline-p.net"
+    - toFQDNs:
+        - matchName: "companymanager.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "device.login.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "graph.microsoft.com"
+    - toFQDNs:
+        - matchName: "mcr.microsoft.com"
+    - toFQDNs:
+        - matchPattern: "*.dp.kubernetesconfiguration.azure.com"
+    - toFQDNs:
+        - matchName: "graph.windows.net"
+    - toFQDNs:
+        - matchPattern: "*.aadg.windows.net"
+    - toFQDNs:
+        - matchPattern: "*.aadkds.ppe.reporting.msidentity.com"
+    - toFQDNs:
+        - matchPattern: "*.aadkds.prd.reporting.msidentity.com"
+    - toFQDNs:
+        - matchPattern: "*.accesscontrol.aadtst3.windows-int.net"
+    - toFQDNs:
+        - matchPattern: "*.accesscontrol.windows-ppe.net"
+    - toFQDNs:
+        - matchPattern: "*.accesscontrol.windows.net"
+    - toFQDNs:
+        - matchPattern: "*.adls.aadkds.ppe.reporting.msidentity.com"
+    - toFQDNs:
+        - matchPattern: "*.adls.aadkds.prd.reporting.msidentity.com"
+    - toFQDNs:
+        - matchPattern: "*.adti.aadkds.ppe.reporting.msidentity.com"
+    - toFQDNs:
+        - matchPattern: "*.adti.aadkds.prd.reporting.msidentity.com"
+    - toFQDNs:
+        - matchPattern: "*.authapp.net"
+    - toFQDNs:
+        - matchPattern: "*.b2clogin.com"
+    - toFQDNs:
+        - matchPattern: "*.cpim.windows.net"
+    - toFQDNs:
+        - matchPattern: "*.d2k.aadkds.ppe.reporting.msidentity.com"
+    - toFQDNs:
+        - matchPattern: "*.d2k.aadkds.prd.reporting.msidentity.com"
+    - toFQDNs:
+        - matchPattern: "*.gateway.windows.net"
+    - toFQDNs:
+        - matchPattern: "*.login.live-int.com"
+    - toFQDNs:
+        - matchPattern: "*.login.live.com"
+    - toFQDNs:
+        - matchPattern: "*.login.microsoft.com"
+    - toFQDNs:
+        - matchPattern: "*.login.microsoftonline.com"
+    - toFQDNs:
+        - matchPattern: "*.login.windows-ppe.net"
+    - toFQDNs:
+        - matchPattern: "*.logincert.microsoft.com"
+    - toFQDNs:
+        - matchPattern: "*.logincert.windows-ppe.net"
+    - toFQDNs:
+        - matchPattern: "*.microsoftaik-int.azure-int.net"
+    - toFQDNs:
+        - matchPattern: "*.microsoftaik.azure.net"
+    - toFQDNs:
+        - matchPattern: "*.pt.aadg.msidentity.com"
+    - toFQDNs:
+        - matchPattern: "*.r.login.microsoft.com"
+    - toFQDNs:
+        - matchPattern: "*.r.login.microsoftonline.com"
+    - toFQDNs:
+        - matchPattern: "*.r.prd.aadg.msidentity.com"
+    - toFQDNs:
+        - matchPattern: "*.windows-ppe.net"
+    - toFQDNs:
+        - matchName: "aadcdn.privatelink.msidentity.com"
+    - toFQDNs:
+        - matchName: "aadcdnimages.privatelink.msidentity.com"
+    - toFQDNs:
+        - matchName: "aadg.windows.net"
+    - toFQDNs:
+        - matchName: "aadgv6.ppe.windows.net"
+    - toFQDNs:
+        - matchName: "aadgv6.windows.net"
+    - toFQDNs:
+        - matchName: "accesscontrol.aadtst3.windows-int.net"
+    - toFQDNs:
+        - matchName: "api.password.ccsctp.com"
+    - toFQDNs:
+        - matchName: "api.passwordreset.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "autologon.microsoftazuread-sso.com"
+    - toFQDNs:
+        - matchName: "clientconfig.microsoftonline-p-int.net"
+    - toFQDNs:
+        - matchName: "clientconfig.microsoftonline-p.net"
+    - toFQDNs:
+        - matchName: "directoryproxy.ppe.windows.net"
+    - toFQDNs:
+        - matchName: "directoryproxy.windows.net"
+    - toFQDNs:
+        - matchName: "gatewayforking.windows.net"
+    - toFQDNs:
+        - matchName: "graph.ppe.windows.net"
+    - toFQDNs:
+        - matchName: "login.live-int.com"
+    - toFQDNs:
+        - matchName: "login.live.com"
+    - toFQDNs:
+        - matchName: "login.microsoft-ppe.com"
+    - toFQDNs:
+        - matchName: "login.microsoft.com"
+    - toFQDNs:
+        - matchName: "login.microsoftonline-p.com"
+    - toFQDNs:
+        - matchName: "login.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "login.windows.net"
+    - toFQDNs:
+        - matchName: "logincert.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "microsoftaik-int.azure-int.net"
+    - toFQDNs:
+        - matchName: "microsoftaik.azure.net"
+    - toFQDNs:
+        - matchName: "nexus.microsoftonline-p-int.com"
+    - toFQDNs:
+        - matchName: "nexus.microsoftonline-p.com"
+    - toFQDNs:
+        - matchName: "nexus.passport-int.com"
+    - toFQDNs:
+        - matchName: "password.ccsctp.com"
+    - toFQDNs:
+        - matchName: "passwordreset.microsoftonline.com"
+    - toFQDNs:
+        - matchName: "ppe.aadcdn.privatelink.msidentity.com"
+    - toFQDNs:
+        - matchName: "sts.windows.net"
+    - toFQDNs:
+        - matchPattern: "*.cognitiveservices.azure.com"
 routes:
   hostname: api.hello.azure.unique.dev
 secretProvider:
