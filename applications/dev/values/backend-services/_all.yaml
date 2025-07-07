@@ -4,7 +4,7 @@ env:
   UNIQUE_INSTALLATION_ID: hello.azure.unique.dev # the hostname of the cluster
 networkPolicy:
   enabled: true
-  type: cilium
+  flavor: cilium
   ingress:
     - fromEndpoints:
       - matchLabels:
