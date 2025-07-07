@@ -4,54 +4,60 @@ env:
   UNIQUE_INSTALLATION_ID: hello.azure.unique.dev # the hostname of the cluster
 networkPolicy:
   enabled: true
-  policyTypes:
-    - Ingress
-    - Egress
+  type: cilium
   ingress:
-    - from:
-        - namespaceSelector:
-            matchLabels:
-              name: unique
+    - fromEndpoints:
+      - matchLabels:
+          "k8s:io.kubernetes.pod.namespace": unique
+      authentication:
+        mode: "required"
   egress:
-    # Allow DNS resolution
-    - to: []
-      ports:
-        - protocol: UDP
-          port: 53
-    - to: # PostgreSQL
-        - ipBlock:
-            cidr: "10.201.3.48/28" # PostgreSQL subnet
-      ports:
-        - protocol: TCP # PostgreSQL port
-          port: 5432
-    - to: # Redis subnet
-      - ipBlock:
-          cidr: "10.201.3.64/28"
-    - to: # storage subnet
-      - ipBlock:
-          cidr: "10.201.3.80/28" 
-    - to: # key vault subnet
-      - ipBlock:
-          cidr: "10.201.3.32/28"
-    - to: # cognitive services subnet
-      - ipBlock:
-          cidr: "10.201.3.16/28"
-    - to: # Azure AD authentication for Workload Identity - specific service tag IPs - (login.microsoftonline.com) - with Cilium simply whitelist the URL - https://learn.microsoft.com/en-us/microsoft-365/enterprise/urls-and-ip-address-ranges?redirectSourcePath=%252fen-us%252farticle%252fOffice-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2&view=o365-worldwide#microsoft-365-common-and-office-online
-      - ipBlock:
-          cidr: "20.20.32.0/19"
-      - ipBlock:
-          cidr: "20.190.128.0/18"
-      - ipBlock:
-          cidr: "20.231.128.0/19"
-      - ipBlock:
-          cidr: "40.126.0.0/18"
-      ports:
-        - protocol: TCP
-          port: 443
-    - to:
-      - namespaceSelector:
-          matchLabels:
-            name: unique
+    - toEndpoints:
+      - matchLabels:
+          "k8s:io.kubernetes.pod.namespace": unique
+      authentication:
+        mode: "required"
+    - toFQDNs:
+        - matchName: "login.microsoftonline.com"
+      toPorts:
+        - ports:
+          - port: "443"
+            protocol: TCP
+    # Allow egress to PostgreSQL subnet
+    - toCIDR:
+      - 10.201.3.48/28
+      toPorts:
+        - ports:
+          - port: "5432"
+            protocol: TCP
+    # Allow egress to Redis subnet
+    - toCIDR:
+      - 10.201.3.64/28
+      toPorts:
+        - ports:
+          - port: "6379"
+            protocol: TCP
+    # Allow egress to Storage subnet
+    - toCIDR:
+      - 10.201.3.80/28
+      toPorts:
+        - ports:
+          - port: "443"
+            protocol: TCP
+    # Allow egress to Key Vault subnet
+    - toCIDR:
+      - 10.201.3.32/28
+      toPorts:
+        - ports:
+          - port: "443"
+            protocol: TCP
+    # Allow egress to Cognitive Services subnet
+    - toCIDR:
+      - 10.201.3.16/28
+      toPorts:
+        - ports:
+          - port: "443"
+            protocol: TCP
 routes:
   hostname: api.hello.azure.unique.dev
 secretProvider:
