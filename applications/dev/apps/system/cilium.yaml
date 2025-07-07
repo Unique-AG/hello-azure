@@ -20,6 +20,7 @@ spec:
         - /data/ca.crt
         - /data/tls.crt
         - /data/tls.key
+        - /data/ca.key
     - group: ""
       kind: Secret
       name: hubble-relay-client-certs
