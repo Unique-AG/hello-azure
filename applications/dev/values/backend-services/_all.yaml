@@ -16,9 +16,9 @@ networkPolicy:
       - ports:
          - port: "53"
            protocol: ANY
-        rules:
+        rules: # This is required for `toFQDNs` rules to work!
           dns:
-            - matchPattern: "*"
+            - matchPattern: "*" 
     - toEndpoints:
       - matchLabels:
           "k8s:io.kubernetes.pod.namespace": unique
