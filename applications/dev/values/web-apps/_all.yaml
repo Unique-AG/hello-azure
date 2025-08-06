@@ -3,7 +3,7 @@ env:
   APP_REPOSITORY_BACKEND_API_URL: https://api.hello.azure.unique.dev/apps
   CHAT_APP_URL: https://hello.azure.unique.dev/chat
   CHAT_BACKEND_API_URL: https://api.hello.azure.unique.dev/chat
-  CONTENT_SECURITY_POLICY_VALUE: "default-src 'self'; img-src https: blob: data: *.blob.core.windows.net; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' blob: *.hello.azure.unique.dev *.core.windows.net wss://*.hello.azure.unique.dev; media-src 'self' *.blob.core.windows.net; frame-ancestors 'self'; frame-src 'self' https://*.hello.azure.unique.dev;"
+  CONTENT_SECURITY_POLICY_VALUE: "default-src 'self'; img-src https: blob: data: *.blob.core.windows.net; script-src 'self' 'unsafe-inline' blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' blob: *.hello.azure.unique.dev *.core.windows.net wss://*.hello.azure.unique.dev; media-src 'self' *.blob.core.windows.net; frame-ancestors 'self'; frame-src 'self' https://*.hello.azure.unique.dev;"
   FEATURE_FLAG_USER_API_KEY_GENERATION_UN_11416: "true"
   INGESTION_BACKEND_API_URL: https://api.hello.azure.unique.dev/ingestion
   KNOWLEDGE_UPLOAD_APP_URL: https://hello.azure.unique.dev/knowledge-upload
