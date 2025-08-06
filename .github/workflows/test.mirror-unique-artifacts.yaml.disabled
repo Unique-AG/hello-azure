@@ -1,0 +1,48 @@
+name: '[test][rel] Mirror Unique Release 🪞'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - preview
+    paths:
+      - .github/workflows/test.mirror-unique-artifacts.yaml
+      - mirroring/test/app.unique.yaml
+
+permissions:
+  contents: read
+  id-token: write # This is required for requesting the JWT
+  pull-requests: write # To write comments
+
+env:
+  UNIQUECR_USERNAME: ext-hello-azure
+
+jobs:
+  clone-release:
+    environment: 20-wl
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: mirroring/test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
+
+      - name: Install node
+        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a #v4.2.0
+
+      - name: Azure Login action
+        uses: azure/login@a65d910e8af852a8061c627c456678983e180302 #v2.2.0
+        with:
+          subscription-id: 782871a0-bcee-44fb-851f-ccd3e69ada2a
+          tenant-id: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
+          client-id: 93b817fa-3d2c-407f-9a93-3bd40d0029ac
+
+      - name: Install unique-ag/cli
+        run: npm install -g @unique-ag/cli@0.5.1
+
+      - name: Mirror public artifacts
+        timeout-minutes: 15
+        run: |
+          qcli az acr import -f app.unique.yaml -u ${{ env.UNIQUECR_USERNAME }} -p ${{ secrets.UNIQUECR_PASSWORD }}

@@ -1,0 +1,26 @@
+name: '[test][bootstrap ArgoCD] 🐙'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false # otherwise helm upgrade can get stuck and one needs to manually clean the secrets and helm database
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "helmfile action to perform: apply, diff or template."
+        default: diff
+        type: string
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  # The Sync Waves are a bit a fake to mimic and make sure the cluster is updated in a controlled way.
+  argo-bootstrap:
+    uses: ./.github/workflows/test.helm.yaml
+    with:
+      file_name: applications/argo-bootstrap.yaml
+      action: ${{ inputs.action }}
+    secrets: inherit
