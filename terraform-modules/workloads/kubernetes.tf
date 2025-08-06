@@ -11,6 +11,7 @@ module "kubernetes_cluster" {
   cluster_name                 = var.cluster_name
   kubernetes_default_node_size = var.kubernetes_default_node_size
   log_analytics_workspace_id   = var.log_analytics_workspace_id
+  kubernetes_default_node_zones = ["1", "3"]
   network_profile = {
     idle_timeout_in_minutes = 100
     outbound_ip_address_ids = [var.aks_public_ip_id]
@@ -33,7 +34,7 @@ module "kubernetes_cluster" {
         max_surge = "10%"
       }
       vm_size = var.kubernetes_rapid_node_size
-      zones   = ["1", "2", "3"]
+      zones   = ["1", "3"]
     }
     steady = {
       auto_scaling_enabled = true
@@ -52,7 +53,7 @@ module "kubernetes_cluster" {
         max_surge = "30%"
       }
       vm_size = var.kubernetes_steady_node_size
-      zones   = ["1", "2", "3"]
+      zones   = ["1", "3"]
     }
   }
   node_rg_name            = var.node_resource_group_name

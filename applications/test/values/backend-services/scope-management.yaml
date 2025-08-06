@@ -1,5 +1,5 @@
 image:
-  tag: "2025.26"
+  tag: "2025.28"
   repository: uqhacrtest.azurecr.io/backend-service-scope-management
 env:
   ZITADEL_HOST: https://id.test-hello.azure.unique.dev

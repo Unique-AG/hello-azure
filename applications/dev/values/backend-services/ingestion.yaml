@@ -1,5 +1,5 @@
 image:
-  tag: "2025.26"
+  tag: "2025.28"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion
 env:
   ELASTICSEARCH_CA_BUNDLE: /etc/ssl/elastic/ca.crt

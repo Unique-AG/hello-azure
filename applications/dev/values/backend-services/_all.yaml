@@ -7,4 +7,8 @@ routes:
 secretProvider:
   useVMManagedIdentity: "true"
   tenantId: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
-  userAssignedIdentityID: 656b2988-6508-4df3-ba88-5a0d721863ae
+  userAssignedIdentityID: 1b36da77-4c90-4c5a-89b9-9aca828f8671
+resources: # TODO: @PROD-CHANGE: these are minimal resources. Remove this override for more reasonalbe perfromance
+  requests:
+    cpu: 50m
+    memory: 220Mi

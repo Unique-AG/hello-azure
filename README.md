@@ -39,11 +39,11 @@ The repository logic bases on two main branches:
         checkout preview
         commit id:"prep 2025.08-rc.1"
         commit id:"prep 2025.08-rc.2"
-        branch 2025.08 order:10
+        branch "2025.08" order:10
         commit id:"prep 2025.08-rc.3"
         commit id:"prep 2025.08-rc.4"
         checkout preview
-        merge 2025.08 tag:"prep 2025.08-rc.5"
+        merge "2025.08" tag:"prep 2025.08-rc.5"
         commit id:"prep 2025.08-rc…"
         checkout release
         merge preview tag:"2025.08"
