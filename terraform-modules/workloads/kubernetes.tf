@@ -1,5 +1,5 @@
 module "kubernetes_cluster" {
-  source = "github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service?ref=azure-kubernetes-service-4.0.0"
+  source = "git::https://github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service?ref=vsc589-tan-moaning-panda"
   
   kubernetes_version = var.kubernetes_version
   application_gateway_id = module.application_gateway.appgw_id
