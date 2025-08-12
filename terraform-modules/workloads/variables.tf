@@ -33,6 +33,11 @@ variable "document_intelligence_user_assigned_identity_id" {
   type        = string
 }
 
+variable "grafana_user_assigned_identity_id" {
+  description = "The ID of the Grafana user-assigned identity."
+  type        = string
+}
+
 variable "encryption_key_app_repository_secret_name" {
   type    = string
   default = "encryption-key-app-repository"

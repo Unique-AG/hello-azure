@@ -27,3 +27,9 @@ resource "azurerm_user_assigned_identity" "aks_workload_identity" {
   location            = azurerm_resource_group.core.location
   resource_group_name = azurerm_resource_group.core.name
 }
+
+resource "azurerm_user_assigned_identity" "grafana_identity" {
+  name                = var.grafana_identity_name
+  location            = azurerm_resource_group.core.location
+  resource_group_name = azurerm_resource_group.core.name
+}

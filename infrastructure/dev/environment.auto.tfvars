@@ -13,6 +13,7 @@ ingestion_cache_identity_name       = "ingestion-cache-identity"
 ingestion_storage_identity_name     = "ingestion-storage-identity"
 psql_identity_name                  = "psql-identity"
 csi_identity_name                   = "csi_identity"
+grafana_identity_name               = "grafana-identity"
 main_kv_name                        = "helloazuremain"
 sensitive_kv_name                   = "helloazuresensitive"
 

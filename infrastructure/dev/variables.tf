@@ -152,6 +152,11 @@ variable "ingestion_storage_identity_name" {
   type        = string
 }
 
+variable "grafana_identity_name" {
+  description = "Name of the Grafana user-assigned identity"
+  type        = string
+}
+
 variable "psql_identity_name" {
   description = "Name of the PostgreSQL identity"
   type        = string

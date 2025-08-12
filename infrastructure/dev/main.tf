@@ -27,6 +27,7 @@ module "identities" {
   gitops_maintainers                           = var.gitops_maintainer_user_ids
   ingestion_cache_identity_name                = var.ingestion_cache_identity_name
   ingestion_storage_identity_name              = var.ingestion_storage_identity_name
+  grafana_identity_name                        = var.grafana_identity_name
   main_keyvault_secret_writers                 = var.keyvault_secret_writer_user_ids
   main_kv_id                                   = module.perimeter.key_vault_main_id
   psql_user_assigned_identity_name             = var.psql_identity_name
@@ -78,6 +79,7 @@ module "workloads" {
   custom_subdomain_name                           = var.custom_subdomain_name
   document_intelligence_custom_subdomain_name     = var.document_intelligence_custom_subdomain_name
   document_intelligence_user_assigned_identity_id = module.identities.document_intelligence_user_assigned_identity_id
+  grafana_user_assigned_identity_id               = module.identities.grafana_user_assigned_identity_id
   ingestion_cache_user_assigned_identity_id       = module.identities.ingestion_cache_user_assigned_identity_id
   ingestion_storage_user_assigned_identity_id     = module.identities.ingestion_storage_user_assigned_identity_id
   kubernetes_rapid_node_size                      = "Standard_D4s_v5"
