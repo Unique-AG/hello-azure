@@ -6,7 +6,6 @@ module "kubernetes_cluster" {
   segregated_node_and_pod_subnets_enabled = true
   cluster_name = var.cluster_name
   kubernetes_default_node_size = var.kubernetes_default_node_size
-  log_analytics_workspace_id = var.log_analytics_workspace_id
   kubernetes_default_node_zones = ["1", "3"]
   node_rg_name = var.node_resource_group_name
   resource_group_location = data.azurerm_resource_group.core.location
@@ -16,9 +15,15 @@ module "kubernetes_cluster" {
   tags = var.tags
   tenant_id = data.azurerm_client_config.current.tenant_id
 
+  log_analytics_workspace = {
+    id                  = var.log_analytics_workspace_id
+    location            = var.resource_group_core_location
+    resource_group_name = var.resource_group_core_name
+  }
+
   azure_prometheus_grafana_monitor = {
     azure_monitor_location = var.resource_group_core_location
-    azure_monitor_rg_name  = data.azurerm_resource_group.core.name
+    azure_monitor_rg_name  = var.resource_group_core_name
     enabled                = true
     grafana_major_version  = "11"
     identity = {
