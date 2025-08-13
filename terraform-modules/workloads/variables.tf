@@ -300,3 +300,37 @@ variable "kubernetes_version" {
   type        = string
   default     = "1.30.10"
 }
+
+# Prometheus recording rule variables
+variable "prometheus_node_recording_rules" {
+  description = "Node level recording rules for Prometheus monitoring"
+  type = list(object({
+    enabled    = optional(bool, true)
+    record     = string
+    expression = string
+    labels     = optional(map(string))
+  }))
+  default = null
+}
+
+variable "prometheus_kubernetes_recording_rules" {
+  description = "Kubernetes level recording rules for Prometheus monitoring"
+  type = list(object({
+    enabled    = optional(bool, true)
+    record     = string
+    expression = string
+    labels     = optional(map(string))
+  }))
+  default = null
+}
+
+variable "prometheus_ux_recording_rules" {
+  description = "UX level recording rules for Prometheus monitoring"
+  type = list(object({
+    enabled    = optional(bool, true)
+    record     = string
+    expression = string
+    labels     = optional(map(string))
+  }))
+  default = null
+}
