@@ -57,6 +57,7 @@ See also [identities](modules/identities/README.md), [perimeter](modules/perimet
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment name (e.g., dev, staging, prod) | `string` | n/a | yes |
 | <a name="input_gitops_display_name"></a> [gitops\_display\_name](#input\_gitops\_display\_name) | Display name for GitOps application registration | `string` | n/a | yes |
 | <a name="input_gitops_maintainer_user_ids"></a> [gitops\_maintainer\_user\_ids](#input\_gitops\_maintainer\_user\_ids) | List of user object IDs that will be granted GitOps maintainer permissions | `list(string)` | n/a | yes |
+| <a name="input_grafana_identity_name"></a> [grafana\_identity\_name](#input\_grafana\_identity\_name) | Name of the Grafana user-assigned identity | `string` | n/a | yes |
 | <a name="input_ingestion_cache_identity_name"></a> [ingestion\_cache\_identity\_name](#input\_ingestion\_cache\_identity\_name) | Name of the ingestion cache identity | `string` | n/a | yes |
 | <a name="input_ingestion_cache_sa_name"></a> [ingestion\_cache\_sa\_name](#input\_ingestion\_cache\_sa\_name) | Name of the storage account used for ingestion cache | `string` | n/a | yes |
 | <a name="input_ingestion_storage_identity_name"></a> [ingestion\_storage\_identity\_name](#input\_ingestion\_storage\_identity\_name) | Name of the ingestion storage identity | `string` | n/a | yes |

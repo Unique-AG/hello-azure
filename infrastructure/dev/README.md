@@ -10,7 +10,7 @@ See also [identities](modules/identities/README.md), [perimeter](modules/perimet
 |------|---------|
 | <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) | 2.2.0 |
 | <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | 3.0.2 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 4.20.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 4.20 |
 | <a name="requirement_modtm"></a> [modtm](#requirement\_modtm) | 0.3.2 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | 3.6.3 |
 
@@ -18,7 +18,7 @@ See also [identities](modules/identities/README.md), [perimeter](modules/perimet
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.20.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~> 4.20 |
 
 ## Modules
 
@@ -33,7 +33,7 @@ See also [identities](modules/identities/README.md), [perimeter](modules/perimet
 
 | Name | Type |
 |------|------|
-| [azurerm_resource_group.vnet](https://registry.terraform.io/providers/hashicorp/azurerm/4.20.0/docs/resources/resource_group) | resource |
+| [azurerm_resource_group.vnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
 
 ## Inputs
 
@@ -53,6 +53,7 @@ See also [identities](modules/identities/README.md), [perimeter](modules/perimet
 | <a name="input_document_intelligence_identity_name"></a> [document\_intelligence\_identity\_name](#input\_document\_intelligence\_identity\_name) | Name of the document intelligence identity | `string` | n/a | yes |
 | <a name="input_gitops_display_name"></a> [gitops\_display\_name](#input\_gitops\_display\_name) | Display name for GitOps application registration | `string` | n/a | yes |
 | <a name="input_gitops_maintainer_user_ids"></a> [gitops\_maintainer\_user\_ids](#input\_gitops\_maintainer\_user\_ids) | List of user object IDs that will be granted GitOps maintainer permissions | `list(string)` | n/a | yes |
+| <a name="input_grafana_identity_name"></a> [grafana\_identity\_name](#input\_grafana\_identity\_name) | Name of the Grafana user-assigned identity | `string` | n/a | yes |
 | <a name="input_ingestion_cache_identity_name"></a> [ingestion\_cache\_identity\_name](#input\_ingestion\_cache\_identity\_name) | Name of the ingestion cache identity | `string` | n/a | yes |
 | <a name="input_ingestion_storage_identity_name"></a> [ingestion\_storage\_identity\_name](#input\_ingestion\_storage\_identity\_name) | Name of the ingestion storage identity | `string` | n/a | yes |
 | <a name="input_key"></a> [key](#input\_key) | The key for the tfstate | `string` | n/a | yes |
