@@ -152,6 +152,11 @@ variable "ingestion_storage_identity_name" {
   type        = string
 }
 
+variable "grafana_identity_name" {
+  description = "Name of the Grafana user-assigned identity"
+  type        = string
+}
+
 variable "psql_identity_name" {
   description = "Name of the PostgreSQL identity"
   type        = string
@@ -208,4 +213,38 @@ variable "speech_service_private_dns_zone_virtual_network_link_name" {
 variable "speech_service_custom_subdomain_name" {
   description = "The custom subdomain name to use for the speech service"
   type        = string
+}
+
+# Prometheus recording rule variables
+variable "prometheus_node_recording_rules" {
+  description = "Node level recording rules for Prometheus monitoring"
+  type = list(object({
+    enabled    = optional(bool, true)
+    record     = string
+    expression = string
+    labels     = optional(map(string))
+  }))
+  default = null
+}
+
+variable "prometheus_kubernetes_recording_rules" {
+  description = "Kubernetes level recording rules for Prometheus monitoring"
+  type = list(object({
+    enabled    = optional(bool, true)
+    record     = string
+    expression = string
+    labels     = optional(map(string))
+  }))
+  default = null
+}
+
+variable "prometheus_ux_recording_rules" {
+  description = "UX level recording rules for Prometheus monitoring"
+  type = list(object({
+    enabled    = optional(bool, true)
+    record     = string
+    expression = string
+    labels     = optional(map(string))
+  }))
+  default = null
 }

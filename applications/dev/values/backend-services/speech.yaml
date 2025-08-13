@@ -1,6 +1,6 @@
 image:
   repository: uniquehelloazure.azurecr.io/backend-service-speech
-  tag: "2025.28"
+  tag: "2025.30"
 replicaCount: 2
 resources:
   limits:

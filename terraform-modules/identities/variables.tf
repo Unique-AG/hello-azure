@@ -132,6 +132,11 @@ variable "document_intelligence_identity_name" {
   description = "The name of the document intelligence identity."
   type        = string
 }
+
+variable "grafana_identity_name" {
+  description = "The name of the Grafana user-assigned identity."
+  type        = string
+}
 variable "cluster_admins" {
   type = set(string)
 }

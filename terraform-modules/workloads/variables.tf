@@ -33,6 +33,11 @@ variable "document_intelligence_user_assigned_identity_id" {
   type        = string
 }
 
+variable "grafana_user_assigned_identity_id" {
+  description = "The ID of the Grafana user-assigned identity."
+  type        = string
+}
+
 variable "encryption_key_app_repository_secret_name" {
   type    = string
   default = "encryption-key-app-repository"
@@ -294,4 +299,38 @@ variable "kubernetes_version" {
   description = "The version of Kubernetes to use for the AKS cluster."
   type        = string
   default     = "1.30.10"
+}
+
+# Prometheus recording rule variables
+variable "prometheus_node_recording_rules" {
+  description = "Node level recording rules for Prometheus monitoring"
+  type = list(object({
+    enabled    = optional(bool, true)
+    record     = string
+    expression = string
+    labels     = optional(map(string))
+  }))
+  default = null
+}
+
+variable "prometheus_kubernetes_recording_rules" {
+  description = "Kubernetes level recording rules for Prometheus monitoring"
+  type = list(object({
+    enabled    = optional(bool, true)
+    record     = string
+    expression = string
+    labels     = optional(map(string))
+  }))
+  default = null
+}
+
+variable "prometheus_ux_recording_rules" {
+  description = "UX level recording rules for Prometheus monitoring"
+  type = list(object({
+    enabled    = optional(bool, true)
+    record     = string
+    expression = string
+    labels     = optional(map(string))
+  }))
+  default = null
 }

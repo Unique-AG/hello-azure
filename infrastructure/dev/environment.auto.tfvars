@@ -13,6 +13,7 @@ ingestion_cache_identity_name       = "ingestion-cache-identity"
 ingestion_storage_identity_name     = "ingestion-storage-identity"
 psql_identity_name                  = "psql-identity"
 csi_identity_name                   = "csi_identity"
+grafana_identity_name               = "grafana-identity"
 main_kv_name                        = "helloazuremain"
 sensitive_kv_name                   = "helloazuresensitive"
 
@@ -48,25 +49,29 @@ cluster_admin_user_ids = [
   "4b89a1f0-8038-4929-81e6-6d128dac7aa0",
   "084a1c45-5010-4aab-bab6-7b86a9d10e5c",
   "3b48f167-cb68-4655-b45b-878e170af84d",
-  "45caeab6-e1dd-4f9a-aa0c-ea1fb6c0c5ff"
+  "45caeab6-e1dd-4f9a-aa0c-ea1fb6c0c5ff",
+  "0f309293-9600-4c19-bd7c-3dff1fa678d9"
 ]
 gitops_maintainer_user_ids = [
   "4b89a1f0-8038-4929-81e6-6d128dac7aa0",
   "084a1c45-5010-4aab-bab6-7b86a9d10e5c",
   "3b48f167-cb68-4655-b45b-878e170af84d",
-  "45caeab6-e1dd-4f9a-aa0c-ea1fb6c0c5ff"
+  "45caeab6-e1dd-4f9a-aa0c-ea1fb6c0c5ff",
+  "0f309293-9600-4c19-bd7c-3dff1fa678d9"
 ]
 keyvault_secret_writer_user_ids = [
   "4b89a1f0-8038-4929-81e6-6d128dac7aa0",
   "084a1c45-5010-4aab-bab6-7b86a9d10e5c",
   "3b48f167-cb68-4655-b45b-878e170af84d",
-  "45caeab6-e1dd-4f9a-aa0c-ea1fb6c0c5ff"
+  "45caeab6-e1dd-4f9a-aa0c-ea1fb6c0c5ff",
+  "0f309293-9600-4c19-bd7c-3dff1fa678d9"
 ]
 telemetry_observer_user_ids = [
   "4b89a1f0-8038-4929-81e6-6d128dac7aa0",
   "084a1c45-5010-4aab-bab6-7b86a9d10e5c",
   "3b48f167-cb68-4655-b45b-878e170af84d",
-  "45caeab6-e1dd-4f9a-aa0c-ea1fb6c0c5ff"
+  "45caeab6-e1dd-4f9a-aa0c-ea1fb6c0c5ff",
+  "0f309293-9600-4c19-bd7c-3dff1fa678d9"
 ]
 
 custom_subdomain_name                       = "hello-azure"

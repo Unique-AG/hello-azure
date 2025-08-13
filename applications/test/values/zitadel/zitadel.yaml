@@ -3,7 +3,7 @@ chownImage:
   tag: 3.19
 image:
   repository: uqhacrtest.azurecr.io/zitadel/zitadel
-  tag: v2.70.11
+  tag: v2.71.13
 nodeSelector:
   scalability: steady
   lifecycle: persistent

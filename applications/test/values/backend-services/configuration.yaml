@@ -1,6 +1,6 @@
 image:
   repository: uqhacrtest.azurecr.io/backend-service-configuration
-  tag: "2025.28"
+  tag: "2025.30"
 secretProvider:
   vaults:
     hakv2test:

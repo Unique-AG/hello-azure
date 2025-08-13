@@ -214,3 +214,8 @@ resource "azurerm_role_assignment" "dns_contributor" {
   principal_id                     = data.azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
   skip_service_principal_aad_check = true
 }
+resource "azurerm_role_assignment" "monitor_metrics_reader" {
+  scope                = azurerm_resource_group.core.id
+  role_definition_name = "Monitoring Data Reader"
+  principal_id         = azurerm_user_assigned_identity.grafana_identity.principal_id
+}
