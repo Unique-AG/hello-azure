@@ -1,19 +1,19 @@
 module "kubernetes_cluster" {
   source = "git::https://github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service?ref=vsc589-tan-moaning-panda"
-  
-  kubernetes_version = var.kubernetes_version
-  application_gateway_id = module.application_gateway.appgw_id
+
+  kubernetes_version                      = var.kubernetes_version
+  application_gateway_id                  = module.application_gateway.appgw_id
   segregated_node_and_pod_subnets_enabled = true
-  cluster_name = var.cluster_name
-  kubernetes_default_node_size = var.kubernetes_default_node_size
-  kubernetes_default_node_zones = ["1", "3"]
-  node_rg_name = var.node_resource_group_name
-  resource_group_location = data.azurerm_resource_group.core.location
-  resource_group_name = data.azurerm_resource_group.core.name
-  default_subnet_nodes_id = var.subnet_aks_nodes_id
-  default_subnet_pods_id = var.subnet_aks_pods_id
-  tags = var.tags
-  tenant_id = data.azurerm_client_config.current.tenant_id
+  cluster_name                            = var.cluster_name
+  kubernetes_default_node_size            = var.kubernetes_default_node_size
+  kubernetes_default_node_zones           = ["1", "3"]
+  node_rg_name                            = var.node_resource_group_name
+  resource_group_location                 = data.azurerm_resource_group.core.location
+  resource_group_name                     = data.azurerm_resource_group.core.name
+  default_subnet_nodes_id                 = var.subnet_aks_nodes_id
+  default_subnet_pods_id                  = var.subnet_aks_pods_id
+  tags                                    = var.tags
+  tenant_id                               = data.azurerm_client_config.current.tenant_id
 
   log_analytics_workspace = {
     id                  = var.log_analytics_workspace_id
@@ -31,7 +31,7 @@ module "kubernetes_cluster" {
       identity_ids = [var.grafana_user_assigned_identity_id]
     }
   }
-  
+
 
   network_profile = {
     idle_timeout_in_minutes = 100
@@ -49,9 +49,9 @@ module "kubernetes_cluster" {
         lifecycle   = "ephemeral"
         scalability = "rapid"
       }
-      node_taints                 = ["scalability=rapid:NoSchedule", "lifecycle=ephemeral:NoSchedule"]
-      os_disk_size_gb             = 100
-      os_sku                      = "AzureLinux"
+      node_taints     = ["scalability=rapid:NoSchedule", "lifecycle=ephemeral:NoSchedule"]
+      os_disk_size_gb = 100
+      os_sku          = "AzureLinux"
       upgrade_settings = {
         max_surge = "10%"
       }
@@ -68,9 +68,9 @@ module "kubernetes_cluster" {
         lifecycle   = "persistent"
         scalability = "steady"
       }
-      node_taints                 = []
-      os_disk_size_gb             = 100
-      os_sku                      = "AzureLinux"
+      node_taints     = []
+      os_disk_size_gb = 100
+      os_sku          = "AzureLinux"
       upgrade_settings = {
         max_surge = "30%"
       }
