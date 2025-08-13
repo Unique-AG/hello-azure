@@ -106,6 +106,9 @@ module "workloads" {
   vnet_id                                         = module.vnet.resource_id
   private_dns_zone_speech_service_id              = module.perimeter.speech_service_private_dns_zone_id
   speech_service_custom_subdomain_name            = var.speech_service_custom_subdomain_name
+  prometheus_node_recording_rules                 = var.prometheus_node_recording_rules
+  prometheus_kubernetes_recording_rules           = var.prometheus_kubernetes_recording_rules
+  prometheus_ux_recording_rules                   = var.prometheus_ux_recording_rules
 
   depends_on = [
     module.identities.resource_group_core_id,
