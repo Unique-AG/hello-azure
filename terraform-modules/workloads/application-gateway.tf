@@ -15,7 +15,7 @@ module "application_gateway" {
 
   public_frontend_ip_configuration = {
     name                   = var.ip_name
-    ip_address_resource_id = null
+    ip_address_resource_id = var.aks_public_ip_id
   }
 
   tags = var.tags
