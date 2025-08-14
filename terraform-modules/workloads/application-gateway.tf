@@ -1,6 +1,6 @@
-data "azurerm_public_ip" "aks_public_ip" {
-  name                = split("/", var.aks_public_ip_id)[8]
-  resource_group_name = split("/", var.aks_public_ip_id)[4]
+data "azurerm_public_ip" "application_gateway_public_ip" {
+  name                = var.ip_name
+  resource_group_name = var.resource_group_core_location
 }
 
 module "application_gateway" {
@@ -19,8 +19,8 @@ module "application_gateway" {
   }
 
   public_frontend_ip_configuration = {
-    name                   = data.azurerm_public_ip.aks_public_ip.name
-    ip_address_resource_id = data.azurerm_public_ip.aks_public_ip.id
+    name                   = data.azurerm_public_ip.application_gateway_public_ip.name
+    ip_address_resource_id = data.azurerm_public_ip.application_gateway_public_ip.id
   }
 
   tags = var.tags
