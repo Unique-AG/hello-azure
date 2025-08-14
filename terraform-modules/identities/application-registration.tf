@@ -43,3 +43,12 @@ module "application_registration" {
   }
   application_support_object_ids = local.maintainers_principal_object_ids
 }
+
+# Handle maintainers separately since the module doesn't support them
+resource "azuread_app_role_assignment" "maintainers" {
+  for_each = var.gitops_maintainers
+
+  app_role_id         = azuread_service_principal.msgraph.app_role_ids["Application.ReadWrite.All"]
+  principal_object_id = each.key
+  resource_object_id  = module.application_registration.application_id
+}
