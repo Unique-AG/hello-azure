@@ -14,10 +14,10 @@ module "kubernetes_cluster" {
   default_subnet_pods_id                  = var.subnet_aks_pods_id
   tags                                    = var.tags
   tenant_id                               = data.azurerm_client_config.current.tenant_id
-
-  prometheus_node_recording_rules       = var.prometheus_node_recording_rules
-  prometheus_kubernetes_recording_rules = var.prometheus_kubernetes_recording_rules
-  prometheus_ux_recording_rules         = var.prometheus_ux_recording_rules
+  defender_log_analytics_workspace_id     = "/subscriptions/be4e82ff-bf83-4173-a750-15e807845579/resourcegroups/DefaultResourceGroup-SEC/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-be4e82ff-bf83-4173-a750-15e807845579-SEC"
+  prometheus_node_recording_rules         = var.prometheus_node_recording_rules
+  prometheus_kubernetes_recording_rules   = var.prometheus_kubernetes_recording_rules
+  prometheus_ux_recording_rules           = var.prometheus_ux_recording_rules
 
   log_analytics_workspace = {
     id                  = var.log_analytics_workspace_id
