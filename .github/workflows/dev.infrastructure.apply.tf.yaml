@@ -1,4 +1,4 @@
-name: "[tf] [dev] Infrastructure Plan 📝"
+name: "[tf] [dev] Infrastructure Apply 🚀"
 on:
   pull_request:
     branches:
