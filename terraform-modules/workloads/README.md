@@ -14,15 +14,15 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_application_gateway"></a> [application\_gateway](#module\_application\_gateway) | github.com/Unique-AG/terraform-modules.git//modules/azure-application-gateway | azure-application-gateway-2.1.0 |
-| <a name="module_document_intelligence"></a> [document\_intelligence](#module\_document\_intelligence) | github.com/Unique-AG/terraform-modules.git//modules/azure-document-intelligence | azure-document-intelligence-3.0.2 |
-| <a name="module_ingestion_cache"></a> [ingestion\_cache](#module\_ingestion\_cache) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.0.2 | n/a |
-| <a name="module_ingestion_storage"></a> [ingestion\_storage](#module\_ingestion\_storage) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.0.2 | n/a |
+| <a name="module_application_gateway"></a> [application\_gateway](#module\_application\_gateway) | github.com/Unique-AG/terraform-modules.git//modules/azure-application-gateway | azure-application-gateway-4.0.0-rc.2 |
+| <a name="module_document_intelligence"></a> [document\_intelligence](#module\_document\_intelligence) | github.com/Unique-AG/terraform-modules.git//modules/azure-document-intelligence | azure-document-intelligence-3.0.3 |
+| <a name="module_ingestion_cache"></a> [ingestion\_cache](#module\_ingestion\_cache) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-3.0.2 | n/a |
+| <a name="module_ingestion_storage"></a> [ingestion\_storage](#module\_ingestion\_storage) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-3.0.2 | n/a |
 | <a name="module_kubernetes_cluster"></a> [kubernetes\_cluster](#module\_kubernetes\_cluster) | github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service | azure-kubernetes-service-4.0.1 |
-| <a name="module_openai"></a> [openai](#module\_openai) | github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=azure-openai-2.0.3 | n/a |
+| <a name="module_openai"></a> [openai](#module\_openai) | github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=azure-openai-2.1.1 | n/a |
 | <a name="module_postgresql"></a> [postgresql](#module\_postgresql) | github.com/unique-ag/terraform-modules.git//modules/azure-postgresql?depth=1&ref=azure-postgresql-2.1.0 | n/a |
-| <a name="module_redis"></a> [redis](#module\_redis) | github.com/unique-ag/terraform-modules.git//modules/azure-redis?depth=1&ref=azure-redis-2.0.0-rc.2 | n/a |
-| <a name="module_speech_service"></a> [speech\_service](#module\_speech\_service) | github.com/unique-ag/terraform-modules.git//modules/azure-speech-service?depth=1&ref=azure-speech-service-1.0.1 | n/a |
+| <a name="module_redis"></a> [redis](#module\_redis) | github.com/unique-ag/terraform-modules.git//modules/azure-redis?depth=1&ref=azure-redis-2.0.0 | n/a |
+| <a name="module_speech_service"></a> [speech\_service](#module\_speech\_service) | github.com/unique-ag/terraform-modules.git//modules/azure-speech-service?depth=1&ref=azure-speech-service-4.0.1 | n/a |
 
 ## Resources
 

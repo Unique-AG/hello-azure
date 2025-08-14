@@ -14,7 +14,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_application_registration"></a> [application\_registration](#module\_application\_registration) | github.com/Unique-AG/terraform-modules.git//modules/azure-entra-app-registration | azure-entra-app-registration-2.0.0-rc.2 |
+| <a name="module_application_registration"></a> [application\_registration](#module\_application\_registration) | github.com/Unique-AG/terraform-modules.git//modules/azure-entra-app-registration | azure-entra-app-registration-3.0.0 |
 
 ## Resources
 
