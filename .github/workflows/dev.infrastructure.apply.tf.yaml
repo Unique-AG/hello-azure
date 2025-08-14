@@ -1,5 +1,6 @@
 name: "[tf] [dev] Infrastructure Apply 🚀"
 on:
+
   workflow_dispatch:
 
 permissions:
@@ -8,7 +9,7 @@ permissions:
   id-token: write
 
 jobs:
-  manual-apply:
+  automated-plan:
     environment: 10-pm
     runs-on: ubuntu-latest
     defaults:
