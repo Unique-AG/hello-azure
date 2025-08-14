@@ -1,19 +1,5 @@
-name: "[tf] [dev] Infrastructure 🏗️"
+name: "[tf] [dev] Infrastructure Apply 🚀"
 on:
-  pull_request:
-    branches:
-      - preview
-    paths:
-      - .github/workflows/dev.infrastructure.tf.yaml
-      - infrastructure/dev/**
-      - terraform-modules/**
-  push:
-    branches:
-      - preview
-    paths:
-      - .github/workflows/dev.infrastructure.tf.yaml
-      - infrastructure/dev/**
-      - terraform-modules/**
   workflow_dispatch:
 
 permissions:
@@ -22,7 +8,7 @@ permissions:
   id-token: write
 
 jobs:
-  automated-plan-apply:
+  manual-apply:
     environment: 10-pm
     runs-on: ubuntu-latest
     defaults:
@@ -55,5 +41,5 @@ jobs:
         run: terraform plan -no-color
 
       - name: Terraform Apply
-        if: github.event_name == 'push' && github.ref == 'refs/heads/preview'
+        if:  github.ref == 'refs/heads/preview'
         run: terraform apply -auto-approve -input=false
