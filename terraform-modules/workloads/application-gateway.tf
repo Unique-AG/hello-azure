@@ -37,6 +37,16 @@ module "application_gateway" {
     max_request_body_size_in_kb = 1024
   }
 
+  # Ensure diagnostics are configured so the resource is not planned for destroy (count stays = 1)
+  monitor_diagnostic_setting = {
+    log_analytics_workspace_id = var.log_analytics_workspace_id
+    enabled_log = [
+      {
+        category_group = "allLogs"
+      }
+    ]
+  }
+
 
 
   tags = var.tags
