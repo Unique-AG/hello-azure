@@ -3,13 +3,11 @@
 module "ingestion_cache" {
   source = "github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-3.0.2"
 
-  name                          = var.ingestion_cache_sa_name
-  resource_group_name           = data.azurerm_resource_group.sensitive.name
-  location                      = data.azurerm_resource_group.sensitive.location
-  tags                          = var.tags
-  access_tier                   = "Hot"
-  deleted_retain_days           = 7
-  container_deleted_retain_days = 7
+  name                = var.ingestion_cache_sa_name
+  resource_group_name = data.azurerm_resource_group.sensitive.name
+  location            = data.azurerm_resource_group.sensitive.location
+  tags                = var.tags
+  access_tier         = "Hot"
 
   storage_management_policy_default = {
     enabled                                  = true
@@ -44,9 +42,6 @@ module "ingestion_storage" {
   location            = data.azurerm_resource_group.sensitive.location
   tags                = var.tags
   access_tier         = "Hot"
-
-  deleted_retain_days           = 7
-  container_deleted_retain_days = 7
 
   storage_management_policy_default = {
     enabled                                  = true
