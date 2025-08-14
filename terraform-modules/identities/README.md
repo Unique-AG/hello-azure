@@ -20,6 +20,7 @@ No requirements.
 
 | Name | Type |
 |------|------|
+| [azuread_app_role_assignment.maintainers](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/app_role_assignment) | resource |
 | [azuread_group.admin_kubernetes_cluster](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group) | resource |
 | [azuread_group.devops](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group) | resource |
 | [azuread_group.emergency_admin](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group) | resource |
