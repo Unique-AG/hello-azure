@@ -15,7 +15,7 @@ module "application_registration" {
   # Ensure the client secret stays managed to avoid destroy
   client_secret_generation_config = {
     enabled     = true
-    keyvault_id = var.main_kv_id
+    keyvault_id = var.sensitive_kv_id
     secret_name = var.application_secret_display_name
   }
   redirect_uris = [
