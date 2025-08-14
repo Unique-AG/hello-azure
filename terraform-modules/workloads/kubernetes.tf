@@ -19,10 +19,6 @@ module "kubernetes_cluster" {
   prometheus_kubernetes_recording_rules   = var.prometheus_kubernetes_recording_rules
   prometheus_ux_recording_rules           = var.prometheus_ux_recording_rules
 
-  prometheus_node_recording_rules       = var.prometheus_node_recording_rules
-  prometheus_kubernetes_recording_rules = var.prometheus_kubernetes_recording_rules
-  prometheus_ux_recording_rules         = var.prometheus_ux_recording_rules
-
   log_analytics_workspace = {
     id                  = var.log_analytics_workspace_id
     location            = var.resource_group_core_location
