@@ -37,16 +37,7 @@ module "application_gateway" {
     max_request_body_size_in_kb = 1024
   }
 
-  # Neutralize managed/custom WAF rules to match existing policy and avoid diffs
-  waf_managed_rules = {
-    owasp_rules = []
-    bot_rules   = []
-    exclusions  = []
-  }
-  waf_custom_rules_allow_https_challenges                    = false
-  waf_custom_rules_allow_monitoring_agents_to_probe_services = null
-  waf_custom_rules_unique_access_to_paths_ip_restricted      = {}
-  waf_custom_rules_exempted_request_path_begin_withs         = []
+
 
   tags = var.tags
 }
