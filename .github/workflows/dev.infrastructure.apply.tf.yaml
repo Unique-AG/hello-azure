@@ -1,5 +1,6 @@
 name: "[tf] [dev] Infrastructure Apply 🚀"
 on:
+
   workflow_dispatch:
 
 permissions:
