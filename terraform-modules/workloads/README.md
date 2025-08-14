@@ -57,6 +57,7 @@ No requirements.
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | The name of the AKS cluster. | `string` | n/a | yes |
 | <a name="input_container_registry_name"></a> [container\_registry\_name](#input\_container\_registry\_name) | n/a | `string` | `"uniquehelloazure"` | no |
 | <a name="input_custom_subdomain_name"></a> [custom\_subdomain\_name](#input\_custom\_subdomain\_name) | n/a | `string` | `"hello-azure-unique-dev"` | no |
+| <a name="input_defender_log_analytics_workspace_id"></a> [defender\_log\_analytics\_workspace\_id](#input\_defender\_log\_analytics\_workspace\_id) | The ID of the Defender Log Analytics workspace. | `string` | n/a | yes |
 | <a name="input_document_intelligence_custom_subdomain_name"></a> [document\_intelligence\_custom\_subdomain\_name](#input\_document\_intelligence\_custom\_subdomain\_name) | n/a | `string` | `"di-hello-azure-unique-dev"` | no |
 | <a name="input_document_intelligence_user_assigned_identity_id"></a> [document\_intelligence\_user\_assigned\_identity\_id](#input\_document\_intelligence\_user\_assigned\_identity\_id) | The ID of the document intelligence user-assigned identity. | `string` | n/a | yes |
 | <a name="input_encryption_key_app_repository_secret_name"></a> [encryption\_key\_app\_repository\_secret\_name](#input\_encryption\_key\_app\_repository\_secret\_name) | n/a | `string` | `"encryption-key-app-repository"` | no |

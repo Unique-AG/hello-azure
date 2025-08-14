@@ -158,6 +158,11 @@ variable "log_analytics_workspace_id" {
   type        = string
 }
 
+variable "defender_log_analytics_workspace_id" {
+  description = "The ID of the Defender Log Analytics workspace."
+  type        = string
+}
+
 variable "main_kv_id" {
   description = "The ID of the main key vault."
   type        = string
