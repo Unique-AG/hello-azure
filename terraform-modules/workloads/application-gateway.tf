@@ -13,6 +13,12 @@ module "application_gateway" {
     location = data.azurerm_resource_group.core.location
   }
 
+  # Keep WAF policy managed (avoid count=0 -> destroy) by ensuring WAF_v2 SKU
+  sku = {
+    name = "WAF_v2"
+    tier = "WAF_v2"
+  }
+
   gateway_ip_configuration = {
     name               = "gateway-ip-configuration"
     subnet_resource_id = var.subnet_agw_id
