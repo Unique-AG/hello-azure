@@ -154,10 +154,10 @@ output "csi_user_assigned_identity_name" {
   description = "The name of the user-assigned identity for the CSI driver."
 }
 
-# Application Gateway IP address output removed - module doesn't provide this output
-# output "application_gateway_ip_address" {
-#   value = module.application_gateway.appgw_ip_address
-# }
+output "application_gateway_ip_address" {
+  value       = data.azurerm_public_ip.aks_public_ip.ip_address
+  description = "The public IP address of the Application Gateway"
+}
 
 output "application_gateway_id" {
   value = module.application_gateway.appgw_id

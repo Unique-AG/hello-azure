@@ -48,18 +48,19 @@ output "rabbitmq_password_chat_secret_name" {
   value       = module.workloads.rabbitmq_password_chat_secret_name
   description = "The secret name for RabbitMQ password for chat."
 }
-output "redis_cache_port_secret_name" {
-  value       = module.workloads.redis_cache_port_secret_name
-  description = "The secret name for Redis cache port."
-}
-output "redis_cache_host_secret_name" {
-  value       = module.workloads.redis_cache_host_secret_name
-  description = "The secret name for Redis cache host."
-}
-output "redis_cache_password_secret_name" {
-  value       = module.workloads.redis_cache_password_secret_name
-  description = "The secret name for Redis cache password."
-}
+# Redis cache secret name outputs removed - module doesn't provide these outputs
+# output "redis_cache_port_secret_name" {
+#   value       = module.workloads.redis_cache_port_secret_name
+#   description = "The secret name for Redis cache port."
+# }
+# output "redis_cache_host_secret_name" {
+#   value       = module.workloads.redis_cache_host_secret_name
+#   description = "The secret name for Redis cache host."
+# }
+# output "redis_cache_password_secret_name" {
+#   value       = module.workloads.redis_cache_password_secret_name
+#   description = "The secret name for Redis cache password."
+# }
 
 output "ingestion_cache_connection_string_1_secret_name" {
   value       = module.workloads.ingestion_cache_connection_string_1_secret_name

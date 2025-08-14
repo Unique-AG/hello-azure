@@ -1,3 +1,8 @@
+data "azurerm_public_ip" "aks_public_ip" {
+  name                = split("/", var.aks_public_ip_id)[8]
+  resource_group_name = split("/", var.aks_public_ip_id)[4]
+}
+
 module "application_gateway" {
   source = "github.com/Unique-AG/terraform-modules.git//modules/azure-application-gateway?ref=azure-application-gateway-4.0.0-rc.2"
 
@@ -14,8 +19,8 @@ module "application_gateway" {
   }
 
   public_frontend_ip_configuration = {
-    name                   = var.ip_name
-    ip_address_resource_id = var.aks_public_ip_id
+    name                   = data.azurerm_public_ip.aks_public_ip.name
+    ip_address_resource_id = data.azurerm_public_ip.aks_public_ip.id
   }
 
   tags = var.tags
