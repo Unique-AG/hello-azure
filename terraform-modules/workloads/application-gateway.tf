@@ -9,12 +9,13 @@ module "application_gateway" {
   }
 
   gateway_ip_configuration = {
-    name      = "gateway-ip-configuration"
-    subnet_id = var.subnet_agw_id
+    name               = "gateway-ip-configuration"
+    subnet_resource_id = var.subnet_agw_id
   }
 
   public_frontend_ip_configuration = {
-    name = var.ip_name
+    name                   = var.ip_name
+    ip_address_resource_id = null
   }
 
   tags = var.tags

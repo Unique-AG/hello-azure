@@ -147,9 +147,6 @@ No requirements.
 | <a name="output_psql_port_secret_name"></a> [psql\_port\_secret\_name](#output\_psql\_port\_secret\_name) | The secret name for the PostgreSQL port. |
 | <a name="output_psql_username_secret_name"></a> [psql\_username\_secret\_name](#output\_psql\_username\_secret\_name) | The secret name for the PostgreSQL username. |
 | <a name="output_rabbitmq_password_chat_secret_name"></a> [rabbitmq\_password\_chat\_secret\_name](#output\_rabbitmq\_password\_chat\_secret\_name) | The secret name for the RabbitMQ password for chat. |
-| <a name="output_redis_cache_host_secret_name"></a> [redis\_cache\_host\_secret\_name](#output\_redis\_cache\_host\_secret\_name) | The secret name for the Redis cache host. |
-| <a name="output_redis_cache_password_secret_name"></a> [redis\_cache\_password\_secret\_name](#output\_redis\_cache\_password\_secret\_name) | The secret name for the Redis cache password. |
-| <a name="output_redis_cache_port_secret_name"></a> [redis\_cache\_port\_secret\_name](#output\_redis\_cache\_port\_secret\_name) | The secret name for the Redis cache port. |
 | <a name="output_zitadel_db_user_password_secret_name"></a> [zitadel\_db\_user\_password\_secret\_name](#output\_zitadel\_db\_user\_password\_secret\_name) | The secret name for the Zitadel database user password. |
 | <a name="output_zitadel_master_key_secret_name"></a> [zitadel\_master\_key\_secret\_name](#output\_zitadel\_master\_key\_secret\_name) | The secret name for the Zitadel master key. |
 | <a name="output_zitadel_pat_secret_name"></a> [zitadel\_pat\_secret\_name](#output\_zitadel\_pat\_secret\_name) | n/a |

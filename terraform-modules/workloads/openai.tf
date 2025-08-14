@@ -75,6 +75,7 @@ module "speech_service" {
       private_endpoint = {
         subnet_id           = var.subnet_cognitive_services_id
         vnet_id             = var.vnet_id
+        vnet_location       = data.azurerm_resource_group.core.location
         private_dns_zone_id = var.private_dns_zone_speech_service_id
       }
 
