@@ -1,6 +1,8 @@
 module "application_gateway" {
   source = "github.com/Unique-AG/terraform-modules.git//modules/azure-application-gateway?ref=azure-application-gateway-4.0.0-rc.2"
 
+  name_prefix = var.name_prefix
+
   resource_group = {
     name     = data.azurerm_resource_group.core.name
     location = data.azurerm_resource_group.core.location
