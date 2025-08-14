@@ -29,5 +29,10 @@ module "application_gateway" {
     ip_address_resource_id = data.azurerm_public_ip.application_gateway_public_ip.id
   }
 
+  # Preserve existing WAF policy name to avoid replacement
+  waf_policy_settings = {
+    explicit_name = "default-waf-policy-name"
+  }
+
   tags = var.tags
 }
