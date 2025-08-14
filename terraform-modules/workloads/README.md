@@ -124,7 +124,6 @@ No requirements.
 | <a name="output_acr_name"></a> [acr\_name](#output\_acr\_name) | The name of the Azure Container Registry. |
 | <a name="output_aks_cluster_id"></a> [aks\_cluster\_id](#output\_aks\_cluster\_id) | The ID of the AKS cluster. |
 | <a name="output_application_gateway_id"></a> [application\_gateway\_id](#output\_application\_gateway\_id) | n/a |
-| <a name="output_application_gateway_ip_address"></a> [application\_gateway\_ip\_address](#output\_application\_gateway\_ip\_address) | n/a |
 | <a name="output_cluster_kublet_client_id"></a> [cluster\_kublet\_client\_id](#output\_cluster\_kublet\_client\_id) | The client ID of the Kubernetes cluster's kubelet identity. |
 | <a name="output_cluster_kublet_object_id"></a> [cluster\_kublet\_object\_id](#output\_cluster\_kublet\_object\_id) | The object ID of the Kubernetes cluster's kubelet identity. |
 | <a name="output_container_registry_url"></a> [container\_registry\_url](#output\_container\_registry\_url) | The URL of the Azure Container Registry. |

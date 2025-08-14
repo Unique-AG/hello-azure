@@ -154,9 +154,11 @@ output "csi_user_assigned_identity_name" {
   description = "The name of the user-assigned identity for the CSI driver."
 }
 
-output "application_gateway_ip_address" {
-  value = module.application_gateway.appgw_ip_address
-}
+# Application Gateway IP address output removed - module doesn't provide this output
+# output "application_gateway_ip_address" {
+#   value = module.application_gateway.appgw_ip_address
+# }
+
 output "application_gateway_id" {
   value = module.application_gateway.appgw_id
 }
