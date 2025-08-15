@@ -66,10 +66,11 @@ module "speech_service" {
   speech_service_name = "speech-service"
   accounts = {
     "swedencentral-speech" = {
-      location              = "swedencentral"
-      account_kind          = "SpeechServices"
-      account_sku_name      = "S0"
-      custom_subdomain_name = var.speech_service_custom_subdomain_name
+      location                      = "swedencentral"
+      account_kind                  = "SpeechServices"
+      account_sku_name              = "S0"
+      custom_subdomain_name         = var.speech_service_custom_subdomain_name
+      public_network_access_enabled = true
 
       private_endpoint = {
         subnet_id           = var.subnet_cognitive_services_id
