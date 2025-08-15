@@ -41,5 +41,5 @@ module "application_registration" {
       },
     ],
   }
-  application_support_object_ids = local.maintainers_principal_object_ids
+  application_support_object_ids = []
 }
