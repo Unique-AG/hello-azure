@@ -53,3 +53,7 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color
+
+      - name: Terraform Remove from state
+        run:  terraform state rm 'module.workloads.module.application_gateway.azurerm_public_ip.appgw[0]'
+
