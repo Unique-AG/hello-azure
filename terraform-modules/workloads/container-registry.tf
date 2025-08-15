@@ -19,8 +19,4 @@ resource "azurerm_monitor_diagnostic_setting" "acr_diagnostic" {
   enabled_log {
     category_group = "allLogs"
   }
-
-  enabled_metric {
-    category = "AllMetrics"
-  }
 }
