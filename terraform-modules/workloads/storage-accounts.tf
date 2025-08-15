@@ -18,7 +18,6 @@ module "ingestion_cache" {
     versioning_enabled                   = false
     container_soft_delete_retention_days = 7
     blob_soft_delete_retention_days      = 7
-    point_in_time_restore_days           = null
   }
 
   storage_management_policy_default = {
@@ -64,7 +63,6 @@ module "ingestion_storage" {
     versioning_enabled                   = false
     container_soft_delete_retention_days = 7
     blob_soft_delete_retention_days      = 7
-    point_in_time_restore_days           = null
   }
 
   storage_management_policy_default = {
