@@ -3,13 +3,23 @@
 module "ingestion_cache" {
   source = "github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-3.0.2"
 
-  name                     = var.ingestion_cache_sa_name
-  resource_group_name      = data.azurerm_resource_group.sensitive.name
-  location                 = data.azurerm_resource_group.sensitive.location
-  tags                     = var.tags
-  access_tier              = "Hot"
-  account_replication_type = "LRS"
-  backup_vault             = null
+  name                          = var.ingestion_cache_sa_name
+  resource_group_name           = data.azurerm_resource_group.sensitive.name
+  location                      = data.azurerm_resource_group.sensitive.location
+  tags                          = var.tags
+  access_tier                   = "Hot"
+  account_replication_type      = "LRS"
+  backup_vault                  = null
+  public_network_access_enabled = true
+
+  data_protection_settings = {
+    change_feed_enabled                  = false
+    change_feed_retention_in_days        = 0
+    versioning_enabled                   = false
+    container_soft_delete_retention_days = 7
+    blob_soft_delete_retention_days      = 7
+    point_in_time_restore_days           = null
+  }
 
   storage_management_policy_default = {
     enabled                                  = true
@@ -39,13 +49,23 @@ module "ingestion_cache" {
 module "ingestion_storage" {
   source = "github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-3.0.2"
 
-  name                     = var.ingestion_storage_sa_name
-  resource_group_name      = data.azurerm_resource_group.sensitive.name
-  location                 = data.azurerm_resource_group.sensitive.location
-  tags                     = var.tags
-  access_tier              = "Hot"
-  account_replication_type = "LRS"
-  backup_vault             = null
+  name                          = var.ingestion_storage_sa_name
+  resource_group_name           = data.azurerm_resource_group.sensitive.name
+  location                      = data.azurerm_resource_group.sensitive.location
+  tags                          = var.tags
+  access_tier                   = "Hot"
+  account_replication_type      = "LRS"
+  backup_vault                  = null
+  public_network_access_enabled = true
+
+  data_protection_settings = {
+    change_feed_enabled                  = false
+    change_feed_retention_in_days        = 0
+    versioning_enabled                   = false
+    container_soft_delete_retention_days = 7
+    blob_soft_delete_retention_days      = 7
+    point_in_time_restore_days           = null
+  }
 
   storage_management_policy_default = {
     enabled                                  = true

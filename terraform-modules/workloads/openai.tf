@@ -60,10 +60,11 @@ module "document_intelligence" {
 }
 
 module "speech_service" {
-  source              = "github.com/unique-ag/terraform-modules.git//modules/azure-speech-service?depth=1&ref=azure-speech-service-4.0.1"
-  key_vault_id        = var.sensitive_kv_id
-  resource_group_name = data.azurerm_resource_group.core.name
-  speech_service_name = "speech-service"
+  source                        = "github.com/unique-ag/terraform-modules.git//modules/azure-speech-service?depth=1&ref=azure-speech-service-4.0.1"
+  key_vault_id                  = var.sensitive_kv_id
+  resource_group_name           = data.azurerm_resource_group.core.name
+  speech_service_name           = "speech-service"
+  public_network_access_enabled = true
 
   accounts = {
     "swedencentral-speech" = {
