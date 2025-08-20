@@ -53,20 +53,21 @@ output "rabbitmq_password_chat_secret_name" {
   description = "The secret name for the RabbitMQ password for chat."
 }
 
-output "redis_cache_port_secret_name" {
-  value       = module.redis.redis_cache_port_secret_name
-  description = "The secret name for the Redis cache port."
-}
+# Redis outputs removed - module doesn't provide these outputs
+# output "redis_cache_port_secret_name" {
+#   value       = module.redis.redis_cache_port_secret_name
+#   description = "The secret name for the Redis cache port."
+# }
 
-output "redis_cache_host_secret_name" {
-  value       = module.redis.redis_cache_host_secret_name
-  description = "The secret name for the Redis cache host."
-}
+# output "redis_cache_host_secret_name" {
+#   value       = module.redis.redis_cache_host_secret_name
+#   description = "The secret name for the Redis cache host."
+# }
 
-output "redis_cache_password_secret_name" {
-  value       = module.redis.redis_cache_password_secret_name
-  description = "The secret name for the Redis cache password."
-}
+# output "redis_cache_password_secret_name" {
+#   value       = module.redis.redis_cache_password_secret_name
+#   description = "The secret name for the Redis cache password."
+# }
 
 output "ingestion_cache_connection_string_1_secret_name" {
   value       = var.ingestion_cache_connection_string_1_secret_name
@@ -154,8 +155,10 @@ output "csi_user_assigned_identity_name" {
 }
 
 output "application_gateway_ip_address" {
-  value = module.application_gateway.appgw_ip_address
+  value       = data.azurerm_public_ip.application_gateway_public_ip.ip_address
+  description = "The public IP address of the Application Gateway"
 }
+
 output "application_gateway_id" {
   value = module.application_gateway.appgw_id
 }

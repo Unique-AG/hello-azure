@@ -40,6 +40,28 @@ env:
   USE_SCOPE_MANAGEMENT: "true"
   MAX_REQUEST_BODY_SIZE: "30mb"
   PDF_READ_MODE: "DOC_INTELLIGENCE_DEFAULT"
+extraCronJobs:
+  es-indexing:
+    schedule: "* * 31 2 *"
+    restartPolicy: OnFailure
+    env:
+      RUNNING_MODE: elasticsearch-indexing
+    resources:
+      requests:
+        cpu: 200m
+        memory: 2Gi
+      limits:
+        cpu: 200m
+        memory: 2Gi
+    volumeMounts:
+      - name: elastic-certs
+        mountPath: /etc/ssl/elastic/ca.crt
+        readOnly: true
+        subPath: ca.crt
+    volumes:
+      - name: elastic-certs
+        secret:
+          secretName: elasticsearch-ingestion-es-http-certs-public
 hooks:
   migration:
     command: |

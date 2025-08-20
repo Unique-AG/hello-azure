@@ -8,11 +8,16 @@ resource "azuread_service_principal" "msgraph" {
 }
 
 module "application_registration" {
-  source                           = "github.com/Unique-AG/terraform-modules.git//modules/azure-entra-app-registration?ref=azure-entra-app-registration-2.0.0-rc.2"
-  display_name                     = var.application_registration_gitops_display_name
-  keyvault_id                      = var.sensitive_kv_id
-  aad-app-secret-display-name      = var.application_secret_display_name
-  maintainers_principal_object_ids = local.maintainers_principal_object_ids
+  source       = "github.com/Unique-AG/terraform-modules.git//modules/azure-entra-app-registration?ref=azure-entra-app-registration-3.0.0"
+  display_name = var.application_registration_gitops_display_name
+  # Keep SP behavior consistent with previous versions
+  role_assignments_required = false
+  # Ensure the client secret stays managed to avoid destroy
+  client_secret_generation_config = {
+    enabled     = true
+    keyvault_id = var.sensitive_kv_id
+    secret_name = var.application_secret_display_name
+  }
   redirect_uris = [
     "https://argo.${var.dns_zone_name}/auth/callback",
   ]
@@ -36,4 +41,5 @@ module "application_registration" {
       },
     ],
   }
+  application_support_object_ids = local.maintainers_principal_object_ids
 }

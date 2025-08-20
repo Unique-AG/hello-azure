@@ -1,15 +1,25 @@
 #tfsec:ignore:azure-keyvault-content-type-for-secret
 #tfsec:ignore:azure-keyvault-ensure-key-expiry
 module "ingestion_cache" {
-  source = "github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.0.2"
+  source = "github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-3.0.2"
 
   name                          = var.ingestion_cache_sa_name
   resource_group_name           = data.azurerm_resource_group.sensitive.name
   location                      = data.azurerm_resource_group.sensitive.location
   tags                          = var.tags
   access_tier                   = "Hot"
-  deleted_retain_days           = 7
-  container_deleted_retain_days = 7
+  account_replication_type      = "LRS"
+  backup_vault                  = null
+  public_network_access_enabled = true
+
+  data_protection_settings = {
+    change_feed_enabled                  = false
+    change_feed_retention_days           = 0
+    versioning_enabled                   = false
+    container_soft_delete_retention_days = 7
+    blob_soft_delete_retention_days      = 7
+    point_in_time_restore_days           = -1
+  }
 
   storage_management_policy_default = {
     enabled                                  = true
@@ -37,16 +47,25 @@ module "ingestion_cache" {
 #tfsec:ignore:azure-keyvault-content-type-for-secret
 #tfsec:ignore:azure-keyvault-ensure-key-expiry
 module "ingestion_storage" {
-  source = "github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.0.2"
+  source = "github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-3.0.2"
 
-  name                = var.ingestion_storage_sa_name
-  resource_group_name = data.azurerm_resource_group.sensitive.name
-  location            = data.azurerm_resource_group.sensitive.location
-  tags                = var.tags
-  access_tier         = "Hot"
+  name                          = var.ingestion_storage_sa_name
+  resource_group_name           = data.azurerm_resource_group.sensitive.name
+  location                      = data.azurerm_resource_group.sensitive.location
+  tags                          = var.tags
+  access_tier                   = "Hot"
+  account_replication_type      = "LRS"
+  backup_vault                  = null
+  public_network_access_enabled = true
 
-  deleted_retain_days           = 7
-  container_deleted_retain_days = 7
+  data_protection_settings = {
+    change_feed_enabled                  = false
+    change_feed_retention_days           = 0
+    versioning_enabled                   = false
+    container_soft_delete_retention_days = 7
+    blob_soft_delete_retention_days      = 7
+    point_in_time_restore_days           = -1
+  }
 
   storage_management_policy_default = {
     enabled                                  = true

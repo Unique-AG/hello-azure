@@ -24,6 +24,7 @@ env:
   AMQP_BENCHMARK_PREFETCH: 1
   ANONYMIZED_CHAT_INTERACTIONS_EXPORT: "false"
   APP_REPOSITORY_URL: http://node-app-repository.unique.svc
+  ASSISTANT_CORE_API_URL: http://assistants-core.unique.svc
   AUDIT_LOG_DIR: /dev/stdout
   BENCHMARKS_PER_MINUTE_PER_PROCESS: 1
   DATABASE_CONNECTION_POOL_LIMIT: "30"

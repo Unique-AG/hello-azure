@@ -14,15 +14,15 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_application_gateway"></a> [application\_gateway](#module\_application\_gateway) | github.com/Unique-AG/terraform-modules.git//modules/azure-application-gateway | azure-application-gateway-2.1.0 |
-| <a name="module_document_intelligence"></a> [document\_intelligence](#module\_document\_intelligence) | github.com/Unique-AG/terraform-modules.git//modules/azure-document-intelligence | azure-document-intelligence-3.0.2 |
-| <a name="module_ingestion_cache"></a> [ingestion\_cache](#module\_ingestion\_cache) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.0.2 | n/a |
-| <a name="module_ingestion_storage"></a> [ingestion\_storage](#module\_ingestion\_storage) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-2.0.2 | n/a |
+| <a name="module_application_gateway"></a> [application\_gateway](#module\_application\_gateway) | github.com/Unique-AG/terraform-modules.git//modules/azure-application-gateway?depth=1&ref=azure-application-gateway-4.1.0 | n/a |
+| <a name="module_document_intelligence"></a> [document\_intelligence](#module\_document\_intelligence) | github.com/Unique-AG/terraform-modules.git//modules/azure-document-intelligence | azure-document-intelligence-3.0.3 |
+| <a name="module_ingestion_cache"></a> [ingestion\_cache](#module\_ingestion\_cache) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-3.0.2 | n/a |
+| <a name="module_ingestion_storage"></a> [ingestion\_storage](#module\_ingestion\_storage) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-3.0.2 | n/a |
 | <a name="module_kubernetes_cluster"></a> [kubernetes\_cluster](#module\_kubernetes\_cluster) | github.com/Unique-AG/terraform-modules.git//modules/azure-kubernetes-service | azure-kubernetes-service-4.0.1 |
-| <a name="module_openai"></a> [openai](#module\_openai) | github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=azure-openai-2.0.3 | n/a |
-| <a name="module_postgresql"></a> [postgresql](#module\_postgresql) | github.com/unique-ag/terraform-modules.git//modules/azure-postgresql?depth=1&ref=azure-postgresql-2.0.0-rc.2 | n/a |
-| <a name="module_redis"></a> [redis](#module\_redis) | github.com/unique-ag/terraform-modules.git//modules/azure-redis?depth=1&ref=azure-redis-2.0.0-rc.2 | n/a |
-| <a name="module_speech_service"></a> [speech\_service](#module\_speech\_service) | github.com/unique-ag/terraform-modules.git//modules/azure-speech-service?depth=1&ref=azure-speech-service-1.0.1 | n/a |
+| <a name="module_openai"></a> [openai](#module\_openai) | github.com/unique-ag/terraform-modules.git//modules/azure-openai?depth=1&ref=azure-openai-2.1.1 | n/a |
+| <a name="module_postgresql"></a> [postgresql](#module\_postgresql) | github.com/unique-ag/terraform-modules.git//modules/azure-postgresql?depth=1&ref=azure-postgresql-2.1.0 | n/a |
+| <a name="module_redis"></a> [redis](#module\_redis) | github.com/unique-ag/terraform-modules.git//modules/azure-redis?depth=1&ref=azure-redis-2.0.0 | n/a |
+| <a name="module_speech_service"></a> [speech\_service](#module\_speech\_service) | github.com/unique-ag/terraform-modules.git//modules/azure-speech-service?depth=1&ref=azure-speech-service-4.0.1 | n/a |
 
 ## Resources
 
@@ -46,6 +46,7 @@ No requirements.
 | [random_password.zitadel_db_user_password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 | [random_password.zitadel_master_key](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 | [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
+| [azurerm_public_ip.application_gateway_public_ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/public_ip) | data source |
 | [azurerm_resource_group.core](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
 | [azurerm_resource_group.sensitive](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
 
@@ -57,6 +58,7 @@ No requirements.
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | The name of the AKS cluster. | `string` | n/a | yes |
 | <a name="input_container_registry_name"></a> [container\_registry\_name](#input\_container\_registry\_name) | n/a | `string` | `"uniquehelloazure"` | no |
 | <a name="input_custom_subdomain_name"></a> [custom\_subdomain\_name](#input\_custom\_subdomain\_name) | n/a | `string` | `"hello-azure-unique-dev"` | no |
+| <a name="input_defender_log_analytics_workspace_id"></a> [defender\_log\_analytics\_workspace\_id](#input\_defender\_log\_analytics\_workspace\_id) | The ID of the Defender Log Analytics workspace. | `string` | n/a | yes |
 | <a name="input_document_intelligence_custom_subdomain_name"></a> [document\_intelligence\_custom\_subdomain\_name](#input\_document\_intelligence\_custom\_subdomain\_name) | n/a | `string` | `"di-hello-azure-unique-dev"` | no |
 | <a name="input_document_intelligence_user_assigned_identity_id"></a> [document\_intelligence\_user\_assigned\_identity\_id](#input\_document\_intelligence\_user\_assigned\_identity\_id) | The ID of the document intelligence user-assigned identity. | `string` | n/a | yes |
 | <a name="input_encryption_key_app_repository_secret_name"></a> [encryption\_key\_app\_repository\_secret\_name](#input\_encryption\_key\_app\_repository\_secret\_name) | n/a | `string` | `"encryption-key-app-repository"` | no |
@@ -123,7 +125,7 @@ No requirements.
 | <a name="output_acr_name"></a> [acr\_name](#output\_acr\_name) | The name of the Azure Container Registry. |
 | <a name="output_aks_cluster_id"></a> [aks\_cluster\_id](#output\_aks\_cluster\_id) | The ID of the AKS cluster. |
 | <a name="output_application_gateway_id"></a> [application\_gateway\_id](#output\_application\_gateway\_id) | n/a |
-| <a name="output_application_gateway_ip_address"></a> [application\_gateway\_ip\_address](#output\_application\_gateway\_ip\_address) | n/a |
+| <a name="output_application_gateway_ip_address"></a> [application\_gateway\_ip\_address](#output\_application\_gateway\_ip\_address) | The public IP address of the Application Gateway |
 | <a name="output_cluster_kublet_client_id"></a> [cluster\_kublet\_client\_id](#output\_cluster\_kublet\_client\_id) | The client ID of the Kubernetes cluster's kubelet identity. |
 | <a name="output_cluster_kublet_object_id"></a> [cluster\_kublet\_object\_id](#output\_cluster\_kublet\_object\_id) | The object ID of the Kubernetes cluster's kubelet identity. |
 | <a name="output_container_registry_url"></a> [container\_registry\_url](#output\_container\_registry\_url) | The URL of the Azure Container Registry. |
@@ -146,9 +148,6 @@ No requirements.
 | <a name="output_psql_port_secret_name"></a> [psql\_port\_secret\_name](#output\_psql\_port\_secret\_name) | The secret name for the PostgreSQL port. |
 | <a name="output_psql_username_secret_name"></a> [psql\_username\_secret\_name](#output\_psql\_username\_secret\_name) | The secret name for the PostgreSQL username. |
 | <a name="output_rabbitmq_password_chat_secret_name"></a> [rabbitmq\_password\_chat\_secret\_name](#output\_rabbitmq\_password\_chat\_secret\_name) | The secret name for the RabbitMQ password for chat. |
-| <a name="output_redis_cache_host_secret_name"></a> [redis\_cache\_host\_secret\_name](#output\_redis\_cache\_host\_secret\_name) | The secret name for the Redis cache host. |
-| <a name="output_redis_cache_password_secret_name"></a> [redis\_cache\_password\_secret\_name](#output\_redis\_cache\_password\_secret\_name) | The secret name for the Redis cache password. |
-| <a name="output_redis_cache_port_secret_name"></a> [redis\_cache\_port\_secret\_name](#output\_redis\_cache\_port\_secret\_name) | The secret name for the Redis cache port. |
 | <a name="output_zitadel_db_user_password_secret_name"></a> [zitadel\_db\_user\_password\_secret\_name](#output\_zitadel\_db\_user\_password\_secret\_name) | The secret name for the Zitadel database user password. |
 | <a name="output_zitadel_master_key_secret_name"></a> [zitadel\_master\_key\_secret\_name](#output\_zitadel\_master\_key\_secret\_name) | The secret name for the Zitadel master key. |
 | <a name="output_zitadel_pat_secret_name"></a> [zitadel\_pat\_secret\_name](#output\_zitadel\_pat\_secret\_name) | n/a |
