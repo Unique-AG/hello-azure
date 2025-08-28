@@ -11,12 +11,6 @@ module "application_gateway" {
     max_capacity = 2
   }
 
-  name_prefix = var.name_prefix
-  autoscale_configuration = {
-
-    max_capacity = 2
-  }
-
   resource_group = {
     name     = data.azurerm_resource_group.core.name
     location = data.azurerm_resource_group.core.location
