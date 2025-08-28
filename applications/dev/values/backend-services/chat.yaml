@@ -1,8 +1,11 @@
 env:
+  ADMIN_FRONTEND_URL: https://hello.azure.unique.dev/admin
   AMQP_BENCHMARK_PREFETCH: 1
   ANONYMIZED_CHAT_INTERACTIONS_EXPORT: "false"
   AUDIT_LOG_DIR: /dev/stdout
   BENCHMARKS_PER_MINUTE_PER_PROCESS: 1
+  CACHE_REDIS_DB: 3
+  CHAT_FRONTEND_URL: https://hello.azure.unique.dev/chat
   DATABASE_CONNECTION_POOL_LIMIT: "30"
   ENABLE_CLIENT_INSIGHT_SHIPPER: "true"
   EXPORT_PROMPTS_ACCESS_CONTROL: "true"
@@ -35,7 +38,7 @@ env:
   PUBSUB_REDIS_DB: 2
   SCOPE_MANAGEMENT_API_URL: http://backend-service-scope-management.unique.svc
 image:
-  tag: "2025.32"
+  tag: "2025.34.4"
   repository: uniquehelloazure.azurecr.io/backend-service-chat
 resources:
   limits:
