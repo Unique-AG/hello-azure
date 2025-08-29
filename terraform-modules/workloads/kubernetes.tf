@@ -36,6 +36,7 @@ module "kubernetes_cluster" {
     }
   }
 
+
   network_profile = {
     idle_timeout_in_minutes = 100
     outbound_ip_address_ids = [var.aks_public_ip_id]
