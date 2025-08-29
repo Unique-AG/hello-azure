@@ -1,5 +1,5 @@
 env:
   SELF_URL: https://test-hello.azure.unique.dev/admin
 image:
-  tag: "2025.32"
+  tag: "2025.34.6"
   repository: uqhacrtest.azurecr.io/web-app-admin

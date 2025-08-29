@@ -21,12 +21,15 @@ cronJob:
   suspend: false
   timeZone: Europe/Zurich
 env:
+  ADMIN_FRONTEND_URL: unset_default_value
   AMQP_BENCHMARK_PREFETCH: 1
   ANONYMIZED_CHAT_INTERACTIONS_EXPORT: "false"
   APP_REPOSITORY_URL: http://node-app-repository.unique.svc
   ASSISTANT_CORE_API_URL: http://assistants-core.unique.svc
   AUDIT_LOG_DIR: /dev/stdout
   BENCHMARKS_PER_MINUTE_PER_PROCESS: 1
+  CACHE_REDIS_DB: 3
+  CHAT_FRONTEND_URL: unset_default_value
   DATABASE_CONNECTION_POOL_LIMIT: "30"
   ENABLE_CLIENT_INSIGHT_SHIPPER: "true"
   EXPORT_PROMPTS_ACCESS_CONTROL: "true"
@@ -89,7 +92,7 @@ envVars:
 hooks:
   migration:
     command: |
-          cd /home/node/app/services/node-chat/prisma; npx prisma migrate deploy; cd /home/node/app/services/node-chat/dist; RUNNING_MODE=DATA_MIGRATION node /home/node/app/services/node-chat/dist/main.js;
+      cd /home/node/app/services/node-chat/prisma; npx prisma migrate deploy; cd /home/node/app/services/node-chat/dist; RUNNING_MODE=DATA_MIGRATION node /home/node/app/services/node-chat/dist/main.js;
     enabled: true
 nodeSelector:
   scalability: steady

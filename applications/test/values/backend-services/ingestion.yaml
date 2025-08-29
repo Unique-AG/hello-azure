@@ -1,5 +1,5 @@
 image:
-  tag: "2025.32"
+  tag: "2025.34.6"
   repository: uqhacrtest.azurecr.io/backend-service-ingestion
 env:
   ELASTICSEARCH_CA_BUNDLE: /etc/ssl/elastic/ca.crt
@@ -10,7 +10,7 @@ env:
   INGESTION_UPLOAD_API_URL: https://api.test-hello.azure.unique.dev/scoped/ingestion/upload
   ZITADEL_ROOT_ORG_ID: "311155409127801468"
 envVars:
-  - name: RABBITMQ_USERNAME 
+  - name: RABBITMQ_USERNAME
     valueFrom:
       secretKeyRef:
         name: rabbitmqcluster-chat-default-user
@@ -20,7 +20,7 @@ envVars:
       secretKeyRef:
         name: rabbitmqcluster-chat-default-user
         key: username
-  - name: RABBITMQ_PASSWORD 
+  - name: RABBITMQ_PASSWORD
     valueFrom:
       secretKeyRef:
         name: rabbitmqcluster-chat-default-user

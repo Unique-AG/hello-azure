@@ -2,15 +2,15 @@ spec:
   name: web-app-knowledge-upload
   autoSync: false
   sources:
-    - repoURL: 'https://github.com/Unique-AG/hello-azure'
+    - repoURL: "https://github.com/Unique-AG/hello-azure"
       targetRevision: preview
       ref: values
     - repoURL: ghcr.io/unique-ag/helm-charts
       chart: web-app
-      targetRevision: 4.1.2
+      targetRevision: 4.3.0
       helm:
         releaseName: web-app-knowledge-upload
-        valueFiles: 
+        valueFiles:
           - $values/applications/defaults/web-apps/knowledge-upload.yaml
           - $values/applications/test/values/web-apps/_all.yaml
           - $values/applications/test/values/web-apps/knowledge-upload.yaml

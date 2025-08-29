@@ -3,7 +3,7 @@ global:
 clusterOperator:
   image:
     registry: uqhacrtest.azurecr.io
-    repository: bitnami/rabbitmq-cluster-operator
+    repository: bitnamilegacy/rabbitmq-cluster-operator
     tag: 2.10.0-debian-12-r0
   nodeSelector:
     scalability: steady
@@ -14,7 +14,7 @@ clusterOperator:
 msgTopologyOperator:
   image:
     registry: uqhacrtest.azurecr.io
-    repository: bitnami/rmq-messaging-topology-operator
+    repository: bitnamilegacy/rmq-messaging-topology-operator
     tag: 1.14.2-debian-12-r5
   nodeSelector:
     scalability: steady
