@@ -14,7 +14,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_application_gateway"></a> [application\_gateway](#module\_application\_gateway) | github.com/Unique-AG/terraform-modules.git//modules/azure-application-gateway?depth=1&ref=azure-application-gateway-4.1.0 | n/a |
+| <a name="module_application_gateway"></a> [application\_gateway](#module\_application\_gateway) | github.com/Unique-AG/terraform-modules.git//modules/azure-application-gateway?depth=1&ref=azure-application-gateway-4.1.1 | n/a |
 | <a name="module_document_intelligence"></a> [document\_intelligence](#module\_document\_intelligence) | github.com/Unique-AG/terraform-modules.git//modules/azure-document-intelligence | azure-document-intelligence-3.0.3 |
 | <a name="module_ingestion_cache"></a> [ingestion\_cache](#module\_ingestion\_cache) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-3.0.2 | n/a |
 | <a name="module_ingestion_storage"></a> [ingestion\_storage](#module\_ingestion\_storage) | github.com/unique-ag/terraform-modules.git//modules/azure-storage-account?depth=1&ref=azure-storage-account-3.0.2 | n/a |
