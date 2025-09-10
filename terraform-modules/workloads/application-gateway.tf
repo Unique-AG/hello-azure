@@ -7,7 +7,6 @@ module "application_gateway" {
   source      = "github.com/Unique-AG/terraform-modules.git//modules/azure-application-gateway?depth=1&ref=azure-application-gateway-4.1.1"
   name_prefix = var.name_prefix
   autoscale_configuration = {
-
     max_capacity = 2
   }
 
@@ -50,7 +49,10 @@ module "application_gateway" {
     ]
   }
 
-
+  ssl_policy {
+    policy_name = "AppGwSslPolicy20220101S" # https://learn.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-policy-overview#predefined-tls-policy
+    policy_type = "Predefined"
+  }
 
   tags = var.tags
 }
