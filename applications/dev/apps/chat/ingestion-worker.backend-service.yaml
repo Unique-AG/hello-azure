@@ -15,7 +15,12 @@ spec:
           - $values/applications/dev/values/backend-services/_all.yaml
           - $values/applications/dev/values/backend-services/ingestion-worker.yaml
         valuesObject:
+          env:
+            INGESTION_QUEUE: queue
           keda:
+            enabled: true
+            minReplicaCount: 0
+            maxReplicaCount: 5
             triggers:
               rabbitmq:
                 type: rabbitmq
