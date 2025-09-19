@@ -22,8 +22,7 @@ spec:
             minReplicaCount: 0
             maxReplicaCount: 5
             triggers:
-              rabbitmq:
-                type: rabbitmq
+              - type: rabbitmq
                 metadata:
                   protocol: amqp
                   queueName: unique.node.ingestion.queue
