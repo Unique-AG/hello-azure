@@ -7,7 +7,7 @@ spec:
       ref: values
     - repoURL: ghcr.io/unique-ag/helm-charts
       chart: web-app
-      targetRevision: 4.3.0
+      targetRevision: 4.4.0
       helm:
         releaseName: web-app-admin
         valueFiles:
