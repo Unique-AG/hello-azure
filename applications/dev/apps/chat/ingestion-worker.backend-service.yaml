@@ -14,7 +14,18 @@ spec:
           - $values/applications/defaults/backend-services/ingestion-worker.yaml
           - $values/applications/dev/values/backend-services/_all.yaml
           - $values/applications/dev/values/backend-services/ingestion-worker.yaml
-        valuesObject: {}
+        valuesObject:
+          keda:
+            triggers:
+              rabbitmq:
+                type: rabbitmq
+                metadata:
+                  protocol: amqp
+                  queueName: unique.node.ingestion.queue
+                  mode: QueueLength
+                  value: "1"
+                authenticationRef:
+                  name: rabbitmqcluster-chat-unique-user
   ignoreDifferences:
     - group: "apps"
       kind: Deployment

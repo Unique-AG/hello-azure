@@ -19,8 +19,9 @@ spec:
             enabled: true
             minReplicaCount: 0
             maxReplicaCount: 5
-            triggers:  # Using 'triggers' instead of 'scalers' as expected by the Helm chart
-              - type: rabbitmq
+            triggers:  # Using object format instead of array as expected by the Helm chart
+              rabbitmq:
+                type: rabbitmq
                 metadata:
                   protocol: amqp
                   queueName: unique.node.ingestion.queue
