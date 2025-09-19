@@ -45,15 +45,7 @@ keda:
   enabled: true
   minReplicaCount: 0
   maxReplicaCount: 5
-  scalers:
-    - type: rabbitmq
-      metadata:
-        protocol: amqp
-        queueName: unique.node.ingestion.queue
-        mode: QueueLength
-        value: "1"
-      authenticationRef:
-        name: rabbitmqcluster-chat-unique-user
+  triggers: {}  # Triggers will be defined in ArgoCD application valuesObject
   extraAnnotations:
     argocd.argoproj.io/sync-wave: "10"
 

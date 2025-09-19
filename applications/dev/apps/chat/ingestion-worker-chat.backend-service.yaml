@@ -7,7 +7,7 @@ spec:
       ref: values
     - repoURL: ghcr.io/unique-ag/helm-charts
       chart: backend-service
-      targetRevision: 5.4.1
+      targetRevision: 6.0.1
       helm:
         releaseName: backend-service-ingestion-worker-chat
         valueFiles:
@@ -21,8 +21,9 @@ spec:
             enabled: true
             minReplicaCount: 0
             maxReplicaCount: 5
-            scalers:
-              - type: rabbitmq
+            triggers:
+              rabbitmq:
+                type: rabbitmq
                 metadata:
                   protocol: amqp
                   queueName: unique.node.ingestion.chat_queue
