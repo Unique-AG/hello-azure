@@ -14,7 +14,20 @@ spec:
           - $values/applications/defaults/backend-services/ingestion-worker.yaml
           - $values/applications/test/values/backend-services/_all.yaml
           - $values/applications/test/values/backend-services/ingestion-worker.yaml
-        valuesObject: {}
+        valuesObject:
+          keda:
+            enabled: true
+            minReplicaCount: 0
+            maxReplicaCount: 5
+            triggers:  # Using 'triggers' instead of 'scalers' as expected by the Helm chart
+              - type: rabbitmq
+                metadata:
+                  protocol: amqp
+                  queueName: unique.node.ingestion.queue
+                  mode: QueueLength
+                  value: "1"
+                authenticationRef:
+                  name: rabbitmqcluster-chat-unique-user
   ignoreDifferences:
     - group: "apps"
       kind: Deployment
