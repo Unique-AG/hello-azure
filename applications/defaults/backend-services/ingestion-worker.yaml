@@ -45,7 +45,7 @@ keda:
   enabled: true
   minReplicaCount: 0
   maxReplicaCount: 5
-  scalers:
+  triggers:
     - type: rabbitmq
       metadata:
         protocol: amqp
