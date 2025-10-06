@@ -59,7 +59,6 @@ gitops_maintainer_user_ids = [
   "084a1c45-5010-4aab-bab6-7b86a9d10e5c",
   "3b48f167-cb68-4655-b45b-878e170af84d",
   "45caeab6-e1dd-4f9a-aa0c-ea1fb6c0c5ff",
-  "0f309293-9600-4c19-bd7c-3dff1fa678d9",
   "4ee4611f-b24c-444b-8d34-edab333bf868"
 ]
 keyvault_secret_writer_user_ids = [
