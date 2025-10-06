@@ -19,16 +19,9 @@ spec:
             enabled: true
             minReplicaCount: 0
             maxReplicaCount: 5
-            triggers:  # Using object format instead of array as expected by the Helm chart
-              rabbitmq:
-                type: rabbitmq
-                metadata:
-                  protocol: amqp
-                  queueName: unique.node.ingestion.queue
-                  mode: QueueLength
-                  value: "1"
-                authenticationRef:
-                  name: rabbitmqcluster-chat-unique-user
+            triggers:
+              cron:
+                type: cron
   ignoreDifferences:
     - group: "apps"
       kind: Deployment

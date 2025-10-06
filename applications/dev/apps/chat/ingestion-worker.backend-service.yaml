@@ -23,14 +23,7 @@ spec:
             maxReplicaCount: 5
             triggers:
               rabbitmq:
-                type: rabbitmq
-                metadata:
-                  protocol: amqp
-                  queueName: unique.node.ingestion.queue
-                  mode: QueueLength
-                  value: "1"
-                authenticationRef:
-                  name: rabbitmqcluster-chat-unique-user
+                type: cron
   ignoreDifferences:
     - group: "apps"
       kind: Deployment

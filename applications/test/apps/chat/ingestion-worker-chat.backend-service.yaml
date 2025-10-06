@@ -22,14 +22,7 @@ spec:
             minReplicaCount: 0
             maxReplicaCount: 5
             scalers:
-              - type: rabbitmq
-                metadata:
-                  protocol: amqp
-                  queueName: unique.node.ingestion.chat_queue
-                  mode: QueueLength
-                  value: "1"
-                authenticationRef:
-                  name: rabbitmqcluster-chat-unique-user
+              - type: cron
   ignoreDifferences:
     - group: "apps"
       kind: Deployment
