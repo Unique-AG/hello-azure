@@ -33,7 +33,7 @@ spec:
                   mode: QueueLength
                   protocol: http
                   queueName: unique.node.ingestion.queue
-                  value: "0.9" # means we want ceil(1/0.9) = 2 replicas, at 10 it will ceil to 12, which is even nice, as then we have more spare with more users
+                  value: "0.9" # NOTE:means we want ceil(1/0.9) = 2 replicas, e.g. at 10 it will ceil to 12
                 authenticationRef:
                   kind: ClusterTriggerAuthentication
                   name: rabbitmq-http
