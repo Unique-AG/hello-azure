@@ -46,6 +46,7 @@ resource_vnet_location            = "swedencentral"
 
 # User permissions
 cluster_admin_user_ids = [
+  "32991679-1838-4894-b099-a51079472086",
   "4b89a1f0-8038-4929-81e6-6d128dac7aa0",
   "084a1c45-5010-4aab-bab6-7b86a9d10e5c",
   "3b48f167-cb68-4655-b45b-878e170af84d",
@@ -53,6 +54,7 @@ cluster_admin_user_ids = [
   "0f309293-9600-4c19-bd7c-3dff1fa678d9"
 ]
 gitops_maintainer_user_ids = [
+  "32991679-1838-4894-b099-a51079472086",
   "4b89a1f0-8038-4929-81e6-6d128dac7aa0",
   "084a1c45-5010-4aab-bab6-7b86a9d10e5c",
   "3b48f167-cb68-4655-b45b-878e170af84d",
@@ -60,6 +62,7 @@ gitops_maintainer_user_ids = [
   "0f309293-9600-4c19-bd7c-3dff1fa678d9"
 ]
 keyvault_secret_writer_user_ids = [
+  "32991679-1838-4894-b099-a51079472086",
   "4b89a1f0-8038-4929-81e6-6d128dac7aa0",
   "084a1c45-5010-4aab-bab6-7b86a9d10e5c",
   "3b48f167-cb68-4655-b45b-878e170af84d",
@@ -67,6 +70,7 @@ keyvault_secret_writer_user_ids = [
   "0f309293-9600-4c19-bd7c-3dff1fa678d9"
 ]
 telemetry_observer_user_ids = [
+  "32991679-1838-4894-b099-a51079472086",
   "4b89a1f0-8038-4929-81e6-6d128dac7aa0",
   "084a1c45-5010-4aab-bab6-7b86a9d10e5c",
   "3b48f167-cb68-4655-b45b-878e170af84d",
