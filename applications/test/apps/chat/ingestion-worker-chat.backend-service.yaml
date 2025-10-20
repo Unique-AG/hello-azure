@@ -37,7 +37,7 @@ spec:
                   queueName: unique.node.ingestion.chat_queue
                   value: "0.9" # NOTE:means we want ceil(1/0.9) = 2 replicas, e.g. at 10 it will ceil to 12
                 authenticationRef:
-                  kind: TriggerAuthentication
+                  kind: ClusterTriggerAuthentication
                   name: rabbitmqcluster-chat-unique-user
   ignoreDifferences:
     - group: "apps"

@@ -1,5 +1,5 @@
 apiVersion: keda.sh/v1alpha1
-kind: TriggerAuthentication
+kind: ClusterTriggerAuthentication
 metadata:
   name: rabbitmqcluster-chat-unique-user
   namespace: unique
