@@ -17,7 +17,7 @@ resources:
                 hostedZoneName: hello.azure.unique.dev
                 environment: AzurePublicCloud
                 managedIdentity:
-                  clientID: 0f7cd773-a53a-4b58-8835-146dd20e281b
+                  clientID: a58feedb-b804-4f73-934b-9a7da6113ecf
             selector:
               dnsZones:
                 - hello.azure.unique.dev
