@@ -38,7 +38,7 @@ spec:
                   value: "0.9" # NOTE:means we want ceil(1/0.9) = 2 replicas, e.g. at 10 it will ceil to 12
                 authenticationRef:
                   kind: ClusterTriggerAuthentication
-                  name: rabbitmq-http
+                  name: rabbitmqcluster-chat-unique-user
   ignoreDifferences:
     - group: "apps"
       kind: Deployment
