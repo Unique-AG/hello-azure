@@ -1,5 +1,5 @@
 image:
-  tag: "2025.40"
+  tag: "2025.42"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion-worker
 secretProvider:
   vaults:

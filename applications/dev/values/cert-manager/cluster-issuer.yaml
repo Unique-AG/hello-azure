@@ -13,11 +13,11 @@ resources:
               cnameStrategy: Follow
               azureDNS:
                 subscriptionID: be4e82ff-bf83-4173-a750-15e807845579
-                resourceGroupName: rg-vnet-002  # this has to match the resource group of the Azure DNS zone
+                resourceGroupName: rg-vnet-002 # this has to match the resource group of the Azure DNS zone
                 hostedZoneName: hello.azure.unique.dev
                 environment: AzurePublicCloud
                 managedIdentity:
-                  clientID: 0f7cd773-a53a-4b58-8835-146dd20e281b
+                  clientID: a58feedb-b804-4f73-934b-9a7da6113ecf
             selector:
               dnsZones:
                 - hello.azure.unique.dev

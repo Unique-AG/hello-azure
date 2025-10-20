@@ -2,6 +2,7 @@ apiVersion: keda.sh/v1alpha1
 kind: TriggerAuthentication
 metadata:
   name: rabbitmqcluster-chat-unique-user
+  namespace: unique
 spec:
   secretTargetRef:
     - parameter: host

@@ -22,14 +22,22 @@ spec:
             minReplicaCount: 0
             maxReplicaCount: 5
             triggers:
+              # cron:
+              #   type: cron
+              #   metadata:
+              #     timezone: Europe/Zurich
+              #     start: 0 8 * * 1-5
+              #     end: 0 18 * * 1-5
+              #     desiredReplicas: "1" # NOTE: if there are no chat messages, we want to scale down to 1 replica otherwise it takes too long to scale up
               rabbitmq:
                 type: rabbitmq
                 metadata:
-                  protocol: amqp
-                  queueName: unique.node.ingestion.queue
                   mode: QueueLength
-                  value: "1"
+                  protocol: http
+                  queueName: unique.node.ingestion.queue
+                  value: "0.9" # NOTE:means we want ceil(1/0.9) = 2 replicas, e.g. at 10 it will ceil to 12
                 authenticationRef:
+                  kind: TriggerAuthentication
                   name: rabbitmqcluster-chat-unique-user
   ignoreDifferences:
     - group: "apps"
