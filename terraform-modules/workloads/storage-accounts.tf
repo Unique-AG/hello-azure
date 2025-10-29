@@ -138,11 +138,11 @@ module "audit_storage" {
 
 # Create storage containers for audit logs
 resource "azurerm_storage_container" "audit_containers" {
-  for_each = toset(var.audit_containers)
-
+  for_each              = toset(var.audit_containers)
   name                  = each.value
   storage_account_name  = var.audit_storage_sa_name
   container_access_type = "private"
+  depends_on            = [module.audit_storage]
 }
 
 # Create Key Vault secrets for audit storage mounting
