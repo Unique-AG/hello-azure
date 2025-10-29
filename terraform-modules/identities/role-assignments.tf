@@ -50,6 +50,18 @@ resource "azurerm_role_assignment" "ingestion_storage_kv_secrets_reader" {
   role_definition_name = local.secret_reader_key_vault_role_name
 }
 
+resource "azurerm_role_assignment" "audit_storage_kv_key_reader" {
+  principal_id         = azurerm_user_assigned_identity.audit_storage_identity.principal_id
+  scope                = var.sensitive_kv_id
+  role_definition_name = local.key_reader_key_vault_role_name
+}
+
+resource "azurerm_role_assignment" "audit_storage_kv_secrets_reader" {
+  principal_id         = azurerm_user_assigned_identity.audit_storage_identity.principal_id
+  scope                = var.sensitive_kv_id
+  role_definition_name = local.secret_reader_key_vault_role_name
+}
+
 # resource "azurerm_role_assignment" "ingestion_storage_system_id_kv_key_reader" {
 #   principal_id         = data.azurerm_storage_account.ingestion_storage.identity[0].principal_id
 #   role_definition_name = local.key_reader_key_vault_role_name

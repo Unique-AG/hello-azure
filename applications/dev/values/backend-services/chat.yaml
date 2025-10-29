@@ -2,7 +2,7 @@ env:
   ADMIN_FRONTEND_URL: https://hello.azure.unique.dev/admin
   AMQP_BENCHMARK_PREFETCH: 1
   ANONYMIZED_CHAT_INTERACTIONS_EXPORT: "false"
-  AUDIT_LOG_DIR: /dev/stdout
+  AUDIT_LOG_DIR: /audit
   BENCHMARKS_PER_MINUTE_PER_PROCESS: 1
   CACHE_REDIS_DB: 3
   CHAT_FRONTEND_URL: https://hello.azure.unique.dev/chat
@@ -56,6 +56,8 @@ secretProvider:
       PUBSUB_REDIS_PASSWORD: uniquehelloazureredis-password
       AZURE_FGPT_STORAGE_CONNECTION_STRING: ingestion-storage-connection-string-1
       CHAT_LXM_ENCRYPTION_KEY: encryption-key-chat-lxm
+      AUDIT_STORAGE_RESOURCE_GROUP: audit-storage-resource-group
+      AUDIT_STORAGE_ACCOUNT_NAME: audit-storage-account-name
     helloazuremain:
       AZURE_OPENAI_API_ENDPOINTS_JSON: azure-openai-endpoint-definitions
 serviceAccount:
@@ -63,3 +65,8 @@ serviceAccount:
   workloadIdentity:
     clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
     enabled: true
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  resourceGroup: AUDIT_STORAGE_RESOURCE_GROUP
+  storageAccount: AUDIT_STORAGE_ACCOUNT_NAME

@@ -2,6 +2,7 @@ image:
   tag: "2025.42"
   repository: uniquehelloazure.azurecr.io/backend-service-scope-management
 env:
+  AUDIT_LOG_DIR: /audit
   ZITADEL_HOST: https://id.hello.azure.unique.dev
   ZITADEL_ROOT_ORG_ID: "305511794535891578"
   # This can be uncommented if you want to avoid hairpinning (going outisde of the cluster to reach Zitadel which is deployed in the same cluster)
@@ -29,5 +30,12 @@ secretProvider:
   vaults:
     helloazuresensitive:
       DATABASE_URL: database-url-scope-management
+      AUDIT_STORAGE_RESOURCE_GROUP: audit-storage-resource-group
+      AUDIT_STORAGE_ACCOUNT_NAME: audit-storage-account-name
     helloazuremain:
       ZITADEL_PAT: manual-zitadel-scope-mgmt-pat
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  resourceGroup: AUDIT_STORAGE_RESOURCE_GROUP
+  storageAccount: AUDIT_STORAGE_ACCOUNT_NAME

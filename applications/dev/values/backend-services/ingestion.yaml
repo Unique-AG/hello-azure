@@ -2,6 +2,7 @@ image:
   tag: "2025.42"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion
 env:
+  AUDIT_LOG_DIR: /audit
   ELASTICSEARCH_CA_BUNDLE: /etc/ssl/elastic/ca.crt
   ELASTICSEARCH_URL: https://elasticsearch-ingestion-es-http.unique.svc:9200
   ELASTICSEARCH_USERNAME: elastic
@@ -65,6 +66,8 @@ secretProvider:
       AZURE_FGPT_STORAGE_CONNECTION_STRING: ingestion-storage-connection-string-1
       AZURE_INGESTION_CACHE_STORAGE_CONNECTION_STRING: ingestion-cache-connection-string-1
       INGESTION_ENCRYPTION_KEY: encryption-key-ingestion
+      AUDIT_STORAGE_RESOURCE_GROUP: audit-storage-resource-group
+      AUDIT_STORAGE_ACCOUNT_NAME: audit-storage-account-name
     helloazuremain:
       AZURE_OPENAI_API_ENDPOINT: cognitive-account-swedencentral-ep
       AZURE_DOCUMENT_INTELLIGENCE_ENDPOINTS: azure-document-intelligence-endpoints
@@ -77,3 +80,8 @@ volumes:
   - name: elastic-certs
     secret:
       secretName: elasticsearch-ingestion-es-http-certs-public
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  resourceGroup: AUDIT_STORAGE_RESOURCE_GROUP
+  storageAccount: AUDIT_STORAGE_ACCOUNT_NAME

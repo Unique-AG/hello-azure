@@ -1,3 +1,5 @@
+env:
+  AUDIT_LOG_DIR: /audit
 image:
   repository: uniquehelloazure.azurecr.io/backend-service-configuration
   tag: "2025.42"
@@ -5,3 +7,10 @@ secretProvider:
   vaults:
     helloazuresensitive:
       DATABASE_URL: database-url-theme
+      AUDIT_STORAGE_RESOURCE_GROUP: audit-storage-resource-group
+      AUDIT_STORAGE_ACCOUNT_NAME: audit-storage-account-name
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  resourceGroup: AUDIT_STORAGE_RESOURCE_GROUP
+  storageAccount: AUDIT_STORAGE_ACCOUNT_NAME

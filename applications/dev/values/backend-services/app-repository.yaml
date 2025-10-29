@@ -1,3 +1,5 @@
+env:
+  AUDIT_LOG_DIR: /audit
 serviceAccount:
   enabled: true
   workloadIdentity:
@@ -13,3 +15,10 @@ secretProvider:
     helloazuresensitive:
       DATABASE_URL: database-url-app-repository
       ENCRYPTION_KEY: encryption-key-app-repository
+      AUDIT_STORAGE_RESOURCE_GROUP: audit-storage-resource-group
+      AUDIT_STORAGE_ACCOUNT_NAME: audit-storage-account-name
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  resourceGroup: AUDIT_STORAGE_RESOURCE_GROUP
+  storageAccount: AUDIT_STORAGE_ACCOUNT_NAME

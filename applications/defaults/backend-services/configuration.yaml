@@ -1,5 +1,5 @@
 env:
-  AUDIT_LOG_DIR: /dev/stdout
+  AUDIT_LOG_DIR: /audit
   LOG_LEVEL: info
   MAX_HEAP_MB: 200
 hooks:
@@ -26,3 +26,9 @@ routes:
       enabled: true
 service:
   port: 8095
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  attributes:
+    resourceGroup: unset_default_value
+    storageAccount: unset_default_value

@@ -32,6 +32,12 @@ serviceAccount:
   workloadIdentity:
     clientId:
     enabled: true
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  attributes:
+    resourceGroup: unset_default_value
+    storageAccount: unset_default_value
 envVars:
   - name: AMQP_USERNAME
     valueFrom:

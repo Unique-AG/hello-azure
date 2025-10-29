@@ -1,8 +1,13 @@
 image:
   tag: "2025.42"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion-worker
+env:
+  AUDIT_LOG_DIR: /audit
 secretProvider:
   vaults:
+    helloazuresensitive:
+      AUDIT_STORAGE_RESOURCE_GROUP: audit-storage-resource-group
+      AUDIT_STORAGE_ACCOUNT_NAME: audit-storage-account-name
     helloazuremain:
       AZURE_OPENAI_API_ENDPOINT: cognitive-account-swedencentral-ep
       AZURE_DOCUMENT_INTELLIGENCE_ENDPOINTS: azure-document-intelligence-endpoints
@@ -11,3 +16,8 @@ serviceAccount:
   workloadIdentity:
     clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
     enabled: true
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  resourceGroup: AUDIT_STORAGE_RESOURCE_GROUP
+  storageAccount: AUDIT_STORAGE_ACCOUNT_NAME

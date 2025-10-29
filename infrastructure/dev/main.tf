@@ -1,3 +1,8 @@
+# Random resource for unique naming
+resource "random_id" "audit_storage_suffix" {
+  byte_length = 4
+}
+
 # Local values that are computed or combined from variables
 locals {
 
@@ -31,6 +36,7 @@ module "identities" {
   main_keyvault_secret_writers                 = var.keyvault_secret_writer_user_ids
   main_kv_id                                   = module.perimeter.key_vault_main_id
   psql_user_assigned_identity_name             = var.psql_identity_name
+  audit_storage_user_assigned_identity_name    = var.audit_storage_user_assigned_identity_name
   resource_audit_location                      = var.resource_audit_location
   resource_group_core_location                 = var.resource_group_core_location
   resource_group_sensitive_location            = var.resource_group_sensitive_location
@@ -82,6 +88,9 @@ module "workloads" {
   grafana_user_assigned_identity_id               = module.identities.grafana_user_assigned_identity_id
   ingestion_cache_user_assigned_identity_id       = module.identities.ingestion_cache_user_assigned_identity_id
   ingestion_storage_user_assigned_identity_id     = module.identities.ingestion_storage_user_assigned_identity_id
+  audit_storage_user_assigned_identity_id         = module.identities.audit_storage_user_assigned_identity_id
+  audit_storage_sa_name                           = "helloazureaudit${random_id.audit_storage_suffix.hex}"
+  audit_containers                                = var.audit_containers
   kubernetes_rapid_node_size                      = "Standard_D4s_v5"
   kubernetes_steady_max_count                     = 8
   log_analytics_workspace_id                      = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.OperationalInsights/workspaces/${module.perimeter.log_analytics_workspace_name}"

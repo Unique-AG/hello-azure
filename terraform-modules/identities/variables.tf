@@ -137,6 +137,11 @@ variable "grafana_identity_name" {
   description = "The name of the Grafana user-assigned identity."
   type        = string
 }
+
+variable "audit_storage_user_assigned_identity_name" {
+  description = "The name of the audit storage identity."
+  type        = string
+}
 variable "cluster_admins" {
   type = set(string)
 }

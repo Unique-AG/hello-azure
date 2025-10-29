@@ -165,3 +165,23 @@ output "application_gateway_id" {
 output "zitadel_pat_secret_name" {
   value = var.zitadel_pat_secret_name
 }
+
+output "audit_storage_connection_string_1_secret_name" {
+  value       = var.audit_storage_connection_string_1_secret_name
+  description = "The secret name for the first audit storage connection string."
+}
+
+output "audit_storage_connection_string_2_secret_name" {
+  value       = var.audit_storage_connection_string_2_secret_name
+  description = "The secret name for the second audit storage connection string."
+}
+
+output "audit_storage_account_id" {
+  value       = module.audit_storage.storage_account_id
+  description = "The ID of the audit storage account."
+}
+
+output "audit_storage_account_name" {
+  value       = module.audit_storage.storage_account_name
+  description = "The name of the audit storage account."
+}
