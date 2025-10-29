@@ -56,6 +56,8 @@ secretProvider:
       PUBSUB_REDIS_PASSWORD: uqharedis-test-password
       AZURE_FGPT_STORAGE_CONNECTION_STRING: ingestion-storage-connection-string-1
       CHAT_LXM_ENCRYPTION_KEY: encryption-key-chat-lxm
+      AUDIT_STORAGE_RESOURCE_GROUP: audit-storage-resource-group
+      AUDIT_STORAGE_ACCOUNT_NAME: audit-storage-account-name
     hakv1test:
       AZURE_OPENAI_API_ENDPOINTS_JSON: azure-openai-endpoint-definitions
 serviceAccount:
@@ -63,3 +65,8 @@ serviceAccount:
   workloadIdentity:
     clientId: 2ffd1adb-50e7-4a89-bbef-26f6f944e2d3
     enabled: true
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  resourceGroup: AUDIT_STORAGE_RESOURCE_GROUP
+  storageAccount: AUDIT_STORAGE_ACCOUNT_NAME
