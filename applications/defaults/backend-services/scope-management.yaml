@@ -1,3 +1,9 @@
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  attributes:
+    resourceGroup: unset_default_value
+    storageAccount: unset_default_value
 cronJob:
   concurrencyPolicy: Forbid
   enabled: true
@@ -68,9 +74,3 @@ routes:
       enabled: true
     probe:
       enabled: true
-auditVolume:
-  enabled: true
-  mountPath: /audit
-  attributes:
-    resourceGroup: unset_default_value
-    storageAccount: unset_default_value

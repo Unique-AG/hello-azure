@@ -1,8 +1,11 @@
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  resourceGroup: AUDIT_STORAGE_RESOURCE_GROUP
+  storageAccount: AUDIT_STORAGE_ACCOUNT_NAME
 image:
   tag: "2025.42"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion-worker
-env:
-  AUDIT_LOG_DIR: /audit
 secretProvider:
   vaults:
     helloazuresensitive:
@@ -16,8 +19,3 @@ serviceAccount:
   workloadIdentity:
     clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
     enabled: true
-auditVolume:
-  enabled: true
-  mountPath: /audit
-  resourceGroup: AUDIT_STORAGE_RESOURCE_GROUP
-  storageAccount: AUDIT_STORAGE_ACCOUNT_NAME
