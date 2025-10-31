@@ -43,11 +43,6 @@ applicationsets:
           syncOptions:
             - CreateNamespace=true
         {{- end }}
-      {{- if and (hasKey . "metadata") (hasKey .metadata "annotations") }}
-      metadata:
-        annotations:
-          {{- .metadata.annotations | toYaml | nindent 4 }}
-      {{- end }}
 
 
   system:
@@ -94,8 +89,3 @@ applicationsets:
           syncOptions:
             - CreateNamespace=true
         {{- end }}
-      {{- if and (hasKey . "metadata") (hasKey .metadata "annotations") }}
-      metadata:
-        annotations:
-          {{- .metadata.annotations | toYaml | nindent 4 }}
-      {{- end }}

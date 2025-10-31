@@ -1,3 +1,8 @@
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  resourceGroup: AUDIT_STORAGE_RESOURCE_GROUP
+  storageAccount: AUDIT_STORAGE_ACCOUNT_NAME
 image:
   tag: "2025.42"
   repository: uqhacrtest.azurecr.io/backend-service-scope-management
@@ -29,5 +34,7 @@ secretProvider:
   vaults:
     hakv2test:
       DATABASE_URL: database-url-scope-management
+      AUDIT_STORAGE_RESOURCE_GROUP: audit-storage-resource-group
+      AUDIT_STORAGE_ACCOUNT_NAME: audit-storage-account-name
     hakv1test:
       ZITADEL_PAT: manual-zitadel-scope-mgmt-pat

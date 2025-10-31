@@ -1,8 +1,8 @@
-serviceAccount:
+auditVolume:
   enabled: true
-  workloadIdentity:
-    clientId: 2ffd1adb-50e7-4a89-bbef-26f6f944e2d3
-    enabled: true
+  mountPath: /audit
+  resourceGroup: AUDIT_STORAGE_RESOURCE_GROUP
+  storageAccount: AUDIT_STORAGE_ACCOUNT_NAME
 image:
   tag: "2025.42"
   repository: uqhacrtest.azurecr.io/backend-service-app-repository
@@ -13,3 +13,10 @@ secretProvider:
     hakv2test:
       DATABASE_URL: database-url-app-repository
       ENCRYPTION_KEY: encryption-key-app-repository
+      AUDIT_STORAGE_RESOURCE_GROUP: audit-storage-resource-group
+      AUDIT_STORAGE_ACCOUNT_NAME: audit-storage-account-name
+serviceAccount:
+  enabled: true
+  workloadIdentity:
+    clientId: 2ffd1adb-50e7-4a89-bbef-26f6f944e2d3
+    enabled: true

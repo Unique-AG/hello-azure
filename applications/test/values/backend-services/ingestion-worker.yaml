@@ -1,8 +1,16 @@
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  resourceGroup: AUDIT_STORAGE_RESOURCE_GROUP
+  storageAccount: AUDIT_STORAGE_ACCOUNT_NAME
 image:
   tag: "2025.42"
   repository: uqhacrtest.azurecr.io/backend-service-ingestion-worker
 secretProvider:
   vaults:
+    hakv2test:
+      AUDIT_STORAGE_RESOURCE_GROUP: audit-storage-resource-group
+      AUDIT_STORAGE_ACCOUNT_NAME: audit-storage-account-name
     hakv1test:
       AZURE_OPENAI_API_ENDPOINT: cognitive-account-swedencentral-ep
       AZURE_DOCUMENT_INTELLIGENCE_ENDPOINTS: azure-document-intelligence-endpoints

@@ -14,6 +14,3 @@ spec:
           - $values/applications/defaults/ai-services/assistants-core.yaml
           - $values/applications/test/values/ai-services/assistants-core.yaml
         valuesObject: {}
-metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "5"

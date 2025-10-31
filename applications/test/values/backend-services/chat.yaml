@@ -1,8 +1,12 @@
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  resourceGroup: AUDIT_STORAGE_RESOURCE_GROUP
+  storageAccount: AUDIT_STORAGE_ACCOUNT_NAME
 env:
   ADMIN_FRONTEND_URL: https://test-hello.azure.unique.dev/admin
   AMQP_BENCHMARK_PREFETCH: 1
   ANONYMIZED_CHAT_INTERACTIONS_EXPORT: "false"
-  AUDIT_LOG_DIR: /audit
   BENCHMARKS_PER_MINUTE_PER_PROCESS: 1
   CACHE_REDIS_DB: 3
   CHAT_FRONTEND_URL: https://test-hello.azure.unique.dev/chat
@@ -65,8 +69,3 @@ serviceAccount:
   workloadIdentity:
     clientId: 2ffd1adb-50e7-4a89-bbef-26f6f944e2d3
     enabled: true
-auditVolume:
-  enabled: true
-  mountPath: /audit
-  resourceGroup: AUDIT_STORAGE_RESOURCE_GROUP
-  storageAccount: AUDIT_STORAGE_ACCOUNT_NAME

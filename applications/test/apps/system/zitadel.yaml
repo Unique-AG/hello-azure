@@ -14,6 +14,3 @@ spec:
           - $values/applications/test/values/zitadel/zitadel-extra-manifests.yaml
           - $values/applications/test/values/zitadel/zitadel.yaml
         valuesObject: {} 
-metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "3"

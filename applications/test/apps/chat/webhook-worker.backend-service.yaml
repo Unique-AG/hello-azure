@@ -15,6 +15,3 @@ spec:
           - $values/applications/test/values/backend-services/_all.yaml
           - $values/applications/test/values/backend-services/webhook-worker.yaml
         valuesObject: {}
-metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "5"

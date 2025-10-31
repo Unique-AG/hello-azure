@@ -25,6 +25,3 @@ spec:
       jsonPointers:
         - /webhooks/0/namespaceSelector/matchExpressions
       name: cert-manager-webhook
-metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
