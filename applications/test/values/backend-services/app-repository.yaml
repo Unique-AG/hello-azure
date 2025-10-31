@@ -3,7 +3,7 @@ auditVolume:
     resourceGroup: resource-group-sensitive
     storageAccount: helloazureaudit66d7a195
 image:
-  tag: "2025.46"
+  tag: "2025.44.1"
   repository: uqhacrtest.azurecr.io/backend-service-app-repository
 routes:
   hostname: api.test-hello.azure.unique.dev
