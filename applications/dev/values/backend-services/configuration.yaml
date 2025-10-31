@@ -1,6 +1,6 @@
 image:
   repository: uniquehelloazure.azurecr.io/backend-service-configuration
-  tag: "2025.44.1"
+  tag: "2025.42"
 secretProvider:
   vaults:
     helloazuresensitive:
