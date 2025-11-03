@@ -1,9 +1,6 @@
-auditVolume:
-  enabled: true
-  mountPath: /audit
-  attributes:
-    resourceGroup: ref+azurekeyvault://hakv2test/audit-storage-resource-group
-    storageAccount: ref+azurekeyvault://hakv2test/audit-storage-account-name
+image:
+  tag: "2025.44.1"
+  repository: uqhacrtest.azurecr.io/backend-service-ingestion
 env:
   ELASTICSEARCH_CA_BUNDLE: /etc/ssl/elastic/ca.crt
   ELASTICSEARCH_URL: https://elasticsearch-ingestion-es-http.unique.svc:9200
@@ -49,7 +46,7 @@ envVars:
         name: elasticsearch-ingestion-es-elastic-user
         key: elastic
 image:
-  tag: "2025.42"
+  tag: "2025.44.1"
   repository: uqhacrtest.azurecr.io/backend-service-ingestion
 replicaCount: 2
 resources:
