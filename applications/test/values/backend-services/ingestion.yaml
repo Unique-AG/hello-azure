@@ -50,7 +50,7 @@ envVars:
         key: elastic
 image:
   tag: "2025.42"
-  repository: uniquehelloazure.azurecr.io/backend-service-ingestion
+  repository: uqhacrtest.azurecr.io/backend-service-ingestion
 replicaCount: 2
 resources:
   limits:
