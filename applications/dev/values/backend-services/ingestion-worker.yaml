@@ -1,8 +1,9 @@
 auditVolume:
   enabled: true
   mountPath: /audit
-  resourceGroup: AUDIT_STORAGE_RESOURCE_GROUP
-  storageAccount: AUDIT_STORAGE_ACCOUNT_NAME
+  attributes:
+    resourceGroup: ref+azurekeyvault://helloazuresensitive/audit-storage-resource-group
+    storageAccount: ref+azurekeyvault://helloazuresensitive/audit-storage-account-name
 image:
   tag: "2025.44.1"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion-worker
