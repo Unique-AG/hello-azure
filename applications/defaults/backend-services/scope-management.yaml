@@ -8,6 +8,7 @@ cronJob:
   concurrencyPolicy: Forbid
   enabled: true
   env:
+    AUDIT_LOG_DIR: /dev/stdout
     RUNNING_MODE: user-sync
   failedJobsHistoryLimit: 2
   jobTemplate:
