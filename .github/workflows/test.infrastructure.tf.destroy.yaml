@@ -54,6 +54,6 @@ jobs:
         id: plan
         run: terraform plan -destroy -no-color
       
-      - name: Terraform Destroy
-        if: github.event_name == 'push' && github.ref == 'refs/heads/preview'
-        run: terraform destroy -auto-approve -input=false
+      # - name: Terraform Destroy
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/chore/enable-test-workflows' #'refs/heads/preview'
+      #   run: terraform destroy -auto-approve -input=false
