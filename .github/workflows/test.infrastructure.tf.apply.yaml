@@ -56,5 +56,5 @@ jobs:
         run: terraform plan -no-color
       
       - name: Terraform Apply
-        if: github.event_name == 'push' && github.ref == 'refs/heads/chore/enable-test-workflows' #'refs/heads/preview'
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/chore/enable-test-workflows') || (github.event_name == 'pull_request' && github.head_ref == 'chore/enable-test-workflows') #'refs/heads/preview'
         run: terraform apply -auto-approve -input=true
