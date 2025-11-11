@@ -10,6 +10,7 @@ on:
   push:
     branches:
       - preview
+      - chore/enable-test-workflows
     paths:
       - .github/workflows/test.infrastructure.tf.yaml
       - infrastructure/test/**

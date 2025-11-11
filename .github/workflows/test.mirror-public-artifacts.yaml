@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - preview
+      - chore/enable-test-workflows
     paths:
       - .github/workflows/test.mirror-public-artifacts.yaml
       - mirroring/test/io.docker.yaml
