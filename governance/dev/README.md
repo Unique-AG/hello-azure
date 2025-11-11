@@ -57,7 +57,12 @@ terraform apply
 Next, we will have to populate the `client_id` in `config.auto.tfvars` from the newly created application:
 ```bash
 var_value=$(terraform output client_id)
-sed -r -i '' "s/(client_id(.*)=\s*).*/\1 $var_value/" config.auto.tfvars
+# MacOS
+sed -i '' 's/(client_id(.*)=\s*).*/\1 $var_value/' config.auto.tfvars
+# Linux
+sed -i "s/(client_id(.*)=\s*).*/\1 $var_value/" config.auto.tfvars
+# Windows
+sed -i "s/(client_id(.*)=\s*).*/\1 $var_value/" config.auto.tfvars
 ```
 ### Phase 2
 We can switch to the `azurerm` backend:
