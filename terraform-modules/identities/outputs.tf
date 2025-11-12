@@ -1,7 +1,7 @@
 output "cluster_workload_identities" {
   description = "This output reflects configurations that must then be applied to the workloads in the cluster. The client_ids are to be used as Managed Identities while the subject must match exactly the Service Accounts Name and Namespace."
   value = try([for key, wid in azurerm_federated_identity_credential.afic_workloads : {
-    client_id = data.azurerm_kubernetes_cluster.cluster[0].kubelet_identity[0].client_id
+    client_id = try(data.azurerm_kubernetes_cluster.cluster["cluster"].kubelet_identity[0].client_id, null)
     subject   = wid.subject
   }], [])
 }
@@ -58,5 +58,5 @@ output "grafana_user_assigned_identity_id" {
 
 output "key_vault_secrets_provider_client_id" {
   description = "The client ID of the Key Vault secrets provider."
-  value       = try(data.azurerm_kubernetes_cluster.cluster[0].key_vault_secrets_provider[0].secret_identity[0].client_id, null)
+  value       = try(data.azurerm_kubernetes_cluster.cluster["cluster"].key_vault_secrets_provider[0].secret_identity[0].client_id, null)
 }

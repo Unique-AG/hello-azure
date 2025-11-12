@@ -2,13 +2,13 @@ data "azuread_service_principal" "terraform" {
   client_id = var.client_id
 }
 
-# Conditional data source: only read cluster if cluster_id is provided and non-empty
-# This allows bootstrap scenarios where the cluster doesn't exist yet
-# Note: If var.cluster_id is unknown (from module output), Terraform will evaluate this during apply
-# If the cluster doesn't exist, the data source will fail, which is expected during bootstrap
+# Data source for AKS cluster
+# Note: During bootstrap, if cluster doesn't exist, this will fail.
+# Apply workloads module first, or use -target to apply in stages.
+# Using for_each with a single key to allow conditional access in resources
 data "azurerm_kubernetes_cluster" "cluster" {
-  count               = try(length(var.cluster_id) > 0, false) ? 1 : 0
-  name                = var.cluster_name
+  for_each = var.cluster_id != null ? { cluster = true } : {}
+  name     = var.cluster_name
   resource_group_name = azurerm_resource_group.core.name
 }
 
