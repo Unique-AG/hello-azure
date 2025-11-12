@@ -37,7 +37,7 @@ module "identities" {
   resource_group_sensitive_location            = var.resource_group_sensitive_location
   resource_group_vnet_id                       = azurerm_resource_group.vnet.id
   resource_vnet_location                       = var.resource_vnet_location
-  sensitive_kv_id                              = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.KeyVault/vaults/${module.perimeter.key_vault_sensitive_name}"
+  sensitive_kv_id                              = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_sensitive_name}/providers/Microsoft.KeyVault/vaults/${module.perimeter.key_vault_sensitive_name}"
   telemetry_observers                          = var.telemetry_observer_user_ids
 }
 
