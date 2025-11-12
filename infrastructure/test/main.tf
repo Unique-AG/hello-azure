@@ -115,7 +115,8 @@ module "workloads" {
     module.perimeter.key_vault_main_id,
     module.perimeter.key_vault_sensitive_id,
     # Ensure Key Vault role assignments are created AND RBAC has propagated before secrets are read
-    terraform_data.kv_rbac_ready
+    # The time_sleep resource ensures RBAC propagation is complete
+    module.identities.kv_rbac_propagation_complete
     # module.identities.resource_group_vnet_id,
     # module.perimeter.log_analytics_workspace_id
   ]
