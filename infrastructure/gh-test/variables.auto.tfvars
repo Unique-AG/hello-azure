@@ -4,4 +4,4 @@ tags = {
   app = "hello-azure"
 }
 vnet_name   = "vnet-001"
-subnet_name = "snet-github-runners-test"
+subnet_name = "snet-github-runners"
