@@ -51,12 +51,6 @@ jobs:
         id: validate
         run: terraform validate -no-color
 
-      - name: Azure Login
-        if: (github.event_name == 'push' && github.ref == 'refs/heads/chore/enable-test-workflows') || (github.event_name == 'pull_request' && github.head_ref == 'chore/enable-test-workflows')
-        uses: azure/login@a65d910e8af852a8061c627c456678983e180302 #v2.2.0
-        with:
-          subscription-id: 782871a0-bcee-44fb-851f-ccd3e69ada2a
-
       - name: Stage 1 - Apply Key Vault Role Assignments First
         if: (github.event_name == 'push' && github.ref == 'refs/heads/chore/enable-test-workflows') || (github.event_name == 'pull_request' && github.head_ref == 'chore/enable-test-workflows')
         continue-on-error: true
