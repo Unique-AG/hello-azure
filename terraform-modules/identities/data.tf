@@ -2,16 +2,10 @@ data "azuread_service_principal" "terraform" {
   client_id = var.client_id
 }
 
-# Data source for AKS cluster
-# IMPORTANT: This data source will fail during plan if cluster doesn't exist
-# This is expected during bootstrap - the cluster is created by workloads module
-# 
-# Solution: Apply workloads module first to create cluster, then apply identities
-# OR use: terraform plan -refresh=false (skips data source reads during plan)
 data "azurerm_kubernetes_cluster" "cluster" {
-  for_each = { cluster = true }
-  name     = var.cluster_name
+  name                = var.cluster_name
   resource_group_name = azurerm_resource_group.core.name
+  # depends_on          = [var.cluster_id] # this is needed for the initial bootstrap. However, it leads to role assignment being recreated if left uncommented. One solution would be to use outputs of the AKS module passed as variables. However ATM the needed outputs are not available.
 }
 
 data "azurerm_role_definition" "contributor" {

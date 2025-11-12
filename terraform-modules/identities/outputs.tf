@@ -1,9 +1,9 @@
 output "cluster_workload_identities" {
   description = "This output reflects configurations that must then be applied to the workloads in the cluster. The client_ids are to be used as Managed Identities while the subject must match exactly the Service Accounts Name and Namespace."
-  value = try([for key, wid in azurerm_federated_identity_credential.afic_workloads : {
-    client_id = try(data.azurerm_kubernetes_cluster.cluster["cluster"].kubelet_identity[0].client_id, null)
+  value = [for key, wid in azurerm_federated_identity_credential.afic_workloads : {
+    client_id = data.azurerm_kubernetes_cluster.cluster.kubelet_identity[0].client_id
     subject   = wid.subject
-  }], [])
+  }]
 }
 
 output "resource_group_sensitive_name" {
@@ -58,21 +58,5 @@ output "grafana_user_assigned_identity_id" {
 
 output "key_vault_secrets_provider_client_id" {
   description = "The client ID of the Key Vault secrets provider."
-  value       = try(data.azurerm_kubernetes_cluster.cluster["cluster"].key_vault_secrets_provider[0].secret_identity[0].client_id, null)
-}
-
-# Outputs for Key Vault role assignments - used to ensure they're created before secrets
-output "kv_main_secrets_officer_role_assignment_id" {
-  description = "ID of the Key Vault Secrets Officer role assignment on main Key Vault"
-  value       = azurerm_role_assignment.kv_main_secrets_officer_terraform_assign.id
-}
-
-output "kv_sensitive_secrets_officer_role_assignment_id" {
-  description = "ID of the Key Vault Secrets Officer role assignment on sensitive Key Vault"
-  value       = azurerm_role_assignment.kv_secrets_officer_terraform_assign.id
-}
-
-output "kv_rbac_propagation_complete" {
-  description = "ID of the time_sleep resource that waits for RBAC propagation. Use this in depends_on for secrets."
-  value       = time_sleep.wait_for_kv_rbac_propagation.id
+  value       = data.azurerm_kubernetes_cluster.cluster.key_vault_secrets_provider[0].secret_identity[0].client_id
 }
