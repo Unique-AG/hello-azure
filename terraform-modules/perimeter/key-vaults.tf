@@ -8,7 +8,7 @@ resource "azurerm_key_vault" "sensitive_kv" {
   purge_protection_enabled    = true
   sku_name                    = var.kv_sku
   tags                        = var.tags
-  enable_rbac_authorization   = true
+  rbac_authorization_enabled  = true
   #FIXME: With private GitHub runners, we could allow only traffic from specific IP ranges here instead
   #tfsec:ignore:azure-keyvault-specify-network-acl
   network_acls {
@@ -27,7 +27,7 @@ resource "azurerm_key_vault" "main_kv" {
   purge_protection_enabled    = true
   sku_name                    = var.kv_sku
   tags                        = var.tags
-  enable_rbac_authorization   = true
+  rbac_authorization_enabled  = true
   #tfsec:ignore:azure-keyvault-specify-network-acl
   network_acls {
     bypass         = "AzureServices"
