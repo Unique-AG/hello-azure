@@ -3,11 +3,13 @@ data "azuread_service_principal" "terraform" {
 }
 
 # Data source for AKS cluster
-# Note: During bootstrap, if cluster doesn't exist, this will fail.
-# Apply workloads module first, or use -target to apply in stages.
-# Using for_each with a single key to allow conditional access in resources
+# IMPORTANT: This data source will fail during plan if cluster doesn't exist
+# This is expected during bootstrap - the cluster is created by workloads module
+# 
+# Solution: Apply workloads module first to create cluster, then apply identities
+# OR use: terraform plan -refresh=false (skips data source reads during plan)
 data "azurerm_kubernetes_cluster" "cluster" {
-  for_each = var.cluster_id != null ? { cluster = true } : {}
+  for_each = { cluster = true }
   name     = var.cluster_name
   resource_group_name = azurerm_resource_group.core.name
 }

@@ -6,11 +6,12 @@ locals {
   access_manager_key_vault_role_name = "Key Vault Data Access Administrator"         # todo: use custom role (DevOps)
   cluster_user_role_name             = "Azure Kubernetes Service Contributor Role"   # todo: use custom role (DevOps)
   cluster_rbac_admin_role_name       = "Azure Kubernetes Service RBAC Cluster Admin" # todo: use custom role (Emergency Admin)
-  cluster_exists                     = var.cluster_id != null
+  # Use static key for cluster data source to avoid unknown value issues
+  # All resources use static keys in for_each to match
 }
 
 resource "azurerm_role_assignment" "csi_identity_secret_reader_main_kv" {
-  for_each            = local.cluster_exists ? { main = true } : {}
+  for_each            = { main = true }
   principal_id         = data.azurerm_kubernetes_cluster.cluster["cluster"].key_vault_secrets_provider[0].secret_identity[0].object_id
   role_definition_name = local.secret_reader_key_vault_role_name
   scope                = var.main_kv_id
@@ -22,7 +23,7 @@ resource "azurerm_role_assignment" "csi_identity_secret_reader_main_kv" {
 }
 
 resource "azurerm_role_assignment" "csi_identity_secret_reader" {
-  for_each            = local.cluster_exists ? { sensitive = true } : {}
+  for_each            = { sensitive = true }
   principal_id         = data.azurerm_kubernetes_cluster.cluster["cluster"].key_vault_secrets_provider[0].secret_identity[0].object_id
   role_definition_name = local.secret_reader_key_vault_role_name
   scope                = var.sensitive_kv_id
@@ -175,8 +176,21 @@ resource "azurerm_role_assignment" "kv_access_administrator_terraform_assign" {
   }
 }
 
+# Wait for RBAC propagation after role assignments are created
+# Azure RBAC can take 1-5 minutes to propagate, but we wait 60 seconds as a reasonable minimum
+resource "time_sleep" "wait_for_kv_rbac_propagation" {
+  depends_on = [
+    azurerm_role_assignment.kv_main_secrets_officer_terraform_assign,
+    azurerm_role_assignment.kv_secrets_officer_terraform_assign,
+    azurerm_role_assignment.kv_main_access_administrator_terraform_assign,
+    azurerm_role_assignment.kv_access_administrator_terraform_assign
+  ]
+  
+  create_duration = "60s"
+}
+
 resource "azurerm_role_assignment" "cluster_user_terraform" {
-  for_each            = local.cluster_exists ? { user = true } : {}
+  for_each            = { user = true }
   principal_id         = data.azuread_service_principal.terraform.object_id
   role_definition_name = local.cluster_user_role_name
   scope                = data.azurerm_kubernetes_cluster.cluster["cluster"].id
@@ -187,7 +201,7 @@ resource "azurerm_role_assignment" "cluster_user_terraform" {
   }
 }
 resource "azurerm_role_assignment" "cluster_rbac_admin_terraform" {
-  for_each            = local.cluster_exists ? { rbac_admin = true } : {}
+  for_each            = { rbac_admin = true }
   principal_id         = data.azuread_service_principal.terraform.object_id
   role_definition_name = local.cluster_rbac_admin_role_name
   scope                = data.azurerm_kubernetes_cluster.cluster["cluster"].id
@@ -198,7 +212,7 @@ resource "azurerm_role_assignment" "cluster_rbac_admin_terraform" {
   }
 }
 resource "azurerm_role_assignment" "kubelet_identity_acr_puller_assignment" {
-  for_each            = local.cluster_exists ? { acr_puller = true } : {}
+  for_each            = { acr_puller = true }
   principal_id         = data.azurerm_kubernetes_cluster.cluster["cluster"].kubelet_identity[0].object_id
   role_definition_name = azurerm_role_definition.acr_puller.name
   scope                = azurerm_resource_group.core.id
@@ -234,7 +248,7 @@ resource "azurerm_role_assignment" "aks_workload_identity_cognitive_services_use
 
 # AGIC Identity needs at least 'Reader' access to Application Gateway's Resource Group
 resource "azurerm_role_assignment" "application_gateway_ingres_controller_reader_role" {
-  for_each            = local.cluster_exists ? { reader = true } : {}
+  for_each            = { reader = true }
   scope                = azurerm_resource_group.core.id
   role_definition_name = "Reader"
   principal_id         = data.azurerm_kubernetes_cluster.cluster["cluster"].ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
@@ -247,7 +261,7 @@ resource "azurerm_role_assignment" "application_gateway_ingres_controller_reader
 
 # AGIC Identity needs at least 'Contributor' access to Application Gateway
 resource "azurerm_role_assignment" "application_gateway_ingres_controller_contributor_role" {
-  for_each            = local.cluster_exists ? { contributor = true } : {}
+  for_each            = { contributor = true }
   scope                = var.application_gateway_id
   role_definition_name = "Contributor"
   principal_id         = data.azurerm_kubernetes_cluster.cluster["cluster"].ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
@@ -260,7 +274,7 @@ resource "azurerm_role_assignment" "application_gateway_ingres_controller_contri
 
 # AGIC Identity needs at least 'Read and join' access to Subnet
 resource "azurerm_role_assignment" "application_gateway_ingres_controller_vnet_subnet_access" {
-  for_each            = local.cluster_exists ? { vnet_subnet = true } : {}
+  for_each            = { vnet_subnet = true }
   scope                = var.resource_group_vnet_id
   role_definition_name = azurerm_role_definition.vnet_subnet_access.name
   principal_id         = data.azurerm_kubernetes_cluster.cluster["cluster"].ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
@@ -273,7 +287,7 @@ resource "azurerm_role_assignment" "application_gateway_ingres_controller_vnet_s
 
 #Azure Active Directory group assignments
 resource "azurerm_role_assignment" "cluster_user_group" {
-  for_each            = local.cluster_exists ? { user_group = true } : {}
+  for_each            = { user_group = true }
   principal_id         = azuread_group.admin_kubernetes_cluster.object_id
   role_definition_name = local.cluster_user_role_name
   scope                = data.azurerm_kubernetes_cluster.cluster["cluster"].id
@@ -284,7 +298,7 @@ resource "azurerm_role_assignment" "cluster_user_group" {
   }
 }
 resource "azurerm_role_assignment" "cluster_rbac_admin_group" {
-  for_each            = local.cluster_exists ? { rbac_admin_group = true } : {}
+  for_each            = { rbac_admin_group = true }
   principal_id         = azuread_group.admin_kubernetes_cluster.object_id
   role_definition_name = local.cluster_rbac_admin_role_name
   scope                = data.azurerm_kubernetes_cluster.cluster["cluster"].id
@@ -320,7 +334,7 @@ resource "azurerm_role_assignment" "telemetry_observer_group" {
 
 # Having groups assignable to roles requires Azure AD Premium. As a workaround add users directly
 resource "azurerm_role_assignment" "cluster_user_users" {
-  for_each             = local.cluster_exists ? data.azuread_user.cluster_admin : {}
+  for_each             = data.azuread_user.cluster_admin
   principal_id         = each.value.object_id
   role_definition_name = local.cluster_user_role_name
   scope                = data.azurerm_kubernetes_cluster.cluster["cluster"].id
@@ -332,7 +346,7 @@ resource "azurerm_role_assignment" "cluster_user_users" {
 }
 
 resource "azurerm_role_assignment" "cluster_rbac_admin_users" {
-  for_each             = local.cluster_exists ? data.azuread_user.cluster_admin : {}
+  for_each             = data.azuread_user.cluster_admin
   principal_id         = each.value.object_id
   role_definition_name = local.cluster_rbac_admin_role_name
   scope                = data.azurerm_kubernetes_cluster.cluster["cluster"].id
@@ -378,7 +392,7 @@ resource "azurerm_role_assignment" "telemetry_observer_users" {
   }
 }
 resource "azurerm_role_assignment" "dns_contributor" {
-  for_each                        = local.cluster_exists ? { dns = true } : {}
+  for_each                        = { dns = true }
   scope                            = var.dns_zone_id
   role_definition_name             = "DNS Zone Contributor"
   principal_id                     = data.azurerm_kubernetes_cluster.cluster["cluster"].kubelet_identity[0].object_id

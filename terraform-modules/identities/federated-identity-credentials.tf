@@ -1,6 +1,6 @@
 # #For k8s service accounts
 resource "azurerm_federated_identity_credential" "afic_workloads" {
-  for_each            = var.cluster_id != null ? var.cluster_workload_identities : {}
+  for_each            = var.cluster_workload_identities
   name                = each.value.name
   resource_group_name = azurerm_resource_group.core.name
   audience            = ["api://AzureADTokenExchange"]

@@ -51,10 +51,119 @@ jobs:
         id: validate
         run: terraform validate -no-color
 
-      - name: Terraform Plan
+      - name: Azure Login
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/chore/enable-test-workflows') || (github.event_name == 'pull_request' && github.head_ref == 'chore/enable-test-workflows')
+        uses: azure/login@a65d910e8af852a8061c627c456678983e180302 #v2.2.0
+        with:
+          subscription-id: 782871a0-bcee-44fb-851f-ccd3e69ada2a
+
+      - name: Stage 1 - Apply Key Vault Role Assignments First
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/chore/enable-test-workflows') || (github.event_name == 'pull_request' && github.head_ref == 'chore/enable-test-workflows')
+        continue-on-error: true
+        run: |
+          # Stage 1: Apply only Key Vault role assignments to grant permissions
+          # This must happen before importing secrets (which requires read permissions)
+          echo "=== Stage 1: Creating Key Vault role assignments ==="
+          terraform apply -target='module.identities.azurerm_role_assignment.kv_main_crypto_officer_terraform_assign' \
+            -target='module.identities.azurerm_role_assignment.kv_main_secrets_officer_terraform_assign' \
+            -target='module.identities.azurerm_role_assignment.kv_main_access_administrator_terraform_assign' \
+            -target='module.identities.azurerm_role_assignment.kv_crypto_officer_terraform_assign' \
+            -target='module.identities.azurerm_role_assignment.kv_secrets_officer_terraform_assign' \
+            -target='module.identities.azurerm_role_assignment.kv_access_administrator_terraform_assign' \
+            -auto-approve || true
+          # Wait for RBAC propagation (matches time_sleep.wait_for_kv_rbac_propagation duration)
+          # Azure RBAC can take 1-5 minutes, but 120 seconds is a reasonable minimum
+          echo "Waiting 120 seconds for RBAC propagation..."
+          sleep 120
+
+      - name: Stage 1b - Import Existing Resources
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/chore/enable-test-workflows') || (github.event_name == 'pull_request' && github.head_ref == 'chore/enable-test-workflows')
+        continue-on-error: true
+        run: |
+          # Stage 1b: Import existing resources into Terraform state
+          # This prevents Terraform from trying to create resources that already exist
+          # Secrets are imported here so Terraform knows they exist (avoids 403 errors during plan)
+          echo "=== Stage 1b: Importing existing resources ==="
+          
+          # Import resource group
+          terraform import azurerm_resource_group.vnet /subscriptions/782871a0-bcee-44fb-851f-ccd3e69ada2a/resourceGroups/rg-vnet-002 || true
+          
+          # Import resource provider registrations
+          terraform import 'module.perimeter.azurerm_resource_provider_registration.azure_dashboard_provider' /subscriptions/782871a0-bcee-44fb-851f-ccd3e69ada2a/providers/Microsoft.Dashboard || true
+          terraform import 'module.perimeter.azurerm_resource_provider_registration.azure_monitor_provider' /subscriptions/782871a0-bcee-44fb-851f-ccd3e69ada2a/providers/Microsoft.Monitor || true
+          terraform import 'module.perimeter.azurerm_resource_provider_registration.azure_alerts_provider' /subscriptions/782871a0-bcee-44fb-851f-ccd3e69ada2a/providers/Microsoft.AlertsManagement || true
+          
+          # Import Key Vault secrets and keys - ALL secrets that exist
+          # Note: Get latest versions using Azure CLI if needed: az keyvault secret show --vault-name hakv2test --name <secret-name> --query id -o tsv
+          terraform import 'module.workloads.azurerm_key_vault_secret.rabbitmq_password_chat' https://hakv2test.vault.azure.net/secrets/rabbitmq-password-chat/4528a8aaa6ca42a79da23cee9aeb6ef9 || true
+          terraform import 'module.workloads.azurerm_key_vault_secret.zitadel_db_user_password' https://hakv2test.vault.azure.net/secrets/zitadel-db-user-password/4500d9da718f4ef9ad97bb8baabcae26 || true
+          terraform import 'module.workloads.azurerm_key_vault_secret.encryption_key_app_repository' https://hakv2test.vault.azure.net/secrets/encryption-key-app-repository/3af565177abf4bb593f84734a7b0ea51 || true
+          terraform import 'module.workloads.azurerm_key_vault_secret.encryption_key_ingestion' https://hakv2test.vault.azure.net/secrets/encryption-key-ingestion/03db585732664d5ba93c13a9d6f540bb || true
+          terraform import 'module.workloads.azurerm_key_vault_secret.encryption_key_node_chat_lxm' https://hakv2test.vault.azure.net/secrets/encryption-key-chat-lxm/$(az keyvault secret show --vault-name hakv2test --name encryption-key-chat-lxm --query id -o tsv | cut -d'/' -f9) || true
+          terraform import 'module.workloads.azurerm_key_vault_secret.zitadel_master_key' https://hakv2test.vault.azure.net/secrets/zitadel-master-key/$(az keyvault secret show --vault-name hakv2test --name zitadel-master-key --query id -o tsv | cut -d'/' -f9) || true
+          terraform import 'module.workloads.azurerm_key_vault_secret.zitadel_pat' https://hakv1test.vault.azure.net/secrets/manual-zitadel-scope-mgmt-pat/86bfb6360898437aa2b729e37a3836c6 || true
+          terraform import 'module.workloads.module.ingestion_cache.azurerm_key_vault_key.storage-account-byok[0]' https://hakv2test.vault.azure.net/keys/ingestion-cache-cmk/18cfe21315b742149192e82178811116 || true
+          terraform import 'module.workloads.module.ingestion_cache.azurerm_key_vault_secret.storage-account-connection-string-1[0]' https://hakv2test.vault.azure.net/secrets/ingestion-cache-connection-string-1/$(az keyvault secret show --vault-name hakv2test --name ingestion-cache-connection-string-1 --query id -o tsv | cut -d'/' -f9) || true
+          terraform import 'module.workloads.module.ingestion_cache.azurerm_key_vault_secret.storage-account-connection-string-2[0]' https://hakv2test.vault.azure.net/secrets/ingestion-cache-connection-string-2/d68a660e88de4e0382da7d7b17551701 || true
+          terraform import 'module.workloads.module.ingestion_storage.azurerm_key_vault_key.storage-account-byok[0]' https://hakv2test.vault.azure.net/keys/ingestion-storage-cmk/a5357c2169794008872225e98f800949 || true
+          terraform import 'module.workloads.module.ingestion_storage.azurerm_key_vault_secret.storage-account-connection-string-1[0]' https://hakv2test.vault.azure.net/secrets/ingestion-storage-connection-string-1/$(az keyvault secret show --vault-name hakv2test --name ingestion-storage-connection-string-1 --query id -o tsv | cut -d'/' -f9) || true
+          terraform import 'module.workloads.module.ingestion_storage.azurerm_key_vault_secret.storage-account-connection-string-2[0]' https://hakv2test.vault.azure.net/secrets/ingestion-storage-connection-string-2/6c6e4a7baa68457fa876c0a1f1e870a3 || true
+          terraform import 'module.workloads.module.postgresql.azurerm_key_vault_secret.port[0]' https://hakv2test.vault.azure.net/secrets/psql-s5xqjn64-port/$(az keyvault secret show --vault-name hakv2test --name psql-s5xqjn64-port --query id -o tsv | cut -d'/' -f9) || true
+          terraform import 'module.workloads.module.postgresql.azurerm_key_vault_secret.username[0]' https://hakv2test.vault.azure.net/secrets/psql-s5xqjn64-username/$(az keyvault secret show --vault-name hakv2test --name psql-s5xqjn64-username --query id -o tsv | cut -d'/' -f9) || true
+          terraform import 'module.workloads.module.postgresql.azurerm_key_vault_secret.password[0]' https://hakv2test.vault.azure.net/secrets/psql-s5xqjn64-password/$(az keyvault secret show --vault-name hakv2test --name psql-s5xqjn64-password --query id -o tsv | cut -d'/' -f9) || true
+          terraform import 'module.workloads.module.redis.azurerm_key_vault_secret.redis-cache-host[0]' https://hakv2test.vault.azure.net/secrets/uqharedis-test-host/49c677c6b0614c538fc819d734a16b00 || true
+          terraform import 'module.workloads.module.redis.azurerm_key_vault_secret.redis-cache-password[0]' https://hakv2test.vault.azure.net/secrets/uqharedis-test-password/$(az keyvault secret show --vault-name hakv2test --name uqharedis-test-password --query id -o tsv | cut -d'/' -f9) || true
+          terraform import 'module.workloads.module.redis.azurerm_key_vault_secret.redis-cache-port[0]' https://hakv2test.vault.azure.net/secrets/uqharedis-test-port/$(az keyvault secret show --vault-name hakv2test --name uqharedis-test-port --query id -o tsv | cut -d'/' -f9) || true
+          terraform import 'module.identities.module.application_registration.azurerm_key_vault_secret.aad_app_gitops_client_id[0]' https://hakv2test.vault.azure.net/secrets/aad-app-ha-test-gitops-client-id/$(az keyvault secret show --vault-name hakv2test --name aad-app-ha-test-gitops-client-id --query id -o tsv | cut -d'/' -f9) || true
+          terraform import 'module.identities.module.application_registration.azurerm_key_vault_secret.aad_app_gitops_client_secret[0]' https://hakv2test.vault.azure.net/secrets/aad-app-ha-test-gitops-client-secret/$(az keyvault secret show --vault-name hakv2test --name aad-app-ha-test-gitops-client-secret --query id -o tsv | cut -d'/' -f9) || true
+          
+          # Import Azure AD app role
+          terraform import 'module.identities.module.application_registration.azuread_application_app_role.managed_roles["system_support"]' /applications/ec9485d1-8e74-430b-9ab8-0b6c91ff0848/appRoles/8719acef-9791-41e4-9621-92d05315181c || true
+
+      - name: Handle soft-deleted Cognitive Services
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/chore/enable-test-workflows') || (github.event_name == 'pull_request' && github.head_ref == 'chore/enable-test-workflows')
+        continue-on-error: true
+        run: |
+          # Purge soft-deleted Cognitive Services accounts (or restore them if needed)
+          # Option 1: Purge (removes permanently) - allows Terraform to recreate fresh
+          az cognitiveservices account purge --name doc-intelligence-swedencentral-form-recognizer --resource-group resource-group-core --location swedencentral || true
+          az cognitiveservices account purge --name cognitive-account-swedencentral --resource-group resource-group-core --location swedencentral || true
+          # Option 2: Restore (uncomment if you want to restore instead of purge)
+          # az cognitiveservices account recover --name doc-intelligence-swedencentral-form-recognizer --resource-group resource-group-core || true
+          # az cognitiveservices account recover --name cognitive-account-swedencentral --resource-group resource-group-core || true
+
+      - name: Stage 2 - Apply Workloads (Create Cluster First)
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/chore/enable-test-workflows') || (github.event_name == 'pull_request' && github.head_ref == 'chore/enable-test-workflows')
+        continue-on-error: false
+        run: |
+          # Stage 2: Apply workloads module to create AKS cluster
+          # This must happen before identities module tries to read the cluster data source
+          # The cluster data source will fail during plan if cluster doesn't exist
+          echo "=== Stage 2: Creating AKS cluster and workloads ==="
+          terraform apply -target='module.workloads' -auto-approve
+          echo "Waiting 120 seconds for AKS cluster to be fully provisioned..."
+          sleep 120
+
+      - name: Stage 3 - Terraform Plan (Full)
         id: plan
-        run: terraform plan -no-color
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/chore/enable-test-workflows') || (github.event_name == 'pull_request' && github.head_ref == 'chore/enable-test-workflows')
+        run: |
+          # Stage 3: Plan full infrastructure
+          # At this point:
+          # - Role assignments are created and RBAC has propagated (Stage 1)
+          # - Secrets are imported into state (Stage 1b)
+          # - Cluster is created (Stage 2)
+          # We can now safely run a full plan without permission errors
+          echo "=== Stage 3: Planning full infrastructure ==="
+          terraform plan -no-color
       
-      - name: Terraform Apply
-        if: (github.event_name == 'push' && github.ref == 'refs/heads/chore/enable-test-workflows') || (github.event_name == 'pull_request' && github.head_ref == 'chore/enable-test-workflows') #'refs/heads/preview'
-        run: terraform apply -auto-approve -input=true
+      - name: Stage 3 - Terraform Apply (Full)
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/chore/enable-test-workflows') || (github.event_name == 'pull_request' && github.head_ref == 'chore/enable-test-workflows')
+        run: |
+          # Stage 3: Apply full infrastructure
+          # All prerequisites are met:
+          # - Key Vault permissions granted
+          # - Secrets imported
+          # - Cluster created
+          echo "=== Stage 3: Applying full infrastructure ==="
+          terraform apply -auto-approve -input=true

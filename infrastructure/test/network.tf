@@ -66,7 +66,7 @@ module "vnet" {
       address_prefixes = ["10.202.3.80/28"]
     }
     "snet-github" = {
-      name                                          = "snet-github-runners"
+      name                                          = "snet-github-runners-test"
       address_prefixes                              = ["10.202.3.96/28"]
       private_link_service_network_policies_enabled = true
       private_endpoint_network_policies             = "Disabled"

@@ -12,6 +12,12 @@ resource "azurerm_key_vault_secret" "rabbitmq_password_chat" {
   value           = random_password.rabbitmq_password_chat.result
   key_vault_id    = var.sensitive_kv_id
   expiration_date = "2099-12-31T23:59:59Z"
+  
+  lifecycle {
+    # Prevent Terraform from trying to read the secret value during plan
+    # This avoids 403 errors if permissions aren't fully propagated yet
+    ignore_changes = [value]
+  }
 }
 
 resource "random_password" "zitadel_db_user_password" {
@@ -27,6 +33,10 @@ resource "azurerm_key_vault_secret" "zitadel_db_user_password" {
   value           = random_password.zitadel_db_user_password.result
   key_vault_id    = var.sensitive_kv_id
   expiration_date = "2099-12-31T23:59:59Z"
+  
+  lifecycle {
+    ignore_changes = [value]
+  }
 }
 
 
@@ -43,6 +53,10 @@ resource "azurerm_key_vault_secret" "encryption_key_app_repository" {
   value           = random_password.encryption_key_app_repository.result
   key_vault_id    = var.sensitive_kv_id
   expiration_date = "2099-12-31T23:59:59Z"
+  
+  lifecycle {
+    ignore_changes = [value]
+  }
 }
 
 resource "random_id" "encryption_key_node_chat_lxm" {
@@ -57,6 +71,10 @@ resource "azurerm_key_vault_secret" "encryption_key_node_chat_lxm" {
   value           = random_id.encryption_key_node_chat_lxm.hex
   key_vault_id    = var.sensitive_kv_id
   expiration_date = "2099-12-31T23:59:59Z"
+  
+  lifecycle {
+    ignore_changes = [value]
+  }
 }
 
 resource "random_id" "encryption_key_ingestion" {
@@ -71,6 +89,10 @@ resource "azurerm_key_vault_secret" "encryption_key_ingestion" {
   value           = random_id.encryption_key_ingestion.hex
   key_vault_id    = var.sensitive_kv_id
   expiration_date = "2099-12-31T23:59:59Z"
+  
+  lifecycle {
+    ignore_changes = [value]
+  }
 }
 
 resource "random_password" "zitadel_master_key" {
@@ -85,6 +107,10 @@ resource "azurerm_key_vault_secret" "zitadel_master_key" {
   name         = var.zitadel_master_key_secret_name
   value        = random_password.zitadel_master_key.result
   key_vault_id = var.sensitive_kv_id
+  
+  lifecycle {
+    ignore_changes = [value]
+  }
 }
 
 resource "azurerm_key_vault_secret" "zitadel_pat" {
