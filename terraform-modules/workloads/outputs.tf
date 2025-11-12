@@ -155,7 +155,7 @@ output "csi_user_assigned_identity_name" {
 }
 
 output "application_gateway_ip_address" {
-  value       = data.azurerm_public_ip.application_gateway_public_ip.ip_address
+  value       = azurerm_public_ip.application_gateway_public_ip.ip_address
   description = "The public IP address of the Application Gateway"
 }
 
