@@ -6,10 +6,12 @@ locals {
   access_manager_key_vault_role_name = "Key Vault Data Access Administrator"         # todo: use custom role (DevOps)
   cluster_user_role_name             = "Azure Kubernetes Service Contributor Role"   # todo: use custom role (DevOps)
   cluster_rbac_admin_role_name       = "Azure Kubernetes Service RBAC Cluster Admin" # todo: use custom role (Emergency Admin)
+  cluster_exists                     = try(length(var.cluster_id) > 0, false)
 }
 
 resource "azurerm_role_assignment" "csi_identity_secret_reader_main_kv" {
-  principal_id         = data.azurerm_kubernetes_cluster.cluster.key_vault_secrets_provider[0].secret_identity[0].object_id
+  count                = local.cluster_exists ? 1 : 0
+  principal_id         = data.azurerm_kubernetes_cluster.cluster[0].key_vault_secrets_provider[0].secret_identity[0].object_id
   role_definition_name = local.secret_reader_key_vault_role_name
   scope                = var.main_kv_id
 
@@ -20,7 +22,8 @@ resource "azurerm_role_assignment" "csi_identity_secret_reader_main_kv" {
 }
 
 resource "azurerm_role_assignment" "csi_identity_secret_reader" {
-  principal_id         = data.azurerm_kubernetes_cluster.cluster.key_vault_secrets_provider[0].secret_identity[0].object_id
+  count                = local.cluster_exists ? 1 : 0
+  principal_id         = data.azurerm_kubernetes_cluster.cluster[0].key_vault_secrets_provider[0].secret_identity[0].object_id
   role_definition_name = local.secret_reader_key_vault_role_name
   scope                = var.sensitive_kv_id
 
@@ -173,9 +176,10 @@ resource "azurerm_role_assignment" "kv_access_administrator_terraform_assign" {
 }
 
 resource "azurerm_role_assignment" "cluster_user_terraform" {
+  count                = local.cluster_exists ? 1 : 0
   principal_id         = data.azuread_service_principal.terraform.object_id
   role_definition_name = local.cluster_user_role_name
-  scope                = data.azurerm_kubernetes_cluster.cluster.id
+  scope                = data.azurerm_kubernetes_cluster.cluster[0].id
 
   lifecycle {
     # Only replace if principal_id or role_definition_name changes, not if cluster.id refreshes
@@ -183,9 +187,10 @@ resource "azurerm_role_assignment" "cluster_user_terraform" {
   }
 }
 resource "azurerm_role_assignment" "cluster_rbac_admin_terraform" {
+  count                = local.cluster_exists ? 1 : 0
   principal_id         = data.azuread_service_principal.terraform.object_id
   role_definition_name = local.cluster_rbac_admin_role_name
-  scope                = data.azurerm_kubernetes_cluster.cluster.id
+  scope                = data.azurerm_kubernetes_cluster.cluster[0].id
 
   lifecycle {
     # Only replace if principal_id or role_definition_name changes, not if cluster.id refreshes
@@ -193,7 +198,8 @@ resource "azurerm_role_assignment" "cluster_rbac_admin_terraform" {
   }
 }
 resource "azurerm_role_assignment" "kubelet_identity_acr_puller_assignment" {
-  principal_id         = data.azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
+  count                = local.cluster_exists ? 1 : 0
+  principal_id         = data.azurerm_kubernetes_cluster.cluster[0].kubelet_identity[0].object_id
   role_definition_name = azurerm_role_definition.acr_puller.name
   scope                = azurerm_resource_group.core.id
 
@@ -228,9 +234,10 @@ resource "azurerm_role_assignment" "aks_workload_identity_cognitive_services_use
 
 # AGIC Identity needs at least 'Reader' access to Application Gateway's Resource Group
 resource "azurerm_role_assignment" "application_gateway_ingres_controller_reader_role" {
+  count                = local.cluster_exists ? 1 : 0
   scope                = azurerm_resource_group.core.id
   role_definition_name = "Reader"
-  principal_id         = data.azurerm_kubernetes_cluster.cluster.ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
+  principal_id         = data.azurerm_kubernetes_cluster.cluster[0].ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
 
   lifecycle {
     # Only replace if principal_id or role_definition_name changes, not if cluster.id refreshes
@@ -240,9 +247,10 @@ resource "azurerm_role_assignment" "application_gateway_ingres_controller_reader
 
 # AGIC Identity needs at least 'Contributor' access to Application Gateway
 resource "azurerm_role_assignment" "application_gateway_ingres_controller_contributor_role" {
+  count                = local.cluster_exists ? 1 : 0
   scope                = var.application_gateway_id
   role_definition_name = "Contributor"
-  principal_id         = data.azurerm_kubernetes_cluster.cluster.ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
+  principal_id         = data.azurerm_kubernetes_cluster.cluster[0].ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
 
   lifecycle {
     # Only replace if principal_id or role_definition_name changes, not if cluster.id refreshes
@@ -252,9 +260,10 @@ resource "azurerm_role_assignment" "application_gateway_ingres_controller_contri
 
 # AGIC Identity needs at least 'Read and join' access to Subnet
 resource "azurerm_role_assignment" "application_gateway_ingres_controller_vnet_subnet_access" {
+  count                = local.cluster_exists ? 1 : 0
   scope                = var.resource_group_vnet_id
   role_definition_name = azurerm_role_definition.vnet_subnet_access.name
-  principal_id         = data.azurerm_kubernetes_cluster.cluster.ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
+  principal_id         = data.azurerm_kubernetes_cluster.cluster[0].ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
 
   lifecycle {
     # Only replace if principal_id or role_definition_name changes, not if cluster.id refreshes
@@ -264,9 +273,10 @@ resource "azurerm_role_assignment" "application_gateway_ingres_controller_vnet_s
 
 #Azure Active Directory group assignments
 resource "azurerm_role_assignment" "cluster_user_group" {
+  count                = local.cluster_exists ? 1 : 0
   principal_id         = azuread_group.admin_kubernetes_cluster.object_id
   role_definition_name = local.cluster_user_role_name
-  scope                = data.azurerm_kubernetes_cluster.cluster.id
+  scope                = data.azurerm_kubernetes_cluster.cluster[0].id
 
   lifecycle {
     # Only replace if principal_id or role_definition_name changes, not if cluster.id refreshes
@@ -274,9 +284,10 @@ resource "azurerm_role_assignment" "cluster_user_group" {
   }
 }
 resource "azurerm_role_assignment" "cluster_rbac_admin_group" {
+  count                = local.cluster_exists ? 1 : 0
   principal_id         = azuread_group.admin_kubernetes_cluster.object_id
   role_definition_name = local.cluster_rbac_admin_role_name
-  scope                = data.azurerm_kubernetes_cluster.cluster.id
+  scope                = data.azurerm_kubernetes_cluster.cluster[0].id
 
   lifecycle {
     # Only replace if principal_id or role_definition_name changes, not if cluster.id refreshes
@@ -309,10 +320,10 @@ resource "azurerm_role_assignment" "telemetry_observer_group" {
 
 # Having groups assignable to roles requires Azure AD Premium. As a workaround add users directly
 resource "azurerm_role_assignment" "cluster_user_users" {
-  for_each             = data.azuread_user.cluster_admin
+  for_each             = local.cluster_exists ? data.azuread_user.cluster_admin : {}
   principal_id         = each.value.object_id
   role_definition_name = local.cluster_user_role_name
-  scope                = data.azurerm_kubernetes_cluster.cluster.id
+  scope                = data.azurerm_kubernetes_cluster.cluster[0].id
 
   lifecycle {
     # Only replace if principal_id or role_definition_name changes, not if cluster.id refreshes
@@ -321,10 +332,10 @@ resource "azurerm_role_assignment" "cluster_user_users" {
 }
 
 resource "azurerm_role_assignment" "cluster_rbac_admin_users" {
-  for_each             = data.azuread_user.cluster_admin
+  for_each             = local.cluster_exists ? data.azuread_user.cluster_admin : {}
   principal_id         = each.value.object_id
   role_definition_name = local.cluster_rbac_admin_role_name
-  scope                = data.azurerm_kubernetes_cluster.cluster.id
+  scope                = data.azurerm_kubernetes_cluster.cluster[0].id
 
   lifecycle {
     # Only replace if principal_id or role_definition_name changes, not if cluster.id refreshes
@@ -367,9 +378,10 @@ resource "azurerm_role_assignment" "telemetry_observer_users" {
   }
 }
 resource "azurerm_role_assignment" "dns_contributor" {
+  count                            = local.cluster_exists ? 1 : 0
   scope                            = var.dns_zone_id
   role_definition_name             = "DNS Zone Contributor"
-  principal_id                     = data.azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
+  principal_id                     = data.azurerm_kubernetes_cluster.cluster[0].kubelet_identity[0].object_id
   skip_service_principal_aad_check = true
 
   lifecycle {

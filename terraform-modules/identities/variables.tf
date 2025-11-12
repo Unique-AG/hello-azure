@@ -89,8 +89,9 @@ variable "cluster_name" {
 }
 
 variable "cluster_id" {
-  description = "The ID of the cluster."
+  description = "The ID of the cluster. Can be null/empty during bootstrap when cluster doesn't exist yet."
   type        = string
+  default     = null
 }
 
 variable "psql_user_assigned_identity_name" {

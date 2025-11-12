@@ -2,11 +2,14 @@ data "azuread_service_principal" "terraform" {
   client_id = var.client_id
 }
 
+# Conditional data source: only read cluster if cluster_id is provided and non-empty
+# This allows bootstrap scenarios where the cluster doesn't exist yet
+# Note: If var.cluster_id is unknown (from module output), Terraform will evaluate this during apply
+# If the cluster doesn't exist, the data source will fail, which is expected during bootstrap
 data "azurerm_kubernetes_cluster" "cluster" {
+  count               = try(length(var.cluster_id) > 0, false) ? 1 : 0
   name                = var.cluster_name
   resource_group_name = azurerm_resource_group.core.name
-  depends_on          = [var.cluster_id]  # Ensure cluster exists before fetching cluster data
-  # depends_on          = [var.cluster_id] # this is needed for the initial bootstrap. However, it leads to role assignment being recreated if left uncommented. One solution would be to use outputs of the AKS module passed as variables. However ATM the needed outputs are not available.
 }
 
 data "azurerm_role_definition" "contributor" {
