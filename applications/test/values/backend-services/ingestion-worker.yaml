@@ -1,7 +1,7 @@
 auditVolume:
   attributes:
-    resourceGroup: resource-group-sensitive
-    storageAccount: helloazureaudit66d7a195
+    resourceGroup: unset_default_value
+    storageAccount: unset_default_value
 image:
   tag: "2026.06.0"
   repository: uqhacrtest.azurecr.io/backend-service-ingestion-worker
