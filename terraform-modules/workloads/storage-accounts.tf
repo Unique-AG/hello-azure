@@ -138,16 +138,3 @@ resource "azurerm_storage_container" "audit_containers" {
   container_access_type = "private"
   depends_on            = [module.audit_storage]
 }
-
-# Create Key Vault secrets for audit storage mounting
-resource "azurerm_key_vault_secret" "audit_storage_resource_group" {
-  name         = var.audit_storage_resource_group_secret_name
-  value        = data.azurerm_resource_group.sensitive.name
-  key_vault_id = var.sensitive_kv_id
-}
-
-resource "azurerm_key_vault_secret" "audit_storage_account_name" {
-  name         = var.audit_storage_account_name_secret_name
-  value        = module.audit_storage.storage_account_name
-  key_vault_id = var.sensitive_kv_id
-}

@@ -118,16 +118,6 @@ variable "audit_containers" {
   ]
 }
 
-variable "audit_storage_resource_group_secret_name" {
-  type    = string
-  default = "audit-storage-resource-group"
-}
-
-variable "audit_storage_account_name_secret_name" {
-  type    = string
-  default = "audit-storage-account-name"
-}
-
 variable "ip_name" {
   description = "Name of the public IP for the Application Gateway"
   type        = string
