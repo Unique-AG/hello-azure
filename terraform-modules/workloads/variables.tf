@@ -107,13 +107,14 @@ variable "audit_containers" {
   description = "List of storage container names for audit logs"
   type        = list(string)
   default = [
-    "backend-service-chat",
-    "backend-service-ingestion",
-    "backend-service-ingestion-worker",
-    "backend-service-ingestion-worker-chat",
-    "backend-service-app-repository",
-    "backend-service-scope-management",
-    "backend-service-configuration"
+    "node-chat",
+    "node-ingestion",
+    "node-ingestion-worker",
+    "node-ingestion-worker-chat",
+    "node-app-repository",
+    "node-scope-management",
+    "node-theme",
+    "configuration-backend"
   ]
 }
 
