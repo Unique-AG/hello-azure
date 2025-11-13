@@ -39,7 +39,7 @@ module "openai" {
       ]
     }
   }
-  key_vault_id = var.main_kv_id
+  # key_vault_id = var.main_kv_id
 }
 
 module "document_intelligence" {
