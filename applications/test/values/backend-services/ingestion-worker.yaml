@@ -3,7 +3,7 @@ image:
   repository: uqhacrtest.azurecr.io/backend-service-ingestion-worker
 secretProvider:
   vaults:
-    hakv1test:
+    hakv1testv2:
       AZURE_OPENAI_API_ENDPOINT: cognitive-account-swedencentral-ep
       AZURE_DOCUMENT_INTELLIGENCE_ENDPOINTS: azure-document-intelligence-endpoints
 serviceAccount:

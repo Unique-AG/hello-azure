@@ -60,12 +60,12 @@ serviceAccount:
     enabled: true
 secretProvider:
   vaults:
-    hakv2test:
+    hakv2testv2:
       DATABASE_URL: database-url-ingestion
       AZURE_FGPT_STORAGE_CONNECTION_STRING: ingestion-storage-connection-string-1
       AZURE_INGESTION_CACHE_STORAGE_CONNECTION_STRING: ingestion-cache-connection-string-1
       INGESTION_ENCRYPTION_KEY: encryption-key-ingestion
-    hakv1test:
+    hakv1testv2:
       AZURE_OPENAI_API_ENDPOINT: cognitive-account-swedencentral-ep
       AZURE_DOCUMENT_INTELLIGENCE_ENDPOINTS: azure-document-intelligence-endpoints
 volumeMounts:

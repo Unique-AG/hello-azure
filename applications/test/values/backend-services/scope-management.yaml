@@ -27,7 +27,7 @@ extraRoutes:
           value: /scim
 secretProvider:
   vaults:
-    hakv2test:
+    hakv2testv2:
       DATABASE_URL: database-url-scope-management
-    hakv1test:
+    hakv1testv2:
       ZITADEL_PAT: manual-zitadel-scope-mgmt-pat
