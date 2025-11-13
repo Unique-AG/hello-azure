@@ -1,6 +1,10 @@
-data "azurerm_public_ip" "application_gateway_public_ip" {
+resource "azurerm_public_ip" "application_gateway_public_ip" {
   name                = var.ip_name
   resource_group_name = var.resource_group_core_name
+  location            = data.azurerm_resource_group.core.location
+  allocation_method   = "Static"
+  sku                 = "Standard"
+  tags                = var.tags
 }
 
 module "application_gateway" {
@@ -28,8 +32,8 @@ module "application_gateway" {
   }
 
   public_frontend_ip_configuration = {
-    name                   = data.azurerm_public_ip.application_gateway_public_ip.name
-    ip_address_resource_id = data.azurerm_public_ip.application_gateway_public_ip.id
+    name                   = azurerm_public_ip.application_gateway_public_ip.name
+    ip_address_resource_id = azurerm_public_ip.application_gateway_public_ip.id
   }
 
   # Preserve existing WAF policy name to avoid replacement
@@ -53,4 +57,8 @@ module "application_gateway" {
 
 
   tags = var.tags
+
+  depends_on = [
+    azurerm_public_ip.application_gateway_public_ip
+  ]
 }

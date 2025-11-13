@@ -9,9 +9,11 @@ module "tfstate_sa" {
   name                = var.storage_account_name
   resource_group_name = var.resource_group_name
   location            = var.tfstate_location
+  backup_vault        = null
   containers = {
     (var.container_name) = {}
   }
+  public_network_access_enabled = true
 }
 
 resource "azuread_application_registration" "terraform" {

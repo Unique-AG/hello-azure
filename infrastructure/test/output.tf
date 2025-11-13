@@ -141,10 +141,10 @@ output "cluster_kublet_client_id" {
   value       = module.workloads.cluster_kublet_client_id
   description = "The client ID of the cluster kubelet."
 }
-output "key_vault_secrets_provider_client_id" {
-  value       = module.identities.key_vault_secrets_provider_client_id
-  description = "The client ID of the Key Vault secrets provider."
-}
+# output "key_vault_secrets_provider_client_id" {
+#   value       = module.identities.key_vault_secrets_provider_client_id
+#   description = "The client ID of the Key Vault secrets provider."
+# }
 output "dns_zone_name_servers" {
   description = "The Name Servers for the DNS zone"
   value       = module.perimeter.dns_zone_name_servers

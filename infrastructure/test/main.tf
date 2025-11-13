@@ -30,14 +30,14 @@ module "identities" {
   ingestion_storage_identity_name              = var.ingestion_storage_identity_name
   grafana_identity_name                        = var.grafana_identity_name
   main_keyvault_secret_writers                 = var.keyvault_secret_writer_user_ids
-  main_kv_id                                   = module.perimeter.key_vault_main_id
+  main_kv_id                                   = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.KeyVault/vaults/${module.perimeter.key_vault_main_name}"
   psql_user_assigned_identity_name             = var.psql_identity_name
   resource_audit_location                      = var.resource_audit_location
   resource_group_core_location                 = var.resource_group_core_location
   resource_group_sensitive_location            = var.resource_group_sensitive_location
   resource_group_vnet_id                       = azurerm_resource_group.vnet.id
   resource_vnet_location                       = var.resource_vnet_location
-  sensitive_kv_id                              = module.perimeter.key_vault_sensitive_id
+  sensitive_kv_id                              = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_sensitive_name}/providers/Microsoft.KeyVault/vaults/${module.perimeter.key_vault_sensitive_name}"
   telemetry_observers                          = var.telemetry_observer_user_ids
 }
 

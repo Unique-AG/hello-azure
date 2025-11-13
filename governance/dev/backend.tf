@@ -1,8 +1,8 @@
 terraform {
 
-  #   backend "local" {
-  #     path  = "terraform.tfstate"
-  #   }
+    # backend "local" {
+    #   path  = "terraform.tfstate"
+    # }
 
   backend "azurerm" {
     # The backend configuration gets loaded from config.auto.tfvars
