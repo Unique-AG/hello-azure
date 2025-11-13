@@ -14,6 +14,7 @@ cronJob:
   concurrencyPolicy: Forbid
   enabled: true
   env:
+    AUDIT_LOG_DIR: /dev/stdout
     RUNNING_MODE: expired-content-deletion
   failedJobsHistoryLimit: 2
   jobTemplate:
@@ -51,6 +52,7 @@ extraCronJobs:
     schedule: "* * 31 2 *"
     restartPolicy: OnFailure
     env:
+      AUDIT_LOG_DIR: /dev/stdout
       RUNNING_MODE: elasticsearch-indexing
     resources:
       requests:
