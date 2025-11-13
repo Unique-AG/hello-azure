@@ -1,8 +1,7 @@
-serviceAccount:
-  enabled: true
-  workloadIdentity:
-    clientId: 2ffd1adb-50e7-4a89-bbef-26f6f944e2d3
-    enabled: true
+auditVolume:
+  attributes:
+    resourceGroup: unset_default_value
+    storageAccount: unset_default_value
 image:
   tag: "2025.44.1"
   repository: uqhacrtest.azurecr.io/backend-service-app-repository
@@ -13,3 +12,8 @@ secretProvider:
     hakv2test:
       DATABASE_URL: database-url-app-repository
       ENCRYPTION_KEY: encryption-key-app-repository
+serviceAccount:
+  enabled: true
+  workloadIdentity:
+    clientId: 2ffd1adb-50e7-4a89-bbef-26f6f944e2d3
+    enabled: true

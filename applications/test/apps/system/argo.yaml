@@ -22,11 +22,7 @@ spec:
     - chart: argocd-apps
       repoURL: https://argoproj.github.io/argo-helm
       targetRevision: 2.0.2
-      disableValidationOnInstall: true
       helm:
         releaseName: argo-appsets
         valueFiles:
           - $values/applications/test/values/argo/argo-appsets.yaml
-metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"

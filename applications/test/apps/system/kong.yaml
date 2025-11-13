@@ -67,6 +67,3 @@ spec:
         - /webhooks/1/clientConfig/caBundle
         - /webhooks/2/clientConfig/caBundle
       name: kong-controller-unique-validations
-metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"

@@ -1,8 +1,7 @@
-serviceAccount:
-  enabled: true
-  workloadIdentity:
-    clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
-    enabled: true
+auditVolume:
+  attributes:
+    resourceGroup: unset_default_value
+    storageAccount: unset_default_value
 image:
   tag: "2025.44.1"
   repository: uniquehelloazure.azurecr.io/backend-service-app-repository
@@ -13,3 +12,8 @@ secretProvider:
     helloazuresensitive:
       DATABASE_URL: database-url-app-repository
       ENCRYPTION_KEY: encryption-key-app-repository
+serviceAccount:
+  enabled: true
+  workloadIdentity:
+    clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
+    enabled: true

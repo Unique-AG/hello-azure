@@ -56,6 +56,11 @@ output "grafana_user_assigned_identity_id" {
   value       = azurerm_user_assigned_identity.grafana_identity.id
 }
 
+output "audit_storage_user_assigned_identity_id" {
+  description = "The ID of the user-assigned identity for audit storage."
+  value       = azurerm_user_assigned_identity.audit_storage_identity.id
+}
+
 output "key_vault_secrets_provider_client_id" {
   description = "The client ID of the Key Vault secrets provider."
   value       = data.azurerm_kubernetes_cluster.cluster.key_vault_secrets_provider[0].secret_identity[0].client_id

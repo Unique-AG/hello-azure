@@ -1,3 +1,9 @@
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  attributes:
+    resourceGroup: unset_default_value
+    storageAccount: unset_default_value
 autoscaling:
   enabled: true
   maxReplicas: 6
@@ -8,6 +14,7 @@ cronJob:
   concurrencyPolicy: Forbid
   enabled: true
   env:
+    AUDIT_LOG_DIR: /dev/stdout
     RUNNING_MODE: "DATA_REDACTION_TASK"
   failedJobsHistoryLimit: 2
   jobTemplate:
@@ -26,7 +33,7 @@ env:
   ANONYMIZED_CHAT_INTERACTIONS_EXPORT: "false"
   APP_REPOSITORY_URL: http://node-app-repository.unique.svc
   ASSISTANT_CORE_API_URL: http://assistants-core.unique.svc
-  AUDIT_LOG_DIR: /dev/stdout
+  AUDIT_LOG_DIR: /audit
   BENCHMARKS_PER_MINUTE_PER_PROCESS: 1
   CACHE_REDIS_DB: 3
   CHAT_FRONTEND_URL: unset_default_value

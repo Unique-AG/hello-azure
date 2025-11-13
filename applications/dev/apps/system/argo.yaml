@@ -26,5 +26,3 @@ spec:
         releaseName: argo-appsets
         valueFiles:
           - $values/applications/dev/values/argo/argo-appsets.yaml
-
-        

@@ -1,6 +1,34 @@
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  attributes:
+    resourceGroup: unset_default_value
+    storageAccount: unset_default_value
 env:
+  AUDIT_LOG_DIR: /audit
   LOG_LEVEL: info
   MAX_HEAP_MB: 400
+envVars:
+  - name: AMQP_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: username
+  - name: AMQP_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: password
+  - name: AMQP_HOST
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: host
+  - name: AMQP_PORT
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmqcluster-chat-default-user
+        key: port
 hooks:
   migration:
     command: |
@@ -32,24 +60,3 @@ serviceAccount:
   workloadIdentity:
     clientId:
     enabled: true
-envVars:
-  - name: AMQP_USERNAME
-    valueFrom:
-      secretKeyRef:
-        name: rabbitmqcluster-chat-default-user
-        key: username
-  - name: AMQP_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: rabbitmqcluster-chat-default-user
-        key: password
-  - name: AMQP_HOST
-    valueFrom:
-      secretKeyRef:
-        name: rabbitmqcluster-chat-default-user
-        key: host
-  - name: AMQP_PORT
-    valueFrom:
-      secretKeyRef:
-        name: rabbitmqcluster-chat-default-user
-        key: port

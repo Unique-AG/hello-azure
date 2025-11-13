@@ -93,6 +93,31 @@ variable "ingestion_storage_user_assigned_identity_id" {
   type        = string
 }
 
+variable "audit_storage_user_assigned_identity_id" {
+  description = "The ID of the audit storage user-assigned identity."
+  type        = string
+}
+
+variable "audit_storage_sa_name" {
+  type    = string
+  default = "helloazureaudit"
+}
+
+variable "audit_containers" {
+  description = "List of storage container names for audit logs"
+  type        = list(string)
+  default = [
+    "node-chat",
+    "node-ingestion",
+    "node-ingestion-worker",
+    "node-ingestion-worker-chat",
+    "node-app-repository",
+    "node-scope-management",
+    "node-theme",
+    "configuration-backend"
+  ]
+}
+
 variable "ip_name" {
   description = "Name of the public IP for the Application Gateway"
   type        = string
