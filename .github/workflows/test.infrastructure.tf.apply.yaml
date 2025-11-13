@@ -55,15 +55,15 @@ jobs:
         id: plan
         run: terraform plan -no-color
 
-      - name: Purge soft-deleted cognitive account
-        run: |
-          # List soft-deleted accounts to verify
-          az cognitiveservices account list-deleted
-          # Purge the soft-deleted cognitive account
-          az cognitiveservices account purge \
-            --location swedencentral \
-            --resource-group resource-group-core \
-            --name cognitive-account-swedencentral || echo "Account may not be soft-deleted or already purged"
+      # - name: Purge soft-deleted cognitive account
+      #   run: |
+      #     # List soft-deleted accounts to verify
+      #     az cognitiveservices account list-deleted
+      #     # Purge the soft-deleted cognitive account
+      #     az cognitiveservices account purge \
+      #       --location swedencentral \
+      #       --resource-group resource-group-core \
+      #       --name cognitive-account-swedencentral || echo "Account may not be soft-deleted or already purged"
 
       - name: Import existing resources
         run: |
