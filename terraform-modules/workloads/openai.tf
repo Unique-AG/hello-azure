@@ -39,6 +39,7 @@ module "openai" {
       ]
     }
   }
+  
   # key_vault_id = var.main_kv_id
 }
 
