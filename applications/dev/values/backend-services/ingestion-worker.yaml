@@ -1,17 +1,12 @@
 auditVolume:
-  enabled: true
-  mountPath: /audit
   attributes:
-    resourceGroup: ref+azurekeyvault://helloazuresensitive/audit-storage-resource-group
-    storageAccount: ref+azurekeyvault://helloazuresensitive/audit-storage-account-name
+    resourceGroup: unset_default_value
+    storageAccount: unset_default_value
 image:
   tag: "2025.44.1"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion-worker
 secretProvider:
   vaults:
-    helloazuresensitive:
-      AUDIT_STORAGE_RESOURCE_GROUP: audit-storage-resource-group
-      AUDIT_STORAGE_ACCOUNT_NAME: audit-storage-account-name
     helloazuremain:
       AZURE_OPENAI_API_ENDPOINT: cognitive-account-swedencentral-ep
       AZURE_DOCUMENT_INTELLIGENCE_ENDPOINTS: azure-document-intelligence-endpoints

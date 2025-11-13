@@ -1,9 +1,7 @@
 auditVolume:
-  enabled: true
-  mountPath: /audit
   attributes:
-    resourceGroup: ref+azurekeyvault://hakv2test/audit-storage-resource-group
-    storageAccount: ref+azurekeyvault://hakv2test/audit-storage-account-name
+    resourceGroup: unset_default_value
+    storageAccount: unset_default_value
 image:
   repository: uqhacrtest.azurecr.io/backend-service-configuration
   tag: "2025.44.1"
@@ -11,5 +9,3 @@ secretProvider:
   vaults:
     hakv2test:
       DATABASE_URL: database-url-theme
-      AUDIT_STORAGE_RESOURCE_GROUP: audit-storage-resource-group
-      AUDIT_STORAGE_ACCOUNT_NAME: audit-storage-account-name

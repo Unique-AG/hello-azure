@@ -1,9 +1,7 @@
 auditVolume:
-  enabled: true
-  mountPath: /audit
   attributes:
-    resourceGroup: ref+azurekeyvault://helloazuresensitive/audit-storage-resource-group
-    storageAccount: ref+azurekeyvault://helloazuresensitive/audit-storage-account-name
+    resourceGroup: unset_default_value
+    storageAccount: unset_default_value
 image:
   tag: "2025.44.1"
   repository: uniquehelloazure.azurecr.io/backend-service-scope-management
@@ -35,7 +33,5 @@ secretProvider:
   vaults:
     helloazuresensitive:
       DATABASE_URL: database-url-scope-management
-      AUDIT_STORAGE_RESOURCE_GROUP: audit-storage-resource-group
-      AUDIT_STORAGE_ACCOUNT_NAME: audit-storage-account-name
     helloazuremain:
       ZITADEL_PAT: manual-zitadel-scope-mgmt-pat

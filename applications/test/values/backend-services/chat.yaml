@@ -1,9 +1,7 @@
 auditVolume:
-  enabled: true
-  mountPath: /audit
   attributes:
-    resourceGroup: ref+azurekeyvault://hakv2test/audit-storage-resource-group
-    storageAccount: ref+azurekeyvault://hakv2test/audit-storage-account-name
+    resourceGroup: unset_default_value
+    storageAccount: unset_default_value
 env:
   ADMIN_FRONTEND_URL: https://test-hello.azure.unique.dev/admin
   AMQP_BENCHMARK_PREFETCH: 1
@@ -61,8 +59,6 @@ secretProvider:
       PUBSUB_REDIS_PASSWORD: uqharedis-test-password
       AZURE_FGPT_STORAGE_CONNECTION_STRING: ingestion-storage-connection-string-1
       CHAT_LXM_ENCRYPTION_KEY: encryption-key-chat-lxm
-      AUDIT_STORAGE_RESOURCE_GROUP: audit-storage-resource-group
-      AUDIT_STORAGE_ACCOUNT_NAME: audit-storage-account-name
     hakv1test:
       AZURE_OPENAI_API_ENDPOINTS_JSON: azure-openai-endpoint-definitions
 serviceAccount:

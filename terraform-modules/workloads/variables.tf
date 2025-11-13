@@ -103,16 +103,6 @@ variable "audit_storage_sa_name" {
   default = "helloazureaudit"
 }
 
-variable "audit_storage_connection_string_1_secret_name" {
-  type    = string
-  default = "audit-storage-connection-string-1"
-}
-
-variable "audit_storage_connection_string_2_secret_name" {
-  type    = string
-  default = "audit-storage-connection-string-2"
-}
-
 variable "audit_containers" {
   description = "List of storage container names for audit logs"
   type        = list(string)
