@@ -16,8 +16,12 @@ on:
     inputs:
       action:
         description: "helmfile action to perform: apply, diff or template."
-        default: diff
-        type: string
+        default: apply
+        type: choice
+        options:
+          - apply
+          - diff
+          - template
 
 permissions:
   contents: read
