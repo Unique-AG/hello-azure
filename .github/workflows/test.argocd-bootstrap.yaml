@@ -5,6 +5,13 @@ concurrency:
   cancel-in-progress: false # otherwise helm upgrade can get stuck and one needs to manually clean the secrets and helm database
 
 on:
+  push:
+    branches:
+      - preview
+      - chore/enable-test-workflows
+    paths:
+      - .github/workflows/test.argocd-bootstrap.yaml
+      - applications/argo-bootstrap.yaml
   workflow_dispatch:
     inputs:
       action:
