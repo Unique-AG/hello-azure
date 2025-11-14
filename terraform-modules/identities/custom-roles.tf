@@ -69,7 +69,7 @@ resource "azurerm_role_definition" "sensitive_data_observer" {
 }
 
 resource "azurerm_role_definition" "vnet_subnet_access" {
-  name  = "VNet Subnet Access (Preview)${local.env_suffix}"
+  name  = "VNet Subnet Access (Preview) v2${local.env_suffix}"
   scope = data.azurerm_subscription.current.id
 
   permissions {

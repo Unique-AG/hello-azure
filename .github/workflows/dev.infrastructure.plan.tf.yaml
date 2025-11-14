@@ -1,19 +1,19 @@
 name: "[tf] [dev] Infrastructure Plan 📝"
 on:
-  pull_request:
-    branches:
-      - preview
-    paths:
-      - .github/workflows/dev.infrastructure.plan.tf.yaml
-      - infrastructure/dev/**
-      - terraform-modules/**
-  push:
-    branches:
-      - preview
-    paths:
-      - .github/workflows/dev.infrastructure.plan.tf.yaml
-      - infrastructure/dev/**
-      - terraform-modules/**
+  # pull_request:
+  #   branches:
+  #     - preview
+  #   paths:
+  #     - .github/workflows/dev.infrastructure.plan.tf.yaml
+  #     - infrastructure/dev/**
+  #     - terraform-modules/**
+  # push:
+  #   branches:
+  #     - preview
+  #   paths:
+  #     - .github/workflows/dev.infrastructure.plan.tf.yaml
+  #     - infrastructure/dev/**
+  #     - terraform-modules/**
   workflow_dispatch:
 
 permissions:

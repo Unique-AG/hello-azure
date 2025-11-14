@@ -1,18 +1,18 @@
 name: '[tf] [gh-test] Actions Runner 🏃🏽'
 
 on:
-  pull_request:
-    branches:
-      - preview
-    paths:
-      - .github/workflows/test.gh.infra.yaml
-      - infrastructure/gh-test/**
-  push:
-    branches:
-      - preview
-    paths:
-      - .github/workflows/test.gh.infra.yaml
-      - infrastructure/gh-test/**
+  # pull_request:
+  #   branches:
+  #     - preview
+  #   paths:
+  #     - .github/workflows/test.gh.infra.yaml
+  #     - infrastructure/gh-test/**
+  # push:
+  #   branches:
+  #     - preview
+  #   paths:
+  #     - .github/workflows/test.gh.infra.yaml
+  #     - infrastructure/gh-test/**
   workflow_dispatch:
 
 permissions:

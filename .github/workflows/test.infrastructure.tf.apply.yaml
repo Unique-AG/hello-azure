@@ -1,20 +1,20 @@
 name: "[tf] [test] Infrastructure Apply 🏗️"
 on:
-  pull_request:
-    branches:
-      - preview
-    paths:
-      - .github/workflows/test.infrastructure.tf.yaml
-      - infrastructure/test/**
-      - terraform-modules/**
-  push:
-    branches:
-      - preview
-      - chore/enable-test-workflows
-    paths:
-      - .github/workflows/test.infrastructure.tf.yaml
-      - infrastructure/test/**
-      - terraform-modules/**
+  # pull_request:
+  #   branches:
+  #     - preview
+  #   paths:
+  #     - .github/workflows/test.infrastructure.tf.yaml
+  #     - infrastructure/test/**
+  #     - terraform-modules/**
+  # push:
+  #   branches:
+  #     - preview
+  #     - chore/enable-test-workflows
+  #   paths:
+  #     - .github/workflows/test.infrastructure.tf.yaml
+  #     - infrastructure/test/**
+  #     - terraform-modules/**
   workflow_dispatch:
 
 permissions:
@@ -54,26 +54,6 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color
-
-      # - name: Purge soft-deleted cognitive account
-      #   run: |
-      #     # List soft-deleted accounts to verify
-      #     az cognitiveservices account list-deleted
-      #     # Purge the soft-deleted cognitive account
-      #     az cognitiveservices account purge \
-      #       --location swedencentral \
-      #       --resource-group resource-group-core \
-      #       --name cognitive-account-swedencentral || echo "Account may not be soft-deleted or already purged"
-
-      # - name: Import existing resources
-      #   run: |
-      #     # Resource Group
-      #     terraform import azurerm_resource_group.vnet /subscriptions/782871a0-bcee-44fb-851f-ccd3e69ada2a/resourceGroups/rg-vnet-002 || true
-          
-      #     # Resource Provider Registrations (in perimeter module)
-      #     terraform import module.perimeter.azurerm_resource_provider_registration.azure_dashboard_provider /subscriptions/782871a0-bcee-44fb-851f-ccd3e69ada2a/providers/Microsoft.Dashboard || true
-      #     terraform import module.perimeter.azurerm_resource_provider_registration.azure_monitor_provider /subscriptions/782871a0-bcee-44fb-851f-ccd3e69ada2a/providers/Microsoft.Monitor || true
-      #     terraform import module.perimeter.azurerm_resource_provider_registration.azure_alerts_provider /subscriptions/782871a0-bcee-44fb-851f-ccd3e69ada2a/providers/Microsoft.AlertsManagement ||
   
       - name: Terraform Apply
         if: (github.event_name == 'push' && github.ref == 'refs/heads/chore/enable-test-workflows') || (github.event_name == 'pull_request' && github.head_ref == 'chore/enable-test-workflows') #'refs/heads/preview'

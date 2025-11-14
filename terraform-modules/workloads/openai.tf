@@ -17,12 +17,13 @@ module "openai" {
           name          = "text-embedding-ada-002"
           sku_capacity  = 350
         },
-        {
-          model_name    = "gpt-4"
-          model_version = "0613"
-          name          = "gpt-4"
-          sku_capacity  = 20
-        },
+        # Removed deprecated GPT-4 deployment (version 0613 deprecated since 06/06/2025)
+        # {
+        #   model_name    = "gpt-4"
+        #   model_version = "0613"
+        #   name          = "gpt-4"
+        #   sku_capacity  = 20
+        # },
         {
           model_name    = "gpt-35-turbo"
           model_version = "0125"
