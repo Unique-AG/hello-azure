@@ -1,10 +1,10 @@
-# output "cluster_workload_identities" {
-#   description = "This output reflects configurations that must then be applied to the workloads in the cluster. The client_ids are to be used as Managed Identities while the subject must match exactly the Service Accounts Name and Namespace."
-#   value = [for key, wid in azurerm_federated_identity_credential.afic_workloads : {
-#     client_id = data.azurerm_kubernetes_cluster.cluster.kubelet_identity[0].client_id
-#     subject   = wid.subject
-#   }]
-# }
+output "cluster_workload_identities" {
+  description = "This output reflects configurations that must then be applied to the workloads in the cluster. The client_ids are to be used as Managed Identities while the subject must match exactly the Service Accounts Name and Namespace."
+  value = [for key, wid in azurerm_federated_identity_credential.afic_workloads : {
+    client_id = data.azurerm_kubernetes_cluster.cluster.kubelet_identity[0].client_id
+    subject   = wid.subject
+  }]
+}
 
 output "resource_group_sensitive_name" {
   description = "The name of the sensitive resource group."

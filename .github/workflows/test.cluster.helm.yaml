@@ -5,12 +5,24 @@ concurrency:
   cancel-in-progress: false # otherwise helm upgrade can get stuck and one needs to manually clean the secrets and helm database
 
 on:
+  push:
+    branches:
+      - chore/enable-test-workflows
+    paths:
+      - .github/workflows/test.argocd-bootstrap.yaml
+      - applications/argo-bootstrap.yaml
   workflow_dispatch:
     inputs:
       action:
         description: "helmfile action to perform: apply, diff or template."
-        default: diff
+        default: apply # default should be diff
         type: string
+  # workflow_dispatch:
+  #   inputs:
+  #     action:
+  #       description: "helmfile action to perform: apply, diff or template."
+  #       default: diff
+  #       type: string
 
 permissions:
   contents: read
