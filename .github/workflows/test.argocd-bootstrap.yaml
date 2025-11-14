@@ -15,7 +15,7 @@ on:
     inputs:
       action:
         description: "helmfile action to perform: apply, diff or template."
-        default: apply
+        default: apply # default should be diff
         type: string
 
 permissions:
