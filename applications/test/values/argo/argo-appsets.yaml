@@ -7,7 +7,7 @@ applicationsets:
     generators:
       - git:
           repoURL: https://github.com/Unique-AG/hello-azure
-          revision: preview
+          revision: chore/enable-test-workflows
           files:
           - path: "applications/test/apps/chat/*.yaml"
     template:
@@ -58,7 +58,7 @@ applicationsets:
     generators:
     - git:
         repoURL: https://github.com/Unique-AG/hello-azure
-        revision: preview
+        revision: chore/enable-test-workflows
         files:
         - path: "applications/test/apps/system/*.yaml"
     template:

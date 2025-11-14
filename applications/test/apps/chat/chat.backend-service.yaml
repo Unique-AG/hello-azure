@@ -3,7 +3,7 @@ spec:
   autoSync: false
   sources:
     - repoURL: "https://github.com/Unique-AG/hello-azure"
-      targetRevision: preview
+      targetRevision: chore/enable-test-workflows
       ref: values
     - repoURL: ghcr.io/unique-ag/helm-charts
       chart: backend-service

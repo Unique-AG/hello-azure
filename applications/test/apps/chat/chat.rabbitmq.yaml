@@ -3,7 +3,7 @@ spec:
   autoSync: false
   source:
     repoURL: https://github.com/Unique-AG/hello-azure
-    targetRevision: preview
+    targetRevision: chore/enable-test-workflows
     path: applications/test/values/rabbitmq
     directory:
       recurse: true
