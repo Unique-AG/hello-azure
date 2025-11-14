@@ -11,7 +11,7 @@ resources:
     memory: 300Mi
 serviceAccount:
   workloadIdentity:
-    clientId: 2ffd1adb-50e7-4a89-bbef-26f6f944e2d3
+    clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b # aks-identity
 secretProvider:
   vaults:
     hakv2testv2:

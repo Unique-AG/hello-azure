@@ -17,7 +17,7 @@ resources:
                 hostedZoneName: test-hello.azure.unique.dev
                 environment: AzurePublicCloud
                 managedIdentity:
-                  clientID: e7245417-572d-4797-9327-81febabc01cf
+                  clientID: 0a0aa9c2-0574-43fa-b3e6-ef34382624a5 # aks-test-agentpool
             selector:
               dnsZones:
                 - test-hello.azure.unique.dev
