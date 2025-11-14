@@ -7,7 +7,6 @@ concurrency:
 on:
   push:
     branches:
-      - preview
       - chore/enable-test-workflows
     paths:
       - .github/workflows/test.argocd-bootstrap.yaml
@@ -26,8 +25,9 @@ permissions:
 jobs:
   # The Sync Waves are a bit a fake to mimic and make sure the cluster is updated in a controlled way.
   argo-bootstrap:
+    if: github.ref == 'refs/heads/chore/enable-test-workflows'
     uses: ./.github/workflows/test.helm.yaml
     with:
       file_name: applications/argo-bootstrap.yaml
-      action: ${{ inputs.action }}
+      action: ${{ inputs.action || 'apply' }}
     secrets: inherit
