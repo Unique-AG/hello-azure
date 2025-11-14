@@ -1,14 +1,15 @@
 name: '[test][rel] Mirror Unique Release 🪞'
 
 on:
+  push:
+    branches:
+      - preview
+      - chore/enable-test-workflows
+    paths:
+      - .github/workflows/test.mirror-unique-artifacts.yaml
+      - mirroring/test/app.unique.yaml
   workflow_dispatch:
-  # push:
-  #   branches:
-  #     - preview
-  #     - chore/enable-test-workflows
-  #   paths:
-  #     - .github/workflows/test.mirror-unique-artifacts.yaml
-  #     - mirroring/test/app.unique.yaml
+
 
 permissions:
   contents: read
