@@ -9,7 +9,7 @@ on:
         type: string
       action:
         description: "Helm action to perform: template, diff, sync or apply."
-        default: template
+        default: apply
         type: string
 
 permissions:

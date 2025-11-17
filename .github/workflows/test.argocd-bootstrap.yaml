@@ -16,7 +16,7 @@ on:
     inputs:
       action:
         description: "helmfile action to perform: apply, diff or template."
-        default: template
+        default: 'sync'
         type: string
 
 permissions:
