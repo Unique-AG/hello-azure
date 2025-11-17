@@ -11,12 +11,12 @@ on:
     paths:
       - .github/workflows/test.argocd-bootstrap.yaml
       - applications/argo-bootstrap.yaml
-      - .github/workflows/test.helm.yamlgit 
+      - .github/workflows/test.helm.yaml
   workflow_dispatch:
     inputs:
       action:
         description: "helmfile action to perform: apply, diff or template."
-        default: apply # default should be diff
+        default: template
         type: string
 
 permissions:
