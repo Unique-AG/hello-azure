@@ -19,7 +19,7 @@ permissions:
 env:
   ARM_SUBSCRIPTION_ID: 782871a0-bcee-44fb-851f-ccd3e69ada2a
   ARM_TENANT_ID: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
-  ARM_CLIENT_ID: 93b817fa-3d2c-407f-9a93-3bd40d0029ac
+  ARM_CLIENT_ID: 08e66108-3bbf-4749-a1ef-ab9b28bda043 # application id for the Terraform enterprise application
 
 jobs:
   command:
@@ -40,7 +40,7 @@ jobs:
         with:
           subscription-id: 782871a0-bcee-44fb-851f-ccd3e69ada2a
           tenant-id: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91
-          client-id: 93b817fa-3d2c-407f-9a93-3bd40d0029ac
+          client-id: 08e66108-3bbf-4749-a1ef-ab9b28bda043 # application id for the Terraform enterprise application
 
       - name: Set up kubelogin
         uses: azure/use-kubelogin@76597ae0fcbaace21b05e13a2cbf8daee2c6e820 #v1.2
