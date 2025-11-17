@@ -17,7 +17,6 @@ module "openai" {
           name          = "text-embedding-ada-002"
           sku_capacity  = 350
         },
-        # Removed deprecated GPT-4 deployment (version 0613 deprecated since 06/06/2025)
         # {
         #   model_name    = "gpt-4"
         #   model_version = "0613"
@@ -41,7 +40,7 @@ module "openai" {
     }
   }
   
-  # key_vault_id = var.main_kv_id
+  key_vault_id = var.main_kv_id
 }
 
 module "document_intelligence" {

@@ -19,16 +19,16 @@ extraManifests:
     data:
       - secretKey: ZITADEL_DATABASE_POSTGRES_HOST
         remoteRef:
-          key: psql-3fod5wcj-host
+          key: psql-5sxjn64d-host
       - secretKey: ZITADEL_DATABASE_POSTGRES_PORT
         remoteRef:
-          key: psql-3fod5wcj-port
+          key: psql-5sxjn64d-port
       - secretKey: ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME
         remoteRef:
-          key: psql-3fod5wcj-username
+          key: psql-5sxjn64d-username
       - secretKey: ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD
         remoteRef:
-          key: psql-3fod5wcj-password
+          key: psql-5sxjn64d-password
       - secretKey: ZITADEL_DATABASE_POSTGRES_USER_PASSWORD
         remoteRef:
           key: zitadel-db-user-password
