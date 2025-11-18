@@ -3,6 +3,9 @@ resources:
     kind: Ingress
     metadata:
       annotations:
+        appgw.ingress.kubernetes.io/backend-protocol: https
+        appgw.ingress.kubernetes.io/health-probe-hostname: test-hello.azure.unique.dev
+        appgw.ingress.kubernetes.io/health-probe-port: "8543"
         appgw.ingress.kubernetes.io/request-timeout: "120"
         appgw.ingress.kubernetes.io/rewrite-rule-set: security-headers
         appgw.ingress.kubernetes.io/ssl-redirect: "true"
@@ -18,7 +21,7 @@ resources:
                   service:
                     name: kong-gateway-proxy
                     port:
-                      number: 80
+                      name: kong-proxy-tls
                 path: /
                 pathType: Prefix
       tls:
@@ -29,6 +32,9 @@ resources:
     kind: Ingress
     metadata:
       annotations:
+        appgw.ingress.kubernetes.io/backend-protocol: https
+        appgw.ingress.kubernetes.io/health-probe-hostname: api.test-hello.azure.unique.dev
+        appgw.ingress.kubernetes.io/health-probe-port: "8543"
         appgw.ingress.kubernetes.io/request-timeout: "120"
         appgw.ingress.kubernetes.io/rewrite-rule-set: security-headers
         appgw.ingress.kubernetes.io/ssl-redirect: "true"
@@ -44,7 +50,7 @@ resources:
                   service:
                     name: kong-gateway-proxy
                     port:
-                      number: 80
+                      name: kong-proxy-tls
                 path: /
                 pathType: Prefix
       tls:
