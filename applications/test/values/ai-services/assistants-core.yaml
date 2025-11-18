@@ -1,6 +1,6 @@
 env:
   CORS_ALLOWED_ORIGINS: https://test-hello.azure.unique.dev
-  ZITADEL_PROJECT_ID: "311604321709982327"terr
+  ZITADEL_PROJECT_ID: "311604321709982327"
   UNIQUE_INSTALLATION_ID: test-hello.azure.unique.dev # the hostname of the cluster
 image:
   tag: "2025.44.1"
