@@ -9,5 +9,5 @@ secretProvider:
 serviceAccount:
   enabled: true
   workloadIdentity:
-    clientId: e5d4bdfe-f71c-4787-8918-81e58056aa23 # aks-identity
+    clientId: e5d4bdfe-f71c-4787-8918-81e58056aa23 # aks-id-test
     enabled: true
