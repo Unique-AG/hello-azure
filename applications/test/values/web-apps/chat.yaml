@@ -4,6 +4,7 @@ env:
   FILE_TYPES_DOCUMENT_TRANSLATOR: "docx,xls,pptx"
   MAX_FILE_SIZE_IN_MB: 200
   SELF_URL: https://test-hello.azure.unique.dev/chat
+SPEECH_BACKEND_API_URL: wss://api.test-hello.azure.unique.dev/speech/ws/v1/speech-to-text
 image:
-  tag: "2025.44.1"
+  tag: "2025.46"
   repository: uqhacrtest.azurecr.io/web-app-chat

@@ -2,7 +2,7 @@ spec:
   name: backend-service-chat
   autoSync: false
   sources:
-    - repoURL: "https://github.com/Unique-AG/hello-azure"
+    - repoURL: 'https://github.com/Unique-AG/hello-azure'
       targetRevision: preview
       ref: values
     - repoURL: ghcr.io/unique-ag/helm-charts

@@ -4,7 +4,7 @@ auditVolume:
     storageAccount: unset_default_value
 image:
   repository: uqhacrtest.azurecr.io/backend-service-configuration
-  tag: "2025.44.1"
+  tag: "2025.46"
 secretProvider:
   vaults:
     hakv2test:
