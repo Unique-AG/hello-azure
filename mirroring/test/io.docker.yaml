@@ -6,6 +6,6 @@ images:
   - name: alpine:3.19
   - name: kong:3.9.0
   - name: kong/kubernetes-ingress-controller:3.4.4
-  - name: qdrant/qdrant:v1.15.1
+  - name: qdrant/qdrant:v1.15.1-unprivileged
 sourceRegistry: docker.io
 targetRegistry: uqhacrtest.azurecr.io
