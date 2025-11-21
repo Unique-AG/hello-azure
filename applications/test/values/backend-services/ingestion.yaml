@@ -1,7 +1,7 @@
 auditVolume:
   attributes:
-    resourceGroup: unset_default_value
-    storageAccount: unset_default_value
+    resourceGroup: resource-group-sensitive
+    storageAccount: helloazureaudit66d7a195
 env:
   ELASTICSEARCH_CA_BUNDLE: /etc/ssl/elastic/ca.crt
   ELASTICSEARCH_URL: https://elasticsearch-ingestion-es-http.unique.svc:9200
