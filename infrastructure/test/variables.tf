@@ -167,6 +167,22 @@ variable "audit_storage_user_assigned_identity_name" {
   type        = string
 }
 
+variable "audit_containers" {
+  description = "List of storage container names for audit logs"
+  type        = list(string)
+  default = [
+    "node-chat",
+    "node-ingestion",
+    "node-ingestion-worker",
+    "node-ingestion-worker-chat",
+    "node-app-repository",
+    "node-scope-management",
+    "node-theme",
+    "configuration-backend"
+  ]
+}
+
+
 variable "csi_identity_name" {
   description = "Name of the CSI identity"
   type        = string

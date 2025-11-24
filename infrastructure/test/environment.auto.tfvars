@@ -1,29 +1,27 @@
 # Environment-specific configuration
-dns_zone_name                       = "test-hello.azure.unique.dev"
-name_prefix                         = "ha-test"
-subnet_agw_cidr                     = "10.202.3.0/28"
-budget_contact_emails               = ["support@unique.ch"]
-kv_sku                              = "premium"
-log_analytics_workspace_name        = "la-test"
-aks_identity_name                   = "aks-id-test"
-cluster_name                        = "aks-test"
-gitops_display_name                 = "GitOps"
-document_intelligence_identity_name = "docint-id-test"
-ingestion_cache_identity_name       = "cache-id-test"
-ingestion_storage_identity_name     = "storage-id-test"
-psql_identity_name                  = "psql-id-test"
-csi_identity_name                   = "csi-id-test"
-grafana_identity_name               = "grafana-id-test"
-main_kv_name                        = "hakv1test"
-sensitive_kv_name                   = "hakv2test"
-<<<<<<< HEAD
-environment                         = "test"
-container_registry_name             = "uqhacrtest"
-redis_name                          = "uqharedis-test"
-ingestion_cache_sa_name             = "uqhacachetest"
-ingestion_storage_sa_name           = "uqhastoragetest"
-=======
->>>>>>> 91f8af9 (chore: update test environment network and configuration (#42))
+dns_zone_name                             = "test-hello.azure.unique.dev"
+name_prefix                               = "ha-test"
+subnet_agw_cidr                           = "10.202.3.0/28"
+budget_contact_emails                     = ["support@unique.ch"]
+kv_sku                                    = "premium"
+log_analytics_workspace_name              = "la-test"
+aks_identity_name                         = "aks-id-test"
+cluster_name                              = "aks-test"
+gitops_display_name                       = "GitOps"
+document_intelligence_identity_name       = "docint-id-test"
+ingestion_cache_identity_name             = "cache-id-test"
+ingestion_storage_identity_name           = "storage-id-test"
+psql_identity_name                        = "psql-id-test"
+csi_identity_name                         = "csi-id-test"
+grafana_identity_name                     = "grafana-id-test"
+main_kv_name                              = "hakv1testv2"
+sensitive_kv_name                         = "hakv2testv2"
+environment                               = "test"
+container_registry_name                   = "uqhacrtest"
+redis_name                                = "uqharedis-test"
+ingestion_cache_sa_name                   = "uqhacachetest"
+ingestion_storage_sa_name                 = "uqhastoragetest"
+audit_storage_user_assigned_identity_name = "audit-storage-id-test"
 
 # DNS subdomain records
 dns_subdomain_records = {
