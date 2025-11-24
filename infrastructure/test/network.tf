@@ -16,8 +16,9 @@ module "vnet" {
   # -- https://www.davidc.net/sites/default/subnets/subnets.html?network=10.202.0.0&mask=22&division=21.5f4620
   subnets = {
     "snet-aks-pods" = {
-      name           = "snet-aks-pods"
-      address_prefix = "10.202.0.0/23"
+      name              = "snet-aks-pods"
+      address_prefixes  = ["10.202.0.0/23"]
+      service_endpoints = ["Microsoft.Storage"]
       delegation = [{
         name = "aks-delegation"
         service_delegation = {
@@ -29,8 +30,9 @@ module "vnet" {
       }]
     }
     "snet-aks-nodes" = {
-      name           = "snet-aks-nodes"
-      address_prefix = "10.202.2.0/24"
+      name              = "snet-aks-nodes"
+      address_prefixes  = ["10.202.2.0/24"]
+      service_endpoints = ["Microsoft.Storage"]
     }
     "snet-agw" = {
       name           = "snet-application-gateway"
