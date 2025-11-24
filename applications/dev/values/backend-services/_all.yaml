@@ -16,7 +16,7 @@ extraManifests:
   - apiVersion: external-secrets.io/v1beta1
     kind: ExternalSecret
     metadata:
-      name: audit-volume-config
+      name: audit-volume-config-{{ .Release.Name }}
       annotations:
         external-secrets.io/managed: "true"
         argocd.argoproj.io/sync-wave: "-1"
