@@ -96,3 +96,17 @@ resource "azurerm_key_vault_secret" "zitadel_pat" {
     ignore_changes = [value, tags]
   }
 }
+
+resource "azurerm_key_vault_secret" "audit_storage_resource_group" {
+  name            = var.audit_storage_resource_group_secret_name
+  value           = data.azurerm_resource_group.sensitive.name
+  key_vault_id    = var.sensitive_kv_id
+  expiration_date = "2099-12-31T23:59:59Z"
+}
+
+resource "azurerm_key_vault_secret" "audit_storage_account_name" {
+  name            = var.audit_storage_account_name_secret_name
+  value           = var.audit_storage_sa_name
+  key_vault_id    = var.sensitive_kv_id
+  expiration_date = "2099-12-31T23:59:59Z"
+}
