@@ -1,7 +1,7 @@
 auditVolume:
   attributes:
-    resourceGroup: unset_default_value
-    storageAccount: unset_default_value
+    resourceGroup: resource-group-sensitive
+    storageAccount: helloazureauditf7b2fc2f
 image:
   tag: "2025.50.1"
   repository: uniquehelloazure.azurecr.io/backend-service-app-repository
