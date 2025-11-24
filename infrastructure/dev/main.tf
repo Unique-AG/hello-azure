@@ -90,7 +90,6 @@ module "workloads" {
   ingestion_storage_user_assigned_identity_id     = module.identities.ingestion_storage_user_assigned_identity_id
   audit_storage_user_assigned_identity_id         = module.identities.audit_storage_user_assigned_identity_id
   audit_storage_sa_name                           = "helloazureaudit${random_id.audit_storage_suffix.hex}"
-  audit_containers                                = var.audit_containers
   kubernetes_rapid_node_size                      = "Standard_D4s_v5"
   kubernetes_steady_max_count                     = 8
   log_analytics_workspace_id                      = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.OperationalInsights/workspaces/${module.perimeter.log_analytics_workspace_name}"
