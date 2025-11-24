@@ -1,7 +1,7 @@
 auditVolume:
   attributes:
-    resourceGroup: unset_default_value
-    storageAccount: unset_default_value
+    resourceGroup: resource-group-sensitive
+    storageAccount: helloazureauditf7b2fc2f
 image:
   tag: "2026.06.0"
   repository: uniquehelloazure.azurecr.io/backend-service-scope-management
