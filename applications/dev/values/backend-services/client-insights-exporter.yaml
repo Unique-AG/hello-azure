@@ -1,3 +1,4 @@
 image:
   tag: "2025.46"
   repository: uniquehelloazure.azurecr.io/backend-service-client-insights-exporter
+extraManifests: []

@@ -103,6 +103,18 @@ variable "audit_storage_sa_name" {
   default = "helloazureaudit"
 }
 
+variable "audit_storage_resource_group_secret_name" {
+  type        = string
+  description = "The name of the secret containing the audit storage resource group name."
+  default     = "audit-storage-resource-group"
+}
+
+variable "audit_storage_account_name_secret_name" {
+  type        = string
+  description = "The name of the secret containing the audit storage account name."
+  default     = "audit-storage-account-name"
+}
+
 variable "audit_containers" {
   description = "List of storage container names for audit logs"
   type        = list(string)
