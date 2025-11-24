@@ -4,14 +4,14 @@ spec:
   source:
     chart: qdrant
     repoURL: https://qdrant.github.io/qdrant-helm
-    targetRevision: 1.13.1
+    targetRevision: 1.15.5
     helm:
       releaseName: qdrant
       valuesObject:
         replicaCount: 1
         image:
           repository: uniquehelloazure.azurecr.io/qdrant/qdrant
-          tag: v1.13.1
+          tag: v1.15.1
           useUnprivilegedImage: true # auto-appends -unprivileged to the tag
         updateVolumeFsOwnership: false # as this is a new cluster, the file system was never running as root
         resources:
