@@ -308,6 +308,16 @@ variable "tenant_id" {
   }
 }
 
+variable "subscription_id" {
+  description = "The tenant ID for the Azure subscription."
+  type        = string
+
+  validation {
+    condition     = length(var.subscription_id) > 0
+    error_message = "The subscription ID must not be empty."
+  }
+}
+
 variable "zitadel_db_user_password_secret_name" {
   type    = string
   default = "zitadel-db-user-password"

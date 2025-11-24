@@ -109,6 +109,7 @@ module "workloads" {
   subnet_agw_id                                   = module.vnet.subnets["snet-agw"].resource_id
   subnet_aks_nodes_id                             = module.vnet.subnets["snet-aks-nodes"].resource_id
   subnet_aks_pods_id                              = module.vnet.subnets["snet-aks-pods"].resource_id
+  subscription_id                                 = var.subscription_id
   tags                                            = var.tags
   tenant_id                                       = var.tenant_id
   subnet_cognitive_services_id                    = module.vnet.subnets["snet-cognitive"].resource_id
