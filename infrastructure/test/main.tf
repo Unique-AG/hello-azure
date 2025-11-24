@@ -90,6 +90,7 @@ module "workloads" {
   ingestion_storage_user_assigned_identity_id     = module.identities.ingestion_storage_user_assigned_identity_id
   audit_storage_user_assigned_identity_id         = module.identities.audit_storage_user_assigned_identity_id
   audit_storage_sa_name                           = "helloazureaudit${random_id.audit_storage_suffix.hex}"
+  audit_containers                                = var.audit_containers
   log_analytics_workspace_id                      = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.OperationalInsights/workspaces/${module.perimeter.log_analytics_workspace_name}"
   defender_log_analytics_workspace_id             = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.OperationalInsights/workspaces/${module.perimeter.log_analytics_workspace_name}"
   main_kv_id                                      = "/subscriptions/${var.subscription_id}/resourceGroups/${module.identities.resource_group_core_name}/providers/Microsoft.KeyVault/vaults/${module.perimeter.key_vault_main_name}"
