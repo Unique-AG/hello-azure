@@ -12,30 +12,3 @@ resources: # TODO: @PROD-CHANGE: these are minimal resources. Remove this overri
   requests:
     cpu: 50m
     memory: 220Mi
-extraManifests:
-  - apiVersion: external-secrets.io/v1beta1
-    kind: ExternalSecret
-    metadata:
-      name: audit-volume-config
-      annotations:
-        external-secrets.io/managed: "true"
-        argocd.argoproj.io/sync-wave: "-1"
-        helm.sh/hook: pre-install,pre-upgrade
-        helm.sh/hook-weight: "-1"
-    spec:
-      refreshInterval: 1h
-      secretStoreRef:
-        kind: SecretStore
-        name: helloazuresensitive
-      target:
-        name: audit-volume-config
-        manifest:
-          apiVersion: v1
-          kind: ConfigMap
-      data:
-        - secretKey: resourceGroup
-          remoteRef:
-            key: audit-storage-resource-group
-        - secretKey: storageAccount
-          remoteRef:
-            key: audit-storage-account-name

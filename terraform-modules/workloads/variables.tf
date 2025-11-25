@@ -103,18 +103,6 @@ variable "audit_storage_sa_name" {
   default = "helloazureaudit"
 }
 
-variable "audit_storage_resource_group_secret_name" {
-  type        = string
-  description = "The name of the secret containing the audit storage resource group name."
-  default     = "audit-storage-resource-group"
-}
-
-variable "audit_storage_account_name_secret_name" {
-  type        = string
-  description = "The name of the secret containing the audit storage account name."
-  default     = "audit-storage-account-name"
-}
-
 variable "audit_containers" {
   description = "List of storage container names for audit logs"
   type        = list(string)
@@ -320,6 +308,16 @@ variable "tenant_id" {
   }
 }
 
+variable "subscription_id" {
+  description = "The tenant ID for the Azure subscription."
+  type        = string
+
+  validation {
+    condition     = length(var.subscription_id) > 0
+    error_message = "The subscription ID must not be empty."
+  }
+}
+
 variable "zitadel_db_user_password_secret_name" {
   type    = string
   default = "zitadel-db-user-password"
@@ -375,3 +373,4 @@ variable "prometheus_ux_recording_rules" {
   }))
   default = null
 }
+
