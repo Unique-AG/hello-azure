@@ -373,4 +373,3 @@ variable "prometheus_ux_recording_rules" {
   }))
   default = null
 }
-
