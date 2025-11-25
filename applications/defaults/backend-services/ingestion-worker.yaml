@@ -1,4 +1,11 @@
+auditVolume:
+  enabled: true
+  mountPath: /audit
+  attributes:
+    resourceGroup: unset_default_value
+    storageAccount: unset_default_value
 env:
+  AUDIT_LOG_DIR: /audit
   CHAT_API_URL: http://backend-service-chat.unique.svc
   CONVERT_OFFICE_FILES_TO_PDF: "true"
   CUSTOM_API_DEFINITIONS: >-

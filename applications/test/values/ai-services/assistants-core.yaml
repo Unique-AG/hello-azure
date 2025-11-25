@@ -3,16 +3,16 @@ env:
   ZITADEL_PROJECT_ID: "311604321709982327"
   UNIQUE_INSTALLATION_ID: test-hello.azure.unique.dev # the hostname of the cluster
 image:
-  tag: "2025.44.1"
+  tag: "2025.46"
   repository: uqhacrtest.azurecr.io/ai-service-assistants-core
 replicaCount: 2
 resources:
   limits:
     cpu: 500m
-    memory: 4Gi
+    memory: 2Gi # TODO: @PROD-CHANGE: recommended 4Gi
   requests:
-    cpu: 500m
-    memory: 2Gi
+    cpu: 250m # TODO: @PROD-CHANGE: recommended 500m
+    memory: 1Gi # TODO: @PROD-CHANGE: recommended 2Gi
 secretProvider:
   useVMManagedIdentity: "true"
   tenantId: aeade8c4-d4f7-4ae7-9149-4975fa3a7f91

@@ -1,6 +1,7 @@
-image:
-  tag: "2025.44.1"
-  repository: uniquehelloazure.azurecr.io/backend-service-ingestion
+auditVolume:
+  attributes:
+    resourceGroup: resource-group-sensitive
+    storageAccount: helloazureauditf7b2fc2f
 env:
   ELASTICSEARCH_CA_BUNDLE: /etc/ssl/elastic/ca.crt
   ELASTICSEARCH_URL: https://elasticsearch-ingestion-es-http.unique.svc:9200
@@ -45,6 +46,9 @@ envVars:
       secretKeyRef:
         name: elasticsearch-ingestion-es-elastic-user
         key: elastic
+image:
+  tag: "2025.46"
+  repository: uniquehelloazure.azurecr.io/backend-service-ingestion
 replicaCount: 2
 resources:
   limits:
@@ -53,11 +57,6 @@ resources:
   requests:
     cpu: 200m
     memory: 650Mi
-serviceAccount:
-  enabled: true
-  workloadIdentity:
-    clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
-    enabled: true
 secretProvider:
   vaults:
     helloazuresensitive:
@@ -68,6 +67,11 @@ secretProvider:
     helloazuremain:
       AZURE_OPENAI_API_ENDPOINT: cognitive-account-swedencentral-ep
       AZURE_DOCUMENT_INTELLIGENCE_ENDPOINTS: azure-document-intelligence-endpoints
+serviceAccount:
+  enabled: true
+  workloadIdentity:
+    clientId: 0f7cd773-a53a-4b58-8835-146dd20e281b
+    enabled: true
 volumeMounts:
   - name: elastic-certs
     mountPath: /etc/ssl/elastic/ca.crt

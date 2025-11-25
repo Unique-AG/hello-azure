@@ -124,7 +124,7 @@ zitadel:
 replicaCount: 2
 resources:
   requests:
-    cpu: 1
+    cpu: 500m # TODO: @PROD-CHANGE: recommended 1 core
     memory: 1Gi
   limits:
     memory: 1Gi

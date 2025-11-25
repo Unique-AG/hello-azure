@@ -1,6 +1,10 @@
+auditVolume:
+  attributes:
+    resourceGroup: resource-group-sensitive
+    storageAccount: helloazureaudit66d7a195
 image:
   repository: uqhacrtest.azurecr.io/backend-service-configuration
-  tag: "2025.44.1"
+  tag: "2025.46"
 secretProvider:
   vaults:
     hakv2test:

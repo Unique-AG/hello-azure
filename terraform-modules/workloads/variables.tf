@@ -93,6 +93,30 @@ variable "ingestion_storage_user_assigned_identity_id" {
   type        = string
 }
 
+variable "audit_storage_user_assigned_identity_id" {
+  description = "The ID of the audit storage user-assigned identity."
+  type        = string
+}
+
+variable "audit_storage_sa_name" {
+  type    = string
+  default = "helloazureaudit"
+}
+
+variable "audit_containers" {
+  description = "List of storage container names for audit logs"
+  type        = list(string)
+  default = [
+    "backend-service-chat",
+    "backend-service-ingestion",
+    "backend-service-ingestion-worker",
+    "backend-service-ingestion-worker-chat",
+    "backend-service-app-repository",
+    "backend-service-scope-management",
+    "backend-service-configuration"
+  ]
+}
+
 variable "ip_name" {
   description = "Name of the public IP for the Application Gateway"
   type        = string
@@ -281,6 +305,16 @@ variable "tenant_id" {
   validation {
     condition     = length(var.tenant_id) > 0
     error_message = "The tenant ID must not be empty."
+  }
+}
+
+variable "subscription_id" {
+  description = "The tenant ID for the Azure subscription."
+  type        = string
+
+  validation {
+    condition     = length(var.subscription_id) > 0
+    error_message = "The subscription ID must not be empty."
   }
 }
 

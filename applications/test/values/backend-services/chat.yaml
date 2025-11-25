@@ -1,8 +1,11 @@
+auditVolume:
+  attributes:
+    resourceGroup: resource-group-sensitive
+    storageAccount: helloazureaudit66d7a195
 env:
   ADMIN_FRONTEND_URL: https://test-hello.azure.unique.dev/admin
   AMQP_BENCHMARK_PREFETCH: 1
   ANONYMIZED_CHAT_INTERACTIONS_EXPORT: "false"
-  AUDIT_LOG_DIR: /dev/stdout
   BENCHMARKS_PER_MINUTE_PER_PROCESS: 1
   CACHE_REDIS_DB: 3
   CHAT_FRONTEND_URL: https://test-hello.azure.unique.dev/chat
@@ -38,7 +41,7 @@ env:
   PUBSUB_REDIS_DB: 2
   SCOPE_MANAGEMENT_API_URL: http://backend-service-scope-management.unique.svc
 image:
-  tag: "2025.44.1"
+  tag: "2025.46"
   repository: uqhacrtest.azurecr.io/backend-service-chat
 resources:
   limits:

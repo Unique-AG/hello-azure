@@ -162,6 +162,11 @@ variable "psql_identity_name" {
   type        = string
 }
 
+variable "audit_storage_user_assigned_identity_name" {
+  description = "Name of the audit storage identity"
+  type        = string
+}
+
 variable "csi_identity_name" {
   description = "Name of the CSI identity"
   type        = string

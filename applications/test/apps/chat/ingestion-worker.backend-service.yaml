@@ -15,6 +15,8 @@ spec:
           - $values/applications/test/values/backend-services/_all.yaml
           - $values/applications/test/values/backend-services/ingestion-worker.yaml
         valuesObject:
+          env:
+            INGESTION_QUEUE: queue
           keda:
             enabled: true
             minReplicaCount: 0
@@ -42,6 +44,3 @@ spec:
       kind: Deployment
       jsonPointers:
         - /spec/replicas
-metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "5"
