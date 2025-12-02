@@ -13,25 +13,48 @@ resources: # TODO: @PROD-CHANGE: these are minimal resources. Remove this overri
     cpu: 50m
     memory: 220Mi
 extraManifests:
+  # ExternalSecret to create PersistentVolume for audit logs - dynamic name based on service
   - apiVersion: external-secrets.io/v1beta1
     kind: ExternalSecret
     metadata:
-      name: audit-volume-config
+      name: '{{ include "backendService.fullname" . }}-audit-pv'
       annotations:
         external-secrets.io/managed: "true"
-        argocd.argoproj.io/sync-wave: "-1"
+        argocd.argoproj.io/sync-wave: "-2"
         helm.sh/hook: pre-install,pre-upgrade
-        helm.sh/hook-weight: "-1"
+        helm.sh/hook-weight: "-2"
     spec:
       refreshInterval: 1h
       secretStoreRef:
         kind: SecretStore
         name: helloazuresensitive
       target:
-        name: audit-volume-config
-        manifest:
-          apiVersion: v1
-          kind: ConfigMap
+        name: '{{ include "backendService.fullname" . }}-audit'
+        template:
+          engineVersion: v2
+          metadata:
+            annotations:
+              pv.kubernetes.io/provisioned-by: blob.csi.azure.com
+          type: kubernetes.io/pv
+          data:
+            apiVersion: v1
+            kind: PersistentVolume
+            spec:
+              capacity:
+                storage: 1Ti
+              accessModes:
+                - ReadWriteMany
+              persistentVolumeReclaimPolicy: Retain
+              storageClassName: azureblob-nfs-premium
+              csi:
+                driver: blob.csi.azure.com
+                readOnly: false
+                volumeHandle: '{{ "{{ .storageAccount }}" }}-{{ include "backendService.fullname" . }}'
+                volumeAttributes:
+                  resourceGroup: '{{ "{{ .resourceGroup }}" }}'
+                  storageAccount: '{{ "{{ .storageAccount }}" }}'
+                  containerName: '{{ include "backendService.fullname" . }}'
+                  protocol: nfs
       data:
         - secretKey: resourceGroup
           remoteRef:
@@ -39,3 +62,18 @@ extraManifests:
         - secretKey: storageAccount
           remoteRef:
             key: audit-storage-account-name
+  # PersistentVolumeClaim for audit logs - dynamic name based on service
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: '{{ include "backendService.fullname" . }}-audit'
+      annotations:
+        argocd.argoproj.io/sync-wave: "-1"
+    spec:
+      accessModes:
+        - ReadWriteMany
+      resources:
+        requests:
+          storage: 1Ti
+      volumeName: '{{ include "backendService.fullname" . }}-audit'
+      storageClassName: azureblob-nfs-premium
