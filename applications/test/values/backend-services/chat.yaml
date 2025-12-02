@@ -1,7 +1,12 @@
 auditVolume:
-  attributes:
-    resourceGroup: resource-group-sensitive
-    storageAccount: helloazureaudit66d7a195
+  enabled: false
+volumeMounts:
+  - name: audit
+    mountPath: /audit
+volumes:
+  - name: audit
+    persistentVolumeClaim:
+      claimName: '{{ include "backendService.fullname" . }}-audit'
 env:
   ADMIN_FRONTEND_URL: https://test-hello.azure.unique.dev/admin
   AMQP_BENCHMARK_PREFETCH: 1

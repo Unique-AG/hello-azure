@@ -1,7 +1,5 @@
 auditVolume:
-  attributes:
-    resourceGroup: resource-group-sensitive
-    storageAccount: helloazureaudit66d7a195
+  enabled: false
 env:
   ELASTICSEARCH_CA_BUNDLE: /etc/ssl/elastic/ca.crt
   ELASTICSEARCH_URL: https://elasticsearch-ingestion-es-http.unique.svc:9200
@@ -73,11 +71,16 @@ serviceAccount:
     clientId: 2ffd1adb-50e7-4a89-bbef-26f6f944e2d3
     enabled: true
 volumeMounts:
+  - name: audit
+    mountPath: /audit
   - name: elastic-certs
     mountPath: /etc/ssl/elastic/ca.crt
     readOnly: true
     subPath: ca.crt
 volumes:
+  - name: audit
+    persistentVolumeClaim:
+      claimName: '{{ include "backendService.fullname" . }}-audit'
   - name: elastic-certs
     secret:
       secretName: elasticsearch-ingestion-es-http-certs-public
