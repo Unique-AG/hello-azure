@@ -6,7 +6,7 @@ volumeMounts:
 volumes:
   - name: audit
     persistentVolumeClaim:
-      claimName: '{{ include "backendService.fullname" . }}-audit'
+      claimName: backend-service-ingestion-worker-audit
 image:
   tag: "2025.46"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion-worker

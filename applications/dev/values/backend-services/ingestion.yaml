@@ -80,7 +80,7 @@ volumeMounts:
 volumes:
   - name: audit
     persistentVolumeClaim:
-      claimName: '{{ include "backendService.fullname" . }}-audit'
+      claimName: backend-service-ingestion-audit
   - name: elastic-certs
     secret:
       secretName: elasticsearch-ingestion-es-http-certs-public
