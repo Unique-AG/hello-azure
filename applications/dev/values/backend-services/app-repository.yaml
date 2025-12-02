@@ -1,7 +1,12 @@
 auditVolume:
-  attributes:
-    resourceGroup: resource-group-sensitive
-    storageAccount: helloazureauditf7b2fc2f
+  enabled: false
+volumeMounts:
+  - name: audit
+    mountPath: /audit
+volumes:
+  - name: audit
+    persistentVolumeClaim:
+      claimName: '{{ include "backendService.fullname" . }}-audit'
 image:
   tag: "2025.46"
   repository: uniquehelloazure.azurecr.io/backend-service-app-repository
