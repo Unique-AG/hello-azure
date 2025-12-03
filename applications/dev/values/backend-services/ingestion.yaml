@@ -47,7 +47,7 @@ envVars:
         name: elasticsearch-ingestion-es-elastic-user
         key: elastic
 image:
-  tag: "2025.46"
+  tag: "2025.48.2"
   repository: uniquehelloazure.azurecr.io/backend-service-ingestion
 replicaCount: 2
 resources:

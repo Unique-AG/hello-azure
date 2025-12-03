@@ -3,7 +3,7 @@ auditVolume:
     resourceGroup: resource-group-sensitive
     storageAccount: helloazureaudit66d7a195
 image:
-  tag: "2025.46"
+  tag: "2025.48.2"
   repository: uqhacrtest.azurecr.io/backend-service-scope-management
 env:
   ZITADEL_HOST: https://id.test-hello.azure.unique.dev
