@@ -31,7 +31,7 @@ env:
   ADMIN_FRONTEND_URL: unset_default_value
   AMQP_BENCHMARK_PREFETCH: 1
   ANONYMIZED_CHAT_INTERACTIONS_EXPORT: "false"
-  ANONYMIZED_CHAT_INTERACTIONS_EXPORT_TYPE: null
+  ANONYMIZED_CHAT_INTERACTIONS_EXPORT_TYPE: ''
   APP_REPOSITORY_URL: http://node-app-repository.unique.svc
   ASSISTANT_CORE_API_URL: http://assistants-core.unique.svc
   AUDIT_LOG_DIR: /audit
