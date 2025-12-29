@@ -1,5 +1,6 @@
 env:
   APP_REPOSITORY_URL: http://backend-service-app-repository.unique.svc
+  FEATURE_FLAG_ENABLE_MODULE_BASED_EVENT_DISTRIBUTION_UN_15312: "true"
   LOG_LEVEL: info
   MAX_HEAP_MB: 200
 envVars:

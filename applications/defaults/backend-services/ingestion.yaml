@@ -70,6 +70,22 @@ extraCronJobs:
       - name: elastic-certs
         secret:
           secretName: elasticsearch-ingestion-es-http-certs-public
+  node-ingestion-maintenance:
+    # Run every 2 hours to check which jobs are due based on their individual schedules
+    schedule: "0 */2 * * *"
+    restartPolicy: Never
+    concurrencyPolicy: Forbid
+    env:
+      RUNNING_MODE: maintenance
+      # Maintenance orchestrator configuration - must match the CronJob schedule above
+      MAINTENANCE_ORCHESTRATOR_CRON_SCHEDULE: "0 */2 * * *"
+      # Ingestion timeout cleanup job
+      MAINTENANCE_CONTENT_TIMEOUT_MINUTES: "120"
+      MAINTENANCE_CONTENT_TIMEOUT_CRON_SCHEDULE: "0 */2 * * *"
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 2
+    startingDeadlineSeconds: 10
+    timeZone: Europe/Zurich
 hooks:
   migration:
     command: |
