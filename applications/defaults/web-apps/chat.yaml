@@ -1,5 +1,7 @@
 env:
   MAX_HEAP_MB: 400
+  FEATURE_FLAG_ENABLE_SPACES_2_0_UN_11203: "true"
+  FEATURE_FLAG_ABOUT_SPACE_SECTION_UN_10270: "true"
 nodeSelector:
   scalability: steady
   lifecycle: persistent
