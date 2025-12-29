@@ -4,7 +4,7 @@ auditVolume:
     storageAccount: helloazureauditf7b2fc2f
 image:
   repository: uniquehelloazure.azurecr.io/backend-service-configuration
-  tag: "2025.48.2"
+  tag: "2025.50.1"
 secretProvider:
   vaults:
     helloazuresensitive:
