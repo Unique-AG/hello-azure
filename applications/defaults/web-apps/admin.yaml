@@ -1,5 +1,6 @@
 env:
   MAX_HEAP_MB: 350
+  FEATURE_FLAG_ENABLE_ENDPOINT_MODULES_UN_15310: "true"
 nodeSelector:
   scalability: steady
   lifecycle: persistent
