@@ -6,6 +6,7 @@ auditVolume:
     storageAccount: unset_default_value
 env:
   AUDIT_LOG_DIR: /audit
+  FEATURE_FLAG_ENABLE_MODULE_BASED_EVENT_DISTRIBUTION_UN_15312: "true"
   LOG_LEVEL: info
   MAX_HEAP_MB: 400
 envVars:
