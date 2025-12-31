@@ -14,35 +14,13 @@ env:
   ENABLE_CLIENT_INSIGHT_SHIPPER: "true"
   EXPORT_PROMPTS_ACCESS_CONTROL: "true"
   INGESTION_API_URL: http://backend-service-ingestion.unique.svc
-  INTERNAL_MODULES_CONFIG: >-
-    [
-    {"name": "SearchInVectorDBV2", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/search"},
-    {"name": "ImageSummarizer", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/image_summarizer"},
-    {"name": "TranslationOneToOne", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/translation_one_to_one"},
-    {"name": "WebSearch", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/web_search"},
-    {"name": "ComplianceCheck", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/compliance_check"},
-    {"name": "QuestionExtractor", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/question_extractor"},
-    {"name": "QuestionAnswerer", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/question_answerer"},
-    {"name": "Questionnaire", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/question_answerer"},
-    {"name": "QuestionPredictor", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/question_predictor"},
-    {"name": "DocumentSummarizerV2", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/document_summarizer"},
-    {"name": "ImageUpload", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/image_upload"},
-    {"name": "DocumentTranslator", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/document_translator"},
-    {"name": "AgenticSearch", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/agentic_search"},
-    {"name": "TranslatorV2", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/translator_v2"},
-    {"name": "InvestmentResearch", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/investment_research"},
-    {"name": "EarningCallsBeta", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/earning_calls"},
-    {"name": "HallucinationLevelEvaluation", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/evaluations/hallucination-level"},
-    {"name": "DueDiligence", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/magic_table_dd"},
-    {"name": "RfpAgent", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/rfp_agent"}
-    ]
   LOG_LEVEL: info
   MAX_HEAP_MB: 3700
   MIN_NO_OF_MESSAGES_BY_USER_BEFORE_NPS_TRIGGER: "30"
   PUBSUB_REDIS_DB: 2
   SCOPE_MANAGEMENT_API_URL: http://backend-service-scope-management.unique.svc
 image:
-  tag: "2025.48.2"
+  tag: "2025.50.1"
   repository: uqhacrtest.azurecr.io/backend-service-chat
 resources:
   limits:

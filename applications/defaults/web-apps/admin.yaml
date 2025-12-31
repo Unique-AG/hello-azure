@@ -1,5 +1,8 @@
 env:
   MAX_HEAP_MB: 350
+  FEATURE_FLAG_ENABLE_ENDPOINT_MODULES_UN_15310: "true"
+  FEATURE_FLAG_ENABLE_SPACES_2_0_UN_11203: "true"
+  FEATURE_FLAG_ENABLE_SPACE_LANDING_PAGE_UN_9930: "true"
 nodeSelector:
   scalability: steady
   lifecycle: persistent

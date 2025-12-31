@@ -33,7 +33,7 @@ env:
   ANONYMIZED_CHAT_INTERACTIONS_EXPORT: "false"
   ANONYMIZED_CHAT_INTERACTIONS_EXPORT_TYPE: ''
   APP_REPOSITORY_URL: http://node-app-repository.unique.svc
-  ASSISTANT_CORE_API_URL: http://assistants-core.unique.svc
+  ASSISTANT_CORE_API_URL: http://assistants-core.unique.svc.cluster.local:8081/core
   AUDIT_LOG_DIR: /audit
   BENCHMARKS_PER_MINUTE_PER_PROCESS: 1
   CACHE_REDIS_DB: 3
@@ -44,6 +44,7 @@ env:
   ENABLE_DOWNLOAD_UPLOAD_FILES_AS_STREAM: "true"
   ENABLE_UPLOAD_CHAT_INTERACTIONS_AS_STREAM: "true"
   ENABLE_ANALYTICS_CHAT_DETAILED_INTERACTIONS_PRISMA_CURSOR: "true"
+  FEATURE_FLAG_ENABLE_MODULE_BASED_EVENT_DISTRIBUTION_UN_15312: "true"
   INGESTION_API_URL: http://backend-service-ingestion.unique.svc
   INTERNAL_MODULES_CONFIG: >-
     [
@@ -66,7 +67,7 @@ env:
     {"name": "HallucinationLevelEvaluation", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/evaluations/hallucination-level"},
     {"name": "DueDiligence", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/magic_table_dd"},
     {"name": "RfpAgent", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/rfp_agent"},
-    {"name": "UniqueAi", "apiURL": "http://assistants-core.chat.svc.cluster.local:8081/core/unique_ai"},
+    {"name": "UniqueAi", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/unique_ai"},
     {"name": "KycReviewAgent", "apiURL": "http://assistants-core.unique.svc.cluster.local:8081/core/kyc_review_agent"}
     ]
   LOG_LEVEL: info
