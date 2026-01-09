@@ -14,7 +14,6 @@ cronJob:
   concurrencyPolicy: Forbid
   enabled: true
   env:
-    AUDIT_LOG_DIR: /dev/stdout
     RUNNING_MODE: expired-content-deletion
   failedJobsHistoryLimit: 2
   jobTemplate:
