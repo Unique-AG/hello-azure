@@ -3,7 +3,7 @@ env:
   ZITADEL_PROJECT_ID: "305512913743905383"
   UNIQUE_INSTALLATION_ID: hello.azure.unique.dev # the hostname of the cluster
 image:
-  tag: "2025.50.1"
+  tag: "2025.52.0"
   repository: uniquehelloazure.azurecr.io/ai-service-assistants-core
 replicaCount: 2
 resources:

@@ -8,6 +8,7 @@ env:
   AUDIT_LOG_DIR: /audit
   LOG_LEVEL: info
   MAX_HEAP_MB: 200
+  PG_DATABASE_SSL_MODE: "verify"
 hooks:
   migration:
     command: |

@@ -28,6 +28,7 @@ env:
   INGESTION_API_URL: http://backend-service-ingestion.unique.svc
   LOG_LEVEL: info
   MAX_HEAP_MB: 750
+  PG_DATABASE_SSL_MODE: "verify"
   ZITADEL_GRPC_HOST: http://zitadel.unique.svc.cluster.local:8080
 envVars:
   - name: AMQP_USERNAME
