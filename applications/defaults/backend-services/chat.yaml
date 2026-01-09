@@ -74,6 +74,7 @@ env:
   MAX_HEAP_MB: 3700
   MIN_NO_OF_MESSAGES_BY_USER_BEFORE_NPS_TRIGGER: "30"
   OPENAI_PROVIDER: azure
+  PG_DATABASE_SSL_MODE: "verify"
   PUBSUB_BACKEND: redis
   PUBSUB_REDIS_DB: 2
   SCOPE_MANAGEMENT_API_URL: http://backend-service-scope-management.unique.svc
