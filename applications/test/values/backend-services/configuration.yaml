@@ -4,7 +4,7 @@ auditVolume:
     storageAccount: helloazureaudit66d7a195
 image:
   repository: uqhacrtest.azurecr.io/backend-service-configuration
-  tag: "2025.52.0"
+  tag: "2026.04.2"
 secretProvider:
   vaults:
     hakv2test:
