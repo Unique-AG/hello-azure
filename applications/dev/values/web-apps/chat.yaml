@@ -6,5 +6,5 @@ env:
   SELF_URL: https://hello.azure.unique.dev/chat
   SPEECH_BACKEND_API_URL: wss://api.hello.azure.unique.dev/speech/ws/v1/speech-to-text
 image:
-  tag: "2025.52.0"
+  tag: "2026.04.2"
   repository: uniquehelloazure.azurecr.io/web-app-chat
