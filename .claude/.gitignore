@@ -1,0 +1,26 @@
+# Local settings
+settings.local.json
+CLAUDE.local.md
+
+# Local command overrides
+commands/*.local.md
+
+# Local rules
+rules/*.local.md
+
+# Local skills
+skills/*.local.md
+skills/*.local/
+skills/*/*.local.md
+
+# Local agents
+agents/*.local.md
+
+# Local hooks
+hooks/*.local.md
+hooks/*.local.sh
+hooks/*.local.js
+
+# Temporary files
+*.tmp
+*.log

@@ -1,0 +1,9 @@
+# Local rules
+rules/*.local.md
+rules/*.local.mdc
+rules/**/*.local.md
+rules/**/*.local.mdc
+
+# Temporary files
+*.tmp
+*.log

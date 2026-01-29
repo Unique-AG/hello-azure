@@ -5,3 +5,5 @@ mkdocs
 *.tfstate
 *.tfstate.backup
 .vscode
+.gates/
+.specs/
