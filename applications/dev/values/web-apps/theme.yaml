@@ -1,5 +1,5 @@
 env:
   SELF_URL: https://hello.azure.unique.dev/theme
 image:
-  tag: "2026.04.2"
+  tag: "2026.06.0"
   repository: uniquehelloazure.azurecr.io/web-app-theme
