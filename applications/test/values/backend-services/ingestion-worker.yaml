@@ -3,7 +3,7 @@ auditVolume:
     resourceGroup: resource-group-sensitive
     storageAccount: helloazureaudit66d7a195
 image:
-  tag: "2026.04.2"
+  tag: "2026.06.0"
   repository: uqhacrtest.azurecr.io/backend-service-ingestion-worker
 secretProvider:
   vaults:

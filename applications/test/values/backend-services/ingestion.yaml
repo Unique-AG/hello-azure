@@ -47,7 +47,7 @@ envVars:
         name: elasticsearch-ingestion-es-elastic-user
         key: elastic
 image:
-  tag: "2026.04.2"
+  tag: "2026.06.0"
   repository: uqhacrtest.azurecr.io/backend-service-ingestion
 replicaCount: 2
 resources:
