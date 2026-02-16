@@ -1,0 +1,37 @@
+fullnameOverride: blackbox-exporter
+image:
+  repository: uniquehelloazure.azurecr.io/prometheus/blackbox-exporter
+  tag: v0.28.0
+config:
+  modules:
+    http_any:
+      prober: http
+      timeout: 10s
+      http:
+        valid_status_codes:
+          - 200
+          - 201
+          - 301
+          - 302
+          - 400
+          - 401
+          - 403
+          - 404
+          - 405
+        follow_redirects: false
+        preferred_ip_protocol: ip4
+        tls_config:
+          insecure_skip_verify: true
+    tcp_connect:
+      prober: tcp
+      timeout: 10s
+      tcp:
+        preferred_ip_protocol: ip4
+serviceMonitor:
+  enabled: false
+resources:
+  requests:
+    cpu: 10m
+    memory: 32Mi
+  limits:
+    memory: 64Mi

@@ -2,5 +2,6 @@ images:
   - name: jetstack/cert-manager-cainjector:v1.12.2
   - name: jetstack/cert-manager-webhook:v1.12.2
   - name: jetstack/cert-manager-controller:v1.12.2
+  - name: prometheus/blackbox-exporter:v0.28.0
 sourceRegistry: quay.io
 targetRegistry: uqhacrtest.azurecr.io
