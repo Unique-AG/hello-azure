@@ -1,6 +1,7 @@
 fullnameOverride: blackbox-exporter
 image:
-  repository: uqhacrtest.azurecr.io/prometheus/blackbox-exporter
+  registry: uqhacrtest.azurecr.io
+  repository: prometheus/blackbox-exporter
   tag: v0.28.0
 config:
   modules:
