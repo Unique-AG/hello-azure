@@ -55,3 +55,24 @@ resources:
             - source_labels: [__meta_kubernetes_pod_node_name]
               action: replace
               target_label: node
+        - job_name: blackbox-http
+          metrics_path: /probe
+          params:
+            module:
+              - http_any
+          scrape_interval: 60s
+          scrape_timeout: 15s
+          static_configs:
+            - targets:
+                - https://test-hello.azure.unique.dev
+                - https://api.test-hello.azure.unique.dev
+                - https://id.test-hello.azure.unique.dev
+                - https://acme-v02.api.letsencrypt.org/directory
+                - https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration
+          relabel_configs:
+            - source_labels: [__address__]
+              target_label: __param_target
+            - source_labels: [__param_target]
+              target_label: instance
+            - target_label: __address__
+              replacement: blackbox-exporter.unique.svc.cluster.local:9115
