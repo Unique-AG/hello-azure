@@ -90,7 +90,7 @@ extraCronJobs:
 hooks:
   migration:
     command: |
-      cd /home/node/app/services/node-ingestion/prisma; npx prisma migrate deploy --config ../prisma.config.ts; cd /home/node/app/services/node-ingestion/dist; RUNNING_MODE=data-migration  node /home/node/app/services/node-ingestion/dist/main.js;
+      cd /home/node/app/services/node-ingestion/prisma; npx prisma migrate deploy --config ../prisma.config.ts;
     enabled: true
 nodeSelector:
   scalability: steady
