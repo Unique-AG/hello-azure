@@ -30,6 +30,7 @@ env:
   MAX_HEAP_MB: 750
   PG_DATABASE_SSL_MODE: "verify"
   ZITADEL_GRPC_HOST: http://zitadel.unique.svc.cluster.local:8080
+  ZITADEL_WEBHOOK_ENDPOINT: http://backend-service-scope-management.unique.svc/webhook/zitadel-events
 envVars:
   - name: AMQP_USERNAME
     valueFrom:
