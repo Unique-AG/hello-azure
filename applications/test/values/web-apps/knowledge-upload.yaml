@@ -1,5 +1,5 @@
 env:
   SELF_URL: https://test-hello.azure.unique.dev/knowledge-upload
 image:
-  tag: "2026.06.0"
+  tag: "2026.08.0"
   repository: uqhacrtest.azurecr.io/web-app-knowledge-upload
