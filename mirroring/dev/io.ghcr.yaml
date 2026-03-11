@@ -5,6 +5,7 @@ images:
   - name: zitadel/zitadel:v2.71.11
   - name: zitadel/zitadel:v2.71.13
   - name: zitadel/zitadel:v3.4.5
+  - name: zitadel/zitadel:v3.4.7
   - name: stakater/reloader:v1.1.0
   - name: stakater/reloader:v1.4.2
 sourceRegistry: ghcr.io

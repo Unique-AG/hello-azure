@@ -1,5 +1,6 @@
 env:
+  SCOPE_MANAGEMENT_BACKEND_API_URL: https://api.hello.azure.unique.dev/scope-management
   SELF_URL: https://hello.azure.unique.dev/theme
 image:
-  tag: "2026.08.0"
+  tag: "2026.10.2"
   repository: uniquehelloazure.azurecr.io/web-app-theme

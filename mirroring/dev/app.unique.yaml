@@ -1,19 +1,19 @@
 sourceRegistry: uniquecr.azurecr.io
 targetRegistryName: uniquehelloazure
 images:
-  - name: ai-service-assistants-core:2026.08.1
-  - name: backend-service-app-repository:2026.08.0
-  - name: backend-service-chat:2026.08.0
-  - name: backend-service-event-socket:2026.08.0
-  - name: backend-service-client-insights-exporter:2026.08.0
-  - name: backend-service-ingestion-worker:2026.08.0
-  - name: backend-service-ingestion:2026.08.0
-  - name: backend-service-scope-management:2026.08.0
-  - name: backend-service-webhook-scheduler:2026.08.0
-  - name: backend-service-webhook-worker:2026.08.0
-  - name: backend-service-configuration:2026.08.0
-  - name: web-app-admin:2026.08.0
-  - name: web-app-chat:2026.08.0
-  - name: web-app-knowledge-upload:2026.08.0
-  - name: web-app-theme:2026.08.0
-  - name: backend-service-speech:2026.08.0
+  - name: ai-service-assistants-core:2026.10.2
+  - name: backend-service-app-repository:2026.10.2
+  - name: backend-service-chat:2026.10.2
+  - name: backend-service-event-socket:2026.10.2
+  - name: backend-service-client-insights-exporter:2026.10.2
+  - name: backend-service-ingestion-worker:2026.10.2
+  - name: backend-service-ingestion:2026.10.2
+  - name: backend-service-scope-management:2026.10.2
+  - name: backend-service-webhook-scheduler:2026.10.2
+  - name: backend-service-webhook-worker:2026.10.2
+  - name: backend-service-configuration:2026.10.2
+  - name: web-app-admin:2026.10.2
+  - name: web-app-chat:2026.10.2
+  - name: web-app-knowledge-upload:2026.10.2
+  - name: web-app-theme:2026.10.2
+  - name: backend-service-speech:2026.10.2
