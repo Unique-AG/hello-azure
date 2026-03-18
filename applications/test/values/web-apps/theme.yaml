@@ -1,5 +1,6 @@
 env:
+  SCOPE_MANAGEMENT_BACKEND_API_URL: https://api.test-hello.azure.unique.dev/scope-management
   SELF_URL: https://test-hello.azure.unique.dev/theme
 image:
-  tag: "2026.08.0"
+  tag: "2026.10.2"
   repository: uqhacrtest.azurecr.io/web-app-theme
